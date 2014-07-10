@@ -65,7 +65,7 @@ public class AnimationHelper {
 	    anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
 	        @Override
 	        public void onAnimationUpdate(ValueAnimator valueAnimator) {
-	            int width = (Integer) valueAnimator.getAnimatedValue();
+	            float width = (Float) valueAnimator.getAnimatedValue();
 //	            ViewGroup.LayoutParams layoutParams = v.getLayoutParams();
 //	            layoutParams.width = width;
 //	            v.setLayoutParams(layoutParams);
