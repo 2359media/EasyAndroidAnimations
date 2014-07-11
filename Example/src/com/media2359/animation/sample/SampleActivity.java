@@ -9,9 +9,12 @@ import android.widget.Button;
 
 import com.media2359.animation.libs.Animation;
 import com.media2359.animation.libs.BlindAnimation;
+import com.media2359.animation.libs.BounceAnimation;
 import com.media2359.animation.libs.ClipAnimation;
+import com.media2359.animation.libs.Constant;
 import com.media2359.animation.libs.DropAnimation;
 import com.media2359.animation.libs.FadeAnimation;
+import com.media2359.animation.libs.FoldAnimation;
 import com.media2359.animation.libs.PuffAnimation;
 import com.media2359.animation.libs.PulstateAnimation;
 import com.media2359.animation.libs.ScaleAnimation;
@@ -20,6 +23,7 @@ import com.media2359.animation.libs.TransferAnimation;
 
 public class SampleActivity extends Activity {
     Button btnBlind, btnClip, btnDrop, btnFade, btnPuff, btnPulstate, btnScale, btnSize, btnTransfer, btnCancel;
+    Button btnFold, btnBounce;
     View animationView;
     Animation animation;
 
@@ -64,6 +68,13 @@ public class SampleActivity extends Activity {
                 case R.id.btn_drop:
                     animation = new DropAnimation();
                     break;
+                case R.id.btn_fold:
+                    animation = new FoldAnimation();
+                    break;
+                case R.id.btn_bounce:
+                    animation = new BounceAnimation();
+                    animation.putProperty(Constant.PROPERTY_ORITENTION, Constant.VERTICAL);
+                    break;
                 default:
                     break;
                 }
@@ -85,6 +96,8 @@ public class SampleActivity extends Activity {
         btnScale = (Button) findViewById(R.id.btn_scale);
         btnSize = (Button) findViewById(R.id.btn_size);
         btnTransfer = (Button) findViewById(R.id.btn_transfer);
+        btnFold = (Button) findViewById(R.id.btn_fold);
+        btnBounce = (Button) findViewById(R.id.btn_bounce);
     }
 
     private void initListener() {
@@ -97,6 +110,8 @@ public class SampleActivity extends Activity {
         btnScale.setOnClickListener(onPerformanceAnimation());
         btnSize.setOnClickListener(onPerformanceAnimation());
         btnTransfer.setOnClickListener(onPerformanceAnimation());
+        btnFold.setOnClickListener(onPerformanceAnimation());
+        btnBounce.setOnClickListener(onPerformanceAnimation());
 
         btnCancel.setOnClickListener(new OnClickListener() {
 

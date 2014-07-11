@@ -44,7 +44,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Puff" />
-
     </LinearLayout>
 
     <LinearLayout
@@ -83,18 +82,40 @@
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/button4"
             android:text="Transfer" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/line3"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/line2"
+        android:orientation="horizontal" >
+          <Button
+            android:id="@+id/btn_fold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/button6"
+            android:layout_alignBottom="@+id/button6"
+            android:text="Fold" />
+
+          <Button
+              android:id="@+id/btn_bounce"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Bounce" />
 
     </LinearLayout>
 
-      <TextView
-                android:id="@+id/textView1"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:background="@android:color/black"
-                android:text="TextView"
-                android:textColor="@android:color/white" />
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="@android:color/black"
+        android:text="TextView"
+        android:textColor="@android:color/white" />
+
     <Button
         android:id="@+id/btn_cancel"
         android:layout_width="wrap_content"

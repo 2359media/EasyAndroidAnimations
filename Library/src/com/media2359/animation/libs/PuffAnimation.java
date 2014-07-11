@@ -14,8 +14,8 @@ public class PuffAnimation extends Animation {
 
     @Override
     public void performAnimation(View v) {
-        ObjectAnimator scaleY = ObjectAnimator.ofFloat(v, Constant.SCALE_Y, v.getHeight());
-        ObjectAnimator scaleX = ObjectAnimator.ofFloat(v, Constant.SCALE_X, v.getWidth());
+        ObjectAnimator scaleY = ObjectAnimator.ofFloat(v, Constant.SCALE_Y,1f, 4f);
+        ObjectAnimator scaleX = ObjectAnimator.ofFloat(v, Constant.SCALE_X,1f, 4f);
         ObjectAnimator alpha = ObjectAnimator.ofFloat(v, Constant.ALPHA, 1f, 0f);
         animClip.setDuration(getDuration());
         animClip.playTogether(scaleY, scaleX, alpha);
@@ -34,8 +34,7 @@ public class PuffAnimation extends Animation {
     public void reset(View v) {
         ObjectAnimator scaleY = ObjectAnimator.ofFloat(v, Constant.SCALE_Y, 1);
         ObjectAnimator scaleX = ObjectAnimator.ofFloat(v, Constant.SCALE_X,1);
-        ObjectAnimator alpha = ObjectAnimator.ofFloat(v, Constant.ALPHA, 1f);
-        animClip.setDuration(getDuration());
+        ObjectAnimator alpha = ObjectAnimator.ofFloat(v, Constant.ALPHA,0f, 1f);
         animClip.playTogether(scaleY, scaleX, alpha);
         animClip.start();        
     }
