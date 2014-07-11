@@ -3,30 +3,104 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <Button
-        android:id="@+id/btn_action"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/line1"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:text="Action" />
+        android:orientation="horizontal" >
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/btn_action"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:text="Blind" />
+
+        <Button
+            android:id="@+id/btn_clip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/btn_action"
+            android:text="Clip" />
+
+        <Button
+            android:id="@+id/btn_drop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/btn_clip"
+            android:text="Drop" />
+
+        <Button
+            android:id="@+id/btn_fade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="fade" />
+
+        <Button
+            android:id="@+id/btn_puff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Puff" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/line2"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="TextView"
-        android:background="@android:color/black"
-        android:textColor="@android:color/white" />
+        android:layout_below="@+id/line1"
+        android:orientation="horizontal" >
 
+        <Button
+            android:id="@+id/btn_pul"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pulstate" />
+
+        <Button
+            android:id="@+id/btn_scale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/button2"
+            android:layout_toRightOf="@+id/button5"
+            android:text="Scale" />
+
+        <Button
+            android:id="@+id/btn_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/button6"
+            android:layout_alignBottom="@+id/button6"
+            android:text="Size" />
+
+        <Button
+            android:id="@+id/btn_transfer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/button4"
+            android:text="Transfer" />
+
+    </LinearLayout>
+
+      <TextView
+                android:id="@+id/textView1"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:background="@android:color/black"
+                android:text="TextView"
+                android:textColor="@android:color/white" />
     <Button
         android:id="@+id/btn_cancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/btn_action"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
         android:text="Cancel" />
 
 </RelativeLayout>

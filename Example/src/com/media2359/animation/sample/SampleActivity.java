@@ -4,35 +4,31 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.Transformation;
 import android.widget.Button;
 
-import com.media2359.animation.libs.AnimationLibrary;
+import com.media2359.animation.libs.Animation;
+import com.media2359.animation.libs.BlindAnimation;
 import com.media2359.animation.libs.ClipAnimation;
 import com.media2359.animation.libs.DropAnimation;
+import com.media2359.animation.libs.FadeAnimation;
+import com.media2359.animation.libs.PuffAnimation;
+import com.media2359.animation.libs.PulstateAnimation;
 import com.media2359.animation.libs.ScaleAnimation;
+import com.media2359.animation.libs.SizeAnimation;
+import com.media2359.animation.libs.TransferAnimation;
 
 public class SampleActivity extends Activity {
-    Button btnAction, btnCancel;
+    Button btnBlind, btnClip, btnDrop, btnFade, btnPuff, btnPulstate, btnScale, btnSize, btnTransfer, btnCancel;
     View animationView;
-    AnimationLibrary animationLibrary;
+    Animation animation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sample);
-        btnAction = (Button) findViewById(R.id.btn_action);
-        btnCancel=(Button) findViewById(R.id.btn_cancel);
-        animationView = findViewById(R.id.textView1);
-        animationLibrary = new ScaleAnimation();
-        btnAction.setOnClickListener(onPerformanceAnimation());
-        
-        btnCancel.setOnClickListener(new OnClickListener() {
-            
-            @Override
-            public void onClick(View v) {
-                animationLibrary.cancel(animationView);
-            }
-        });
+        initView();
+        initListener();
     }
 
     private OnClickListener onPerformanceAnimation() {
@@ -40,21 +36,75 @@ public class SampleActivity extends Activity {
 
             @Override
             public void onClick(View v) {
-                // ObjectAnimator anim = ObjectAnimator.ofFloat(animationView,
-                // "y", 0, 270);
-                // anim.setRepeatMode(Animation.REVERSE);
-                // anim.setDuration(1000);
-                // anim.start();
+                switch (v.getId()) {
+                case R.id.btn_action:
+                    animation = new BlindAnimation();
+                    break;
+                case R.id.btn_clip:
+                    animation = new ClipAnimation();
+                    break;
+                case R.id.btn_fade:
+                    animation = new FadeAnimation();
+                    break;
+                case R.id.btn_puff:
+                    animation = new PuffAnimation();
+                    break;
+                case R.id.btn_pul:
+                    animation = new PulstateAnimation();
+                    break;
+                case R.id.btn_scale:
+                    animation = new ScaleAnimation();
+                    break;
+                case R.id.btn_size:
+                    animation = new SizeAnimation();
+                    break;
+                case R.id.btn_transfer:
+                    animation = new TransferAnimation();
+                    break;
+                case R.id.btn_drop:
+                    animation = new DropAnimation();
+                    break;
+                default:
+                    break;
+                }
+                animation.performAnimation(animationView);
 
-                animationLibrary.performAnimation(animationView);
-
-                // TranslateAnimation animate = new
-                // TranslateAnimation(0,-animationView.getWidth(),0,0);
-                // animate.setDuration(500);
-                // animate.setFillAfter(true);
-                // animationView.startAnimation(animate);
-                // animationView.setVisibility(View.GONE);
             }
         };
+    }
+
+    private void initView() {
+        btnBlind = (Button) findViewById(R.id.btn_action);
+        btnCancel = (Button) findViewById(R.id.btn_cancel);
+        animationView = findViewById(R.id.textView1);
+        btnClip = (Button) findViewById(R.id.btn_clip);
+        btnDrop = (Button) findViewById(R.id.btn_drop);
+        btnFade = (Button) findViewById(R.id.btn_fade);
+        btnPuff = (Button) findViewById(R.id.btn_puff);
+        btnPulstate = (Button) findViewById(R.id.btn_pul);
+        btnScale = (Button) findViewById(R.id.btn_scale);
+        btnSize = (Button) findViewById(R.id.btn_size);
+        btnTransfer = (Button) findViewById(R.id.btn_transfer);
+    }
+
+    private void initListener() {
+        btnBlind.setOnClickListener(onPerformanceAnimation());
+        btnClip.setOnClickListener(onPerformanceAnimation());
+        btnDrop.setOnClickListener(onPerformanceAnimation());
+        btnFade.setOnClickListener(onPerformanceAnimation());
+        btnPuff.setOnClickListener(onPerformanceAnimation());
+        btnPulstate.setOnClickListener(onPerformanceAnimation());
+        btnScale.setOnClickListener(onPerformanceAnimation());
+        btnSize.setOnClickListener(onPerformanceAnimation());
+        btnTransfer.setOnClickListener(onPerformanceAnimation());
+
+        btnCancel.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                animation.reset(animationView);
+            }
+        });
+
     }
 }

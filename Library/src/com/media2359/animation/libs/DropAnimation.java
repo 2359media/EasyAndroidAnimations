@@ -4,7 +4,7 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.view.View;
 
-public class DropAnimation extends AnimationLibrary {
+public class DropAnimation extends Animation {
 	AnimatorSet animDrop = new AnimatorSet();
 
 	public DropAnimation() {
@@ -13,8 +13,8 @@ public class DropAnimation extends AnimationLibrary {
 
 	@Override
 	public void performAnimation(View v) {
-		ObjectAnimator animX = ObjectAnimator.ofFloat(v, "x", v.getWidth()/2);
-		ObjectAnimator alpha=ObjectAnimator.ofFloat(v, "alpha", 1f,0f);
+		ObjectAnimator animX = ObjectAnimator.ofFloat(v, Constant.X, v.getWidth()/2);
+		ObjectAnimator alpha=ObjectAnimator.ofFloat(v, Constant.ALPHA, 1f,0f);
 		animDrop.setDuration(getDuration());
 		animDrop.playTogether(animX, alpha);
 		if(getListener()!=null){
@@ -27,5 +27,13 @@ public class DropAnimation extends AnimationLibrary {
 	public void cancel(View v) {
 		animDrop.cancel();
 	}
+
+    @Override
+    public void reset(View v) {
+        ObjectAnimator animX = ObjectAnimator.ofFloat(v, Constant.X,0, v.getWidth());
+        ObjectAnimator alpha=ObjectAnimator.ofFloat(v, Constant.ALPHA, 1f);
+        animDrop.playTogether(animX, alpha);
+        animDrop.start();
+    }
 
 }
