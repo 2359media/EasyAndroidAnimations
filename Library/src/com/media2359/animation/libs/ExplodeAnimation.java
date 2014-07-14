@@ -11,7 +11,7 @@ import android.widget.GridLayout;
 import android.widget.ImageView;
 
 public class ExplodeAnimation extends Animation {
-    AnimatorSet animFold = new AnimatorSet();
+    AnimatorSet animExplode = new AnimatorSet();
     View child;
     GridLayout animationLayout;
     LayoutParams originalParam;
@@ -19,7 +19,7 @@ public class ExplodeAnimation extends Animation {
     ImageView img1_1, img1_2, img2_1, img2_2;
 
     public ExplodeAnimation(Context context) {
-        animFold = new AnimatorSet();
+        animExplode = new AnimatorSet();
         mContext = context;
     }
 
@@ -53,8 +53,12 @@ public class ExplodeAnimation extends Animation {
         ObjectAnimator moveDown2_2 = ObjectAnimator.ofFloat(img2_2, Constant.TRANSLATION_Y, 0, distanceY);
         anim2_2.playTogether(moveRight2_2, moveDown2_2);
 
-        animFold.playTogether(anim1_1, anim1_2, anim2_1, anim2_2);
-        animFold.start();
+        AnimatorSet animLayout=new AnimatorSet();
+        ObjectAnimator scaleX=ObjectAnimator.ofFloat(animationLayout, Constant.SCALE_X, 1f,2f);
+        ObjectAnimator scaleY=ObjectAnimator.ofFloat(animationLayout, Constant.SCALE_Y, 1f,2f);
+        animLayout.playTogether(scaleX,scaleY);
+        animExplode.playTogether(anim1_1, anim1_2, anim2_1, anim2_2,animLayout);
+        animExplode.start();
     }
 
     @Override
