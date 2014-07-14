@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:id="@+id/parent" >
 
     <LinearLayout
         android:id="@+id/line1"
@@ -90,7 +91,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/line2"
         android:orientation="horizontal" >
-          <Button
+
+        <Button
             android:id="@+id/btn_fold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -98,23 +100,71 @@
             android:layout_alignBottom="@+id/button6"
             android:text="Fold" />
 
-          <Button
-              android:id="@+id/btn_bounce"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="Bounce" />
-
+        <Button
+            android:id="@+id/btn_bounce"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bounce" />
+        
+        <Button
+            android:id="@+id/btn_explode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Explode" />
     </LinearLayout>
 
-    <TextView
+    <LinearLayout
         android:id="@+id/textView1"
         android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:background="@android:color/black"
-        android:text="TextView"
-        android:textColor="@android:color/white" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical" 
+          android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+          
+            android:background="@android:color/black"
+            android:text="TextView1"
+            android:textColor="@android:color/white" />
+         <TextView
+          android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/black"
+            android:text="TextView2"
+            android:textColor="@android:color/white" />
+          <TextView
+           android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/black"
+            android:text="TextView3"
+            android:textColor="@android:color/white" />
+           <TextView
+          android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/black"
+            android:text="TextView4"
+            android:textColor="@android:color/white" />
+            <TextView
+           android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/black"
+            android:text="TextView5"
+            android:textColor="@android:color/white" />
+             <TextView
+           android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/black"
+            android:text="TextView6"
+            android:textColor="@android:color/white" />
+              <TextView
+           android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/black"
+            android:text="TextView7"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/btn_cancel"
@@ -123,5 +173,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:text="Cancel" />
+
+
 
 </RelativeLayout>

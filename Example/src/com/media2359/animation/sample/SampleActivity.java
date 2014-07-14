@@ -1,11 +1,19 @@
 package com.media2359.animation.sample;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
+import android.view.ViewParent;
 import android.view.animation.Transformation;
 import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.media2359.animation.libs.Animation;
 import com.media2359.animation.libs.BlindAnimation;
@@ -13,6 +21,7 @@ import com.media2359.animation.libs.BounceAnimation;
 import com.media2359.animation.libs.ClipAnimation;
 import com.media2359.animation.libs.Constant;
 import com.media2359.animation.libs.DropAnimation;
+import com.media2359.animation.libs.ExplodeAnimation;
 import com.media2359.animation.libs.FadeAnimation;
 import com.media2359.animation.libs.FoldAnimation;
 import com.media2359.animation.libs.PuffAnimation;
@@ -23,14 +32,16 @@ import com.media2359.animation.libs.TransferAnimation;
 
 public class SampleActivity extends Activity {
     Button btnBlind, btnClip, btnDrop, btnFade, btnPuff, btnPulstate, btnScale, btnSize, btnTransfer, btnCancel;
-    Button btnFold, btnBounce;
+    Button btnFold, btnBounce,btn_explode;
     View animationView;
     Animation animation;
+    Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sample);
+        mContext = this;
         initView();
         initListener();
     }
@@ -40,10 +51,13 @@ public class SampleActivity extends Activity {
 
             @Override
             public void onClick(View v) {
+//                if(animation!=null){
+//                    animation.reset(animationView);
+//                }
                 switch (v.getId()) {
                 case R.id.btn_action:
-                    animation = new BlindAnimation();
-                    break;
+                     animation = new BlindAnimation(mContext);
+                     break;
                 case R.id.btn_clip:
                     animation = new ClipAnimation();
                     break;
@@ -69,16 +83,18 @@ public class SampleActivity extends Activity {
                     animation = new DropAnimation();
                     break;
                 case R.id.btn_fold:
-                    animation = new FoldAnimation();
+                    animation = new FoldAnimation(mContext);
                     break;
                 case R.id.btn_bounce:
                     animation = new BounceAnimation();
                     animation.putProperty(Constant.PROPERTY_ORITENTION, Constant.VERTICAL);
                     break;
+                case R.id.btn_explode:
+                    animation = new ExplodeAnimation(mContext);
                 default:
                     break;
                 }
-                animation.performAnimation(animationView);
+                 animation.performAnimation(animationView);
 
             }
         };
@@ -98,6 +114,7 @@ public class SampleActivity extends Activity {
         btnTransfer = (Button) findViewById(R.id.btn_transfer);
         btnFold = (Button) findViewById(R.id.btn_fold);
         btnBounce = (Button) findViewById(R.id.btn_bounce);
+        btn_explode=(Button) findViewById(R.id.btn_explode);
     }
 
     private void initListener() {
@@ -112,7 +129,7 @@ public class SampleActivity extends Activity {
         btnTransfer.setOnClickListener(onPerformanceAnimation());
         btnFold.setOnClickListener(onPerformanceAnimation());
         btnBounce.setOnClickListener(onPerformanceAnimation());
-
+        btn_explode.setOnClickListener(onPerformanceAnimation());
         btnCancel.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -122,4 +139,5 @@ public class SampleActivity extends Activity {
         });
 
     }
+
 }
