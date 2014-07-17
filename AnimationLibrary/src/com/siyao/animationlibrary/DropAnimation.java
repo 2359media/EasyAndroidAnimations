@@ -4,28 +4,57 @@ import android.view.View;
 
 public class DropAnimation extends Animation {
 
-	String leftRight;
+	String direction;
 	long duration;
 	
 	public DropAnimation() {
-		leftRight = "LEFT";
+		direction = "LEFT";
 		duration = 500;
+	}
+	
+	public DropAnimation(String direction, long duration) {
+		this.direction = direction;
+		this.duration = duration;
 	}
 	
 	@Override
 	public void animate(final View view) {
-		if (leftRight == "LEFT")
-			view.animate().translationXBy(-view.getWidth()).alpha(0).setDuration(duration);
-		else
-			view.animate().translationXBy(view.getWidth()).alpha(0).setDuration(duration);
-		view.animate().withEndAction(new Runnable() {
+		switch (direction) {
+		case "LEFT":
+			view.animate().translationXBy(-view.getWidth()).alpha(0);
+			break;
+		case "RIGHT":
+			view.animate().translationXBy(view.getWidth()).alpha(0);
+			break;
+		case "TOP":
+			view.animate().translationYBy(-view.getHeight()).alpha(0);
+			break;
+		case "BOTTOM":
+			view.animate().translationYBy(view.getHeight()).alpha(0);
+			break;
+		default:
+			break;
+		}
+		view.animate().setDuration(duration).withEndAction(new Runnable() {
 			
 			@Override
 			public void run() {
-				if (leftRight == "LEFT")
+				switch (direction) {
+				case "LEFT":
 					view.animate().translationXBy(view.getWidth()).alpha(1);
-				else
+					break;
+				case "RIGHT":
 					view.animate().translationXBy(-view.getWidth()).alpha(1);
+					break;
+				case "TOP":
+					view.animate().translationYBy(view.getHeight()).alpha(1);
+					break;
+				case "BOTTOM":
+					view.animate().translationYBy(-view.getHeight()).alpha(1);
+					break;
+				default:
+					break;
+				}
 			}
 		});
 	}
