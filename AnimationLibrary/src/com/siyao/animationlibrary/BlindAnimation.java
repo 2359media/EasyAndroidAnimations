@@ -7,20 +7,17 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
-public class BlindClipAnimation extends Animation {
+public class BlindAnimation extends Animation {
 
-	String blindClip;
 	int color;
 	long duration;
 	
-	public BlindClipAnimation() {
-		blindClip = "clip"; 
+	public BlindAnimation() {
 		color = Color.WHITE;
 		duration = 500;
 	}
 	
-	public BlindClipAnimation(String blindClip, int color, long duration) {
-		this.blindClip = blindClip;
+	public BlindAnimation(int color, long duration) {
 		this.color = color;
 		this.duration = duration;
 	}
@@ -35,15 +32,8 @@ public class BlindClipAnimation extends Animation {
 		box.setLayoutParams(layoutParams);
 		box.setY(view.getHeight());
 		box.setBackgroundColor(color);
-		
-		if (blindClip == "blind")
-			box.animate().translationYBy(-view.getHeight()).setDuration(duration);
-		else {
-			box.animate().translationYBy(-view.getHeight() / 2).setDuration(duration);
-			view.animate().translationYBy(view.getHeight() / 2).setDuration(duration);
-		}
-		
-		final int viewPosition = parentView.indexOfChild(view);
+		box.animate().translationYBy(-view.getHeight()).setDuration(duration);
+		int viewPosition = parentView.indexOfChild(view);
 		parentView.removeView(view);
 		blindFrame.addView(view);
 		blindFrame.addView(box);
@@ -55,8 +45,6 @@ public class BlindClipAnimation extends Animation {
 				blindFrame.removeAllViews();
 				parentView.removeView(blindFrame);
 				parentView.addView(view);
-				if (blindClip != "blind")
-					view.animate().translationYBy(-view.getHeight() / 2).alpha(1);
 			}
 		});
 	}
