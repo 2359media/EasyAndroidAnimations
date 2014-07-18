@@ -6,17 +6,17 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.view.View;
 
-public class BlinkAnimation extends Animation {
+public class PulsateAnimation extends Animation {
 	
 	int repetitions, blinkCount = 0;
 	long duration;
 	
-	public BlinkAnimation() {
+	public PulsateAnimation() {
 		repetitions = 2;
 		duration = 300;
 	}
 	
-	public BlinkAnimation(int repetitions, long duration) {
+	public PulsateAnimation(int repetitions, long duration) {
 		this.repetitions = repetitions;
 		this.duration = duration;
 	}
