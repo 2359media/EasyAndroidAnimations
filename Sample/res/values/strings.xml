@@ -6,11 +6,12 @@
         <item>Blind</item>
         <item>Bounce</item>
         <item>Clip</item>
-        <item>Drop</item>
         <item>Explode</item>
         <item>Highlight</item>
         <item>Pulsate</item>
         <item>Scale</item>
+        <item>Shake</item>
+        <item>Slide Out</item>
         <item>Transfer</item>
     </string-array>
 

@@ -2,17 +2,17 @@ package com.siyao.animationlibrary;
 
 import android.view.View;
 
-public class DropAnimation extends Animation {
+public class SlideOutAnimation extends Animation {
 
 	String direction;
 	long duration;
 	
-	public DropAnimation() {
+	public SlideOutAnimation() {
 		direction = "LEFT";
 		duration = 500;
 	}
 	
-	public DropAnimation(String direction, long duration) {
+	public SlideOutAnimation(String direction, long duration) {
 		this.direction = direction;
 		this.duration = duration;
 	}

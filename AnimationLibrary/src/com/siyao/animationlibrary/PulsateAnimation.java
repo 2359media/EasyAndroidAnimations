@@ -26,8 +26,8 @@ public class PulsateAnimation extends Animation {
 		long singleBlinkDuration = duration / repetitions;
 		if (singleBlinkDuration == 0)
 			singleBlinkDuration = 1;
-		ObjectAnimator fadeOut = ObjectAnimator.ofFloat(view, "alpha", 0),
-				fadeIn = ObjectAnimator.ofFloat(view, "alpha", 1);
+		ObjectAnimator fadeOut = ObjectAnimator.ofFloat(view, View.ALPHA, 0),
+				fadeIn = ObjectAnimator.ofFloat(view, View.ALPHA, 1);
 		final AnimatorSet animatorSet = new AnimatorSet();
 		animatorSet.playSequentially(fadeOut, fadeIn);
 		animatorSet.setDuration(singleBlinkDuration);

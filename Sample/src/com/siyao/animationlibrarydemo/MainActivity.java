@@ -11,16 +11,7 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.siyao.animationlibrary.BlindAnimation;
-import com.siyao.animationlibrary.BounceAnimation;
-import com.siyao.animationlibrary.ClipAnimation;
-import com.siyao.animationlibrary.DropAnimation;
-import com.siyao.animationlibrary.ExplodeAnimation;
-import com.siyao.animationlibrary.HighlightAnimation;
 import com.siyao.animationlibrary.MyAnimator;
-import com.siyao.animationlibrary.PulsateAnimation;
-import com.siyao.animationlibrary.ScaleAnimation;
-import com.siyao.animationlibrary.TransferAnimation;
 
 public class MainActivity extends Activity {
 	
@@ -62,31 +53,34 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				switch (selectedAnimation) {
 				case "Blind":
-					MyAnimator.animate(card, new BlindAnimation());
+					MyAnimator.blind(card);
 					break;
 				case "Bounce":
-					MyAnimator.animate(card, new BounceAnimation());
+					MyAnimator.bounce(card);
 					break;
 				case "Clip":
-					MyAnimator.animate(card, new ClipAnimation());
-					break;
-				case "Drop":
-					MyAnimator.animate(card, new DropAnimation());
+					MyAnimator.clip(card);
 					break;
 				case "Explode":
-					MyAnimator.animate(card, new ExplodeAnimation());
+					MyAnimator.explode(card);
 					break;
 				case "Highlight":
-					MyAnimator.animate(card, new HighlightAnimation());
+					MyAnimator.highlight(card);
 					break;
 				case "Pulsate":
-					MyAnimator.animate(card, new PulsateAnimation());
+					MyAnimator.pulsate(card);
 					break;
 				case "Scale":
-					MyAnimator.animate(card, new ScaleAnimation());
+					MyAnimator.scale(card);
+					break;
+				case "Shake":
+					MyAnimator.shake(card);
+					break;
+				case "Slide Out":
+					MyAnimator.slideOut(card);
 					break;
 				case "Transfer":
-					MyAnimator.animate(card, new TransferAnimation(v, 5000));
+					MyAnimator.transfer(card, v, 5000);
 					break;
 				default:
 					break;
