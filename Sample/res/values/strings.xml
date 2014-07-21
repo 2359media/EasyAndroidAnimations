@@ -3,6 +3,7 @@
 
     <string name="app_name">AnimationLibraryDemo</string>
     <string-array name="animations_array">
+        <item>Transfer</item>
         <item>Blind</item>
         <item>Bounce</item>
         <item>Clip</item>
@@ -12,7 +13,6 @@
         <item>Scale</item>
         <item>Shake</item>
         <item>Slide Out</item>
-        <item>Transfer</item>
     </string-array>
 
 </resources>
