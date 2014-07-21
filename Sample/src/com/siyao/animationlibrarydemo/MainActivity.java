@@ -76,6 +76,9 @@ public class MainActivity extends Activity {
 				case "Shake":
 					MyAnimator.shake(card);
 					break;
+				case "Slide In":
+					MyAnimator.slideIn(card);
+					break;
 				case "Slide Out":
 					MyAnimator.slideOut(card);
 					break;

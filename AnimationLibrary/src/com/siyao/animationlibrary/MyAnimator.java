@@ -64,6 +64,14 @@ public class MyAnimator {
 		new ShakeAnimation(shakeDistance, repetitions, duration).animate(view);
 	}
 	
+	public static void slideIn(View view) {
+		new SlideInAnimation().animate(view);
+	}
+	
+	public static void slideIn(View view, String direction, long duration) {
+		new SlideInAnimation(direction, duration).animate(view);
+	}
+	
 	public static void slideOut(View view) {
 		new SlideOutAnimation().animate(view);
 	}

@@ -11,8 +11,7 @@
         android:layout_height="0dp"
         android:layout_weight="0.2"
         android:gravity="center"
-        android:orientation="horizontal"
-        android:background="@android:color/holo_purple" >
+        android:orientation="horizontal" >
 	    
 		<Spinner
             android:id="@+id/spinner"
