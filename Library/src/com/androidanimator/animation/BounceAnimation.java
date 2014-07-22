@@ -7,6 +7,7 @@ import android.animation.Animator.AnimatorListener;
 import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.util.Property;
 import android.view.View;
 
 /**
@@ -64,7 +65,7 @@ public class BounceAnimation extends Animation {
 
     @Override
     public AnimatorSet getAnimatorSet(View v) {
-        String translate_type;
+        Property<View, Float> translate_type;
         if (oritention == Constant.HORIZONTAL) {
             translate_type = Constant.TRANSLATION_X;
         } else {

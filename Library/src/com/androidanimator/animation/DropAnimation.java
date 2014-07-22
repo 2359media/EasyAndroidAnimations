@@ -4,6 +4,7 @@ import android.animation.Animator.AnimatorListener;
 import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.util.Property;
 import android.view.View;
 
 /**
@@ -58,7 +59,7 @@ public class DropAnimation extends Animation {
             distance = v.getWidth() * 2;
         }
         ObjectAnimator animX;
-        String translateType = null;
+        Property<View, Float> translateType = null;
         switch (direction) {
         case Constant.DIRECTION_LEFT:
             translateType = Constant.TRANSLATION_X;

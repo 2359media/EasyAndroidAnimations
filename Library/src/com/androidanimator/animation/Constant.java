@@ -1,16 +1,19 @@
 package com.androidanimator.animation;
 
+import android.util.Property;
+import android.view.View;
+
 /**
  * @author phutang
- *
+ * 
  */
 public class Constant {
-    public static final String X = "x";
-    public static final String Y = "y";
-    public static final String SCALE_X = "scaleX";
-    public static final String SCALE_Y = "scaleY";
-    public static final String TRANSLATION_Y = "translationY";
-    public static final String TRANSLATION_X = "translationX";
+    public static final Property<View, Float> X = View.X;
+    public static final Property<View, Float> Y = View.Y;
+    public static final Property<View, Float> SCALE_X = View.SCALE_X;
+    public static final Property<View, Float> SCALE_Y = View.SCALE_Y;
+    public static final Property<View, Float> TRANSLATION_Y = View.TRANSLATION_Y;
+    public static final Property<View, Float> TRANSLATION_X = View.TRANSLATION_X;
     public static final String ALPHA = "alpha";
 
     public static final int DEFAULT_DURATION = 500; // 500ms the default

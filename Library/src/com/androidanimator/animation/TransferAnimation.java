@@ -4,6 +4,7 @@ import android.animation.Animator.AnimatorListener;
 import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.util.Property;
 import android.view.View;
 
 /**
@@ -66,7 +67,7 @@ public class TransferAnimation extends Animation {
             distance = v.getHeight() * 2;
 
         }
-        String sTranslation = null;
+        Property<View, Float> sTranslation = null;
         switch (direction) {
         case Constant.DIRECTION_LEFT:
             sTranslation = Constant.TRANSLATION_X;
