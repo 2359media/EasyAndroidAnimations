@@ -1,10 +1,14 @@
-package com.media2359.animation.libs;
+package com.androidanimator.animation;
 
 import android.animation.Animator.AnimatorListener;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.view.View;
 
+/**
+ * @author phutang
+ *
+ */
 public class FadeAnimation extends Animation {
     ObjectAnimator anim;
     int type;
@@ -14,7 +18,12 @@ public class FadeAnimation extends Animation {
         type = Constant.OUT;
     }
 
-    
+    /**
+     * 
+     * @param listener 
+     * @param duration
+     * @param type
+     */
     public FadeAnimation(AnimatorListener listener, long duration, int type) {
         super(listener, duration);
         anim = new ObjectAnimator();
@@ -26,7 +35,7 @@ public class FadeAnimation extends Animation {
     public int getType() {
         return type;
     }
-
+    
     public void setType(int type) {
         this.type = type;
     }

@@ -1,4 +1,4 @@
-package com.media2359.animation.libs;
+package com.androidanimator.animation;
 
 public class Constant {
     public static final String X = "x";

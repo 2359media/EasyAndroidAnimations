@@ -1,4 +1,4 @@
-package com.media2359.animation.libs;
+package com.androidanimator.animation;
 
 import java.util.ArrayList;
 import java.util.List;

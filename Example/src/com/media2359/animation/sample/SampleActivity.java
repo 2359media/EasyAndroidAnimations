@@ -4,36 +4,16 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup.LayoutParams;
-import android.view.ViewParent;
-import android.view.animation.Transformation;
 import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.RadioGroup;
-import android.widget.RelativeLayout;
 import android.widget.Spinner;
-import android.widget.Toast;
 
-import com.media2359.animation.libs.Animation;
-import com.media2359.animation.libs.BlindAnimation;
-import com.media2359.animation.libs.BounceAnimation;
-import com.media2359.animation.libs.ClipAnimation;
-import com.media2359.animation.libs.Constant;
-import com.media2359.animation.libs.DropAnimation;
-import com.media2359.animation.libs.ExplodeAnimation;
-import com.media2359.animation.libs.FadeAnimation;
-import com.media2359.animation.libs.FoldAnimation;
-import com.media2359.animation.libs.MyAnimation;
-import com.media2359.animation.libs.PuffAnimation;
-import com.media2359.animation.libs.PulstateAnimation;
-import com.media2359.animation.libs.ScaleAnimation;
-import com.media2359.animation.libs.SizeAnimation;
-import com.media2359.animation.libs.TransferAnimation;
+import com.androidanimator.MyAnimation;
+import com.androidanimator.animation.Animation;
+import com.androidanimator.animation.Constant;
+
 
 public class SampleActivity extends Activity {
     Button btnBlind, btnClip, btnDrop, btnFade, btnPuff, btnPulstate, btnScale, btnSize, btnTransfer, btnCancel;

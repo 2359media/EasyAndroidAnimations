@@ -1,4 +1,18 @@
-package com.media2359.animation.libs;
+package com.androidanimator;
+
+import com.androidanimator.animation.BlindAnimation;
+import com.androidanimator.animation.BounceAnimation;
+import com.androidanimator.animation.ClipAnimation;
+import com.androidanimator.animation.Constant;
+import com.androidanimator.animation.DropAnimation;
+import com.androidanimator.animation.ExplodeAnimation;
+import com.androidanimator.animation.FadeAnimation;
+import com.androidanimator.animation.FoldAnimation;
+import com.androidanimator.animation.PuffAnimation;
+import com.androidanimator.animation.PulstateAnimation;
+import com.androidanimator.animation.ScaleAnimation;
+import com.androidanimator.animation.SizeAnimation;
+import com.androidanimator.animation.TransferAnimation;
 
 import android.animation.Animator.AnimatorListener;
 import android.content.Context;
