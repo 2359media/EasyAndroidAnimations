@@ -59,8 +59,6 @@ public class TransferAnimation1 extends Animation {
 		}
 		rootView.setClipChildren(false);
 		
-		
-		
 		final float scaleX = (float) destinationView.getWidth() / ((float) view.getWidth()),
 				scaleY = (float) destinationView.getHeight() / ((float) view.getHeight());
 		
@@ -88,9 +86,8 @@ public class TransferAnimation1 extends Animation {
 		else
 			transY = locationView[1] - locationDest[1];
 		
-		//transX = transX - view.getWidth()/2 + destinationView.getWidth();
-		//transY = transY - view.getHeight()/2 + destinationView.getHeight();
-		//transY = transY + destinationView.getHeight()/2;
+		transX = transX - view.getWidth()/2 + destinationView.getWidth();
+		transY = transY - view.getHeight()/2 + destinationView.getHeight();
 		
 		final ValueAnimator scaleXAnim = ObjectAnimator.ofFloat(view, View.SCALE_X, scaleX),
 				scaleYAnim = ObjectAnimator.ofFloat(view, View.SCALE_Y, scaleY),
@@ -100,14 +97,6 @@ public class TransferAnimation1 extends Animation {
 		final AnimatorSet animatorSet = new AnimatorSet();
 		animatorSet.playTogether(translateXAnim, translateYAnim, alphaAnim);
 		animatorSet.setDuration(duration);
-		translateXAnim.addUpdateListener(new AnimatorUpdateListener() {
-			
-			@Override
-			public void onAnimationUpdate(ValueAnimator arg0) {
-				//view.invalidate();
-			}
-		});
-		//parentView.invalidate(); 
 		animatorSet.start();
 //				animatorSet.addListener(new AnimatorListenerAdapter() {
 //					
