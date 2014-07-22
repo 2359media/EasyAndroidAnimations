@@ -82,6 +82,8 @@ public class MainActivity extends Activity {
 					MyAnimator1.slideOut(card);
 					break;
 				case "Transfer":
+					MyAnimator1.transfer(card, v, 500);
+					break;
 				default:
 					break;
 				}

@@ -23,8 +23,9 @@ public class HighlightAnimation1 extends Animation {
 		duration = 500;
 	}
 
-	public HighlightAnimation1(int color) {
+	public HighlightAnimation1(int color, long duration) {
 		this.color = color;
+		this.duration = duration;
 	}
 
 	@Override

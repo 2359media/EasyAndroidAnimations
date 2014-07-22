@@ -21,9 +21,10 @@ public class ScaleAnimation1 extends Animation {
 		duration = 500;
 	}
 
-	public ScaleAnimation1(int x, int y) {
+	public ScaleAnimation1(int x, int y, long duration) {
 		this.x = x;
 		this.y = y;
+		this.duration = duration;
 	}
 
 	@Override

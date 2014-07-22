@@ -24,8 +24,9 @@ public class ClipAnimation1 extends Animation {
 		duration = 500;
 	}
 
-	public ClipAnimation1(int color) {
+	public ClipAnimation1(int color, long duration) {
 		this.color = color;
+		this.duration = duration;
 	}
 
 	@Override

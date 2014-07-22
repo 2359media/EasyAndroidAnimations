@@ -22,8 +22,9 @@ public class PulsateAnimation1 extends Animation {
 		duration = 300;
 	}
 
-	public PulsateAnimation1(int repetitions) {
+	public PulsateAnimation1(int repetitions, long duration) {
 		this.repetitions = repetitions;
+		this.duration = duration;
 	}
 
 	@Override
