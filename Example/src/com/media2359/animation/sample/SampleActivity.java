@@ -2,6 +2,7 @@ package com.media2359.animation.sample;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,7 +14,10 @@ import android.view.animation.Transformation;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.media2359.animation.libs.Animation;
 import com.media2359.animation.libs.BlindAnimation;
@@ -24,6 +28,7 @@ import com.media2359.animation.libs.DropAnimation;
 import com.media2359.animation.libs.ExplodeAnimation;
 import com.media2359.animation.libs.FadeAnimation;
 import com.media2359.animation.libs.FoldAnimation;
+import com.media2359.animation.libs.MyAnimation;
 import com.media2359.animation.libs.PuffAnimation;
 import com.media2359.animation.libs.PulstateAnimation;
 import com.media2359.animation.libs.ScaleAnimation;
@@ -32,10 +37,12 @@ import com.media2359.animation.libs.TransferAnimation;
 
 public class SampleActivity extends Activity {
     Button btnBlind, btnClip, btnDrop, btnFade, btnPuff, btnPulstate, btnScale, btnSize, btnTransfer, btnCancel;
-    Button btnFold, btnBounce,btn_explode;
+    Button btnFold, btnBounce, btn_explode;
     View animationView;
     Animation animation;
     Context mContext;
+    RadioGroup rgDirection;
+    Spinner spType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,51 +57,69 @@ public class SampleActivity extends Activity {
         return new OnClickListener() {
 
             @Override
-            public void onClick(View v) {
-//                if(animation!=null){
-//                    animation.reset(animationView);
-//                }
-                switch (v.getId()) {
+            public void onClick(View view) {
+                View v = animationView;
+                int type = spType.getSelectedItemPosition();
+                if (type == 0) {
+                    type = Constant.IN;
+                } else {
+                    type = Constant.OUT;
+                }
+                int direction = getDirection();
+                switch (view.getId()) {
                 case R.id.btn_action:
-                     animation = new BlindAnimation(mContext);
-                     break;
+                    MyAnimation.Blind(mContext, v);
+                    break;
                 case R.id.btn_clip:
-                    animation = new ClipAnimation();
+                    MyAnimation.clip(v, Constant.DEFAULT_DURATION, Constant.VERTICAL, null);
                     break;
                 case R.id.btn_fade:
-                    animation = new FadeAnimation();
+                    // TODO
+                    if (type == Constant.IN) {
+                        // MyAnimation.
+                    }
                     break;
                 case R.id.btn_puff:
-                    animation = new PuffAnimation();
+                    if (type == Constant.IN)
+                        MyAnimation.puffIn(v, Constant.DEFAULT_DURATION, null);
+                    else
+                        MyAnimation.puffOut(v);
                     break;
                 case R.id.btn_pul:
-                    animation = new PulstateAnimation();
+                    MyAnimation.Pulstate(v);
                     break;
                 case R.id.btn_scale:
-                    animation = new ScaleAnimation();
+                    if (type == Constant.IN)
+                        MyAnimation.scaleIn(v);
+                    else
+                        MyAnimation.scaleOut(v);
                     break;
                 case R.id.btn_size:
-                    animation = new SizeAnimation();
+                    MyAnimation.size(v);
                     break;
                 case R.id.btn_transfer:
-                    animation = new TransferAnimation();
+                    if (type == Constant.IN)
+                        MyAnimation.transferIn(v, Constant.DEFAULT_DURATION, direction, null);
+                    else
+                        MyAnimation.transferOut(v, Constant.DEFAULT_DURATION, direction, null);
                     break;
                 case R.id.btn_drop:
-                    animation = new DropAnimation();
+                    if (type == Constant.IN)
+                        MyAnimation.dropIn(v, Constant.DEFAULT_DURATION, direction, null);
+                    else
+                        MyAnimation.dropOut(v, Constant.DEFAULT_DURATION, direction, null);
                     break;
                 case R.id.btn_fold:
-                    animation = new FoldAnimation(mContext);
+                    MyAnimation.fold(mContext, v);
                     break;
                 case R.id.btn_bounce:
-                    animation = new BounceAnimation();
-                    animation.putProperty(Constant.PROPERTY_ORITENTION, Constant.VERTICAL);
+                    MyAnimation.bounce(v, Constant.DEFAULT_DURATION, Constant.HORIZONTAL, 10, null);
                     break;
                 case R.id.btn_explode:
-                    animation = new ExplodeAnimation(mContext);
+                    MyAnimation.explode(mContext, v);
                 default:
                     break;
                 }
-                 animation.performAnimation(animationView);
 
             }
         };
@@ -114,7 +139,9 @@ public class SampleActivity extends Activity {
         btnTransfer = (Button) findViewById(R.id.btn_transfer);
         btnFold = (Button) findViewById(R.id.btn_fold);
         btnBounce = (Button) findViewById(R.id.btn_bounce);
-        btn_explode=(Button) findViewById(R.id.btn_explode);
+        btn_explode = (Button) findViewById(R.id.btn_explode);
+        rgDirection = (RadioGroup) findViewById(R.id.groupDirection);
+        spType = (Spinner) findViewById(R.id.spinner1);
     }
 
     private void initListener() {
@@ -134,10 +161,29 @@ public class SampleActivity extends Activity {
 
             @Override
             public void onClick(View v) {
-                animation.reset(animationView);
+                startActivity(new Intent(SampleActivity.this, SampleActivity.class));
+                finish();
             }
         });
 
+    }
+
+    private int getDirection() {
+        int id = rgDirection.getCheckedRadioButtonId();
+        switch (id) {
+        case R.id.radioUp:
+            return Constant.DIRECTION_UP;
+        case R.id.radioDown:
+            return Constant.DIRECTION_DOWN;
+        case R.id.radioLeft:
+            return Constant.DIRECTION_LEFT;
+        case R.id.radioRight:
+            return Constant.DIRECTION_RIGHT;
+
+        default:
+            break;
+        }
+        return Constant.DIRECTION_LEFT;
     }
 
 }

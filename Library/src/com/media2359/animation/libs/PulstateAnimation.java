@@ -9,17 +9,33 @@ import android.view.View;
 public class PulstateAnimation extends Animation {
     AnimatorSet animPulse;
     int count, total;
-    public int TIME_INTERVAL = 50;
+    public long TIME_INTERVAL = 50;
 
     public PulstateAnimation() {
         animPulse = new AnimatorSet();
     }
+    
+    
+
+    public PulstateAnimation(AnimatorListener listener, long duration) {
+        super(listener, duration);
+        animPulse = new AnimatorSet();
+    }
+
+
 
     @Override
-    public void performAnimation(View v) {
+    public void animate(View v) {
+        getAnimatorSet(v);
+        animPulse.start();
+    }
+
+
+    @Override
+    public AnimatorSet getAnimatorSet(View v) {
         ObjectAnimator alpha = ObjectAnimator.ofFloat(v, Constant.ALPHA, 1f, 0f);
         ObjectAnimator alpha1 = ObjectAnimator.ofFloat(v, Constant.ALPHA, 0f, 1f);
-        total = getDuration() / TIME_INTERVAL;
+        total = (int) (getDuration() / TIME_INTERVAL);
         animPulse.setDuration(TIME_INTERVAL);
         animPulse.playSequentially(alpha, alpha1);
         animPulse.addListener(new AnimatorListener() {
@@ -52,18 +68,6 @@ public class PulstateAnimation extends Animation {
 
             }
         });
-        animPulse.start();
-    }
-
-    @Override
-    public void cancel(View v) {
-        animPulse.cancel();
-    }
-
-    @Override
-    public void reset(View v) {
-        ObjectAnimator alpha1 = ObjectAnimator.ofFloat(v, Constant.ALPHA, 0f, 1f);
-        alpha1.start();
-
+        return animPulse;
     }
 }

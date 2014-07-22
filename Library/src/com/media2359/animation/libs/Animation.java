@@ -1,19 +1,22 @@
 package com.media2359.animation.libs;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import android.animation.Animator.AnimatorListener;
+import android.animation.AnimatorSet;
 import android.view.View;
 
 public abstract class Animation {
 
     private AnimatorListener listener;
-    protected Map<String, Float> properties;
+    long duration;
+
+    public Animation(AnimatorListener listener, long duration) {
+        super();
+        this.listener = listener;
+        this.duration = duration;
+    }
 
     public Animation() {
-        properties = new HashMap<String, Float>();
-        setDuration(Constant.DEFAULT_DURATION);
+        duration = Constant.DEFAULT_DURATION;
     };
 
     public AnimatorListener getListener() {
@@ -24,35 +27,18 @@ public abstract class Animation {
         this.listener = listener;
     }
 
-    public int getDuration() {
-        return Math.round(properties.get(Constant.PROPERTY_DURATION));
+    public long getDuration() {
+        return duration;
     }
 
-    public void setDuration(int duration) {
-        properties.put(Constant.PROPERTY_DURATION, (float) duration);
+    public void setDuration(long duration) {
+        this.duration = duration;
     }
 
-    /**
-     * @param propertyName
-     *            it should be define in Constant.java
-     * @param value
-     *            the param of the animation.
-     */
-    public void putProperty(String propertyName, float value) {
-        properties.put(propertyName, value);
+    public abstract void animate(View v);
+
+    public AnimatorSet getAnimatorSet(View v) {
+        return null;
     }
-    
-    /**
-     * @return all of property in for this animation
-     */
-    public Map<String, Float> getAllProperties(){
-        return properties;
-    }
-
-    public abstract void performAnimation(View v);
-
-    public abstract void cancel(View v);
-
-    public abstract void reset(View v);
 
 }

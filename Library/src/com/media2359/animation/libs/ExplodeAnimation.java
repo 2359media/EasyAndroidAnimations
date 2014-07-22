@@ -1,5 +1,6 @@
 package com.media2359.animation.libs;
 
+import android.animation.Animator.AnimatorListener;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
@@ -22,14 +23,20 @@ public class ExplodeAnimation extends Animation {
         animExplode = new AnimatorSet();
         mContext = context;
     }
+    
+    public ExplodeAnimation(AnimatorListener listener, long duration, Context mContext) {
+        super(listener, duration);
+        this.mContext = mContext;
+        animExplode = new AnimatorSet();
+    }
+
+
 
     @Override
-    public void performAnimation(View v) {
-        float distanceX = v.getWidth() / 2;
-        float distanceY = v.getHeight() / 2;
-        addToAnimatioView(v);
+    public void animate(View v) {
+        getAnimatorSet(v);
 
-        moveImage(distanceX, distanceY);
+        animExplode.start();
     }
 
     private void moveImage(float distanceX, float distanceY) {
@@ -53,21 +60,15 @@ public class ExplodeAnimation extends Animation {
         ObjectAnimator moveDown2_2 = ObjectAnimator.ofFloat(img2_2, Constant.TRANSLATION_Y, 0, distanceY);
         anim2_2.playTogether(moveRight2_2, moveDown2_2);
 
-        AnimatorSet animLayout=new AnimatorSet();
-        ObjectAnimator scaleX=ObjectAnimator.ofFloat(animationLayout, Constant.SCALE_X, 1f,2f);
-        ObjectAnimator scaleY=ObjectAnimator.ofFloat(animationLayout, Constant.SCALE_Y, 1f,2f);
-        animLayout.playTogether(scaleX,scaleY);
-        animExplode.playTogether(anim1_1, anim1_2, anim2_1, anim2_2,animLayout);
-        animExplode.start();
-    }
-
-    @Override
-    public void cancel(View v) {
-        // TODO Auto-generated method stub
+        AnimatorSet animLayout = new AnimatorSet();
+        ObjectAnimator scaleX = ObjectAnimator.ofFloat(animationLayout, Constant.SCALE_X, 1f, 2f);
+        ObjectAnimator scaleY = ObjectAnimator.ofFloat(animationLayout, Constant.SCALE_Y, 1f, 2f);
+        animLayout.playTogether(scaleX, scaleY);
+        animExplode.playTogether(anim1_1, anim1_2, anim2_1, anim2_2, animLayout);
 
     }
 
-    @Override
+
     public void reset(View v) {
         ViewGroup parent = (ViewGroup) animationLayout.getParent();
         parent.removeView(animationLayout);
@@ -116,5 +117,15 @@ public class ExplodeAnimation extends Animation {
         animationLayout.addView(img2_2, 3);
 
         parent.addView(animationLayout);
+    }
+
+    @Override
+    public AnimatorSet getAnimatorSet(View v) {
+        float distanceX = v.getWidth() / 2;
+        float distanceY = v.getHeight() / 2;
+        addToAnimatioView(v);
+
+        moveImage(distanceX, distanceY);
+        return animExplode;
     }
 }

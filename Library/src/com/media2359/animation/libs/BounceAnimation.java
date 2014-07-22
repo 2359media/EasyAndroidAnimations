@@ -3,6 +3,7 @@ package com.media2359.animation.libs;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.animation.Animator.AnimatorListener;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.view.View;
@@ -10,20 +11,57 @@ import android.view.View;
 public class BounceAnimation extends Animation {
     public int AMPLITUDE = 10;
     AnimatorSet bounceAnim;
-    int count, total;
+    int  oritention;
     float amp;
 
     public BounceAnimation() {
         bounceAnim = new AnimatorSet();
-        properties.put(Constant.PROPERTY_ORITENTION, Constant.HORIZONTAL);
-        properties.put(Constant.PROPERTY_AMPLITUDE, (float) AMPLITUDE);
+        oritention= Constant.HORIZONTAL;
+        amp=AMPLITUDE;
+    }
+
+    public BounceAnimation(AnimatorListener listener, long duration, int oritention, float amp) {
+        super(listener, duration);
+        bounceAnim = new AnimatorSet();
+        this.oritention = oritention;
+        this.amp = amp;
+    }
+    
+    
+    @Override
+    public void animate(View v) {
+        getAnimatorSet(v);
+        bounceAnim.start();
+    }
+
+    public AnimatorSet getBounceAnim() {
+        return bounceAnim;
+    }
+
+    public void setBounceAnim(AnimatorSet bounceAnim) {
+        this.bounceAnim = bounceAnim;
+    }
+
+    public int getOritention() {
+        return oritention;
+    }
+
+    public void setOritention(int oritention) {
+        this.oritention = oritention;
+    }
+
+    public float getAmp() {
+        return amp;
+    }
+
+    public void setAmp(float amp) {
+        this.amp = amp;
     }
 
     @Override
-    public void performAnimation(View v) {
-        amp = properties.get(Constant.PROPERTY_AMPLITUDE);
+    public AnimatorSet getAnimatorSet(View v) {
         String translate_type;
-        if (properties.get(Constant.PROPERTY_ORITENTION) == Constant.HORIZONTAL) {
+        if (oritention == Constant.HORIZONTAL) {
             translate_type = Constant.TRANSLATION_X;
         } else {
             translate_type = Constant.TRANSLATION_Y;
@@ -38,17 +76,7 @@ public class BounceAnimation extends Animation {
         }
         bounceAnim.playSequentially(move.toArray(new ObjectAnimator[move.size()]));
         bounceAnim.setDuration((int) amp * 5);
-        bounceAnim.start();
-    }
-
-    @Override
-    public void cancel(View v) {
-
-    }
-
-    @Override
-    public void reset(View v) {
-
+        return bounceAnim;
     }
 
 }

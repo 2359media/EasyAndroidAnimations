@@ -1,43 +1,56 @@
 package com.media2359.animation.libs;
 
+import android.animation.Animator.AnimatorListener;
+import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.view.View;
 
 public class FadeAnimation extends Animation {
     ObjectAnimator anim;
+    int type;
 
     public FadeAnimation() {
         anim = new ObjectAnimator();
+        type = Constant.OUT;
+    }
+
+    
+    public FadeAnimation(AnimatorListener listener, long duration, int type) {
+        super(listener, duration);
+        anim = new ObjectAnimator();
+        this.type = type;
+    }
+
+
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
     }
 
     @Override
-    public void performAnimation(View v) {
-        if (anim != null) {
-            anim = ObjectAnimator.ofFloat(v, Constant.ALPHA, 1f, 0f);
-            anim.setDuration(getDuration());
-            if (getListener() != null) {
-                anim.addListener(getListener());
-            }
-            anim.start();
+    public void animate(View v) {
+
+        getAnimatorSet(v).start();
+    }
+
+    @Override
+    public AnimatorSet getAnimatorSet(View v) {
+        if (type == Constant.OUT) {
+            anim = ObjectAnimator.ofFloat(v, Constant.ALPHA, v.getAlpha(), 0f);
         } else {
-            throw new NullPointerException();
+            anim = ObjectAnimator.ofFloat(v, Constant.ALPHA, 0f, 1f);
         }
-    }
-
-    @Override
-    public void cancel(View v) {
-        if (anim != null) {
-            anim.cancel();
-        } else {
-            throw new NullPointerException();
-        }
-    }
-
-    @Override
-    public void reset(View v) {
-        anim = ObjectAnimator.ofFloat(v, Constant.ALPHA, 1f);
         anim.setDuration(getDuration());
-        anim.start();
+        if (getListener() != null) {
+            anim.addListener(getListener());
+        }
+        AnimatorSet animatorSet = new AnimatorSet();
+        animatorSet.playTogether(anim);
+        return animatorSet;
     }
 
 }

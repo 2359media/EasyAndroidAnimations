@@ -99,5 +99,6 @@ public class AnimationHelper {
 		        }
 		    });
 		anim.start();
+		
 	}
 }

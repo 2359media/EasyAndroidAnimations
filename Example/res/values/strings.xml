@@ -1,5 +1,8 @@
 <resources>
 
     <string name="app_name">AnimationSample</string>
-
+  <string-array name="type">
+        <item>In</item>
+        <item>Out</item>
+    </string-array>
 </resources>
