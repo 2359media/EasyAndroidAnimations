@@ -25,9 +25,10 @@ public class ShakeAnimation1 extends Animation {
 		duration = 100;
 	}
 
-	public ShakeAnimation1(float shakeDistance, int repetitions) {
+	public ShakeAnimation1(float shakeDistance, int repetitions, long duration) {
 		this.shakeDistance = shakeDistance;
 		this.repetitions = repetitions;
+		this.duration = duration;
 	}
 
 	@Override

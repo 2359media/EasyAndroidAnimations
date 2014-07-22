@@ -19,8 +19,9 @@ public class SlideOutAnimation1 extends Animation {
 		duration = 500;
 	}
 	
-	public SlideOutAnimation1(String direction) {
+	public SlideOutAnimation1(String direction, long duration) {
 		this.direction = direction;
+		this.duration = duration;
 	}
 	
 	@Override

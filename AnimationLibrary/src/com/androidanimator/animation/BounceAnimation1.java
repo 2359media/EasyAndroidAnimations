@@ -26,9 +26,10 @@ public class BounceAnimation1 extends Animation {
 		duration = 100;
 	}
 	
-	public BounceAnimation1(float bounceDistance, int repetitions) {
+	public BounceAnimation1(float bounceDistance, int repetitions, long duration) {
 		this.bounceDistance = bounceDistance;
 		this.repetitions = repetitions;
+		this.duration = duration;
 	}
 
 	@Override

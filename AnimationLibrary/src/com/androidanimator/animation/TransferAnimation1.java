@@ -16,8 +16,9 @@ public class TransferAnimation1 extends Animation {
 	ViewGroup parentView;
 	int transX, transY;
 	
-	public TransferAnimation1(View destinationView) {
+	public TransferAnimation1(View destinationView, long duration) {
 		this.destinationView = destinationView;
+		this.duration = duration;
 	}
 	
 	@Override

@@ -21,8 +21,9 @@ public class SlideInAnimation1 extends Animation {
 		duration = 500;
 	}
 
-	public SlideInAnimation1(String direction) {
+	public SlideInAnimation1(String direction, long duration) {
 		this.direction = direction;
+		this.duration = duration;
 	}
 
 	@Override

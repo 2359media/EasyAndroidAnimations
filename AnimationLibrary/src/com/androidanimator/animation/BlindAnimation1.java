@@ -24,8 +24,9 @@ public class BlindAnimation1 extends Animation {
 		duration = 500;
 	}
 	
-	public BlindAnimation1(int color) {
+	public BlindAnimation1(int color, long duration) {
 		this.color = color;
+		this.duration = duration;
 	}
 
 	@Override

@@ -29,9 +29,10 @@ public class ExplodeAnimation1 extends Animation {
 		duration = 500;
 	}
 
-	public ExplodeAnimation1(int xParts, int yParts) {
+	public ExplodeAnimation1(int xParts, int yParts, long duration) {
 		this.xParts = xParts;
 		this.yParts = yParts;
+		this.duration = duration;
 	}
 
 	@Override
