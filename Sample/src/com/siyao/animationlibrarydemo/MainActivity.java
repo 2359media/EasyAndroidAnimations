@@ -82,6 +82,7 @@ public class MainActivity extends Activity {
 					MyAnimator.slideOut(card);
 					break;
 				case "Transfer":
+					//card.invalidate();
 					MyAnimator.transfer(card, v, 10000);
 					break;
 				default:
