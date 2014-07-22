@@ -21,11 +21,12 @@ public class BlindAnimation1 extends Animation {
 	
 	public BlindAnimation1() {
 		color = Color.WHITE;
-		duration = 500;
+		duration = Constant.DEFAULT_DURATION;
 	}
 	
-	public BlindAnimation1(int color) {
+	public BlindAnimation1(int color, long duration) {
 		this.color = color;
+		this.duration = duration;
 	}
 
 	@Override

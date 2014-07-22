@@ -1,6 +1,7 @@
 package com.androidanimator;
 
-import com.androidanimator.animation.Animation;
+import android.view.View;
+
 import com.androidanimator.animation.BlindAnimation1;
 import com.androidanimator.animation.BounceAnimation1;
 import com.androidanimator.animation.ClipAnimation1;
@@ -13,11 +14,7 @@ import com.androidanimator.animation.SlideInAnimation1;
 import com.androidanimator.animation.SlideOutAnimation1;
 import com.androidanimator.animation.TransferAnimation1;
 
-import android.view.View;
-
 public class MyAnimator1 {
-
-	static Animation animation;
 
 	/**
 	 * The BlindAnimation1 makes use of a box that is of the same size as the
@@ -42,9 +39,7 @@ public class MyAnimator1 {
 	 *            the duration of the entire animation
 	 */
 	public static void blind(View view, int color, long duration) {
-		animation = new BlindAnimation1(color);
-		animation.setDuration(duration);
-		animation.animate(view);
+		new BlindAnimation1(color, duration).animate(view);
 	}
 
 	/**
@@ -73,9 +68,7 @@ public class MyAnimator1 {
 	 */
 	public static void bounce(View view, float bounceDistance, int repetitions,
 			long duration) {
-		animation = new BounceAnimation1(bounceDistance, repetitions);
-		animation.setDuration(duration);
-		animation.animate(view);
+		new BounceAnimation1(bounceDistance, repetitions, duration).animate(view);
 	}
 
 	/**
@@ -103,9 +96,7 @@ public class MyAnimator1 {
 	 *            the duration of the entire animation
 	 */
 	public static void clip(View view, int color, long duration) {
-		animation = new ClipAnimation1(color);
-		animation.setDuration(duration);
-		animation.animate(view);
+		new ClipAnimation1(color, duration).animate(view);
 	}
 
 	/**
@@ -135,9 +126,7 @@ public class MyAnimator1 {
 	 *            the duration of the entire animation
 	 */
 	public static void explode(View view, int xParts, int yParts, long duration) {
-		animation = new ExplodeAnimation1(xParts, yParts);
-		animation.setDuration(duration);
-		animation.animate(view);
+		new ExplodeAnimation1(xParts, yParts, duration).animate(view);
 	}
 
 	/**
@@ -163,9 +152,7 @@ public class MyAnimator1 {
 	 *            the duration of the entire animation
 	 */
 	public static void highlight(View view, int color, long duration) {
-		animation = new HighlightAnimation1(color);
-		animation.setDuration(duration);
-		animation.animate(view);
+		new HighlightAnimation1(color, duration).animate(view);
 	}
 
 	/**
@@ -191,9 +178,7 @@ public class MyAnimator1 {
 	 *            the duration of the entire animation
 	 */
 	public static void pulsate(View view, int repetitions, long duration) {
-		animation = new PulsateAnimation1(repetitions);
-		animation.setDuration(duration);
-		animation.animate(view);
+		new PulsateAnimation1(repetitions, duration).animate(view);
 	}
 
 	/**
@@ -221,9 +206,7 @@ public class MyAnimator1 {
 	 *            the duration of the entire animation
 	 */
 	public static void scale(View view, int x, int y, long duration) {
-		animation = new ScaleAnimation1(x, y);
-		animation.setDuration(duration);
-		animation.animate(view);
+		new ScaleAnimation1(x, y, duration).animate(view);
 	}
 
 	/**
@@ -252,9 +235,7 @@ public class MyAnimator1 {
 	 */
 	public static void shake(View view, float shakeDistance, int repetitions,
 			long duration) {
-		animation = new ShakeAnimation1(shakeDistance, repetitions);
-		animation.setDuration(duration);
-		animation.animate(view);
+		new ShakeAnimation1(shakeDistance, repetitions, duration).animate(view);
 	}
 
 	/**
@@ -279,10 +260,8 @@ public class MyAnimator1 {
 	 * @param duration
 	 *            the duration of the entire animation
 	 */
-	public static void slideIn(View view, String direction, long duration) {
-		animation = new SlideInAnimation1(direction);
-		animation.setDuration(duration);
-		animation.animate(view);
+	public static void slideIn(View view, int direction, long duration) {
+		new SlideInAnimation1(direction, duration).animate(view);
 	}
 
 	/**
@@ -307,10 +286,8 @@ public class MyAnimator1 {
 	 * @param duration
 	 *            the duration of the entire animation
 	 */
-	public static void slideOut(View view, String direction, long duration) {
-		animation = new SlideOutAnimation1(direction);
-		animation.setDuration(duration);
-		animation.animate(view);
+	public static void slideOut(View view, int direction, long duration) {
+		new SlideOutAnimation1(direction, duration).animate(view);
 	}
 
 	/**
@@ -325,9 +302,7 @@ public class MyAnimator1 {
 	 *            the duration of the entire animation
 	 */
 	public static void transfer(View view, View destinationView, long duration) {
-		animation = new TransferAnimation1(destinationView);
-		animation.setDuration(duration);
-		animation.animate(view);
+		new TransferAnimation1(destinationView, duration).animate(view);
 	}
 
 }

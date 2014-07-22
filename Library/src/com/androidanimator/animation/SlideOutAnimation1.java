@@ -1,7 +1,10 @@
 package com.androidanimator.animation;
 
 
+import android.animation.ObjectAnimator;
+import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 
 /**
  * The SlideOutAnimation1 causes the view to slide out to the left, right, top or
@@ -12,57 +15,46 @@ import android.view.View;
  */
 public class SlideOutAnimation1 extends Animation {
 
-	String direction;
+	int direction;
+	ObjectAnimator slideAnim;
 	
 	public SlideOutAnimation1() {
-		direction = "LEFT";
-		duration = 500;
+		direction = Constant.DIRECTION_LEFT;
+		duration = Constant.DEFAULT_DURATION;
 	}
 	
-	public SlideOutAnimation1(String direction) {
+	public SlideOutAnimation1(int direction, long duration) {
 		this.direction = direction;
+		this.duration = duration;
 	}
 	
 	@Override
 	public void animate(final View view) {
+		ViewGroup parentView = (ViewGroup) view.getParent(), rootView = (ViewGroup) view.getRootView();
+		while (!parentView.equals(rootView)) {
+			parentView.setClipChildren(false);
+			parentView = (ViewGroup) parentView.getParent();
+		}
+		rootView.setClipChildren(false);
+		Log.d("top", "" + rootView.getTop());
 		switch (direction) {
-		case "LEFT":
-			view.animate().translationXBy(-view.getWidth()).alpha(0);
+		case Constant.DIRECTION_LEFT:
+			slideAnim = ObjectAnimator.ofFloat(view, View.X, rootView.getLeft() - view.getWidth());
 			break;
-		case "RIGHT":
-			view.animate().translationXBy(view.getWidth()).alpha(0);
+		case Constant.DIRECTION_RIGHT:
+			slideAnim = ObjectAnimator.ofFloat(view, View.X, rootView.getRight());
 			break;
-		case "TOP":
-			view.animate().translationYBy(-view.getHeight()).alpha(0);
+		case Constant.DIRECTION_UP:
+			slideAnim = ObjectAnimator.ofFloat(view, View.Y, rootView.getTop() - view.getHeight());
 			break;
-		case "BOTTOM":
-			view.animate().translationYBy(view.getHeight()).alpha(0);
+		case Constant.DIRECTION_DOWN:
+			slideAnim = ObjectAnimator.ofFloat(view, View.Y, rootView.getBottom());
 			break;
 		default:
 			break;
 		}
-		view.animate().setDuration(duration).withEndAction(new Runnable() {
-			
-			@Override
-			public void run() {
-				switch (direction) {
-				case "LEFT":
-					view.animate().translationXBy(view.getWidth()).alpha(1);
-					break;
-				case "RIGHT":
-					view.animate().translationXBy(-view.getWidth()).alpha(1);
-					break;
-				case "TOP":
-					view.animate().translationYBy(view.getHeight()).alpha(1);
-					break;
-				case "BOTTOM":
-					view.animate().translationYBy(-view.getHeight()).alpha(1);
-					break;
-				default:
-					break;
-				}
-			}
-		});
+		slideAnim.setDuration(duration);
+		slideAnim.start();
 	}
 	
 }

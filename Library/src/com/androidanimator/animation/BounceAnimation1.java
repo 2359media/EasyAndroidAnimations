@@ -23,12 +23,13 @@ public class BounceAnimation1 extends Animation {
 	public BounceAnimation1() {
 		bounceDistance = 50;
 		repetitions = 1;
-		duration = 100;
+		duration = Constant.DEFAULT_DURATION;
 	}
 	
-	public BounceAnimation1(float bounceDistance, int repetitions) {
+	public BounceAnimation1(float bounceDistance, int repetitions, long duration) {
 		this.bounceDistance = bounceDistance;
 		this.repetitions = repetitions;
+		this.duration = duration;
 	}
 
 	@Override

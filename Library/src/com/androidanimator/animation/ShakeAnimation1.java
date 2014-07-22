@@ -22,12 +22,13 @@ public class ShakeAnimation1 extends Animation {
 	public ShakeAnimation1() {
 		shakeDistance = 50;
 		repetitions = 1;
-		duration = 100;
+		duration = Constant.DEFAULT_DURATION;
 	}
 
-	public ShakeAnimation1(float shakeDistance, int repetitions) {
+	public ShakeAnimation1(float shakeDistance, int repetitions, long duration) {
 		this.shakeDistance = shakeDistance;
 		this.repetitions = repetitions;
+		this.duration = duration;
 	}
 
 	@Override

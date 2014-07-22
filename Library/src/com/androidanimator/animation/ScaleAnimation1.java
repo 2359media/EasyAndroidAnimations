@@ -18,12 +18,13 @@ public class ScaleAnimation1 extends Animation {
 	public ScaleAnimation1() {
 		x = 0;
 		y = 0;
-		duration = 500;
+		duration = Constant.DEFAULT_DURATION;
 	}
 
-	public ScaleAnimation1(int x, int y) {
+	public ScaleAnimation1(int x, int y, long duration) {
 		this.x = x;
 		this.y = y;
+		this.duration = duration;
 	}
 
 	@Override

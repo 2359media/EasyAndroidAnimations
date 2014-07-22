@@ -26,12 +26,13 @@ public class ExplodeAnimation1 extends Animation {
 	public ExplodeAnimation1() {
 		xParts = 3;
 		yParts = 3;
-		duration = 500;
+		duration = Constant.DEFAULT_DURATION;
 	}
 
-	public ExplodeAnimation1(int xParts, int yParts) {
+	public ExplodeAnimation1(int xParts, int yParts, long duration) {
 		this.xParts = xParts;
 		this.yParts = yParts;
+		this.duration = duration;
 	}
 
 	@Override

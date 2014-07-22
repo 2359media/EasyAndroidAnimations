@@ -21,11 +21,12 @@ public class ClipAnimation1 extends Animation {
 
 	public ClipAnimation1() {
 		color = Color.WHITE;
-		duration = 500;
+		duration = Constant.DEFAULT_DURATION;
 	}
 
-	public ClipAnimation1(int color) {
+	public ClipAnimation1(int color, long duration) {
 		this.color = color;
+		this.duration = duration;
 	}
 
 	@Override
