@@ -1,4 +1,4 @@
-package com.siyao.animationlibrary;
+package com.androidanimator.animation;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -6,19 +6,24 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.view.View;
 
-public class PulsateAnimation extends Animation {
-	
+/**
+ * The PulsateAnimation1 causes the view to blink a number of times to mimic a
+ * pulsating animation.
+ * 
+ * @author SiYao
+ * 
+ */
+public class PulsateAnimation1 extends Animation {
+
 	int repetitions, blinkCount = 0;
-	long duration;
-	
-	public PulsateAnimation() {
+
+	public PulsateAnimation1() {
 		repetitions = 2;
 		duration = 300;
 	}
-	
-	public PulsateAnimation(int repetitions, long duration) {
+
+	public PulsateAnimation1(int repetitions) {
 		this.repetitions = repetitions;
-		this.duration = duration;
 	}
 
 	@Override
@@ -26,14 +31,14 @@ public class PulsateAnimation extends Animation {
 		long singleBlinkDuration = duration / repetitions;
 		if (singleBlinkDuration == 0)
 			singleBlinkDuration = 1;
-		ObjectAnimator fadeOut = ObjectAnimator.ofFloat(view, View.ALPHA, 0),
-				fadeIn = ObjectAnimator.ofFloat(view, View.ALPHA, 1);
+		ObjectAnimator fadeOut = ObjectAnimator.ofFloat(view, View.ALPHA, 0), fadeIn = ObjectAnimator
+				.ofFloat(view, View.ALPHA, 1);
 		final AnimatorSet animatorSet = new AnimatorSet();
 		animatorSet.playSequentially(fadeOut, fadeIn);
 		animatorSet.setDuration(singleBlinkDuration);
 		animatorSet.start();
 		animatorSet.addListener(new AnimatorListenerAdapter() {
-			
+
 			@Override
 			public void onAnimationEnd(Animator animation) {
 				blinkCount++;

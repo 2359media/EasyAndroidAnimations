@@ -1,4 +1,4 @@
-package com.siyao.animationlibrary;
+package com.androidanimator.animation;
 
 import android.graphics.Color;
 import android.view.View;
@@ -7,19 +7,24 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
-public class HighlightAnimation extends Animation {
-	
+/**
+ * The HighlightAnimation1 makes use of a translucent box to overlay the view to
+ * mimic the highlighting of the view.
+ * 
+ * @author SiYao
+ * 
+ */
+public class HighlightAnimation1 extends Animation {
+
 	int color;
-	long duration;
-	
-	public HighlightAnimation() {
+
+	public HighlightAnimation1() {
 		color = Color.YELLOW;
 		duration = 500;
 	}
-	
-	public HighlightAnimation(int color, long duration) {
+
+	public HighlightAnimation1(int color) {
 		this.color = color;
-		this.duration = duration;
 	}
 
 	@Override
@@ -33,7 +38,7 @@ public class HighlightAnimation extends Animation {
 		highlight.setBackgroundColor(color);
 		highlight.setAlpha(0.5f);
 		highlight.animate().alpha(0).setDuration(duration);
-		
+
 		int viewPosition = parentView.indexOfChild(view);
 		parentView.removeView(view);
 		highlightFrame.addView(view);

@@ -11,11 +11,10 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.siyao.animationlibrary.MyAnimator;
+import com.androidanimator.MyAnimator;
 
 public class MainActivity extends Activity {
 	
-	float x, y;
 	Spinner spinner;
 	TextView card;
 	Button animateButton;
@@ -83,7 +82,7 @@ public class MainActivity extends Activity {
 					MyAnimator.slideOut(card);
 					break;
 				case "Transfer":
-					MyAnimator.transfer(card, v, 500);
+					MyAnimator.transfer(card, v, 10000);
 					break;
 				default:
 					break;

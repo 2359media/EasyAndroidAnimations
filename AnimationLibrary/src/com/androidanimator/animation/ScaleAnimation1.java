@@ -1,24 +1,29 @@
-package com.siyao.animationlibrary;
+package com.androidanimator.animation;
 
 import android.view.View;
 import android.view.ViewGroup;
 
-public class ScaleAnimation extends Animation {
-	
+/**
+ * The ScaleAnimation1 scales the view either upwards or downwards depending on
+ * the parameters provided by the user before fading out of view.
+ * 
+ * @author SiYao
+ * 
+ */
+public class ScaleAnimation1 extends Animation {
+
 	int x, y;
-	long duration;
 	ViewGroup parentView;
-	
-	public ScaleAnimation() {
+
+	public ScaleAnimation1() {
 		x = 0;
 		y = 0;
 		duration = 500;
 	}
-	
-	public ScaleAnimation(int x, int y, long duration) {
+
+	public ScaleAnimation1(int x, int y) {
 		this.x = x;
 		this.y = y;
-		this.duration = duration;
 	}
 
 	@Override
@@ -36,7 +41,7 @@ public class ScaleAnimation extends Animation {
 			rootView.setClipChildren(false);
 		}
 		view.animate().withEndAction(new Runnable() {
-			
+
 			@Override
 			public void run() {
 				view.animate().scaleX(1).scaleY(1).alpha(1);

@@ -1,20 +1,26 @@
-package com.siyao.animationlibrary;
+package com.androidanimator.animation;
+
 
 import android.view.View;
 
-public class SlideOutAnimation extends Animation {
+/**
+ * The SlideOutAnimation1 causes the view to slide out to the left, right, top or
+ * bottom depending on the parameters provided by the user.
+ * 
+ * @author SiYao
+ * 
+ */
+public class SlideOutAnimation1 extends Animation {
 
 	String direction;
-	long duration;
 	
-	public SlideOutAnimation() {
+	public SlideOutAnimation1() {
 		direction = "LEFT";
 		duration = 500;
 	}
 	
-	public SlideOutAnimation(String direction, long duration) {
+	public SlideOutAnimation1(String direction) {
 		this.direction = direction;
-		this.duration = duration;
 	}
 	
 	@Override

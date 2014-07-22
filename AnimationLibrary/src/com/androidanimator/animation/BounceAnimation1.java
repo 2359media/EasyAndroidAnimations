@@ -1,4 +1,5 @@
-package com.siyao.animationlibrary;
+package com.androidanimator.animation;
+
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -7,22 +8,27 @@ import android.animation.ObjectAnimator;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class BounceAnimation extends Animation {
+/**
+ * The BounceAnimation1 causes the view to bounce by translating up and down
+ * for a number of times before returning to its original position.
+ * 
+ * @author SiYao
+ * 
+ */
+public class BounceAnimation1 extends Animation {
 
 	float bounceDistance;
 	int repetitions, bounceCount = 0;
-	long duration;
 	
-	public BounceAnimation() {
+	public BounceAnimation1() {
 		bounceDistance = 50;
 		repetitions = 1;
 		duration = 100;
 	}
 	
-	public BounceAnimation(float bounceDistance, int repetitions, long duration) {
+	public BounceAnimation1(float bounceDistance, int repetitions) {
 		this.bounceDistance = bounceDistance;
 		this.repetitions = repetitions;
-		this.duration = duration;
 	}
 
 	@Override
