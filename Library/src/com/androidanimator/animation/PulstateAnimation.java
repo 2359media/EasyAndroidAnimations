@@ -6,6 +6,10 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.view.View;
 
+/**
+ * @author phutang
+ *
+ */
 public class PulstateAnimation extends Animation {
     AnimatorSet animPulse;
     int count, total;

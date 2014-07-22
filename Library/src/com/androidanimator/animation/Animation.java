@@ -4,6 +4,10 @@ import android.animation.Animator.AnimatorListener;
 import android.animation.AnimatorSet;
 import android.view.View;
 
+/**
+ * @author phutang
+ *
+ */
 public abstract class Animation {
 
     private AnimatorListener listener;

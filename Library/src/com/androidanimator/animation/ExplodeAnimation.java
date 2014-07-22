@@ -11,6 +11,10 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 
+/**
+ * @author phutang
+ *
+ */
 public class ExplodeAnimation extends Animation {
     AnimatorSet animExplode = new AnimatorSet();
     View child;

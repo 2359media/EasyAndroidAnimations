@@ -1,5 +1,9 @@
 package com.androidanimator.animation;
 
+/**
+ * @author phutang
+ *
+ */
 public class Constant {
     public static final String X = "x";
     public static final String Y = "y";

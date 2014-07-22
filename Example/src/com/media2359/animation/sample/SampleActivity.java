@@ -14,7 +14,6 @@ import com.androidanimator.MyAnimation;
 import com.androidanimator.animation.Animation;
 import com.androidanimator.animation.Constant;
 
-
 public class SampleActivity extends Activity {
     Button btnBlind, btnClip, btnDrop, btnFade, btnPuff, btnPulstate, btnScale, btnSize, btnTransfer, btnCancel;
     Button btnFold, btnBounce, btn_explode;
@@ -56,7 +55,9 @@ public class SampleActivity extends Activity {
                 case R.id.btn_fade:
                     // TODO
                     if (type == Constant.IN) {
-                        // MyAnimation.
+                        MyAnimation.faceIn(v);
+                    } else {
+                        MyAnimation.faceOut(v);
                     }
                     break;
                 case R.id.btn_puff:

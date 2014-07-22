@@ -18,6 +18,10 @@ import android.animation.Animator.AnimatorListener;
 import android.content.Context;
 import android.view.View;
 
+/**
+ * @author phutang
+ *
+ */
 public class MyAnimation {
 
     public static void Blind(Context context, View v) {

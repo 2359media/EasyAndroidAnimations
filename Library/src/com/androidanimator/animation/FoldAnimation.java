@@ -9,6 +9,10 @@ import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.FrameLayout;
 
+/**
+ * @author phutang
+ *
+ */
 public class FoldAnimation extends Animation {
 
     AnimatorSet animFold = new AnimatorSet();

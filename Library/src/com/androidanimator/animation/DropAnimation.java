@@ -5,6 +5,10 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.view.View;
 
+/**
+ * @author phutang
+ *
+ */
 public class DropAnimation extends Animation {
     AnimatorSet animDrop = new AnimatorSet();
     private float distance;
