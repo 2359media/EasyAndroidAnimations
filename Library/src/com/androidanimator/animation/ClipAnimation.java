@@ -1,13 +1,14 @@
 package com.androidanimator.animation;
 
 import android.animation.Animator.AnimatorListener;
+import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.view.View;
 
 /**
  * @author phutang
- *
+ * 
  */
 public class ClipAnimation extends Animation {
 
@@ -18,14 +19,12 @@ public class ClipAnimation extends Animation {
         animClip = new AnimatorSet();
         oritention = Constant.VERTICAL;
     }
-    
-    public ClipAnimation(AnimatorListener listener, long duration, int oritention) {
+
+    public ClipAnimation(AnimationListener listener, long duration, int oritention) {
         super(listener, duration);
         this.oritention = oritention;
         animClip = new AnimatorSet();
     }
-
-
 
     public int getOritention() {
         return oritention;
@@ -55,7 +54,28 @@ public class ClipAnimation extends Animation {
         animClip.setDuration(getDuration());
         animClip.playTogether(animX, alpha);
         if (getListener() != null) {
-            animClip.addListener(getListener());
+            animClip.addListener(new AnimatorListener() {
+
+                @Override
+                public void onAnimationStart(Animator animation) {
+
+                }
+
+                @Override
+                public void onAnimationRepeat(Animator animation) {
+
+                }
+
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    getListener().onAnimationEnd(ClipAnimation.this);
+                }
+
+                @Override
+                public void onAnimationCancel(Animator animation) {
+
+                }
+            });
         }
         return animClip;
     }

@@ -4,34 +4,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.animation.Animator.AnimatorListener;
+import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.view.View;
 
 /**
  * @author phutang
- *
+ * 
  */
 public class BounceAnimation extends Animation {
     public int AMPLITUDE = 10;
     AnimatorSet bounceAnim;
-    int  oritention;
+    int oritention;
     float amp;
 
     public BounceAnimation() {
         bounceAnim = new AnimatorSet();
-        oritention= Constant.HORIZONTAL;
-        amp=AMPLITUDE;
+        oritention = Constant.HORIZONTAL;
+        amp = AMPLITUDE;
     }
 
-    public BounceAnimation(AnimatorListener listener, long duration, int oritention, float amp) {
+    public BounceAnimation(AnimationListener listener, long duration, int oritention, float amp) {
         super(listener, duration);
         bounceAnim = new AnimatorSet();
         this.oritention = oritention;
         this.amp = amp;
     }
-    
-    
+
     @Override
     public void animate(View v) {
         getAnimatorSet(v);
@@ -80,6 +80,30 @@ public class BounceAnimation extends Animation {
         }
         bounceAnim.playSequentially(move.toArray(new ObjectAnimator[move.size()]));
         bounceAnim.setDuration((int) amp * 5);
+        if (getListener() != null) {
+            bounceAnim.addListener(new AnimatorListener() {
+
+                @Override
+                public void onAnimationStart(Animator animation) {
+
+                }
+
+                @Override
+                public void onAnimationRepeat(Animator animation) {
+
+                }
+
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    getListener().onAnimationEnd(BounceAnimation.this);
+                }
+
+                @Override
+                public void onAnimationCancel(Animator animation) {
+
+                }
+            });
+        }
         return bounceAnim;
     }
 

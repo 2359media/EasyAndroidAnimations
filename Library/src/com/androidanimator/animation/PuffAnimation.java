@@ -1,13 +1,14 @@
 package com.androidanimator.animation;
 
 import android.animation.Animator.AnimatorListener;
+import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.view.View;
 
 /**
  * @author phutang
- *
+ * 
  */
 public class PuffAnimation extends Animation {
 
@@ -18,8 +19,8 @@ public class PuffAnimation extends Animation {
         animClip = new AnimatorSet();
         type = Constant.OUT;
     }
-    
-    public PuffAnimation(AnimatorListener listener, long duration, int type) {
+
+    public PuffAnimation(AnimationListener listener, long duration, int type) {
         super(listener, duration);
         this.type = type;
         animClip = new AnimatorSet();
@@ -54,7 +55,28 @@ public class PuffAnimation extends Animation {
         animClip.setDuration(getDuration());
         animClip.playTogether(scaleY, scaleX, alpha);
         if (getListener() != null) {
-            animClip.addListener(getListener());
+            animClip.addListener(new AnimatorListener() {
+
+                @Override
+                public void onAnimationStart(Animator animation) {
+
+                }
+
+                @Override
+                public void onAnimationRepeat(Animator animation) {
+
+                }
+
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    getListener().onAnimationEnd(PuffAnimation.this);
+                }
+
+                @Override
+                public void onAnimationCancel(Animator animation) {
+
+                }
+            });
         }
         return animClip;
     }

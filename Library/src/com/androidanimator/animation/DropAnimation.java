@@ -1,13 +1,14 @@
 package com.androidanimator.animation;
 
 import android.animation.Animator.AnimatorListener;
+import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.view.View;
 
 /**
  * @author phutang
- *
+ * 
  */
 public class DropAnimation extends Animation {
     AnimatorSet animDrop = new AnimatorSet();
@@ -21,7 +22,7 @@ public class DropAnimation extends Animation {
         type = Constant.OUT;
     }
 
-    public DropAnimation(AnimatorListener listener, long duration, float distance, int direction, int type) {
+    public DropAnimation(AnimationListener listener, long duration, float distance, int direction, int type) {
         super(listener, duration);
         this.distance = distance;
         this.direction = direction;
@@ -51,19 +52,6 @@ public class DropAnimation extends Animation {
         animDrop.start();
     }
 
-    public void dropIn(View v) {
-        ObjectAnimator animX = ObjectAnimator.ofFloat(v, Constant.TRANSLATION_X, -distance, 0);
-        ObjectAnimator alpha = ObjectAnimator.ofFloat(v, Constant.ALPHA, 1f);
-        animDrop.playTogether(animX, alpha);
-        if (getListener() != null) {
-            animDrop.addListener(getListener());
-        }
-        animDrop.start();
-    }
-
-    /**
- * 
- */
     @Override
     public AnimatorSet getAnimatorSet(View v) {
         if (distance == -1) {
@@ -103,7 +91,28 @@ public class DropAnimation extends Animation {
         animDrop.setDuration(getDuration());
         animDrop.playTogether(animX, alpha);
         if (getListener() != null) {
-            animDrop.addListener(getListener());
+            animDrop.addListener(new AnimatorListener() {
+
+                @Override
+                public void onAnimationStart(Animator animation) {
+
+                }
+
+                @Override
+                public void onAnimationRepeat(Animator animation) {
+
+                }
+
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    getListener().onAnimationEnd(DropAnimation.this);
+                }
+
+                @Override
+                public void onAnimationCancel(Animator animation) {
+
+                }
+            });
         }
         return animDrop;
     }

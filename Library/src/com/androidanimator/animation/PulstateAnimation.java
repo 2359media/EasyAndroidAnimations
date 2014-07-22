@@ -8,7 +8,7 @@ import android.view.View;
 
 /**
  * @author phutang
- *
+ * 
  */
 public class PulstateAnimation extends Animation {
     AnimatorSet animPulse;
@@ -18,22 +18,17 @@ public class PulstateAnimation extends Animation {
     public PulstateAnimation() {
         animPulse = new AnimatorSet();
     }
-    
-    
 
-    public PulstateAnimation(AnimatorListener listener, long duration) {
+    public PulstateAnimation(AnimationListener listener, long duration) {
         super(listener, duration);
         animPulse = new AnimatorSet();
     }
-
-
 
     @Override
     public void animate(View v) {
         getAnimatorSet(v);
         animPulse.start();
     }
-
 
     @Override
     public AnimatorSet getAnimatorSet(View v) {
@@ -62,7 +57,28 @@ public class PulstateAnimation extends Animation {
                 } else {
                     if (getListener() != null) {
                         animPulse.removeAllListeners();
-                        animPulse.addListener(getListener());
+                        animPulse.addListener(new AnimatorListener() {
+
+                            @Override
+                            public void onAnimationStart(Animator animation) {
+
+                            }
+
+                            @Override
+                            public void onAnimationRepeat(Animator animation) {
+
+                            }
+
+                            @Override
+                            public void onAnimationEnd(Animator animation) {
+                                getListener().onAnimationEnd(PulstateAnimation.this);
+                            }
+
+                            @Override
+                            public void onAnimationCancel(Animator animation) {
+
+                            }
+                        });
                     }
                 }
             }

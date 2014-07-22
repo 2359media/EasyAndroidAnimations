@@ -6,14 +6,14 @@ import android.view.View;
 
 /**
  * @author phutang
- *
+ * 
  */
 public abstract class Animation {
 
-    private AnimatorListener listener;
+    private AnimationListener listener;
     long duration;
 
-    public Animation(AnimatorListener listener, long duration) {
+    public Animation(AnimationListener listener, long duration) {
         super();
         this.listener = listener;
         this.duration = duration;
@@ -23,11 +23,11 @@ public abstract class Animation {
         duration = Constant.DEFAULT_DURATION;
     };
 
-    public AnimatorListener getListener() {
+    public AnimationListener getListener() {
         return listener;
     }
 
-    public void setListener(AnimatorListener listener) {
+    public void setListener(AnimationListener listener) {
         this.listener = listener;
     }
 
@@ -43,6 +43,10 @@ public abstract class Animation {
 
     public AnimatorSet getAnimatorSet(View v) {
         return null;
+    }
+
+    public interface AnimationListener {
+        public void onAnimationEnd(Animation animation);
     }
 
 }

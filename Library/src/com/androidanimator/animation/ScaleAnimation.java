@@ -1,13 +1,14 @@
 package com.androidanimator.animation;
 
 import android.animation.Animator.AnimatorListener;
+import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.view.View;
 
 /**
  * @author phutang
- *
+ * 
  */
 public class ScaleAnimation extends Animation {
     AnimatorSet scaleAnimatorSet;
@@ -18,7 +19,7 @@ public class ScaleAnimation extends Animation {
         type = Constant.OUT;
     }
 
-    public ScaleAnimation(AnimatorListener listener, long duration, int type) {
+    public ScaleAnimation(AnimationListener listener, long duration, int type) {
         super(listener, duration);
         this.type = type;
         scaleAnimatorSet = new AnimatorSet();
@@ -29,7 +30,6 @@ public class ScaleAnimation extends Animation {
         getAnimatorSet(v);
         scaleAnimatorSet.start();
     }
-    
 
     public int getType() {
         return type;
@@ -41,19 +41,39 @@ public class ScaleAnimation extends Animation {
 
     @Override
     public AnimatorSet getAnimatorSet(View v) {
-        ObjectAnimator scaleX,scaleY;
-        if(type==Constant.OUT){
-         scaleX = ObjectAnimator.ofFloat(v, Constant.SCALE_X, 1f, 0f);
-         scaleY = ObjectAnimator.ofFloat(v, Constant.SCALE_Y, 1f, 0f);
+        ObjectAnimator scaleX, scaleY;
+        if (type == Constant.OUT) {
+            scaleX = ObjectAnimator.ofFloat(v, Constant.SCALE_X, 1f, 0f);
+            scaleY = ObjectAnimator.ofFloat(v, Constant.SCALE_Y, 1f, 0f);
         } else {
             scaleX = ObjectAnimator.ofFloat(v, Constant.SCALE_X, 0f, 1f);
             scaleY = ObjectAnimator.ofFloat(v, Constant.SCALE_Y, 0f, 1f);
         }
-        AnimatorSet scale = new AnimatorSet();
-        scale.playTogether(scaleX, scaleY);
+        scaleAnimatorSet.playTogether(scaleX, scaleY);
         scaleAnimatorSet.setDuration(getDuration());
         if (getListener() != null) {
-            scaleAnimatorSet.addListener(getListener());
+            scaleAnimatorSet.addListener(new AnimatorListener() {
+
+                @Override
+                public void onAnimationStart(Animator animation) {
+
+                }
+
+                @Override
+                public void onAnimationRepeat(Animator animation) {
+
+                }
+
+                @Override
+                public void onAnimationEnd(Animator animation) {
+
+                }
+
+                @Override
+                public void onAnimationCancel(Animator animation) {
+                    getListener().onAnimationEnd(ScaleAnimation.this);
+                }
+            });
         }
         return scaleAnimatorSet;
     }

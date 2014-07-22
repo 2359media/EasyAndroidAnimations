@@ -13,6 +13,7 @@ import android.widget.Spinner;
 import com.androidanimator.MyAnimation;
 import com.androidanimator.animation.Animation;
 import com.androidanimator.animation.Constant;
+import com.androidanimator.animation.ScaleAnimation;
 
 public class SampleActivity extends Activity {
     Button btnBlind, btnClip, btnDrop, btnFade, btnPuff, btnPulstate, btnScale, btnSize, btnTransfer, btnCancel;
@@ -47,7 +48,7 @@ public class SampleActivity extends Activity {
                 int direction = getDirection();
                 switch (view.getId()) {
                 case R.id.btn_action:
-                    MyAnimation.Blind(mContext, v);
+                    MyAnimation.Blind (v);
                     break;
                 case R.id.btn_clip:
                     MyAnimation.clip(v, Constant.DEFAULT_DURATION, Constant.VERTICAL, null);

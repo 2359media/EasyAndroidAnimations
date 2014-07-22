@@ -1,13 +1,14 @@
 package com.androidanimator.animation;
 
 import android.animation.Animator.AnimatorListener;
+import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.view.View;
 
 /**
  * @author phutang
- *
+ * 
  */
 public class TransferAnimation extends Animation {
     AnimatorSet transferAnimatorSet;
@@ -20,18 +21,14 @@ public class TransferAnimation extends Animation {
         direction = Constant.DIRECTION_DOWN;
         type = Constant.OUT;
     }
-    
-    
 
-    public TransferAnimation(AnimatorListener listener, long duration, float distance, int type, int direction) {
+    public TransferAnimation(AnimationListener listener, long duration, float distance, int type, int direction) {
         super(listener, duration);
         this.distance = distance;
         this.type = type;
         this.direction = direction;
         transferAnimatorSet = new AnimatorSet();
     }
-
-
 
     @Override
     public void animate(View v) {
@@ -101,7 +98,27 @@ public class TransferAnimation extends Animation {
         transferAnimatorSet.playTogether(scaleX, scaleY, alphaA, translation);
         transferAnimatorSet.setDuration(getDuration());
         if (getListener() != null) {
-            transferAnimatorSet.addListener(getListener());
+            transferAnimatorSet.addListener(new AnimatorListener() {
+
+                @Override
+                public void onAnimationStart(Animator animation) {
+
+                }
+
+                @Override
+                public void onAnimationRepeat(Animator animation) {
+
+                }
+
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    getListener().onAnimationEnd(TransferAnimation.this);
+                }
+
+                @Override
+                public void onAnimationCancel(Animator animation) {
+                }
+            });
         }
         return transferAnimatorSet;
     }

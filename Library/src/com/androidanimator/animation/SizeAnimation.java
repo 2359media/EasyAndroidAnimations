@@ -1,6 +1,7 @@
 package com.androidanimator.animation;
 
 import android.animation.Animator.AnimatorListener;
+import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.view.View;
@@ -16,7 +17,7 @@ public class SizeAnimation extends Animation {
         sizeAnimatorSet = new AnimatorSet();
     }
     
-    public SizeAnimation(AnimatorListener listener, long duration) {
+    public SizeAnimation(AnimationListener listener, long duration) {
         super(listener, duration);
         sizeAnimatorSet = new AnimatorSet();
     }
@@ -47,7 +48,28 @@ public class SizeAnimation extends Animation {
         sizeAnimatorSet.playSequentially(scale, alphaA);
         sizeAnimatorSet.setDuration(getDuration());
         if (getListener() != null) {
-            sizeAnimatorSet.addListener(getListener());
+            sizeAnimatorSet.addListener(new AnimatorListener() {
+                
+                @Override
+                public void onAnimationStart(Animator animation) {
+                    
+                }
+                
+                @Override
+                public void onAnimationRepeat(Animator animation) {
+                    
+                }
+                
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    getListener().onAnimationEnd(SizeAnimation.this);
+                }
+                
+                @Override
+                public void onAnimationCancel(Animator animation) {
+                    
+                }
+            });
         }
         v.setPivotX(1f);
         v.setPivotY(1f);

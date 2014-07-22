@@ -1,6 +1,7 @@
 package com.androidanimator.animation;
 
 import android.animation.Animator.AnimatorListener;
+import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
@@ -11,7 +12,7 @@ import android.widget.FrameLayout;
 
 /**
  * @author phutang
- *
+ * 
  */
 public class FoldAnimation extends Animation {
 
@@ -25,15 +26,11 @@ public class FoldAnimation extends Animation {
         animFold = new AnimatorSet();
         mContext = context;
     }
-    
-    
 
-    public FoldAnimation(AnimatorListener listener, long duration) {
+    public FoldAnimation(AnimationListener listener, long duration) {
         super(listener, duration);
         animFold = new AnimatorSet();
     }
-
-
 
     @Override
     public void animate(View v) {
@@ -91,7 +88,28 @@ public class FoldAnimation extends Animation {
         animFold.setDuration(getDuration());
         animFold.playSequentially(step1, fold2);
         if (getListener() != null) {
-            animFold.addListener(getListener());
+            animFold.addListener(new AnimatorListener() {
+
+                @Override
+                public void onAnimationStart(Animator animation) {
+
+                }
+
+                @Override
+                public void onAnimationRepeat(Animator animation) {
+
+                }
+
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    getListener().onAnimationEnd(FoldAnimation.this);
+                }
+
+                @Override
+                public void onAnimationCancel(Animator animation) {
+
+                }
+            });
         }
         animationLayout.setPivotX(1f);
         animationLayout.setPivotY(1f);

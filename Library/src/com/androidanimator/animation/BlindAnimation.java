@@ -1,6 +1,7 @@
 package com.androidanimator.animation;
 
 import android.animation.Animator.AnimatorListener;
+import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
@@ -21,15 +22,13 @@ public class BlindAnimation extends Animation {
     LayoutParams originalParam;
     Context mContext;
 
-    public BlindAnimation(Context context) {
+    public BlindAnimation() {
         blindAnimationSet = new AnimatorSet();
-        mContext = context;
     }
     
 
-    public BlindAnimation(AnimatorListener listener, long duration, Context mContext) {
+    public BlindAnimation(AnimationListener listener, long duration) {
         super(listener, duration);
-        this.mContext = mContext;
         blindAnimationSet = new AnimatorSet();
     }
 
@@ -47,7 +46,7 @@ public class BlindAnimation extends Animation {
         originalParam = v.getLayoutParams();
         LayoutParams newParam = new LayoutParams(v.getWidth(), v.getHeight());
         v.setLayoutParams(newParam);
-        animationLayout = new FrameLayout(mContext);
+        animationLayout = new FrameLayout(v.getContext());
         animationLayout.setId(v.getId());
         animationLayout.setLayoutParams(originalParam);
         animationLayout.addView(v);
@@ -65,7 +64,31 @@ public class BlindAnimation extends Animation {
         blindAnimationSet.playTogether(scaleY, scaleY_child);
         blindAnimationSet.setDuration(getDuration());
         if (getListener() != null) {
-            blindAnimationSet.addListener(getListener());
+            blindAnimationSet.addListener(new AnimatorListener() {
+                
+                @Override
+                public void onAnimationStart(Animator animation) {
+                    // TODO Auto-generated method stub
+                    
+                }
+                
+                @Override
+                public void onAnimationRepeat(Animator animation) {
+                    // TODO Auto-generated method stub
+                    
+                }
+                
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    getListener().onAnimationEnd(BlindAnimation.this);
+                }
+                
+                @Override
+                public void onAnimationCancel(Animator animation) {
+                    // TODO Auto-generated method stub
+                    
+                }
+            });
         }
         animationLayout.setPivotX(1f);
         animationLayout.setPivotY(1f);

@@ -1,5 +1,6 @@
 package com.androidanimator;
 
+import com.androidanimator.animation.Animation.AnimationListener;
 import com.androidanimator.animation.BlindAnimation;
 import com.androidanimator.animation.BounceAnimation;
 import com.androidanimator.animation.ClipAnimation;
@@ -14,7 +15,6 @@ import com.androidanimator.animation.ScaleAnimation;
 import com.androidanimator.animation.SizeAnimation;
 import com.androidanimator.animation.TransferAnimation;
 
-import android.animation.Animator.AnimatorListener;
 import android.content.Context;
 import android.view.View;
 
@@ -24,163 +24,178 @@ import android.view.View;
  */
 public class MyAnimation {
 
-    public static void Blind(Context context, View v) {
-        new BlindAnimation(context).animate(v);
+    /**
+     * Blind animate with the given view.
+     * @param view
+     */
+    public static void Blind(View view) {
+        new BlindAnimation().animate(view);
+    }
+    /**
+     * Bounce default animate with the given view
+     * @param view
+     */
+    public static void bounce(View view) {
+        new BounceAnimation().animate(view);
     }
 
-    public static void bounce(View v) {
-        new BounceAnimation().animate(v);
-    }
-
-    public static void bounce(View v, int duration, int oritention, int amp, AnimatorListener listener) {
+    /**
+     * Bounce animate view.
+     * @param view
+     * @param duration in milliseconds 
+     * @param oritention vertical or horizontal @see {@link Constant}
+     * @param amp the number of repeat of bounce should be less than 20
+     * @param listener listener of animator @see {@link AnimationListener}
+     */
+    public static void bounce(View view, int duration, int oritention, int amp, AnimationListener listener) {
         BounceAnimation animation = new BounceAnimation();
         animation.setDuration(duration);
         animation.setOritention(oritention);
         animation.setAmp(amp);
         animation.setListener(listener);
-        animation.animate(v);
+        animation.animate(view);
     }
 
-    public static void clip(View v) {
-        new ClipAnimation().animate(v);
+    public static void clip(View view) {
+        new ClipAnimation().animate(view);
     }
 
-    public static void clip(View v, int duration, int oritention, AnimatorListener listener) {
+    public static void clip(View view, int duration, int oritention, AnimationListener listener) {
         ClipAnimation clipAnimation = new ClipAnimation();
         clipAnimation.setDuration(duration);
         clipAnimation.setOritention(oritention);
         clipAnimation.setListener(listener);
-        clipAnimation.animate(v);
+        clipAnimation.animate(view);
     }
 
-    public static void dropIn(View v) {
+    public static void dropIn(View view) {
         DropAnimation animation = new DropAnimation();
         animation.setType(Constant.IN);
-        animation.animate(v);
+        animation.animate(view);
     }
 
-    public static void dropIn(View v, int duration, int direction, AnimatorListener listener) {
+    public static void dropIn(View view, int duration, int direction, AnimationListener listener) {
         DropAnimation animation = new DropAnimation();
         animation.setType(Constant.IN);
         animation.setDuration(duration);
         animation.setDirection(direction);
-        animation.animate(v);
+        animation.animate(view);
     }
 
-    public static void dropOut(View v) {
+    public static void dropOut(View view) {
         DropAnimation animation = new DropAnimation();
         animation.setType(Constant.OUT);
-        animation.animate(v);
+        animation.animate(view);
     }
 
-    public static void dropOut(View v, int duration, int direction, AnimatorListener listener) {
+    public static void dropOut(View view, int duration, int direction, AnimationListener listener) {
         DropAnimation animation = new DropAnimation();
         animation.setType(Constant.OUT);
         animation.setDuration(duration);
         animation.setDirection(direction);
-        animation.animate(v);
+        animation.animate(view);
     }
 
-    public static void explode(Context context, View v) {
-        new ExplodeAnimation(context).animate(v);
+    public static void explode(Context context, View view) {
+        new ExplodeAnimation(context).animate(view);
     }
 
-    public static void puffOut(View v) {
-        new PuffAnimation().animate(v);
+    public static void puffOut(View view) {
+        new PuffAnimation().animate(view);
     }
 
-    public static void puffOut(View v, long duration, AnimatorListener listener) {
+    public static void puffOut(View view, long duration, AnimationListener listener) {
         PuffAnimation puffAnimation = new PuffAnimation();
         puffAnimation.setDuration(duration);
         puffAnimation.setListener(listener);
-        puffAnimation.animate(v);
+        puffAnimation.animate(view);
     }
 
-    public static void puffIn(View v, long duration, AnimatorListener listener) {
+    public static void puffIn(View view, long duration, AnimationListener listener) {
         PuffAnimation puffAnimation = new PuffAnimation();
         puffAnimation.setDuration(duration);
         puffAnimation.setListener(listener);
         puffAnimation.setType(Constant.IN);
-        puffAnimation.animate(v);
+        puffAnimation.animate(view);
     }
 
-    public static void puffIn(View v) {
+    public static void puffIn(View view) {
         PuffAnimation puffAnimation = new PuffAnimation();
         puffAnimation.setType(Constant.IN);
-        puffAnimation.animate(v);
+        puffAnimation.animate(view);
     }
 
-    public static void Pulstate(View v) {
-        new PulstateAnimation().animate(v);
+    public static void Pulstate(View view) {
+        new PulstateAnimation().animate(view);
     }
 
-    public static void scaleIn(View v, long duration, AnimatorListener listener) {
+    public static void scaleIn(View view, long duration, AnimationListener listener) {
         ScaleAnimation scaleAnimation = new ScaleAnimation();
         scaleAnimation.setDuration(duration);
         scaleAnimation.setListener(listener);
         scaleAnimation.setType(Constant.IN);
-        scaleAnimation.animate(v);
+        scaleAnimation.animate(view);
     }
 
-    public static void scaleIn(View v) {
+    public static void scaleIn(View view) {
         ScaleAnimation scaleAnimation = new ScaleAnimation();
         scaleAnimation.setType(Constant.IN);
-        scaleAnimation.animate(v);
+        scaleAnimation.animate(view);
     }
 
-    public static void scaleOut(View v) {
-        new ScaleAnimation().animate(v);
+    public static void scaleOut(View view) {
+        new ScaleAnimation().animate(view);
     }
 
-    public static void scaleOut(View v, long duration, AnimatorListener listener) {
+    public static void scaleOut(View view, long duration, AnimationListener listener) {
         ScaleAnimation scaleAnimation = new ScaleAnimation();
         scaleAnimation.setDuration(duration);
         scaleAnimation.setListener(listener);
         scaleAnimation.setType(Constant.OUT);
-        scaleAnimation.animate(v);
+        scaleAnimation.animate(view);
     }
 
-    public static void size(View v) {
-        new SizeAnimation().animate(v);
+    public static void size(View view) {
+        new SizeAnimation().animate(view);
     }
 
-    public static void transferIn(View v) {
+    public static void transferIn(View view) {
         TransferAnimation transferAnimation = new TransferAnimation();
         transferAnimation.setType(Constant.IN);
-        transferAnimation.animate(v);
+        transferAnimation.animate(view);
     }
 
-    public static void transferIn(View v, long duration, int direction, AnimatorListener listener) {
+    public static void transferIn(View view, long duration, int direction, AnimationListener listener) {
         TransferAnimation transferAnimation = new TransferAnimation();
         transferAnimation.setType(Constant.IN);
         transferAnimation.setDuration(duration);
         transferAnimation.setListener(listener);
         transferAnimation.setDirection(direction);
-        transferAnimation.animate(v);
+        transferAnimation.animate(view);
     }
 
-    public static void transferOut(View v, long duration, int direction, AnimatorListener listener) {
+    public static void transferOut(View view, long duration, int direction, AnimationListener listener) {
         TransferAnimation transferAnimation = new TransferAnimation();
         transferAnimation.setType(Constant.OUT);
         transferAnimation.setDuration(duration);
         transferAnimation.setListener(listener);
         transferAnimation.setDirection(direction);
-        transferAnimation.animate(v);
+        transferAnimation.animate(view);
     }
 
-    public static void transferOut(View v) {
-        new TransferAnimation().animate(v);
+    public static void transferOut(View view) {
+        new TransferAnimation().animate(view);
     }
 
-    public static void fold(Context context, View v) {
-        new FoldAnimation(context).animate(v);
+    public static void fold(Context context, View view) {
+        new FoldAnimation(context).animate(view);
     }
 
-    public static void faceIn(View v) {
-        new FadeAnimation(null, Constant.DEFAULT_DURATION, Constant.IN).animate(v);
+    public static void faceIn(View view) {
+        new FadeAnimation(null, Constant.DEFAULT_DURATION, Constant.IN).animate(view);
     }
 
-    public static void faceOut(View v) {
-        new FadeAnimation().animate(v);
+    public static void faceOut(View view) {
+        new FadeAnimation().animate(view);
     }
 }

@@ -1,6 +1,7 @@
 package com.androidanimator.animation;
 
 import android.animation.Animator.AnimatorListener;
+import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
@@ -28,7 +29,7 @@ public class ExplodeAnimation extends Animation {
         mContext = context;
     }
     
-    public ExplodeAnimation(AnimatorListener listener, long duration, Context mContext) {
+    public ExplodeAnimation(AnimationListener listener, long duration, Context mContext) {
         super(listener, duration);
         this.mContext = mContext;
         animExplode = new AnimatorSet();
@@ -69,15 +70,35 @@ public class ExplodeAnimation extends Animation {
         ObjectAnimator scaleY = ObjectAnimator.ofFloat(animationLayout, Constant.SCALE_Y, 1f, 2f);
         animLayout.playTogether(scaleX, scaleY);
         animExplode.playTogether(anim1_1, anim1_2, anim2_1, anim2_2, animLayout);
-
+        if(getListener()!=null){
+            animExplode.addListener(new AnimatorListener() {
+                
+                @Override
+                public void onAnimationStart(Animator animation) {
+                    // TODO Auto-generated method stub
+                    
+                }
+                
+                @Override
+                public void onAnimationRepeat(Animator animation) {
+                    // TODO Auto-generated method stub
+                    
+                }
+                
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    // TODO Auto-generated method stub
+                    
+                }
+                
+                @Override
+                public void onAnimationCancel(Animator animation) {
+                    getListener().onAnimationEnd(ExplodeAnimation.this);
+                }
+            });
+        }
     }
 
-
-    public void reset(View v) {
-        ViewGroup parent = (ViewGroup) animationLayout.getParent();
-        parent.removeView(animationLayout);
-        parent.addView(child);
-    }
 
     public void addToAnimatioView(View v) {
         child = v;
@@ -119,7 +140,6 @@ public class ExplodeAnimation extends Animation {
         animationLayout.addView(img2_1, 1);
         animationLayout.addView(img1_2, 2);
         animationLayout.addView(img2_2, 3);
-
         parent.addView(animationLayout);
     }
 
