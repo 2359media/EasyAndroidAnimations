@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">AnimationLibraryDemo</string>
+    <string-array name="animations_array">
+        <item>Transfer</item>
+        <item>Blind</item>
+        <item>Bounce</item>
+        <item>Clip</item>
+        <item>Explode</item>
+        <item>Highlight</item>
+        <item>Pulsate</item>
+        <item>Scale</item>
+        <item>Shake</item>
+        <item>Slide In</item>
+        <item>Slide Out</item>
+    </string-array>
+
+</resources>
