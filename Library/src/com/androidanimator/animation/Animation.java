@@ -9,7 +9,7 @@ import android.view.View;
  */
 public abstract class Animation {
 
-    private AnimationListener listener;
+    protected AnimationListener listener;
     long duration;
 
     public Animation(AnimationListener listener, long duration) {

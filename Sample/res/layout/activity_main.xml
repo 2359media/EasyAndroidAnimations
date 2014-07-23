@@ -10,17 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.2"
-        android:orientation="vertical"
         android:gravity="center"
-        android:background="@drawable/border" ></LinearLayout>
-    
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.2"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:background="@drawable/border" >
+        android:orientation="horizontal" >
 	    
 		<Spinner
             android:id="@+id/spinner"
@@ -41,8 +32,7 @@
         android:layout_height="0dp"
         android:layout_weight="0.6"
         android:orientation="vertical"
-        android:gravity="center"
-        android:background="@drawable/border" > 
+        android:gravity="center" > 
         
 	    <TextView 
 	        android:id="@+id/card"

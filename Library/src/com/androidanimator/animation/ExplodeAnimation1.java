@@ -29,10 +29,11 @@ public class ExplodeAnimation1 extends Animation {
 		duration = Constant.DEFAULT_DURATION;
 	}
 
-	public ExplodeAnimation1(int xParts, int yParts, long duration) {
+	public ExplodeAnimation1(int xParts, int yParts, long duration, AnimationListener listener) {
 		this.xParts = xParts;
 		this.yParts = yParts;
 		this.duration = duration;
+		this.listener = listener;
 	}
 
 	@Override
@@ -115,6 +116,9 @@ public class ExplodeAnimation1 extends Animation {
 
 			@Override
 			public void onAnimationEnd(Animator animation) {
+				if (getListener() != null) {
+					getListener().onAnimationEnd(ExplodeAnimation1.this);
+				}
 				parentView = (ViewGroup) explodeLayout.getParent();
 				parentView.removeView(explodeLayout);
 				parentView.addView(view);

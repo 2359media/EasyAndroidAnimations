@@ -1,5 +1,7 @@
 package com.androidanimator.animation;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,13 +19,14 @@ public class SlideInAnimation1 extends Animation {
 	ObjectAnimator slideAnim;
 
 	public SlideInAnimation1() {
-		direction = Constant.DIRECTION_UP;
+		direction = Constant.DIRECTION_LEFT;
 		duration = Constant.DEFAULT_DURATION;
 	}
 
-	public SlideInAnimation1(int direction, long duration) {
+	public SlideInAnimation1(int direction, long duration, AnimationListener listener) {
 		this.direction = direction;
 		this.duration = duration;
+		this.listener = listener;
 	}
 
 	@Override
@@ -34,6 +37,8 @@ public class SlideInAnimation1 extends Animation {
 			parentView = (ViewGroup) parentView.getParent();
 		}
 		rootView.setClipChildren(false);
+		int[] locationView = new int[2];
+		view.getLocationOnScreen(locationView);
 		
 		switch (direction) {
 		case Constant.DIRECTION_LEFT:
@@ -43,7 +48,7 @@ public class SlideInAnimation1 extends Animation {
 			slideAnim = ObjectAnimator.ofFloat(view, View.X, rootView.getRight(), view.getX());
 			break;
 		case Constant.DIRECTION_UP:
-			slideAnim = ObjectAnimator.ofFloat(view, View.Y, rootView.getTop() - view.getHeight(), view.getY());
+			slideAnim = ObjectAnimator.ofFloat(view, View.Y, -locationView[1] - view.getHeight(), view.getY());
 			break;
 		case Constant.DIRECTION_DOWN:
 			slideAnim = ObjectAnimator.ofFloat(view, View.Y, rootView.getBottom(), view.getY());
@@ -54,6 +59,15 @@ public class SlideInAnimation1 extends Animation {
 		view.setVisibility(View.VISIBLE);
 		slideAnim.setDuration(duration);
 		slideAnim.start();
+		slideAnim.addListener(new AnimatorListenerAdapter() {
+			
+			@Override
+			public void onAnimationEnd(Animator animation) {
+				if (getListener() != null) {
+					getListener().onAnimationEnd(SlideInAnimation1.this);
+				}
+			}
+		});
 	}
 
 }

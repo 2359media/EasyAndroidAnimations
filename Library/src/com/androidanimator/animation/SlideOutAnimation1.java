@@ -1,8 +1,9 @@
 package com.androidanimator.animation;
 
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -22,10 +23,11 @@ public class SlideOutAnimation1 extends Animation {
 		direction = Constant.DIRECTION_LEFT;
 		duration = Constant.DEFAULT_DURATION;
 	}
-	
-	public SlideOutAnimation1(int direction, long duration) {
+
+	public SlideOutAnimation1(int direction, long duration, AnimationListener listener) {
 		this.direction = direction;
 		this.duration = duration;
+		this.listener = listener;
 	}
 	
 	@Override
@@ -36,7 +38,9 @@ public class SlideOutAnimation1 extends Animation {
 			parentView = (ViewGroup) parentView.getParent();
 		}
 		rootView.setClipChildren(false);
-		Log.d("top", "" + rootView.getTop());
+		final int[] locationView = new int[2];
+		view.getLocationOnScreen(locationView);
+		
 		switch (direction) {
 		case Constant.DIRECTION_LEFT:
 			slideAnim = ObjectAnimator.ofFloat(view, View.X, rootView.getLeft() - view.getWidth());
@@ -45,7 +49,7 @@ public class SlideOutAnimation1 extends Animation {
 			slideAnim = ObjectAnimator.ofFloat(view, View.X, rootView.getRight());
 			break;
 		case Constant.DIRECTION_UP:
-			slideAnim = ObjectAnimator.ofFloat(view, View.Y, rootView.getTop() - view.getHeight());
+			slideAnim = ObjectAnimator.ofFloat(view, View.Y, -locationView[1] - view.getHeight());
 			break;
 		case Constant.DIRECTION_DOWN:
 			slideAnim = ObjectAnimator.ofFloat(view, View.Y, rootView.getBottom());
@@ -55,6 +59,32 @@ public class SlideOutAnimation1 extends Animation {
 		}
 		slideAnim.setDuration(duration);
 		slideAnim.start();
+		slideAnim.addListener(new AnimatorListenerAdapter() {
+
+			@Override
+			public void onAnimationEnd(Animator animation) {
+				if (getListener() != null) {
+					getListener().onAnimationEnd(SlideOutAnimation1.this);
+				}
+				switch (direction) {
+				case Constant.DIRECTION_LEFT:
+					slideAnim = ObjectAnimator.ofFloat(view, View.X, locationView[0]);
+					break;
+				case Constant.DIRECTION_RIGHT:
+					slideAnim = ObjectAnimator.ofFloat(view, View.X, locationView[0]);
+					break;
+				case Constant.DIRECTION_UP:
+					slideAnim = ObjectAnimator.ofFloat(view, View.Y, locationView[1] - view.getHeight());
+					break;
+				case Constant.DIRECTION_DOWN:
+					slideAnim = ObjectAnimator.ofFloat(view, View.Y, locationView[1] - view.getHeight());
+					break;
+				default:
+					break;
+				}
+				slideAnim.start();
+			}
+		});
 	}
 	
 }
