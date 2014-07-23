@@ -44,7 +44,5 @@ Developed By
 ============
 
  * Umair Vatao
- * Phu Tang
- * Nee Si Yao
-
-[1] phu.tanghong@2359media.com.vn
+ * Phu Tang - [Email](phu.tanghong@2359media.com.vn)
+ * Nee Si Yao - [LinkedIn](http://sg.linkedin.com/pub/si-yao-nee/7a/a62/203/)
