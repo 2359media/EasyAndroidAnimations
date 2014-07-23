@@ -55,7 +55,7 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				switch (selectedAnimation) {
 				case "Blind":
-//					MyAnimator1.blind(card);
+					MyAnimator.blind(card);
 					break;
 				case "Bounce":
 					MyAnimator.bounce(card);
@@ -73,7 +73,7 @@ public class MainActivity extends Activity {
 					ArrayList<Point> points = new ArrayList<>();
 					points.add(new Point(0, 0));
 					//points.add(new Point(100, 0));
-					MyAnimator1.path(card, points, 1000);
+					MyAnimator.path(card, points, 1000);
 					break;
 				case "Pulsate":
 					MyAnimator.pulsate(card);

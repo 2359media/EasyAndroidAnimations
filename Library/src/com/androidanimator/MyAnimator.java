@@ -1,5 +1,8 @@
 package com.androidanimator;
 
+import java.util.ArrayList;
+
+import android.graphics.Point;
 import android.view.View;
 
 import com.androidanimator.animation.Animation.AnimationListener;
@@ -14,6 +17,7 @@ import com.androidanimator.animation.FadeAnimation;
 import com.androidanimator.animation.FlyAnimation;
 import com.androidanimator.animation.FoldAnimation;
 import com.androidanimator.animation.HighlightAnimation1;
+import com.androidanimator.animation.PathAnimation;
 import com.androidanimator.animation.PuffAnimation;
 import com.androidanimator.animation.PulsateAnimation1;
 import com.androidanimator.animation.ScaleAnimation;
@@ -390,6 +394,9 @@ public class MyAnimator {
 		new HighlightAnimation1(color, duration, listener).animate(view);
 	}
 
+	public static void path(View view, ArrayList<Point> points, long duration) {
+		new PathAnimation(points, duration).animate(view);
+	}
 
 	/**
 	 * The PulsateAnimation1 causes the view to blink a number of times to mimic
