@@ -12,24 +12,24 @@ Usage
 *See `sample/` folder for a working implementation of this library.*
 
   1. For example, if you wanted a view to mimic the bounce animation with the default parameters,
-```
+  ```
     MyAnimator.bounce(yourView);
-```
+  ```
 
   2. If you wanted to use your own parameters instead of the default ones,
-```
+  ```
     MyAnimator.bounce(yourView, bounceDistance, repetitions, duration, null);
-```
+  ```
 
   3. Here's another example of mimicking the explode animation with your own parameters as well as the addition of an animation listener.
-```
+  ```
     MyAnimator.explode(yourView, xParts, yParts, duration, new AnimationListener() {
         @Override
         public void onAnimationEnd(Animation animation) {
             *perform your own functions here when animation ends*
         }
     });
-```
+  ```
 
 
 Including In Your Project
