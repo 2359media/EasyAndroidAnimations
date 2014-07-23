@@ -1,5 +1,8 @@
 package com.androidanimator;
 
+import java.util.ArrayList;
+
+import android.graphics.Point;
 import android.view.View;
 
 import com.androidanimator.animation.Animation.AnimationListener;
@@ -8,6 +11,7 @@ import com.androidanimator.animation.BounceAnimation1;
 import com.androidanimator.animation.ClipAnimation1;
 import com.androidanimator.animation.ExplodeAnimation1;
 import com.androidanimator.animation.HighlightAnimation1;
+import com.androidanimator.animation.PathAnimation;
 import com.androidanimator.animation.PulsateAnimation1;
 import com.androidanimator.animation.ScaleAnimation1;
 import com.androidanimator.animation.ShakeAnimation1;
@@ -169,6 +173,10 @@ public class MyAnimator1 {
 	public static void highlight(View view, int color, long duration,
 			AnimationListener listener) {
 		new HighlightAnimation1(color, duration, listener).animate(view);
+	}
+	
+	public static void path(View view, ArrayList<Point> points, long duration) {
+		new PathAnimation(points, duration).animate(view);
 	}
 
 	/**

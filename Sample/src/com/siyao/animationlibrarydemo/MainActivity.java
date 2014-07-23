@@ -1,6 +1,9 @@
 package com.siyao.animationlibrarydemo;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -65,6 +68,12 @@ public class MainActivity extends Activity {
 					break;
 				case "Highlight":
 					MyAnimator1.highlight(card);
+					break;
+				case "Path":
+					ArrayList<Point> points = new ArrayList<>();
+					points.add(new Point(0, 0));
+					//points.add(new Point(100, 0));
+					MyAnimator1.path(card, points, 1000);
 					break;
 				case "Pulsate":
 					MyAnimator1.pulsate(card);

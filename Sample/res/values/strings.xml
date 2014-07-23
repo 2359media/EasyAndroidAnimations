@@ -3,6 +3,7 @@
 
     <string name="app_name">AnimationLibraryDemo</string>
     <string-array name="animations_array">
+        <item>Path</item>
         <item>Blind</item>
         <item>Bounce</item>
         <item>Clip</item>
