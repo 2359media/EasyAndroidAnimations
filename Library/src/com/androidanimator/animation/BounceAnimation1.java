@@ -26,10 +26,11 @@ public class BounceAnimation1 extends Animation {
 		duration = Constant.DEFAULT_DURATION;
 	}
 	
-	public BounceAnimation1(float bounceDistance, int repetitions, long duration) {
+	public BounceAnimation1(float bounceDistance, int repetitions, long duration, AnimationListener listener) {
 		this.bounceDistance = bounceDistance;
 		this.repetitions = repetitions;
 		this.duration = duration;
+		this.listener = listener;
 	}
 
 	@Override
@@ -50,10 +51,22 @@ public class BounceAnimation1 extends Animation {
 		bounceAnim.addListener(new AnimatorListenerAdapter() {
 			
 			@Override
-			public void onAnimationEnd(Animator animation) {			
+			public void onAnimationEnd(Animator animation) {
 				bounceCount++;
-				if (bounceCount != repetitions)
+				if (bounceCount != repetitions) {
 					animation.start();
+					if (bounceCount == repetitions - 1) {
+						animation.addListener(new AnimatorListenerAdapter() {
+
+							@Override
+							public void onAnimationEnd(Animator animation) {
+								if (getListener() != null) {
+									getListener().onAnimationEnd(BounceAnimation1.this);
+								}
+							}
+						});
+					}
+				}
 			}
 		});
 	}

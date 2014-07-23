@@ -1,6 +1,8 @@
 package com.androidanimator.animation;
 
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +19,7 @@ import android.widget.ImageView;
  */
 public class BlindAnimation1 extends Animation {
 
+	AnimationListener listener;
 	int color;
 	
 	public BlindAnimation1() {
@@ -24,9 +27,10 @@ public class BlindAnimation1 extends Animation {
 		duration = Constant.DEFAULT_DURATION;
 	}
 	
-	public BlindAnimation1(int color, long duration) {
+	public BlindAnimation1(int color, long duration, AnimationListener listener) {
 		this.color = color;
 		this.duration = duration;
+		this.listener = listener;
 	}
 
 	@Override
@@ -45,10 +49,13 @@ public class BlindAnimation1 extends Animation {
 		blindFrame.addView(view);
 		blindFrame.addView(box);
 		parentView.addView(blindFrame, viewPosition);
-		blindFrame.animate().alpha(0).setDuration(duration).withEndAction(new Runnable() {
+		blindFrame.animate().alpha(0).setDuration(duration).setListener(new AnimatorListenerAdapter() {
 			
 			@Override
-			public void run() {
+			public void onAnimationEnd(Animator animation) {
+				if (getListener() != null) {
+					getListener().onAnimationEnd(BlindAnimation1.this);
+				}
 				blindFrame.removeAllViews();
 				parentView.removeView(blindFrame);
 				parentView.addView(view);

@@ -1,5 +1,7 @@
 package com.androidanimator.animation;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,28 +25,36 @@ public class HighlightAnimation1 extends Animation {
 		duration = Constant.DEFAULT_DURATION;
 	}
 
-	public HighlightAnimation1(int color, long duration) {
+	public HighlightAnimation1(int color, long duration, AnimationListener listener) {
 		this.color = color;
 		this.duration = duration;
+		this.listener = listener;
 	}
 
 	@Override
-	public void animate(View view) {
-		ViewGroup parentView = (ViewGroup) view.getParent();
+	public void animate(final View view) {
+		final ViewGroup parentView = (ViewGroup) view.getParent();
 		LayoutParams layoutParams = view.getLayoutParams();
-		FrameLayout highlightFrame = new FrameLayout(view.getContext());
+		final FrameLayout highlightFrame = new FrameLayout(view.getContext());
 		highlightFrame.setLayoutParams(layoutParams);
-		ImageView highlight = new ImageView(view.getContext());
+		final ImageView highlight = new ImageView(view.getContext());
 		highlight.setLayoutParams(layoutParams);
 		highlight.setBackgroundColor(color);
 		highlight.setAlpha(0.5f);
-		highlight.animate().alpha(0).setDuration(duration);
-
-		int viewPosition = parentView.indexOfChild(view);
 		parentView.removeView(view);
 		highlightFrame.addView(view);
 		highlightFrame.addView(highlight);
-		parentView.addView(highlightFrame, viewPosition);
+		parentView.addView(highlightFrame);
+		
+		highlight.animate().alpha(0).setDuration(duration).setListener(new AnimatorListenerAdapter() {
+
+			@Override
+			public void onAnimationEnd(Animator animation) {
+				if (getListener() != null) {
+					getListener().onAnimationEnd(HighlightAnimation1.this);
+				}
+			}
+		});
 	}
 
 }

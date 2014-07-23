@@ -2,6 +2,7 @@ package com.androidanimator;
 
 import android.view.View;
 
+import com.androidanimator.animation.Animation.AnimationListener;
 import com.androidanimator.animation.BlindAnimation1;
 import com.androidanimator.animation.BounceAnimation1;
 import com.androidanimator.animation.ClipAnimation1;
@@ -37,9 +38,12 @@ public class MyAnimator1 {
 	 *            the color of the box used for blinding
 	 * @param duration
 	 *            the duration of the entire animation
+	 * @param listener
+	 *            the AnimationListener to determine the end of the animation
 	 */
-	public static void blind(View view, int color, long duration) {
-		new BlindAnimation1(color, duration).animate(view);
+	public static void blind(View view, int color, long duration,
+			AnimationListener listener) {
+		new BlindAnimation1(color, duration, listener).animate(view);
 	}
 
 	/**
@@ -65,10 +69,13 @@ public class MyAnimator1 {
 	 *            the number of times the animation is repeated
 	 * @param duration
 	 *            the duration of the entire animation
+	 * @param listener
+	 *            the AnimationListener to determine the end of the animation
 	 */
 	public static void bounce(View view, float bounceDistance, int repetitions,
-			long duration) {
-		new BounceAnimation1(bounceDistance, repetitions, duration).animate(view);
+			long duration, AnimationListener listener) {
+		new BounceAnimation1(bounceDistance, repetitions, duration, listener)
+				.animate(view);
 	}
 
 	/**
@@ -94,9 +101,12 @@ public class MyAnimator1 {
 	 *            the color of the box used for clipping
 	 * @param duration
 	 *            the duration of the entire animation
+	 * @param listener
+	 *            the AnimationListener to determine the end of the animation
 	 */
-	public static void clip(View view, int color, long duration) {
-		new ClipAnimation1(color, duration).animate(view);
+	public static void clip(View view, int color, long duration,
+			AnimationListener listener) {
+		new ClipAnimation1(color, duration, listener).animate(view);
 	}
 
 	/**
@@ -124,9 +134,12 @@ public class MyAnimator1 {
 	 *            the number of y parts to be exploded
 	 * @param duration
 	 *            the duration of the entire animation
+	 * @param listener
+	 *            the AnimationListener to determine the end of the animation
 	 */
-	public static void explode(View view, int xParts, int yParts, long duration) {
-		new ExplodeAnimation1(xParts, yParts, duration).animate(view);
+	public static void explode(View view, int xParts, int yParts,
+			long duration, AnimationListener listener) {
+		new ExplodeAnimation1(xParts, yParts, duration, listener).animate(view);
 	}
 
 	/**
@@ -150,9 +163,12 @@ public class MyAnimator1 {
 	 *            the color of the highlight
 	 * @param duration
 	 *            the duration of the entire animation
+	 * @param listener
+	 *            the AnimationListener to determine the end of the animation
 	 */
-	public static void highlight(View view, int color, long duration) {
-		new HighlightAnimation1(color, duration).animate(view);
+	public static void highlight(View view, int color, long duration,
+			AnimationListener listener) {
+		new HighlightAnimation1(color, duration, listener).animate(view);
 	}
 
 	/**
@@ -176,14 +192,17 @@ public class MyAnimator1 {
 	 *            the number of times the animation is repeated
 	 * @param duration
 	 *            the duration of the entire animation
+	 * @param listener
+	 *            the AnimationListener to determine the end of the animation
 	 */
-	public static void pulsate(View view, int repetitions, long duration) {
-		new PulsateAnimation1(repetitions, duration).animate(view);
+	public static void pulsate(View view, int repetitions, long duration,
+			AnimationListener listener) {
+		new PulsateAnimation1(repetitions, duration, listener).animate(view);
 	}
 
 	/**
 	 * The ScaleAnimation1 scales the view either upwards or downwards depending
-	 * on the parameters provided by the user before fading out of view.
+	 * on the parameters provided by the user.
 	 * 
 	 * @param view
 	 *            the view to be animated
@@ -194,7 +213,7 @@ public class MyAnimator1 {
 
 	/**
 	 * The ScaleAnimation1 scales the view either upwards or downwards depending
-	 * on the parameters provided by the user before fading out of view.
+	 * on the parameters provided by the user.
 	 * 
 	 * @param view
 	 *            the view to be animated
@@ -204,9 +223,12 @@ public class MyAnimator1 {
 	 *            the magnitude of scale in the y-axis
 	 * @param duration
 	 *            the duration of the entire animation
+	 * @param listener
+	 *            the AnimationListener to determine the end of the animation
 	 */
-	public static void scale(View view, int x, int y, long duration) {
-		new ScaleAnimation1(x, y, duration).animate(view);
+	public static void scale(View view, float x, float y, long duration,
+			AnimationListener listener) {
+		new ScaleAnimation1(x, y, duration, listener).animate(view);
 	}
 
 	/**
@@ -232,10 +254,13 @@ public class MyAnimator1 {
 	 *            the number of times the animation is repeated
 	 * @param duration
 	 *            the duration of the entire animation
+	 * @param listener
+	 *            the AnimationListener to determine the end of the animation
 	 */
 	public static void shake(View view, float shakeDistance, int repetitions,
-			long duration) {
-		new ShakeAnimation1(shakeDistance, repetitions, duration).animate(view);
+			long duration, AnimationListener listener) {
+		new ShakeAnimation1(shakeDistance, repetitions, duration, listener)
+				.animate(view);
 	}
 
 	/**
@@ -259,9 +284,12 @@ public class MyAnimator1 {
 	 *            the direction to slide in from
 	 * @param duration
 	 *            the duration of the entire animation
+	 * @param listener
+	 *            the AnimationListener to determine the end of the animation
 	 */
-	public static void slideIn(View view, int direction, long duration) {
-		new SlideInAnimation1(direction, duration).animate(view);
+	public static void slideIn(View view, int direction, long duration,
+			AnimationListener listener) {
+		new SlideInAnimation1(direction, duration, listener).animate(view);
 	}
 
 	/**
@@ -285,9 +313,12 @@ public class MyAnimator1 {
 	 *            the direction to slide out to
 	 * @param duration
 	 *            the duration of the entire animation
+	 * @param listener
+	 *            the AnimationListener to determine the end of the animation
 	 */
-	public static void slideOut(View view, int direction, long duration) {
-		new SlideOutAnimation1(direction, duration).animate(view);
+	public static void slideOut(View view, int direction, long duration,
+			AnimationListener listener) {
+		new SlideOutAnimation1(direction, duration, listener).animate(view);
 	}
 
 	/**
@@ -303,6 +334,25 @@ public class MyAnimator1 {
 	 */
 	public static void transfer(View view, View destinationView, long duration) {
 		new TransferAnimation1(destinationView, duration).animate(view);
+	}
+
+	/**
+	 * The TransferAnimation1 transfers the view to another view provided by the
+	 * user through scaling and translation.
+	 * 
+	 * @param view
+	 *            the view to be animated
+	 * @param destinationView
+	 *            the view to be transferred to
+	 * @param duration
+	 *            the duration of the entire animation
+	 * @param listener
+	 *            the AnimationListener to determine the end of the animation
+	 */
+	public static void transfer(View view, View destinationView, long duration,
+			AnimationListener listener) {
+		new TransferAnimation1(destinationView, duration, listener)
+				.animate(view);
 	}
 
 }

@@ -25,10 +25,11 @@ public class ShakeAnimation1 extends Animation {
 		duration = Constant.DEFAULT_DURATION;
 	}
 
-	public ShakeAnimation1(float shakeDistance, int repetitions, long duration) {
+	public ShakeAnimation1(float shakeDistance, int repetitions, long duration, AnimationListener listener) {
 		this.shakeDistance = shakeDistance;
 		this.repetitions = repetitions;
 		this.duration = duration;
+		this.listener = listener;
 	}
 
 	@Override
@@ -58,8 +59,20 @@ public class ShakeAnimation1 extends Animation {
 			@Override
 			public void onAnimationEnd(Animator animation) {
 				shakeCount++;
-				if (shakeCount != repetitions)
+				if (shakeCount != repetitions) {
 					animation.start();
+					if (shakeCount == repetitions - 1) {
+						animation.addListener(new AnimatorListenerAdapter() {
+
+							@Override
+							public void onAnimationEnd(Animator animation) {
+								if (getListener() != null) {
+									getListener().onAnimationEnd(ShakeAnimation1.this);
+								}
+							}
+						});
+					}
+				}
 			}
 		});
 	}
