@@ -45,6 +45,7 @@ public abstract class Animation {
     }
 
     public interface AnimationListener {
+        //TODO add onAnimationStart
         public void onAnimationEnd(Animation animation);
     }
 

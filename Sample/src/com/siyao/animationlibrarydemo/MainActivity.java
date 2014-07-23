@@ -14,7 +14,7 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.androidanimator.MyAnimator1;
+import com.androidanimator.MyAnimator;
 
 public class MainActivity extends Activity {
 	
@@ -55,19 +55,19 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				switch (selectedAnimation) {
 				case "Blind":
-					MyAnimator1.blind(card);
+//					MyAnimator1.blind(card);
 					break;
 				case "Bounce":
-					MyAnimator1.bounce(card);
+					MyAnimator.bounce(card);
 					break;
 				case "Clip":
-					MyAnimator1.clip(card);
+					MyAnimator.clip(card);
 					break;
 				case "Explode":
-					MyAnimator1.explode(card);
+					MyAnimator.explode(card);
 					break;
 				case "Highlight":
-					MyAnimator1.highlight(card);
+					MyAnimator.highlight(card);
 					break;
 				case "Path":
 					ArrayList<Point> points = new ArrayList<>();
@@ -76,22 +76,22 @@ public class MainActivity extends Activity {
 					MyAnimator1.path(card, points, 1000);
 					break;
 				case "Pulsate":
-					MyAnimator1.pulsate(card);
+					MyAnimator.pulsate(card);
 					break;
 				case "Scale":
-					MyAnimator1.scale(card);
+					MyAnimator.scaleIn(card);
 					break;
 				case "Shake":
-					MyAnimator1.shake(card);
+					MyAnimator.shake(card);
 					break;
 				case "Slide In":
-					MyAnimator1.slideIn(card);
+					MyAnimator.slideIn(card);
 					break;
 				case "Slide Out":
-					MyAnimator1.slideOut(card);
+					MyAnimator.slideOut(card);
 					break;
 				case "Transfer":
-					MyAnimator1.transfer(card, v, 500);
+					MyAnimator.transfer(card, v, 500);
 					break;
 				default:
 					break;

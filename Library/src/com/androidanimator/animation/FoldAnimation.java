@@ -20,11 +20,9 @@ public class FoldAnimation extends Animation {
     View child;
     ViewGroup animationLayout;
     LayoutParams originalParam;
-    Context mContext;
 
-    public FoldAnimation(Context context) {
+    public FoldAnimation() {
         animFold = new AnimatorSet();
-        mContext = context;
     }
 
     public FoldAnimation(AnimationListener listener, long duration) {
@@ -61,7 +59,7 @@ public class FoldAnimation extends Animation {
         originalParam = v.getLayoutParams();
         LayoutParams newParam = new LayoutParams(v.getWidth(), v.getHeight());
         v.setLayoutParams(newParam);
-        animationLayout = new FrameLayout(mContext);
+        animationLayout = new FrameLayout(v.getContext());
         animationLayout.setId(v.getId());
         animationLayout.setLayoutParams(originalParam);
         animationLayout.addView(v);
