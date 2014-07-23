@@ -9,9 +9,11 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.androidanimator.MyAnimation;
 import com.androidanimator.animation.Animation;
+import com.androidanimator.animation.Animation.AnimationListener;
 import com.androidanimator.animation.Constant;
 
 public class SampleActivity extends Activity {
@@ -62,7 +64,13 @@ public class SampleActivity extends Activity {
                     break;
                 case R.id.btn_puff:
                     if (type == Constant.IN)
-                        MyAnimation.puffIn(v, Constant.DEFAULT_DURATION, null);
+                        MyAnimation.puffIn(v, Constant.DEFAULT_DURATION, new AnimationListener() {
+
+                            @Override
+                            public void onAnimationEnd(Animation animation) {
+                                Toast.makeText(mContext, "hehe", Toast.LENGTH_SHORT).show();
+                            }
+                        });
                     else
                         MyAnimation.puffOut(v);
                     break;

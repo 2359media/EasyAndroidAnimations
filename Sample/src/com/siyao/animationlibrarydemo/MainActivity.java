@@ -52,7 +52,7 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				switch (selectedAnimation) {
 				case "Blind":
-					MyAnimator1.blind(card);
+//					MyAnimator1.blind(card);
 					break;
 				case "Bounce":
 					MyAnimator1.bounce(card);

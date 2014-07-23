@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry excluding="com/media2359/animation/libs/AnimationHelper.java|com/media2359/animation/libs/AnimationSet.java" kind="src" path="src"/>
+	<classpathentry excluding="com/media2359/animation/libs/AnimationHelper.java|com/media2359/animation/libs/AnimationSet.java|com/androidanimator/animation/BlindAnimation1.java|com/androidanimator/animation/BounceAnimation1.java|com/androidanimator/animation/ClipAnimation.java|com/androidanimator/animation/ExplodeAnimation.java|com/androidanimator/animation/PulstateAnimation.java|com/androidanimator/animation/ScaleAnimation1.java|com/androidanimator/animation/ShakeAnimation1.java|com/androidanimator/MyAnimation.java" kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>

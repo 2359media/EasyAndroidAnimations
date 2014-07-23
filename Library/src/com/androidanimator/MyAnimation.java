@@ -13,7 +13,7 @@ import com.androidanimator.animation.PuffAnimation;
 import com.androidanimator.animation.PulstateAnimation;
 import com.androidanimator.animation.ScaleAnimation;
 import com.androidanimator.animation.SizeAnimation;
-import com.androidanimator.animation.TransferAnimation;
+import com.androidanimator.animation.MoveAnimation;
 
 import android.content.Context;
 import android.view.View;
@@ -159,14 +159,14 @@ public class MyAnimation {
         new SizeAnimation().animate(view);
     }
 
-    public static void transferIn(View view) {
-        TransferAnimation transferAnimation = new TransferAnimation();
+    public static void moveIn(View view) {
+        MoveAnimation transferAnimation = new MoveAnimation();
         transferAnimation.setType(Constant.IN);
         transferAnimation.animate(view);
     }
 
-    public static void transferIn(View view, long duration, int direction, AnimationListener listener) {
-        TransferAnimation transferAnimation = new TransferAnimation();
+    public static void moveIn(View view, long duration, int direction, AnimationListener listener) {
+        MoveAnimation transferAnimation = new MoveAnimation();
         transferAnimation.setType(Constant.IN);
         transferAnimation.setDuration(duration);
         transferAnimation.setListener(listener);
@@ -174,8 +174,8 @@ public class MyAnimation {
         transferAnimation.animate(view);
     }
 
-    public static void transferOut(View view, long duration, int direction, AnimationListener listener) {
-        TransferAnimation transferAnimation = new TransferAnimation();
+    public static void moveOut(View view, long duration, int direction, AnimationListener listener) {
+        MoveAnimation transferAnimation = new MoveAnimation();
         transferAnimation.setType(Constant.OUT);
         transferAnimation.setDuration(duration);
         transferAnimation.setListener(listener);
@@ -183,12 +183,12 @@ public class MyAnimation {
         transferAnimation.animate(view);
     }
 
-    public static void transferOut(View view) {
-        new TransferAnimation().animate(view);
+    public static void moveOut(View view) {
+        new MoveAnimation().animate(view);
     }
 
-    public static void fold(Context context, View view) {
-        new FoldAnimation(context).animate(view);
+    public static void fold( View view) {
+        new FoldAnimation().animate(view);
     }
 
     public static void faceIn(View view) {

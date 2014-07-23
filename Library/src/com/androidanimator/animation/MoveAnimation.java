@@ -11,19 +11,19 @@ import android.view.View;
  * @author phutang
  * 
  */
-public class TransferAnimation extends Animation {
+public class MoveAnimation extends Animation {
     AnimatorSet transferAnimatorSet;
     private float distance;
     private int type, direction;
 
-    public TransferAnimation() {
+    public MoveAnimation() {
         transferAnimatorSet = new AnimatorSet();
         distance = -1;
         direction = Constant.DIRECTION_DOWN;
         type = Constant.OUT;
     }
 
-    public TransferAnimation(AnimationListener listener, long duration, float distance, int type, int direction) {
+    public MoveAnimation(AnimationListener listener, long duration, float distance, int type, int direction) {
         super(listener, duration);
         this.distance = distance;
         this.type = type;
@@ -113,7 +113,7 @@ public class TransferAnimation extends Animation {
 
                 @Override
                 public void onAnimationEnd(Animator animation) {
-                    getListener().onAnimationEnd(TransferAnimation.this);
+                    getListener().onAnimationEnd(MoveAnimation.this);
                 }
 
                 @Override
