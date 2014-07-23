@@ -46,3 +46,5 @@ Developed By
  * Umair Vatao
  * Phu Tang
  * Nee Si Yao
+
+[1] phu.tanghong@2359media.com.vn
