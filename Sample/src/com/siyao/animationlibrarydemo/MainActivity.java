@@ -15,6 +15,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.androidanimator.MyAnimator;
+import com.androidanimator.animation.PathAnimation;
 
 public class MainActivity extends Activity {
 	
@@ -71,9 +72,12 @@ public class MainActivity extends Activity {
 					break;
 				case "Path":
 					ArrayList<Point> points = new ArrayList<>();
-					points.add(new Point(0, 0));
-					//points.add(new Point(100, 0));
-					MyAnimator.path(card, points, 1000);
+					points.add(new Point(50, 0));
+					points.add(new Point(100, 100));
+					points.add(new Point(0, 50));
+					points.add(new Point(100, 50));
+					points.add(new Point(0, 100));
+					MyAnimator.path(card, points, 500, PathAnimation.ANCHOR_CENTER, null);
 					break;
 				case "Pulsate":
 					MyAnimator.pulsate(card);
