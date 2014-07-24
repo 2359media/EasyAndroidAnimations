@@ -128,7 +128,7 @@ public class MyAnimator {
 	public static void clip(View view) {
 		new ClipAnimation1().animate(view);
 	}
-	
+
 	public static void dropIn(View view) {
 		DropAnimation animation = new DropAnimation();
 		animation.setType(Constant.IN);
@@ -170,7 +170,7 @@ public class MyAnimator {
 	public static void explode(View view) {
 		new ExplodeAnimation1().animate(view);
 	}
-	
+
 	/**
 	 * The ExplodeAnimation1 creates a bitmap of the view, divides them into X x
 	 * Y parts and translates the parts away from the centre of the view to
@@ -216,7 +216,7 @@ public class MyAnimator {
 		transferAnimation.setDirection(direction);
 		transferAnimation.animate(view);
 	}
-	
+
 	public static void flyOut(View view) {
 		new FlyAnimation().animate(view);
 	}
@@ -234,7 +234,7 @@ public class MyAnimator {
 	public static void fold(View view) {
 		new FoldAnimation().animate(view);
 	}
-	
+
 	/**
 	 * The HighlightAnimation1 makes use of a translucent box to overlay the
 	 * view to mimic the highlighting of the view.
@@ -264,10 +264,28 @@ public class MyAnimator {
 		new HighlightAnimation1(color, duration, listener).animate(view);
 	}
 
-	public static void path(View view, ArrayList<Point> points, long duration) {
-		new PathAnimation(points, duration).animate(view);
+	/**
+	 * The PathAnimation translates the view according to the ArrayList of
+	 * Points provided by the user. The values of x and y in each Point must be
+	 * in the range of 0-100.
+	 * 
+	 * @param view
+	 *            the view to be animated
+	 * @param points
+	 *            the ArrayList of Points that the view is translated to
+	 * @param duration
+	 *            the duration of the entire animation
+	 * @param anchorPosition
+	 *            the anchor position whereby the view is translated from
+	 * @param listener
+	 *            the AnimationListener to determine the end of the animation
+	 */
+	public static void path(View view, ArrayList<Point> points, long duration,
+			int anchorPosition, AnimationListener listener) {
+		new PathAnimation(points, duration, anchorPosition, listener)
+				.animate(view);
 	}
-	
+
 	public static void puffIn(View view, long duration,
 			AnimationListener listener) {
 		PuffAnimation puffAnimation = new PuffAnimation();
@@ -294,7 +312,7 @@ public class MyAnimator {
 		puffAnimation.setListener(listener);
 		puffAnimation.animate(view);
 	}
-	
+
 	/**
 	 * The PulsateAnimation1 causes the view to blink a number of times to mimic
 	 * a pulsating animation.
@@ -399,7 +417,7 @@ public class MyAnimator {
 		new ShakeAnimation1(shakeDistance, repetitions, duration, listener)
 				.animate(view);
 	}
-	
+
 	public static void size(View view) {
 		new SizeAnimation().animate(view);
 	}
@@ -432,7 +450,7 @@ public class MyAnimator {
 			AnimationListener listener) {
 		new SlideInAnimation1(direction, duration, listener).animate(view);
 	}
-	
+
 	/**
 	 * The SlideOutAnimation1 causes the view to slide out to the left, right,
 	 * top or bottom depending on the parameters provided by the user.
