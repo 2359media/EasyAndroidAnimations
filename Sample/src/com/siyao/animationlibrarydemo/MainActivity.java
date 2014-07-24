@@ -58,7 +58,7 @@ public class MainActivity extends Activity {
 					MyAnimator.blind(card);
 					break;
 				case "Bounce":
-					MyAnimator.bounce(card);
+					MyAnimator.bounce1(card);
 					break;
 				case "Clip":
 					MyAnimator.clip(card);
@@ -78,8 +78,11 @@ public class MainActivity extends Activity {
 				case "Pulsate":
 					MyAnimator.pulsate(card);
 					break;
-				case "Scale":
+				case "Scale In":
 					MyAnimator.scaleIn(card);
+					break;
+				case "Scale Out":
+					MyAnimator.scaleOut(card);
 					break;
 				case "Shake":
 					MyAnimator.shake(card);
