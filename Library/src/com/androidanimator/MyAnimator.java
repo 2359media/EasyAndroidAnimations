@@ -25,6 +25,7 @@ import com.androidanimator.animation.ShakeAnimation1;
 import com.androidanimator.animation.SizeAnimation;
 import com.androidanimator.animation.SlideInAnimation1;
 import com.androidanimator.animation.SlideOutAnimation1;
+import com.androidanimator.animation.SlideOutUnderneathAnimation;
 import com.androidanimator.animation.TransferAnimation1;
 
 public class MyAnimator {
@@ -267,7 +268,8 @@ public class MyAnimator {
 	/**
 	 * The PathAnimation translates the view according to the ArrayList of
 	 * Points provided by the user. The values of x and y in each Point must be
-	 * in the range of 0-100.
+	 * in the range of 0-100. Note that the status bar and action bar are not
+	 * taken into consideration.
 	 * 
 	 * @param view
 	 *            the view to be animated
@@ -280,9 +282,9 @@ public class MyAnimator {
 	 * @param listener
 	 *            the AnimationListener to determine the end of the animation
 	 */
-	public static void path(View view, ArrayList<Point> points, long duration,
-			int anchorPosition, AnimationListener listener) {
-		new PathAnimation(points, duration, anchorPosition, listener)
+	public static void path(View view, ArrayList<Point> points,
+			int anchorPosition, long duration, AnimationListener listener) {
+		new PathAnimation(points, anchorPosition, duration, listener)
 				.animate(view);
 	}
 
@@ -478,6 +480,38 @@ public class MyAnimator {
 	public static void slideOut(View view, int direction, long duration,
 			AnimationListener listener) {
 		new SlideOutAnimation1(direction, duration, listener).animate(view);
+	}
+
+	/**
+	 * The SlideOutUnderneathAnimation causes the view to slide out underneath
+	 * to the left, right, up or down depending on the parameters provided by
+	 * the user.
+	 * 
+	 * @param view
+	 *            the view to be animated
+	 */
+	public static void slideOutUnderneath(View view) {
+		new SlideOutUnderneathAnimation().animate(view);
+	}
+
+	/**
+	 * The SlideOutUnderneathAnimation causes the view to slide out underneath
+	 * to the left, right, up or down depending on the parameters provided by
+	 * the user.
+	 * 
+	 * @param view
+	 *            the view to be animated
+	 * @param direction
+	 *            the direction to slide out underneath to
+	 * @param duration
+	 *            the duration of the entire animation
+	 * @param listener
+	 *            the AnimationListener to determine the end of the animation
+	 */
+	public static void slideOutUnderneath(View view, int direction,
+			long duration, AnimationListener listener) {
+		new SlideOutUnderneathAnimation(direction, duration, listener)
+				.animate(view);
 	}
 
 	/**

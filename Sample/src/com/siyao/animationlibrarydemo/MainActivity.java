@@ -97,6 +97,9 @@ public class MainActivity extends Activity {
 				case "Slide Out":
 					MyAnimator.slideOut(card);
 					break;
+				case "Slide Out Underneath":
+					MyAnimator.slideOutUnderneath(card);
+					break;
 				case "Transfer":
 					MyAnimator.transfer(card, v, 500);
 					break;

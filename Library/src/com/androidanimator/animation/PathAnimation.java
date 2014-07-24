@@ -18,7 +18,8 @@ import android.view.animation.LinearInterpolator;
 /**
  * The PathAnimation translates the view according to the ArrayList of
  * Points provided by the user. The values of x and y in each Point must be
- * in the range of 0-100.
+ * in the range of 0-100. Note that the status bar and action bar are not
+ * taken into consideration.
  * 
  * @author SiYao
  *
@@ -34,7 +35,7 @@ public class PathAnimation extends Animation {
 	ArrayList<Point> points;
 	int anchorPosition;
 	
-	public PathAnimation(ArrayList<Point> points, long duration, int anchorPosition, AnimationListener listener) {
+	public PathAnimation(ArrayList<Point> points, int anchorPosition, long duration, AnimationListener listener) {
 		this.points = points;
 		this.duration = duration;
 		this.anchorPosition = anchorPosition;
