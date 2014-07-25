@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Animation Sample</string>
+    <string name="title_animation_detail">Animation Detail</string>
+
+</resources>
