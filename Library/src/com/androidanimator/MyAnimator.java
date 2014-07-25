@@ -201,19 +201,19 @@ public class MyAnimator {
 				.animate(view);
 	}
 
-	public static void fadeIn(View view, long duration,AnimationListener listener) {
-        new FadeAnimation(listener, duration, Constant.IN)
-                .animate(view);
-    }
-	
+	public static void fadeIn(View view, long duration,
+			AnimationListener listener) {
+		new FadeAnimation(listener, duration, Constant.IN).animate(view);
+	}
+
 	public static void fadeOut(View view) {
 		new FadeAnimation().animate(view);
 	}
-	
-	public static void fadeOut(View view, long duration,AnimationListener listener) {
-        new FadeAnimation(listener, duration, Constant.OUT)
-                .animate(view);
-    }
+
+	public static void fadeOut(View view, long duration,
+			AnimationListener listener) {
+		new FadeAnimation(listener, duration, Constant.OUT).animate(view);
+	}
 
 	public static void flyIn(View view) {
 		FlyAnimation transferAnimation = new FlyAnimation();
@@ -279,15 +279,16 @@ public class MyAnimator {
 	}
 
 	/**
-	 * The PathAnimation translates the view according to the ArrayList of
-	 * Points provided by the user. The values of x and y in each Point must be
-	 * in the range of 0-100. Note that the status bar and action bar are not
-	 * taken into consideration.
+	 * The PathAnimation translates the view within its parent view and
+	 * according to the ArrayList of Points provided by the user. The values of
+	 * x and y in each Point must be in the range of 0-100. Note that the status
+	 * bar and action bar are not taken into consideration.
 	 * 
 	 * @param view
 	 *            the view to be animated
 	 * @param points
-	 *            the ArrayList of Points that the view is translated to
+	 *            the ArrayList of Points that the view is translated to within
+	 *            its parent
 	 * @param duration
 	 *            the duration of the entire animation
 	 * @param anchorPosition
@@ -560,80 +561,93 @@ public class MyAnimator {
 		new TransferAnimation1(destinationView, duration, listener)
 				.animate(view);
 	}
-	
-	
-    /**
-     * This method perform a vertical clip in animation
-     * 
-     * @param view
-     *            the view to be animated
-     */
-    public static void flipIn(View view) {
-        new FlipAnimation(Constant.IN, Constant.VERTICAL, null, Constant.DEFAULT_DURATION).animate(view);
-    }
 
-    /**
-     * This method perform a vertical clip in animation
-     * @param view the view to be animated
-     * @param oritention to flip, Vertical or Horizontal @see {@link Constant}
-     * @param duration
-     *            the duration of the entire animation
-     * @param listener
-     *            the AnimationListener to determine the end of the animation
-     */
-    public static void flipIn(View view, int oritention, long duration, AnimationListener listener) {
-        new FlipAnimation(Constant.IN, oritention, listener, duration).animate(view);
-    }
+	/**
+	 * This method perform a vertical clip in animation
+	 * 
+	 * @param view
+	 *            the view to be animated
+	 */
+	public static void flipIn(View view) {
+		new FlipAnimation(Constant.IN, Constant.VERTICAL, null,
+				Constant.DEFAULT_DURATION).animate(view);
+	}
 
-    /**
-     * This method perform a vertical clip out animation
-     * 
-     * @param view the view to be animated
-     */
-    public static void flipOut(View view) {
-        new FlipAnimation(Constant.OUT, Constant.VERTICAL, null, Constant.DEFAULT_DURATION).animate(view);
-    }
-    
-    /**
-     * This method perform a vertical clip out animation
-     * @param view the view to be animated
-     * @param oritention to flip, Vertical or Horizontal @see {@link Constant}
-     * @param duration
-     *            the duration of the entire animation
-     * @param listener
-     *            the AnimationListener to determine the end of the animation
-     */
-    public static void flipOut(View view, int oritention, long duration, AnimationListener listener) {
-        new FlipAnimation(Constant.OUT, oritention, listener, duration).animate(view);
-    }
-    
-    /**
-     * This method perform a flip with a bring a view from front to back and
-     * behind to front
-     * 
-     * @param vFront
-     *            view to be send to behind
-     * @param vBehind
-     *            view to be send to front
-     */
-    public static void flipTogether(View vFront, View vBehind) {
-        new FlipAnimation().flipTwoViews(vFront, vBehind);
-    }
+	/**
+	 * This method perform a vertical clip in animation
+	 * 
+	 * @param view
+	 *            the view to be animated
+	 * @param oritention
+	 *            to flip, Vertical or Horizontal @see {@link Constant}
+	 * @param duration
+	 *            the duration of the entire animation
+	 * @param listener
+	 *            the AnimationListener to determine the end of the animation
+	 */
+	public static void flipIn(View view, int oritention, long duration,
+			AnimationListener listener) {
+		new FlipAnimation(Constant.IN, oritention, listener, duration)
+				.animate(view);
+	}
 
-    /**
-     * @param vFront
-     *            view to be send to behind
-     * @param vBehind
-     *            view to be send to front
-     * @param oritention
-     *            to flip, Vertical or Horizontal @see {@link Constant}
-     * @param duration
-     *            the duration of the entire animation
-     * @param listener
-     * 
-     */
-    public static void flipTogether(View vFront, View vBehind, int oritention, long duration, AnimationListener listener) {
-        new FlipAnimation().flipTwoViews(vFront, vBehind);
-    }
+	/**
+	 * This method perform a vertical clip out animation
+	 * 
+	 * @param view
+	 *            the view to be animated
+	 */
+	public static void flipOut(View view) {
+		new FlipAnimation(Constant.OUT, Constant.VERTICAL, null,
+				Constant.DEFAULT_DURATION).animate(view);
+	}
+
+	/**
+	 * This method perform a vertical clip out animation
+	 * 
+	 * @param view
+	 *            the view to be animated
+	 * @param oritention
+	 *            to flip, Vertical or Horizontal @see {@link Constant}
+	 * @param duration
+	 *            the duration of the entire animation
+	 * @param listener
+	 *            the AnimationListener to determine the end of the animation
+	 */
+	public static void flipOut(View view, int oritention, long duration,
+			AnimationListener listener) {
+		new FlipAnimation(Constant.OUT, oritention, listener, duration)
+				.animate(view);
+	}
+
+	/**
+	 * This method perform a flip with a bring a view from front to back and
+	 * behind to front
+	 * 
+	 * @param vFront
+	 *            view to be send to behind
+	 * @param vBehind
+	 *            view to be send to front
+	 */
+	public static void flipTogether(View vFront, View vBehind) {
+		new FlipAnimation().flipTwoViews(vFront, vBehind);
+	}
+
+	/**
+	 * @param vFront
+	 *            view to be send to behind
+	 * @param vBehind
+	 *            view to be send to front
+	 * @param oritention
+	 *            to flip, Vertical or Horizontal @see {@link Constant}
+	 * @param duration
+	 *            the duration of the entire animation
+	 * @param listener
+	 * 
+	 */
+	public static void flipTogether(View vFront, View vBehind, int oritention,
+			long duration, AnimationListener listener) {
+		new FlipAnimation().flipTwoViews(vFront, vBehind);
+	}
 
 }
