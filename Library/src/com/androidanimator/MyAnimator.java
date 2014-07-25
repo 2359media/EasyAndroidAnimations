@@ -14,6 +14,7 @@ import com.androidanimator.animation.Constant;
 import com.androidanimator.animation.DropAnimation;
 import com.androidanimator.animation.ExplodeAnimation1;
 import com.androidanimator.animation.FadeAnimation;
+import com.androidanimator.animation.FlipAnimation;
 import com.androidanimator.animation.FlyAnimation;
 import com.androidanimator.animation.FoldAnimation;
 import com.androidanimator.animation.HighlightAnimation1;
@@ -559,5 +560,51 @@ public class MyAnimator {
 		new TransferAnimation1(destinationView, duration, listener)
 				.animate(view);
 	}
+	
+	
+    /**
+     * This method perform a vertical clip in animation
+     * 
+     * @param view
+     *            the view to be animated
+     */
+    public static void flipIn(View view) {
+        new FlipAnimation(Constant.IN, Constant.VERTICAL, null, Constant.DEFAULT_DURATION).animate(view);
+    }
+
+    /**
+     * This method perform a vertical clip in animation
+     * @param view the view to be animated
+     * @param oritention to flip, Vertical or Horizontal @see {@link Constant}
+     * @param duration
+     *            the duration of the entire animation
+     * @param listener
+     *            the AnimationListener to determine the end of the animation
+     */
+    public static void flipIn(View view, int oritention, long duration, AnimationListener listener) {
+        new FlipAnimation(Constant.IN, oritention, listener, duration).animate(view);
+    }
+
+    /**
+     * This method perform a vertical clip out animation
+     * 
+     * @param view the view to be animated
+     */
+    public static void flipOut(View view) {
+        new FlipAnimation(Constant.OUT, Constant.VERTICAL, null, Constant.DEFAULT_DURATION).animate(view);
+    }
+    
+    /**
+     * This method perform a vertical clip out animation
+     * @param view the view to be animated
+     * @param oritention to flip, Vertical or Horizontal @see {@link Constant}
+     * @param duration
+     *            the duration of the entire animation
+     * @param listener
+     *            the AnimationListener to determine the end of the animation
+     */
+    public static void flipOut(View view, int oritention, long duration, AnimationListener listener) {
+        new FlipAnimation(Constant.OUT, oritention, listener, duration).animate(view);
+    }
 
 }
