@@ -165,19 +165,12 @@ public class AnimationDetailFragment extends Fragment implements OnClickListener
 			points.add(new Point(0, 50));
 			points.add(new Point(100, 50));
 			points.add(new Point(0, 100));
+			points.add(new Point(50, 50));
             MyAnimator.path(mImgTarget, points, PathAnimation.ANCHOR_CENTER, 500, new AnimationListener() {
 				
 				@Override
 				public void onAnimationEnd(Animation animation) {
-					points.clear();
-					points.add(new Point(50, 50));
-					MyAnimator.path(mImgTarget, points, PathAnimation.ANCHOR_CENTER, 300, new AnimationListener() {
-						
-						@Override
-						public void onAnimationEnd(Animation animation) {
-							MyAnimator.fadeIn(mPlayView);
-						}
-					});
+					MyAnimator.fadeIn(mPlayView);
 				}
 			});
             break;
@@ -224,7 +217,7 @@ public class AnimationDetailFragment extends Fragment implements OnClickListener
             MyAnimator.size(mImgTarget);
             break;
         case 13:
-        	MyAnimator.slideIn(mImgTarget, Constant.DIRECTION_UP, 300, new AnimationListener() {
+        	MyAnimator.slideIn(mImgTarget, Constant.DIRECTION_UP, 500, new AnimationListener() {
 				
 				@Override
 				public void onAnimationEnd(Animation animation) {
@@ -233,15 +226,16 @@ public class AnimationDetailFragment extends Fragment implements OnClickListener
 			});
         	break;
         case 14:
-        	MyAnimator.slideOut(mImgTarget, Constant.DIRECTION_UP, 300, new AnimationListener() {
+        	MyAnimator.slideOut(mImgTarget, Constant.DIRECTION_DOWN, 500, new AnimationListener() {
 				
 				@Override
 				public void onAnimationEnd(Animation animation) {
 					MyAnimator.fadeIn(mPlayView);
 				}
 			});
+        	break;
         case 15:
-            MyAnimator.slideOutUnderneath(mImgTarget, Constant.DIRECTION_UP, 300, new AnimationListener() {
+            MyAnimator.slideOutUnderneath(mImgTarget, Constant.DIRECTION_UP, 500, new AnimationListener() {
 
                 @Override
                 public void onAnimationEnd(Animation animation) {
@@ -251,7 +245,7 @@ public class AnimationDetailFragment extends Fragment implements OnClickListener
             });
             break;
         case 16:
-            MyAnimator.transfer(mImgTarget, mDestination, 300, new AnimationListener() {
+            MyAnimator.transfer(mImgTarget, mDestination, 500, new AnimationListener() {
 
                 @Override
                 public void onAnimationEnd(Animation animation) {
@@ -278,5 +272,14 @@ public class AnimationDetailFragment extends Fragment implements OnClickListener
         default:
             break;
         }
+    }
+    
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        ViewGroup vg = (ViewGroup) view;
+        vg.setClipChildren(false);
+        vg.setClipToPadding(false);
     }
 }
