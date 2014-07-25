@@ -49,7 +49,7 @@ public class SlideOutAnimation1 extends Animation {
 			slideAnim = ObjectAnimator.ofFloat(view, View.X, rootView.getRight());
 			break;
 		case Constant.DIRECTION_UP:
-			slideAnim = ObjectAnimator.ofFloat(view, View.Y, -locationView[1] - view.getHeight());
+			slideAnim = ObjectAnimator.ofFloat(view, View.Y, -locationView[1]);// - view.getHeight());
 			break;
 		case Constant.DIRECTION_DOWN:
 			slideAnim = ObjectAnimator.ofFloat(view, View.Y, rootView.getBottom());

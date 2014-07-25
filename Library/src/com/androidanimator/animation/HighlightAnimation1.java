@@ -34,17 +34,18 @@ public class HighlightAnimation1 extends Animation {
 	@Override
 	public void animate(final View view) {
 		final ViewGroup parentView = (ViewGroup) view.getParent();
-		LayoutParams layoutParams = view.getLayoutParams();
+		final LayoutParams layoutParams = view.getLayoutParams();
 		final FrameLayout highlightFrame = new FrameLayout(view.getContext());
 		highlightFrame.setLayoutParams(layoutParams);
 		final ImageView highlight = new ImageView(view.getContext());
 		highlight.setLayoutParams(layoutParams);
 		highlight.setBackgroundColor(color);
 		highlight.setAlpha(0.5f);
+		final int positionView = parentView.indexOfChild(view);
 		parentView.removeView(view);
 		highlightFrame.addView(view);
 		highlightFrame.addView(highlight);
-		parentView.addView(highlightFrame);
+		parentView.addView(highlightFrame, positionView);
 		
 		highlight.animate().alpha(0).setDuration(duration).setListener(new AnimatorListenerAdapter() {
 
@@ -53,6 +54,10 @@ public class HighlightAnimation1 extends Animation {
 				if (getListener() != null) {
 					getListener().onAnimationEnd(HighlightAnimation1.this);
 				}
+				highlightFrame.removeAllViews();
+				parentView.removeView(highlightFrame);
+				view.setLayoutParams(layoutParams);
+				parentView.addView(view, positionView);
 			}
 		});
 	}

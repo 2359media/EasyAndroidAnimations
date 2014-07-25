@@ -1,7 +1,10 @@
 package com.two359media.animationsample;
 
+import java.util.ArrayList;
+
 import android.app.Fragment;
 import android.graphics.Color;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,9 +14,9 @@ import android.widget.ImageView;
 
 import com.androidanimator.MyAnimator;
 import com.androidanimator.animation.Animation;
+import com.androidanimator.animation.PathAnimation;
 import com.androidanimator.animation.Animation.AnimationListener;
 import com.androidanimator.animation.Constant;
-import com.androidanimator.animation.FlipAnimation;
 import com.two359media.animationsample.dummy.DummyContent;
 
 /**
@@ -156,7 +159,27 @@ public class AnimationDetailFragment extends Fragment implements OnClickListener
             });
             break;
         case 8:
-            // TODO SI YAO
+        	final ArrayList<Point> points = new ArrayList<>();
+			points.add(new Point(50, 0));
+			points.add(new Point(100, 100));
+			points.add(new Point(0, 50));
+			points.add(new Point(100, 50));
+			points.add(new Point(0, 100));
+            MyAnimator.path(mImgTarget, points, PathAnimation.ANCHOR_CENTER, 500, new AnimationListener() {
+				
+				@Override
+				public void onAnimationEnd(Animation animation) {
+					points.clear();
+					points.add(new Point(50, 50));
+					MyAnimator.path(mImgTarget, points, PathAnimation.ANCHOR_CENTER, 300, new AnimationListener() {
+						
+						@Override
+						public void onAnimationEnd(Animation animation) {
+							MyAnimator.fadeIn(mPlayView);
+						}
+					});
+				}
+			});
             break;
         case 9:
             MyAnimator.puffOut(mImgTarget, 300, new AnimationListener() {

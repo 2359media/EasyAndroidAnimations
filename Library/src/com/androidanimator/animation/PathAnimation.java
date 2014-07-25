@@ -9,7 +9,6 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.graphics.Point;
-import android.graphics.Rect;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -61,19 +60,16 @@ public class PathAnimation extends Animation {
 		List<Animator> pathAnimList = new ArrayList<Animator>();
 		
 		Activity activity = (Activity) view.getContext();
-		Rect rect = new Rect();
 		Window window = activity.getWindow();
-		window.getDecorView().getWindowVisibleDisplayFrame(rect);
 		int windowWidth = window.getDecorView().getWidth();
 		int windowHeight = window.getDecorView().getHeight();
-		int windowTop = window.getDecorView().getTop();
 
 		float posX, posY;
 		int[] locationView = new int[2];
 		view.getLocationOnScreen(locationView);
 		for (int i = 0; i < numOfPoints; i++) {
 			posX = (points.get(i).x / 100f * windowWidth);
-			posY = (points.get(i).y / 100f * windowHeight) - locationView[1] + windowTop;
+			posY = (points.get(i).y / 100f * windowHeight) - locationView[1];
 			
 			switch (anchorPosition) {
 			case ANCHOR_CENTER:
