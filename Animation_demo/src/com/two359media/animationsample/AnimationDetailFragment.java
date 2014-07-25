@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.webkit.WebView.FindListener;
 import android.widget.ImageView;
 
 import com.androidanimator.MyAnimator;
@@ -84,6 +85,7 @@ public class AnimationDetailFragment extends Fragment implements OnClickListener
         mImgTarget = (ImageView) v.findViewById(R.id.imgTarget);
         mPlayView.setOnClickListener(this);
         mImgBehind = (ImageView) v.findViewById(R.id.imgBehind);
+        mDestination = v.findViewById(R.id.textView1);
     }
 
     @Override
