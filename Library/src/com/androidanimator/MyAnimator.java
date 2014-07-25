@@ -606,5 +606,34 @@ public class MyAnimator {
     public static void flipOut(View view, int oritention, long duration, AnimationListener listener) {
         new FlipAnimation(Constant.OUT, oritention, listener, duration).animate(view);
     }
+    
+    /**
+     * This method perform a flip with a bring a view from front to back and
+     * behind to front
+     * 
+     * @param vFront
+     *            view to be send to behind
+     * @param vBehind
+     *            view to be send to front
+     */
+    public static void flipTogether(View vFront, View vBehind) {
+        new FlipAnimation().flipTwoViews(vFront, vBehind);
+    }
+
+    /**
+     * @param vFront
+     *            view to be send to behind
+     * @param vBehind
+     *            view to be send to front
+     * @param oritention
+     *            to flip, Vertical or Horizontal @see {@link Constant}
+     * @param duration
+     *            the duration of the entire animation
+     * @param listener
+     * 
+     */
+    public static void flipTogether(View vFront, View vBehind, int oritention, long duration, AnimationListener listener) {
+        new FlipAnimation().flipTwoViews(vFront, vBehind);
+    }
 
 }

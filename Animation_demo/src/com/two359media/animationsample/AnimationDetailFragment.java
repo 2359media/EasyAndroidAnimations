@@ -6,6 +6,7 @@ import android.app.Fragment;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.os.Bundle;
+import android.provider.SyncStateContract.Constants;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -36,7 +37,7 @@ public class AnimationDetailFragment extends Fragment implements OnClickListener
      */
     private DummyContent.DummyItem mItem;
     private View mParentView, mPlayView, mDestination;
-    private ImageView mImgTarget;
+    private ImageView mImgTarget, mImgBehind;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -63,19 +64,16 @@ public class AnimationDetailFragment extends Fragment implements OnClickListener
 
         initView(rootView);
         MyAnimator.fadeIn(mParentView);
-        if (mItem.id != 14) {
-            mDestination.setVisibility(View.GONE);
-        }
         if (mItem.id <= 3) {
-            mImgTarget.setBackgroundResource(R.drawable.img1);
+            mImgTarget.setImageResource(R.drawable.img1);
         } else if (mItem.id > 3 && mItem.id < 6) {
-            mImgTarget.setBackgroundResource(R.drawable.img2);
+            mImgTarget.setImageResource(R.drawable.img2);
         } else if (mItem.id < 9) {
-            mImgTarget.setBackgroundResource(R.drawable.img3);
+            mImgTarget.setImageResource(R.drawable.img3);
         } else if (mItem.id < 12) {
-            mImgTarget.setBackgroundResource(R.drawable.img4);
+            mImgTarget.setImageResource(R.drawable.img4);
         } else {
-            mImgTarget.setBackgroundResource(R.drawable.img5);
+            mImgTarget.setImageResource(R.drawable.img1);
         }
         return rootView;
     }
@@ -84,8 +82,8 @@ public class AnimationDetailFragment extends Fragment implements OnClickListener
         mParentView = v.findViewById(R.id.animation_detail);
         mPlayView = v.findViewById(R.id.imgPlay);
         mImgTarget = (ImageView) v.findViewById(R.id.imgTarget);
-        mDestination = v.findViewById(R.id.textView1);
         mPlayView.setOnClickListener(this);
+        mImgBehind = (ImageView) v.findViewById(R.id.imgBehind);
     }
 
     @Override
@@ -266,6 +264,20 @@ public class AnimationDetailFragment extends Fragment implements OnClickListener
                             MyAnimator.fadeIn(mPlayView);
                         }
                     });
+                }
+            });
+            break;
+        case 18:
+            mImgBehind.setVisibility(View.VISIBLE);
+            MyAnimator.flipTogether(mImgTarget, mImgBehind, Constant.VERTICAL, 300, new AnimationListener() {
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    //swap
+                    ImageView temp = mImgBehind;
+                    mImgBehind = mImgTarget;
+                    mImgTarget = temp;
+                    MyAnimator.fadeIn(mPlayView);
                 }
             });
             break;
