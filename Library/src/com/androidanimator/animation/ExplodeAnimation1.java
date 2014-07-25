@@ -5,7 +5,6 @@ import android.animation.AnimatorListenerAdapter;
 import android.graphics.Bitmap;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -20,7 +19,6 @@ import android.widget.LinearLayout;
 public class ExplodeAnimation1 extends Animation {
 
 	ViewGroup parentView;
-	LayoutParams layoutParams;
 	int xParts, yParts;
 
 	public ExplodeAnimation1() {
@@ -41,8 +39,7 @@ public class ExplodeAnimation1 extends Animation {
 		final LinearLayout explodeLayout = new LinearLayout(view.getContext());
 		LinearLayout[] layouts = new LinearLayout[yParts];
 		parentView = (ViewGroup) view.getParent();
-		layoutParams = view.getLayoutParams();
-		explodeLayout.setLayoutParams(layoutParams);
+		explodeLayout.setLayoutParams(view.getLayoutParams());
 		explodeLayout.setOrientation(LinearLayout.VERTICAL);
 		explodeLayout.setClipChildren(false);
 
@@ -101,9 +98,9 @@ public class ExplodeAnimation1 extends Animation {
 
 		for (int i = 0; i < yParts; i++)
 			explodeLayout.addView(layouts[i]);
-		int viewPosition = parentView.indexOfChild(view);
+		final int positionView = parentView.indexOfChild(view);
 		parentView.removeView(view);
-		parentView.addView(explodeLayout, viewPosition);
+		parentView.addView(explodeLayout, positionView);
 
 		ViewGroup rootView = (ViewGroup) explodeLayout.getRootView();
 		while (!parentView.equals(rootView)) {
@@ -120,8 +117,9 @@ public class ExplodeAnimation1 extends Animation {
 					getListener().onAnimationEnd(ExplodeAnimation1.this);
 				}
 				parentView = (ViewGroup) explodeLayout.getParent();
+				view.setLayoutParams(explodeLayout.getLayoutParams());
 				parentView.removeView(explodeLayout);
-				parentView.addView(view);
+				parentView.addView(view, positionView);
 			}
 		});
 	}

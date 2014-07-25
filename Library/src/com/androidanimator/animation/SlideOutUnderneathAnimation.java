@@ -31,12 +31,13 @@ public class SlideOutUnderneathAnimation extends Animation {
 
 	@Override
 	public void animate(final View view) {
-		ViewGroup parentView = (ViewGroup) view.getParent();
-		FrameLayout slideOutFrame = new FrameLayout(view.getContext());
+		final ViewGroup parentView = (ViewGroup) view.getParent();
+		final FrameLayout slideOutFrame = new FrameLayout(view.getContext());
+		final int positionView = parentView.indexOfChild(view);
 		slideOutFrame.setLayoutParams(view.getLayoutParams());
 		parentView.removeView(view);
 		slideOutFrame.addView(view);
-		parentView.addView(slideOutFrame);
+		parentView.addView(slideOutFrame, positionView);
 
 		switch (direction) {
 		case Constant.DIRECTION_LEFT:
@@ -59,10 +60,7 @@ public class SlideOutUnderneathAnimation extends Animation {
 
 					@Override
 					public void onAnimationEnd(Animator arg0) {
-						if (getListener() != null) {
-							getListener().onAnimationEnd(
-									SlideOutUnderneathAnimation.this);
-						}
+						
 						switch (direction) {
 						case Constant.DIRECTION_LEFT:
 							view.animate().translationXBy(view.getWidth());
@@ -85,7 +83,15 @@ public class SlideOutUnderneathAnimation extends Animation {
 									@Override
 									public void onAnimationEnd(
 											Animator animation) {
+										if (getListener() != null) {
+											getListener().onAnimationEnd(
+													SlideOutUnderneathAnimation.this);
+										}
 										animation.cancel();
+										slideOutFrame.removeAllViews();
+										view.setLayoutParams(slideOutFrame.getLayoutParams());
+										parentView.removeView(slideOutFrame);
+										parentView.addView(view, positionView);
 									}
 								});
 					}

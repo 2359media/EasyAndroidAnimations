@@ -14,7 +14,6 @@ import com.androidanimator.animation.Animation;
 import com.androidanimator.animation.Animation.AnimationListener;
 import com.androidanimator.animation.Constant;
 import com.two359media.animationsample.dummy.DummyContent;
-import com.two359media.animationsample.dummy.DummyContent.DummyItem;
 
 /**
  * A fragment representing a single Animation detail screen. This fragment is
@@ -202,6 +201,23 @@ public class AnimationDetailFragment extends Fragment implements OnClickListener
             MyAnimator.size(mImgTarget);
             break;
         case 13:
+        	MyAnimator.slideIn(mImgTarget, Constant.DIRECTION_UP, 300, new AnimationListener() {
+				
+				@Override
+				public void onAnimationEnd(Animation animation) {
+					MyAnimator.fadeIn(mPlayView);
+				}
+			});
+        	break;
+        case 14:
+        	MyAnimator.slideOut(mImgTarget, Constant.DIRECTION_UP, 300, new AnimationListener() {
+				
+				@Override
+				public void onAnimationEnd(Animation animation) {
+					MyAnimator.fadeIn(mPlayView);
+				}
+			});
+        case 15:
             MyAnimator.slideOutUnderneath(mImgTarget, Constant.DIRECTION_UP, 300, new AnimationListener() {
                 
                 @Override
@@ -211,8 +227,8 @@ public class AnimationDetailFragment extends Fragment implements OnClickListener
                 }
             });
             break;
-        case 14:
-            MyAnimator.transfer(mImgTarget , mDestination, 300,new AnimationListener() {
+        case 16:
+            MyAnimator.transfer(mImgTarget, mDestination, 300, new AnimationListener() {
                 
                 @Override
                 public void onAnimationEnd(Animation animation) {
@@ -220,9 +236,6 @@ public class AnimationDetailFragment extends Fragment implements OnClickListener
 
                 }
             });
-            break;
-        case 15:
-
             break;
         default:
             break;

@@ -34,11 +34,13 @@ public class DummyContent {
         addItem(new DummyItem(7, "Highlight"));
         addItem(new DummyItem(8, "Path"));
         addItem(new DummyItem(9, "Puff"));
-        addItem(new DummyItem(10, "Pulstate"));
+        addItem(new DummyItem(10, "Pulsate"));
         addItem(new DummyItem(11, "Scale"));
         addItem(new DummyItem(12, "Size"));
-        addItem(new DummyItem(13, "slideOutUnderneath"));
-        addItem(new DummyItem(14, "transfer"));
+        addItem(new DummyItem(13, "Slide In"));
+        addItem(new DummyItem(14, "Slide Out"));
+        addItem(new DummyItem(15, "Slide Out Underneath"));
+        addItem(new DummyItem(16, "Transfer"));
     }
 
     private static void addItem(DummyItem item) {
