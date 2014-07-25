@@ -82,4 +82,49 @@ public class FlipAnimation extends Animation {
         flipSet.start();
     }
 
+    public void flipTwoViews(View front, View behind) {
+        ObjectAnimator rotateFront, rotateBehind,rotateBehind2;
+        if (oritention == Constant.VERTICAL) {
+            rotateFront = ObjectAnimator.ofFloat(front, View.ROTATION_X, 0, 90);
+            rotateBehind2 = ObjectAnimator.ofFloat(behind, View.ROTATION_X, 0,90);
+            rotateBehind = ObjectAnimator.ofFloat(behind, View.ROTATION_X, 270, 360);
+        } else {
+            rotateFront = ObjectAnimator.ofFloat(front, View.ROTATION_Y, 0, 90);
+            rotateBehind2 = ObjectAnimator.ofFloat(behind, View.ROTATION_X, 0,90);
+            rotateBehind = ObjectAnimator.ofFloat(behind, View.ROTATION_Y, 270, 360);
+        }
+        AnimatorSet animatorSet=new AnimatorSet();
+        animatorSet.playTogether(rotateFront,rotateBehind2);
+        flipSet.playSequentially(animatorSet,rotateBehind);
+        flipSet.setDuration(getDuration());
+        if (getListener() != null) {
+            flipSet.addListener(new AnimatorListener() {
+
+                @Override
+                public void onAnimationStart(Animator animation) {
+                    // TODO Auto-generated method stub
+
+                }
+
+                @Override
+                public void onAnimationRepeat(Animator animation) {
+                    // TODO Auto-generated method stub
+
+                }
+
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    getListener().onAnimationEnd(FlipAnimation.this);
+                }
+
+                @Override
+                public void onAnimationCancel(Animator animation) {
+                    // TODO Auto-generated method stub
+
+                }
+            });
+        }
+        flipSet.start();
+    }
+
 }
