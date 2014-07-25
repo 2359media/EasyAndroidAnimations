@@ -70,13 +70,11 @@ public class FadeAnimation extends Animation {
 
                 @Override
                 public void onAnimationEnd(Animator animation) {
-                    // TODO Auto-generated method stub
-
+                    getListener().onAnimationEnd(FadeAnimation.this);
                 }
 
                 @Override
                 public void onAnimationCancel(Animator animation) {
-                    getListener().onAnimationEnd(FadeAnimation.this);
                 }
             });
         }

@@ -1,9 +1,39 @@
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/animation_detail"
-    style="?android:attr/textAppearanceLarge"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    android:textIsSelectable="true"
-    tools:context="com.two359media.animationsample.AnimationDetailFragment" />
+    tools:context="com.two359media.animationsample.AnimationDetailFragment"
+     >
+
+    <ImageView
+        android:id="@+id/imgTarget"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:adjustViewBounds="true"
+        android:src="@drawable/img1" />
+
+    <ImageView
+        android:id="@+id/imgPlay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/imgTarget"
+        android:layout_alignLeft="@+id/imgTarget"
+        android:layout_alignRight="@+id/imgTarget"
+        android:layout_alignTop="@+id/imgTarget"
+        android:adjustViewBounds="true"
+        android:src="@drawable/play_button" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/imgTarget"
+        android:text="Target"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+</RelativeLayout>

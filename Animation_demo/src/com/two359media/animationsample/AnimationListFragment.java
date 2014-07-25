@@ -46,7 +46,7 @@ public class AnimationListFragment extends ListFragment {
 		/**
 		 * Callback for when an item has been selected.
 		 */
-		public void onItemSelected(String id);
+		public void onItemSelected(int id);
 	}
 
 	/**
@@ -55,7 +55,7 @@ public class AnimationListFragment extends ListFragment {
 	 */
 	private static Callbacks sDummyCallbacks = new Callbacks() {
 		@Override
-		public void onItemSelected(String id) {
+		public void onItemSelected(int id) {
 		}
 	};
 

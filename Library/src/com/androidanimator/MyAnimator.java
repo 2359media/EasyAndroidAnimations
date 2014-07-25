@@ -142,6 +142,7 @@ public class MyAnimator {
 		animation.setType(Constant.IN);
 		animation.setDuration(duration);
 		animation.setDirection(direction);
+		animation.setListener(listener);
 		animation.animate(view);
 	}
 
@@ -157,6 +158,7 @@ public class MyAnimator {
 		animation.setType(Constant.OUT);
 		animation.setDuration(duration);
 		animation.setDirection(direction);
+		animation.setListener(listener);
 		animation.animate(view);
 	}
 
@@ -198,9 +200,19 @@ public class MyAnimator {
 				.animate(view);
 	}
 
+	public static void fadeIn(View view, long duration,AnimationListener listener) {
+        new FadeAnimation(listener, duration, Constant.IN)
+                .animate(view);
+    }
+	
 	public static void fadeOut(View view) {
 		new FadeAnimation().animate(view);
 	}
+	
+	public static void fadeOut(View view, long duration,AnimationListener listener) {
+        new FadeAnimation(listener, duration, Constant.OUT)
+                .animate(view);
+    }
 
 	public static void flyIn(View view) {
 		FlyAnimation transferAnimation = new FlyAnimation();

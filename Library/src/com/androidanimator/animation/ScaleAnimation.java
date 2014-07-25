@@ -66,12 +66,11 @@ public class ScaleAnimation extends Animation {
 
                 @Override
                 public void onAnimationEnd(Animator animation) {
-
+                    getListener().onAnimationEnd(ScaleAnimation.this);
                 }
 
                 @Override
                 public void onAnimationCancel(Animator animation) {
-                    getListener().onAnimationEnd(ScaleAnimation.this);
                 }
             });
         }

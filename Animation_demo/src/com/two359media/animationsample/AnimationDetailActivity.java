@@ -38,10 +38,10 @@ public class AnimationDetailActivity extends Activity {
 			// Create the detail fragment and add it to the activity
 			// using a fragment transaction.
 			Bundle arguments = new Bundle();
-			arguments.putString(
+			arguments.putInt(
 					AnimationDetailFragment.ARG_ITEM_ID,
-					getIntent().getStringExtra(
-							AnimationDetailFragment.ARG_ITEM_ID));
+					getIntent().getIntExtra(
+							AnimationDetailFragment.ARG_ITEM_ID,0));
 			AnimationDetailFragment fragment = new AnimationDetailFragment();
 			fragment.setArguments(arguments);
 			getFragmentManager().beginTransaction()
