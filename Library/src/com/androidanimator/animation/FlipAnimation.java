@@ -32,8 +32,8 @@ public class FlipAnimation extends Animation {
         ObjectAnimator scale;
         int fromValueRotate, toValueRotate, fromValueScale, toValueScale;
         if (type == Constant.IN) {
-            fromValueRotate = 90;
-            toValueRotate = 0;
+            fromValueRotate = 270;
+            toValueRotate = 360;
             fromValueScale = 0;
             toValueScale = 1;
         } else {
