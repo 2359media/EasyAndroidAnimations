@@ -38,18 +38,19 @@ public class SlideOutAnimation1 extends Animation {
 			parentView = (ViewGroup) parentView.getParent();
 		}
 		rootView.setClipChildren(false);
+		
 		final int[] locationView = new int[2];
 		view.getLocationOnScreen(locationView);
 		
 		switch (direction) {
 		case Constant.DIRECTION_LEFT:
-			slideAnim = ObjectAnimator.ofFloat(view, View.X, rootView.getLeft() - view.getWidth());
+			slideAnim = ObjectAnimator.ofFloat(view, View.X, -locationView[0] - view.getWidth());
 			break;
 		case Constant.DIRECTION_RIGHT:
 			slideAnim = ObjectAnimator.ofFloat(view, View.X, rootView.getRight());
 			break;
 		case Constant.DIRECTION_UP:
-			slideAnim = ObjectAnimator.ofFloat(view, View.Y, -locationView[1]);// - view.getHeight());
+			slideAnim = ObjectAnimator.ofFloat(view, View.Y, -locationView[1] - view.getHeight());
 			break;
 		case Constant.DIRECTION_DOWN:
 			slideAnim = ObjectAnimator.ofFloat(view, View.Y, rootView.getBottom());
@@ -66,23 +67,6 @@ public class SlideOutAnimation1 extends Animation {
 				if (getListener() != null) {
 					getListener().onAnimationEnd(SlideOutAnimation1.this);
 				}
-				switch (direction) {
-				case Constant.DIRECTION_LEFT:
-					slideAnim = ObjectAnimator.ofFloat(view, View.X, locationView[0]);
-					break;
-				case Constant.DIRECTION_RIGHT:
-					slideAnim = ObjectAnimator.ofFloat(view, View.X, locationView[0]);
-					break;
-				case Constant.DIRECTION_UP:
-					slideAnim = ObjectAnimator.ofFloat(view, View.Y, locationView[1] - view.getHeight());
-					break;
-				case Constant.DIRECTION_DOWN:
-					slideAnim = ObjectAnimator.ofFloat(view, View.Y, locationView[1] - view.getHeight());
-					break;
-				default:
-					break;
-				}
-				slideAnim.start();
 			}
 		});
 	}

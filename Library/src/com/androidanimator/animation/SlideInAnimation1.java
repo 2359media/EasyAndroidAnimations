@@ -42,7 +42,7 @@ public class SlideInAnimation1 extends Animation {
 		
 		switch (direction) {
 		case Constant.DIRECTION_LEFT:
-			slideAnim = ObjectAnimator.ofFloat(view, View.X, rootView.getLeft() - view.getWidth(), view.getX());
+			slideAnim = ObjectAnimator.ofFloat(view, View.X, -locationView[0] - view.getWidth(), view.getX());
 			break;
 		case Constant.DIRECTION_RIGHT:
 			slideAnim = ObjectAnimator.ofFloat(view, View.X, rootView.getRight(), view.getX());
