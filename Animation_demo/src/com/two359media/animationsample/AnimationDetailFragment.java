@@ -6,7 +6,6 @@ import android.app.Fragment;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.os.Bundle;
-import android.provider.SyncStateContract.Constants;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -16,9 +15,9 @@ import android.widget.ImageView;
 
 import com.androidanimator.MyAnimator;
 import com.androidanimator.animation.Animation;
-import com.androidanimator.animation.PathAnimation;
 import com.androidanimator.animation.Animation.AnimationListener;
 import com.androidanimator.animation.Constant;
+import com.androidanimator.animation.PathAnimation;
 import com.two359media.animationsample.dummy.DummyContent;
 
 /**
@@ -129,7 +128,13 @@ public class AnimationDetailFragment extends Fragment implements OnClickListener
             });
             break;
         case 4:
-            MyAnimator.explode(mImgTarget);
+            MyAnimator.explode(mImgTarget, 3, 3, 500, new AnimationListener() {
+				
+				@Override
+				public void onAnimationEnd(Animation animation) {
+					MyAnimator.fadeIn(mPlayView);
+				}
+			});
             break;
         case 5:
             MyAnimator.flyOut(mImgTarget, 300, Constant.DIRECTION_RIGHT, new AnimationListener() {
@@ -226,7 +231,7 @@ public class AnimationDetailFragment extends Fragment implements OnClickListener
 			});
         	break;
         case 14:
-        	MyAnimator.slideOut(mImgTarget, Constant.DIRECTION_DOWN, 500, new AnimationListener() {
+        	MyAnimator.slideOut(mImgTarget, Constant.DIRECTION_UP, 500, new AnimationListener() {
 				
 				@Override
 				public void onAnimationEnd(Animation animation) {
@@ -293,7 +298,7 @@ public class AnimationDetailFragment extends Fragment implements OnClickListener
         super.onViewCreated(view, savedInstanceState);
 
         ViewGroup vg = (ViewGroup) view;
-        vg.setClipChildren(false);
+//        vg.setClipChildren(false);
         vg.setClipToPadding(false);
     }
 }

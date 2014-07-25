@@ -7,34 +7,31 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.app.Activity;
 import android.graphics.Point;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.view.animation.LinearInterpolator;
 
 /**
- * The PathAnimation translates the view according to the ArrayList of
- * Points provided by the user. The values of x and y in each Point must be
- * in the range of 0-100. Note that the status bar and action bar are not
- * taken into consideration.
+ * The PathAnimation translates the view within its parent view and according to
+ * the ArrayList of Points provided by the user. The values of x and y in each
+ * Point must be in the range of 0-100. Note that the status bar and action bar
+ * are not taken into consideration.
  * 
  * @author SiYao
- *
+ * 
  */
 public class PathAnimation extends Animation {
-	
-	public static final int ANCHOR_CENTER = 0,
-			ANCHOR_TOP_LEFT = 1,
-			ANCHOR_TOP_RIGHT = 2,
-			ANCHOR_BOTTOM_LEFT = 3,
+
+	public static final int ANCHOR_CENTER = 0, ANCHOR_TOP_LEFT = 1,
+			ANCHOR_TOP_RIGHT = 2, ANCHOR_BOTTOM_LEFT = 3,
 			ANCHOR_BOTTOM_RIGHT = 4;
-	
+
 	ArrayList<Point> points;
 	int anchorPosition;
-	
-	public PathAnimation(ArrayList<Point> points, int anchorPosition, long duration, AnimationListener listener) {
+
+	public PathAnimation(ArrayList<Point> points, int anchorPosition,
+			long duration, AnimationListener listener) {
 		this.points = points;
 		this.duration = duration;
 		this.anchorPosition = anchorPosition;
@@ -43,38 +40,25 @@ public class PathAnimation extends Animation {
 
 	@Override
 	public void animate(View view) {
-		ViewGroup parentView = (ViewGroup) view.getParent(), rootView = (ViewGroup) view.getRootView();
-		
-		int viewHeight = view.getHeight();
-		int viewWidth = view.getWidth();
-		
-		while (!parentView.equals(rootView)) {
-			parentView.setClipChildren(false);
-			parentView = (ViewGroup) parentView.getParent();
-		}
-		rootView.setClipChildren(false);
-		
+		ViewGroup parentView = (ViewGroup) view.getParent(), rootView = (ViewGroup) view
+				.getRootView();
 		AnimatorSet allPathsAnim = new AnimatorSet(), pathAnim = new AnimatorSet();
 		int numOfPoints = points.size();
 		AnimatorSet[] pathAnimSetArray = new AnimatorSet[numOfPoints];
 		List<Animator> pathAnimList = new ArrayList<Animator>();
-		
-		Activity activity = (Activity) view.getContext();
-		Window window = activity.getWindow();
-		int windowWidth = window.getDecorView().getWidth();
-		int windowHeight = window.getDecorView().getHeight();
 
+		int parentWidth = parentView.getWidth(), parentHeight = parentView
+				.getHeight(), viewWidth = view.getWidth(), viewHeight = view
+				.getHeight();
 		float posX, posY;
-		int[] locationView = new int[2];
-		view.getLocationOnScreen(locationView);
 		for (int i = 0; i < numOfPoints; i++) {
-			posX = (points.get(i).x / 100f * windowWidth);
-			posY = (points.get(i).y / 100f * windowHeight) - locationView[1];
-			
+			posX = (points.get(i).x / 100f * parentWidth);
+			posY = (points.get(i).y / 100f * parentHeight);
+
 			switch (anchorPosition) {
 			case ANCHOR_CENTER:
-				posX = posX - viewWidth/2;
-				posY = posY - viewHeight/2;
+				posX = posX - viewWidth / 2;
+				posY = posY - viewHeight / 2;
 				break;
 			case ANCHOR_TOP_RIGHT:
 				posX -= viewWidth;
@@ -90,17 +74,25 @@ public class PathAnimation extends Animation {
 				break;
 			}
 			pathAnimSetArray[i] = new AnimatorSet();
-			pathAnimSetArray[i].playTogether(ObjectAnimator.ofFloat(view, View.X, posX), ObjectAnimator.ofFloat(view, View.TRANSLATION_Y, posY));
+			pathAnimSetArray[i].playTogether(
+					ObjectAnimator.ofFloat(view, View.X, posX),
+					ObjectAnimator.ofFloat(view, View.Y, posY));
 			pathAnimSetArray[i].setInterpolator(new LinearInterpolator());
 			pathAnimList.add(pathAnimSetArray[i]);
 		}
-		
+
+		while (!parentView.equals(rootView)) {
+			parentView.setClipChildren(false);
+			parentView = (ViewGroup) parentView.getParent();
+		}
+		rootView.setClipChildren(false);
+
 		allPathsAnim.playSequentially(pathAnimList);
 		pathAnim.play(allPathsAnim);
 		allPathsAnim.setDuration(duration);
 		allPathsAnim.start();
 		allPathsAnim.addListener(new AnimatorListenerAdapter() {
-			
+
 			@Override
 			public void onAnimationEnd(Animator animation) {
 				if (getListener() != null) {
@@ -109,5 +101,4 @@ public class PathAnimation extends Animation {
 			}
 		});
 	}
-
 }

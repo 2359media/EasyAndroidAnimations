@@ -35,6 +35,7 @@ public class SlideOutUnderneathAnimation extends Animation {
 		final FrameLayout slideOutFrame = new FrameLayout(view.getContext());
 		final int positionView = parentView.indexOfChild(view);
 		slideOutFrame.setLayoutParams(view.getLayoutParams());
+		slideOutFrame.setClipChildren(true);
 		parentView.removeView(view);
 		slideOutFrame.addView(view);
 		parentView.addView(slideOutFrame, positionView);
