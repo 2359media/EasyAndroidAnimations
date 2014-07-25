@@ -16,16 +16,16 @@ import android.widget.ImageView;
  * @author SiYao
  * 
  */
-public class HighlightAnimation1 extends Animation {
+public class HighlightAnimation extends Animation {
 
 	int color;
 
-	public HighlightAnimation1() {
+	public HighlightAnimation() {
 		color = Color.YELLOW;
 		duration = Constant.DEFAULT_DURATION;
 	}
 
-	public HighlightAnimation1(int color, long duration, AnimationListener listener) {
+	public HighlightAnimation(int color, long duration, AnimationListener listener) {
 		this.color = color;
 		this.duration = duration;
 		this.listener = listener;
@@ -52,7 +52,7 @@ public class HighlightAnimation1 extends Animation {
 			@Override
 			public void onAnimationEnd(Animator animation) {
 				if (getListener() != null) {
-					getListener().onAnimationEnd(HighlightAnimation1.this);
+					getListener().onAnimationEnd(HighlightAnimation.this);
 				}
 				highlightFrame.removeAllViews();
 				parentView.removeView(highlightFrame);

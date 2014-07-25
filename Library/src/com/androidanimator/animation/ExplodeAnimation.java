@@ -8,26 +8,29 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.androidanimator.animation.Animation;
+import com.androidanimator.animation.Constant;
+
 /**
- * The ExplodeAnimation1 creates a bitmap of the view, divides them into X x Y
+ * The ExplodeAnimation creates a bitmap of the view, divides them into X x Y
  * parts and translates the parts away from the centre of the view to mimic an
  * explosion.
  * 
  * @author SiYao
  * 
  */
-public class ExplodeAnimation1 extends Animation {
+public class ExplodeAnimation extends Animation {
 
 	ViewGroup parentView;
 	int xParts, yParts;
 
-	public ExplodeAnimation1() {
+	public ExplodeAnimation() {
 		xParts = 3;
 		yParts = 3;
 		duration = Constant.DEFAULT_DURATION;
 	}
 
-	public ExplodeAnimation1(int xParts, int yParts, long duration, AnimationListener listener) {
+	public ExplodeAnimation(int xParts, int yParts, long duration, AnimationListener listener) {
 		this.xParts = xParts;
 		this.yParts = yParts;
 		this.duration = duration;
@@ -114,7 +117,7 @@ public class ExplodeAnimation1 extends Animation {
 			@Override
 			public void onAnimationEnd(Animator animation) {
 				if (getListener() != null) {
-					getListener().onAnimationEnd(ExplodeAnimation1.this);
+					getListener().onAnimationEnd(ExplodeAnimation.this);
 				}
 				parentView = (ViewGroup) explodeLayout.getParent();
 				view.setLayoutParams(explodeLayout.getLayoutParams());

@@ -14,18 +14,18 @@ import android.view.ViewGroup;
  * @author SiYao
  * 
  */
-public class ShakeAnimation1 extends Animation {
+public class ShakeAnimation extends Animation {
 
 	float shakeDistance;
 	int repetitions, shakeCount = 0;
 
-	public ShakeAnimation1() {
+	public ShakeAnimation() {
 		shakeDistance = 50;
 		repetitions = 1;
 		duration = Constant.DEFAULT_DURATION;
 	}
 
-	public ShakeAnimation1(float shakeDistance, int repetitions, long duration, AnimationListener listener) {
+	public ShakeAnimation(float shakeDistance, int repetitions, long duration, AnimationListener listener) {
 		this.shakeDistance = shakeDistance;
 		this.repetitions = repetitions;
 		this.duration = duration;
@@ -67,7 +67,7 @@ public class ShakeAnimation1 extends Animation {
 							@Override
 							public void onAnimationEnd(Animator animation) {
 								if (getListener() != null) {
-									getListener().onAnimationEnd(ShakeAnimation1.this);
+									getListener().onAnimationEnd(ShakeAnimation.this);
 								}
 							}
 						});

@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.webkit.WebView.FindListener;
 import android.widget.ImageView;
 
 import com.androidanimator.MyAnimator;
@@ -195,7 +194,7 @@ public class AnimationDetailFragment extends Fragment implements OnClickListener
             });
             break;
         case 10:
-            MyAnimator.pulsate(mImgTarget, 3, 300, new AnimationListener() {
+            MyAnimator.blink(mImgTarget, 3, 300, new AnimationListener() {
 
                 @Override
                 public void onAnimationEnd(Animation animation) {

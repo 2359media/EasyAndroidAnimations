@@ -10,7 +10,7 @@ import android.view.View;
 public abstract class Animation {
 
     protected AnimationListener listener;
-    long duration;
+    protected long duration;
 
     public Animation(AnimationListener listener, long duration) {
         super();

@@ -7,22 +7,22 @@ import android.animation.ObjectAnimator;
 import android.view.View;
 
 /**
- * The PulsateAnimation1 causes the view to blink a number of times to mimic a
- * pulsating animation.
+ * The BlinkAnimation causes the view to blink a number of times to mimic a
+ * blinking animation.
  * 
  * @author SiYao
  * 
  */
-public class PulsateAnimation1 extends Animation {
+public class BlinkAnimation extends Animation {
 
-	int repetitions, pulsateCount = 0;
+	int repetitions, blinkCount = 0;
 
-	public PulsateAnimation1() {
+	public BlinkAnimation() {
 		repetitions = 2;
 		duration = Constant.DEFAULT_DURATION;
 	}
 
-	public PulsateAnimation1(int repetitions, long duration, AnimationListener listener) {
+	public BlinkAnimation(int repetitions, long duration, AnimationListener listener) {
 		this.repetitions = repetitions;
 		this.duration = duration;
 		this.listener = listener;
@@ -30,29 +30,29 @@ public class PulsateAnimation1 extends Animation {
 
 	@Override
 	public void animate(final View view) {
-		long singlePulsateDuration = duration / repetitions;
-		if (singlePulsateDuration == 0)
-			singlePulsateDuration = 1;
+		long singleBlinkDuration = duration / repetitions;
+		if (singleBlinkDuration == 0)
+			singleBlinkDuration = 1;
 		ObjectAnimator fadeOut = ObjectAnimator.ofFloat(view, View.ALPHA, 0), fadeIn = ObjectAnimator
 				.ofFloat(view, View.ALPHA, 1);
 		final AnimatorSet animatorSet = new AnimatorSet();
 		animatorSet.playSequentially(fadeOut, fadeIn);
-		animatorSet.setDuration(singlePulsateDuration);
+		animatorSet.setDuration(singleBlinkDuration);
 		animatorSet.start();
 		animatorSet.addListener(new AnimatorListenerAdapter() {
 
 			@Override
 			public void onAnimationEnd(Animator animation) {
-				pulsateCount++;
-				if (pulsateCount != repetitions) {
+				blinkCount++;
+				if (blinkCount != repetitions) {
 					animation.start();
-					if (pulsateCount == repetitions - 1) {
+					if (blinkCount == repetitions - 1) {
 						animation.addListener(new AnimatorListenerAdapter() {
 
 							@Override
 							public void onAnimationEnd(Animator animation) {
 								if (getListener() != null) {
-									getListener().onAnimationEnd(PulsateAnimation1.this);
+									getListener().onAnimationEnd(BlinkAnimation.this);
 								}
 							}
 						});

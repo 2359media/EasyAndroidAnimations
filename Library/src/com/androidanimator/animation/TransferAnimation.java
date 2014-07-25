@@ -12,18 +12,18 @@ import android.view.ViewGroup;
  * @author SiYao
  * 
  */
-public class TransferAnimation1 extends Animation {
+public class TransferAnimation extends Animation {
 
 	View destinationView;
 	ViewGroup parentView;
 	int transX, transY;
 	
-	public TransferAnimation1(View destinationView, long duration) {
+	public TransferAnimation(View destinationView, long duration) {
 		this.destinationView = destinationView;
 		this.duration = duration;
 	}
 	
-	public TransferAnimation1(View destinationView, long duration, AnimationListener listener) {
+	public TransferAnimation(View destinationView, long duration, AnimationListener listener) {
 		this.destinationView = destinationView;
 		this.duration = duration;
 		this.listener = listener;
@@ -54,7 +54,7 @@ public class TransferAnimation1 extends Animation {
 			@Override
 			public void onAnimationEnd(Animator animation) {
 				if (getListener() != null) {
-					getListener().onAnimationEnd(TransferAnimation1.this);
+					getListener().onAnimationEnd(TransferAnimation.this);
 				}
 				view.animate().scaleX(1).scaleY(1).translationXBy(-transX).translationYBy(-transY).setListener(new AnimatorListenerAdapter() {
 

@@ -12,28 +12,28 @@ import com.androidanimator.animation.BounceAnimation1;
 import com.androidanimator.animation.ClipAnimation1;
 import com.androidanimator.animation.Constant;
 import com.androidanimator.animation.DropAnimation;
-import com.androidanimator.animation.ExplodeAnimation1;
+import com.androidanimator.animation.ExplodeAnimation;
 import com.androidanimator.animation.FadeAnimation;
 import com.androidanimator.animation.FlipAnimation;
 import com.androidanimator.animation.FlyAnimation;
 import com.androidanimator.animation.FoldAnimation;
-import com.androidanimator.animation.HighlightAnimation1;
+import com.androidanimator.animation.HighlightAnimation;
 import com.androidanimator.animation.PathAnimation;
 import com.androidanimator.animation.PuffAnimation;
-import com.androidanimator.animation.PulsateAnimation1;
+import com.androidanimator.animation.BlinkAnimation;
 import com.androidanimator.animation.ScaleAnimation;
-import com.androidanimator.animation.ShakeAnimation1;
+import com.androidanimator.animation.ShakeAnimation;
 import com.androidanimator.animation.SizeAnimation;
-import com.androidanimator.animation.SlideInAnimation1;
+import com.androidanimator.animation.SlideInAnimation;
 import com.androidanimator.animation.SlideInUnderneathAnimation;
-import com.androidanimator.animation.SlideOutAnimation1;
+import com.androidanimator.animation.SlideOutAnimation;
 import com.androidanimator.animation.SlideOutUnderneathAnimation;
-import com.androidanimator.animation.TransferAnimation1;
+import com.androidanimator.animation.TransferAnimation;
 
 public class MyAnimator {
 
 	/**
-	 * The BlindAnimation1 makes use of a box that is of the same size as the
+	 * The BlindAnimation makes use of a box that is of the same size as the
 	 * view to translate upwards to mimic the blind animation.
 	 * 
 	 * @param view
@@ -44,7 +44,7 @@ public class MyAnimator {
 	}
 
 	/**
-	 * The BlindAnimation1 makes use of a box that is of the same size as the
+	 * The BlindAnimation makes use of a box that is of the same size as the
 	 * view to translate upwards to mimic the blind animation.
 	 * 
 	 * @param listener
@@ -165,7 +165,7 @@ public class MyAnimator {
 	}
 
 	/**
-	 * The ExplodeAnimation1 creates a bitmap of the view, divides them into X x
+	 * The ExplodeAnimation creates a bitmap of the view, divides them into X x
 	 * Y parts and translates the parts away from the centre of the view to
 	 * mimic an explosion.
 	 * 
@@ -173,11 +173,11 @@ public class MyAnimator {
 	 *            the view to be animated
 	 */
 	public static void explode(View view) {
-		new ExplodeAnimation1().animate(view);
+		new ExplodeAnimation().animate(view);
 	}
 
 	/**
-	 * The ExplodeAnimation1 creates a bitmap of the view, divides them into X x
+	 * The ExplodeAnimation creates a bitmap of the view, divides them into X x
 	 * Y parts and translates the parts away from the centre of the view to
 	 * mimic an explosion.
 	 * 
@@ -194,7 +194,7 @@ public class MyAnimator {
 	 */
 	public static void explode(View view, int xParts, int yParts,
 			long duration, AnimationListener listener) {
-		new ExplodeAnimation1(xParts, yParts, duration, listener).animate(view);
+		new ExplodeAnimation(xParts, yParts, duration, listener).animate(view);
 	}
 
 	public static void fadeIn(View view) {
@@ -258,7 +258,7 @@ public class MyAnimator {
 	 *            the view to be animated
 	 */
 	public static void highlight(View view) {
-		new HighlightAnimation1().animate(view);
+		new HighlightAnimation().animate(view);
 	}
 
 	/**
@@ -276,7 +276,7 @@ public class MyAnimator {
 	 */
 	public static void highlight(View view, int color, long duration,
 			AnimationListener listener) {
-		new HighlightAnimation1(color, duration, listener).animate(view);
+		new HighlightAnimation(color, duration, listener).animate(view);
 	}
 
 	/**
@@ -331,19 +331,19 @@ public class MyAnimator {
 	}
 
 	/**
-	 * The PulsateAnimation1 causes the view to blink a number of times to mimic
-	 * a pulsating animation.
+	 * The BlinkAnimation causes the view to blink a number of times to mimic
+	 * a blinking animation.
 	 * 
 	 * @param view
 	 *            the view to be animated
 	 */
-	public static void pulsate(View view) {
-		new PulsateAnimation1().animate(view);
+	public static void blink(View view) {
+		new BlinkAnimation().animate(view);
 	}
 
 	/**
-	 * The PulsateAnimation1 causes the view to blink a number of times to mimic
-	 * a pulsating animation.
+	 * The BlinkAnimation causes the view to blink a number of times to mimic
+	 * a blinking animation.
 	 * 
 	 * @param view
 	 *            the view to be animated
@@ -354,9 +354,9 @@ public class MyAnimator {
 	 * @param listener
 	 *            the AnimationListener to determine the end of the animation
 	 */
-	public static void pulsate(View view, int repetitions, long duration,
+	public static void blink(View view, int repetitions, long duration,
 			AnimationListener listener) {
-		new PulsateAnimation1(repetitions, duration, listener).animate(view);
+		new BlinkAnimation(repetitions, duration, listener).animate(view);
 	}
 
 	public static void scaleIn(View view, long duration,
@@ -404,18 +404,18 @@ public class MyAnimator {
 	}
 
 	/**
-	 * The ShakeAnimation1 causes the view to shake from left to right for a
+	 * The ShakeAnimation causes the view to shake from left to right for a
 	 * number of times before returning to its original position.
 	 * 
 	 * @param view
 	 *            the view to be animated
 	 */
 	public static void shake(View view) {
-		new ShakeAnimation1().animate(view);
+		new ShakeAnimation().animate(view);
 	}
 
 	/**
-	 * The ShakeAnimation1 causes the view to shake from left to right for a
+	 * The ShakeAnimation causes the view to shake from left to right for a
 	 * number of times before returning to its original position.
 	 * 
 	 * @param view
@@ -431,7 +431,7 @@ public class MyAnimator {
 	 */
 	public static void shake(View view, float shakeDistance, int repetitions,
 			long duration, AnimationListener listener) {
-		new ShakeAnimation1(shakeDistance, repetitions, duration, listener)
+		new ShakeAnimation(shakeDistance, repetitions, duration, listener)
 				.animate(view);
 	}
 
@@ -440,18 +440,18 @@ public class MyAnimator {
 	}
 
 	/**
-	 * The SlideInAnimation1 causes the view to slide in from the left, right,
+	 * The SlideInAnimation causes the view to slide in from the left, right,
 	 * top or bottom depending on the parameters provided by the user.
 	 * 
 	 * @param view
 	 *            the view to be animated
 	 */
 	public static void slideIn(View view) {
-		new SlideInAnimation1().animate(view);
+		new SlideInAnimation().animate(view);
 	}
 
 	/**
-	 * The SlideInAnimation1 causes the view to slide in from the left, right,
+	 * The SlideInAnimation causes the view to slide in from the left, right,
 	 * top or bottom depending on the parameters provided by the user.
 	 * 
 	 * @param view
@@ -465,22 +465,22 @@ public class MyAnimator {
 	 */
 	public static void slideIn(View view, int direction, long duration,
 			AnimationListener listener) {
-		new SlideInAnimation1(direction, duration, listener).animate(view);
+		new SlideInAnimation(direction, duration, listener).animate(view);
 	}
 
 	/**
-	 * The SlideOutAnimation1 causes the view to slide out to the left, right,
+	 * The SlideOutAnimation causes the view to slide out to the left, right,
 	 * top or bottom depending on the parameters provided by the user.
 	 * 
 	 * @param view
 	 *            the view to be animated
 	 */
 	public static void slideOut(View view) {
-		new SlideOutAnimation1().animate(view);
+		new SlideOutAnimation().animate(view);
 	}
 
 	/**
-	 * The SlideOutAnimation1 causes the view to slide out to the left, right,
+	 * The SlideOutAnimation causes the view to slide out to the left, right,
 	 * top or bottom depending on the parameters provided by the user.
 	 * 
 	 * @param view
@@ -494,7 +494,7 @@ public class MyAnimator {
 	 */
 	public static void slideOut(View view, int direction, long duration,
 			AnimationListener listener) {
-		new SlideOutAnimation1(direction, duration, listener).animate(view);
+		new SlideOutAnimation(direction, duration, listener).animate(view);
 	}
 
 	/**
@@ -562,7 +562,7 @@ public class MyAnimator {
 	}
 
 	/**
-	 * The TransferAnimation1 transfers the view to another view provided by the
+	 * The TransferAnimation transfers the view to another view provided by the
 	 * user through scaling and translation.
 	 * 
 	 * @param view
@@ -573,11 +573,11 @@ public class MyAnimator {
 	 *            the duration of the entire animation
 	 */
 	public static void transfer(View view, View destinationView, long duration) {
-		new TransferAnimation1(destinationView, duration).animate(view);
+		new TransferAnimation(destinationView, duration).animate(view);
 	}
 
 	/**
-	 * The TransferAnimation1 transfers the view to another view provided by the
+	 * The TransferAnimation transfers the view to another view provided by the
 	 * user through scaling and translation.
 	 * 
 	 * @param view
@@ -591,7 +591,7 @@ public class MyAnimator {
 	 */
 	public static void transfer(View view, View destinationView, long duration,
 			AnimationListener listener) {
-		new TransferAnimation1(destinationView, duration, listener)
+		new TransferAnimation(destinationView, duration, listener)
 				.animate(view);
 	}
 

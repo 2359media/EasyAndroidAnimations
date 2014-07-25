@@ -14,17 +14,17 @@ import android.view.ViewGroup;
  * @author SiYao
  * 
  */
-public class SlideOutAnimation1 extends Animation {
+public class SlideOutAnimation extends Animation {
 
 	int direction;
 	ObjectAnimator slideAnim;
 	
-	public SlideOutAnimation1() {
+	public SlideOutAnimation() {
 		direction = Constant.DIRECTION_LEFT;
 		duration = Constant.DEFAULT_DURATION;
 	}
 
-	public SlideOutAnimation1(int direction, long duration, AnimationListener listener) {
+	public SlideOutAnimation(int direction, long duration, AnimationListener listener) {
 		this.direction = direction;
 		this.duration = duration;
 		this.listener = listener;
@@ -65,7 +65,7 @@ public class SlideOutAnimation1 extends Animation {
 			@Override
 			public void onAnimationEnd(Animator animation) {
 				if (getListener() != null) {
-					getListener().onAnimationEnd(SlideOutAnimation1.this);
+					getListener().onAnimationEnd(SlideOutAnimation.this);
 				}
 			}
 		});
