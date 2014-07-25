@@ -240,6 +240,15 @@ public class AnimationDetailFragment extends Fragment implements OnClickListener
 			});
         	break;
         case 15:
+        	MyAnimator.slideInUnderneath(mImgTarget, Constant.DIRECTION_UP, 500, new AnimationListener() {
+				
+				@Override
+				public void onAnimationEnd(Animation animation) {
+					MyAnimator.fadeIn(mPlayView);
+				}
+			});
+        	break;
+        case 16:
             MyAnimator.slideOutUnderneath(mImgTarget, Constant.DIRECTION_UP, 500, new AnimationListener() {
 
                 @Override
@@ -249,7 +258,7 @@ public class AnimationDetailFragment extends Fragment implements OnClickListener
                 }
             });
             break;
-        case 16:
+        case 17:
             MyAnimator.transfer(mImgTarget, mDestination, 500, new AnimationListener() {
 
                 @Override
@@ -259,7 +268,7 @@ public class AnimationDetailFragment extends Fragment implements OnClickListener
                 }
             });
             break;
-        case 17:
+        case 18:
             MyAnimator.flipOut(mImgTarget, Constant.HORIZONTAL, 300, new AnimationListener() {
 
                 @Override
@@ -274,7 +283,7 @@ public class AnimationDetailFragment extends Fragment implements OnClickListener
                 }
             });
             break;
-        case 18:
+        case 19:
             mImgBehind.setVisibility(View.VISIBLE);
             MyAnimator.flipTogether(mImgTarget, mImgBehind, Constant.VERTICAL, 300, new AnimationListener() {
 

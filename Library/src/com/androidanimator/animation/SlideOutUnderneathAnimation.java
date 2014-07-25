@@ -18,8 +18,8 @@ public class SlideOutUnderneathAnimation extends Animation {
 	int direction;
 
 	public SlideOutUnderneathAnimation() {
-		this.direction = Constant.DIRECTION_LEFT;
-		this.duration = Constant.DEFAULT_DURATION;
+		direction = Constant.DIRECTION_LEFT;
+		duration = Constant.DEFAULT_DURATION;
 	}
 
 	public SlideOutUnderneathAnimation(int direction, long duration,
@@ -61,40 +61,15 @@ public class SlideOutUnderneathAnimation extends Animation {
 
 					@Override
 					public void onAnimationEnd(Animator arg0) {
-						
-						switch (direction) {
-						case Constant.DIRECTION_LEFT:
-							view.animate().translationXBy(view.getWidth());
-							break;
-						case Constant.DIRECTION_RIGHT:
-							view.animate().translationXBy(-view.getWidth());
-							break;
-						case Constant.DIRECTION_UP:
-							view.animate().translationYBy(view.getHeight());
-							break;
-						case Constant.DIRECTION_DOWN:
-							view.animate().translationYBy(-view.getHeight());
-							break;
-						default:
-							break;
+						slideOutFrame.removeAllViews();
+						view.setLayoutParams(slideOutFrame.getLayoutParams());
+						view.setVisibility(View.INVISIBLE);
+						parentView.removeView(slideOutFrame);
+						parentView.addView(view, positionView);
+						if (getListener() != null) {
+							getListener().onAnimationEnd(
+									SlideOutUnderneathAnimation.this);
 						}
-						view.animate().setListener(
-								new AnimatorListenerAdapter() {
-
-									@Override
-									public void onAnimationEnd(
-											Animator animation) {
-										if (getListener() != null) {
-											getListener().onAnimationEnd(
-													SlideOutUnderneathAnimation.this);
-										}
-										animation.cancel();
-										slideOutFrame.removeAllViews();
-										view.setLayoutParams(slideOutFrame.getLayoutParams());
-										parentView.removeView(slideOutFrame);
-										parentView.addView(view, positionView);
-									}
-								});
 					}
 				});
 	}

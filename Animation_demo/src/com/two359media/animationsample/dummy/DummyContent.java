@@ -39,10 +39,11 @@ public class DummyContent {
         addItem(new DummyItem(12, "Size"));
         addItem(new DummyItem(13, "Slide In"));
         addItem(new DummyItem(14, "Slide Out"));
-        addItem(new DummyItem(15, "Slide Out Underneath"));
-        addItem(new DummyItem(16, "Transfer"));
-        addItem(new DummyItem(17, "Flip"));
-        addItem(new DummyItem(18, "Flip Together"));
+        addItem(new DummyItem(15, "Slide In Underneath"));
+        addItem(new DummyItem(16, "Slide Out Underneath"));
+        addItem(new DummyItem(17, "Transfer"));
+        addItem(new DummyItem(18, "Flip"));
+        addItem(new DummyItem(19, "Flip Together"));
     }
 
     private static void addItem(DummyItem item) {

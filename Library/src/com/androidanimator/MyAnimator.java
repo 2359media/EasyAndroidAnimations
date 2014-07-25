@@ -25,6 +25,7 @@ import com.androidanimator.animation.ScaleAnimation;
 import com.androidanimator.animation.ShakeAnimation1;
 import com.androidanimator.animation.SizeAnimation;
 import com.androidanimator.animation.SlideInAnimation1;
+import com.androidanimator.animation.SlideInUnderneathAnimation;
 import com.androidanimator.animation.SlideOutAnimation1;
 import com.androidanimator.animation.SlideOutUnderneathAnimation;
 import com.androidanimator.animation.TransferAnimation1;
@@ -494,6 +495,38 @@ public class MyAnimator {
 	public static void slideOut(View view, int direction, long duration,
 			AnimationListener listener) {
 		new SlideOutAnimation1(direction, duration, listener).animate(view);
+	}
+
+	/**
+	 * The SlideInUnderneathAnimation causes the view to slide in underneath
+	 * from the left, right, up or down depending on the parameters provided by
+	 * the user.
+	 * 
+	 * @param view
+	 *            the view to be animated
+	 */
+	public static void slideInUnderneath(View view) {
+		new SlideInUnderneathAnimation().animate(view);
+	}
+
+	/**
+	 * The SlideInUnderneathAnimation causes the view to slide in underneath
+	 * from the left, right, up or down depending on the parameters provided by
+	 * the user.
+	 * 
+	 * @param view
+	 *            the view to be animated
+	 * @param direction
+	 *            the direction to slide in underneath from
+	 * @param duration
+	 *            the duration of the entire animation
+	 * @param listener
+	 *            the AnimationListener to determine the end of the animation
+	 */
+	public static void slideInUnderneath(View view, int direction,
+			long duration, AnimationListener listener) {
+		new SlideInUnderneathAnimation(direction, duration, listener)
+				.animate(view);
 	}
 
 	/**
