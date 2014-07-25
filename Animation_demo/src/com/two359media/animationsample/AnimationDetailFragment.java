@@ -13,6 +13,7 @@ import com.androidanimator.MyAnimator;
 import com.androidanimator.animation.Animation;
 import com.androidanimator.animation.Animation.AnimationListener;
 import com.androidanimator.animation.Constant;
+import com.androidanimator.animation.FlipAnimation;
 import com.two359media.animationsample.dummy.DummyContent;
 
 /**
@@ -31,7 +32,7 @@ public class AnimationDetailFragment extends Fragment implements OnClickListener
      * The dummy content this fragment is presenting.
      */
     private DummyContent.DummyItem mItem;
-    private View mParentView, mPlayView,mDestination;
+    private View mParentView, mPlayView, mDestination;
     private ImageView mImgTarget;
 
     /**
@@ -59,17 +60,16 @@ public class AnimationDetailFragment extends Fragment implements OnClickListener
 
         initView(rootView);
         MyAnimator.fadeIn(mParentView);
-        if(mItem.id!=14){
+        if (mItem.id != 14) {
             mDestination.setVisibility(View.GONE);
         }
-        if(mItem.id<=3){
+        if (mItem.id <= 3) {
             mImgTarget.setBackgroundResource(R.drawable.img1);
-        } else
-        if(mItem.id>3&&mItem.id<6){
+        } else if (mItem.id > 3 && mItem.id < 6) {
             mImgTarget.setBackgroundResource(R.drawable.img2);
-        } else if(mItem.id<9){
+        } else if (mItem.id < 9) {
             mImgTarget.setBackgroundResource(R.drawable.img3);
-        } else if(mItem.id<12){
+        } else if (mItem.id < 12) {
             mImgTarget.setBackgroundResource(R.drawable.img4);
         } else {
             mImgTarget.setBackgroundResource(R.drawable.img5);
@@ -81,7 +81,7 @@ public class AnimationDetailFragment extends Fragment implements OnClickListener
         mParentView = v.findViewById(R.id.animation_detail);
         mPlayView = v.findViewById(R.id.imgPlay);
         mImgTarget = (ImageView) v.findViewById(R.id.imgTarget);
-        mDestination=v.findViewById(R.id.textView1);
+        mDestination = v.findViewById(R.id.textView1);
         mPlayView.setOnClickListener(this);
     }
 
@@ -103,7 +103,7 @@ public class AnimationDetailFragment extends Fragment implements OnClickListener
             break;
         case 2:
             MyAnimator.shake(mImgTarget, 10, 10, 300, new AnimationListener() {
-                
+
                 @Override
                 public void onAnimationEnd(Animation animation) {
                     MyAnimator.fadeIn(mPlayView);
@@ -112,11 +112,11 @@ public class AnimationDetailFragment extends Fragment implements OnClickListener
             break;
         case 3:
             MyAnimator.dropOut(mImgTarget, 300, Constant.DIRECTION_LEFT, new AnimationListener() {
-                
+
                 @Override
                 public void onAnimationEnd(Animation animation) {
                     MyAnimator.dropIn(mImgTarget, 300, Constant.DIRECTION_LEFT, new AnimationListener() {
-                        
+
                         @Override
                         public void onAnimationEnd(Animation animation) {
                             MyAnimator.fadeIn(mPlayView);
@@ -130,11 +130,11 @@ public class AnimationDetailFragment extends Fragment implements OnClickListener
             break;
         case 5:
             MyAnimator.flyOut(mImgTarget, 300, Constant.DIRECTION_RIGHT, new AnimationListener() {
-                
+
                 @Override
                 public void onAnimationEnd(Animation animation) {
                     MyAnimator.flyIn(mImgTarget, 300, Constant.DIRECTION_RIGHT, new AnimationListener() {
-                        
+
                         @Override
                         public void onAnimationEnd(Animation animation) {
                             MyAnimator.fadeIn(mPlayView);
@@ -148,7 +148,7 @@ public class AnimationDetailFragment extends Fragment implements OnClickListener
             break;
         case 7:
             MyAnimator.highlight(mImgTarget, Color.YELLOW, 300, new AnimationListener() {
-                
+
                 @Override
                 public void onAnimationEnd(Animation animation) {
                     MyAnimator.fadeIn(mPlayView);
@@ -156,15 +156,15 @@ public class AnimationDetailFragment extends Fragment implements OnClickListener
             });
             break;
         case 8:
-            //TODO SI YAO
+            // TODO SI YAO
             break;
         case 9:
             MyAnimator.puffOut(mImgTarget, 300, new AnimationListener() {
-                
+
                 @Override
                 public void onAnimationEnd(Animation animation) {
                     MyAnimator.puffIn(mImgTarget, 300, new AnimationListener() {
-                        
+
                         @Override
                         public void onAnimationEnd(Animation animation) {
                             MyAnimator.fadeIn(mPlayView);
@@ -175,7 +175,7 @@ public class AnimationDetailFragment extends Fragment implements OnClickListener
             break;
         case 10:
             MyAnimator.pulsate(mImgTarget, 3, 300, new AnimationListener() {
-                
+
                 @Override
                 public void onAnimationEnd(Animation animation) {
                     MyAnimator.fadeIn(mPlayView);
@@ -184,11 +184,11 @@ public class AnimationDetailFragment extends Fragment implements OnClickListener
             break;
         case 11:
             MyAnimator.scaleOut(mImgTarget, 300, new AnimationListener() {
-                
+
                 @Override
                 public void onAnimationEnd(Animation animation) {
                     MyAnimator.scaleIn(mImgTarget, 300, new AnimationListener() {
-                        
+
                         @Override
                         public void onAnimationEnd(Animation animation) {
                             MyAnimator.fadeIn(mPlayView);
@@ -219,7 +219,7 @@ public class AnimationDetailFragment extends Fragment implements OnClickListener
 			});
         case 15:
             MyAnimator.slideOutUnderneath(mImgTarget, Constant.DIRECTION_UP, 300, new AnimationListener() {
-                
+
                 @Override
                 public void onAnimationEnd(Animation animation) {
                     MyAnimator.fadeIn(mPlayView);
@@ -229,11 +229,26 @@ public class AnimationDetailFragment extends Fragment implements OnClickListener
             break;
         case 16:
             MyAnimator.transfer(mImgTarget, mDestination, 300, new AnimationListener() {
-                
+
                 @Override
                 public void onAnimationEnd(Animation animation) {
                     MyAnimator.fadeIn(mPlayView);
 
+                }
+            });
+            break;
+        case 17:
+            MyAnimator.flipOut(mImgTarget, Constant.HORIZONTAL, 300, new AnimationListener() {
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    MyAnimator.flipIn(mImgTarget, Constant.HORIZONTAL, 300, new AnimationListener() {
+
+                        @Override
+                        public void onAnimationEnd(Animation animation) {
+                            MyAnimator.fadeIn(mPlayView);
+                        }
+                    });
                 }
             });
             break;

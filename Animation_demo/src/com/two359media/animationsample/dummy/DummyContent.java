@@ -41,6 +41,7 @@ public class DummyContent {
         addItem(new DummyItem(14, "Slide Out"));
         addItem(new DummyItem(15, "Slide Out Underneath"));
         addItem(new DummyItem(16, "Transfer"));
+        addItem(new DummyItem(17, "Flip"));
     }
 
     private static void addItem(DummyItem item) {
