@@ -10,6 +10,9 @@ import android.view.View;
  * @author phutang
  * 
  */
+
+//TODO Problem found with scaling in: same as scaling out. -SiYao
+
 public class ScaleAnimation extends Animation {
     AnimatorSet scaleAnimatorSet;
     int type;

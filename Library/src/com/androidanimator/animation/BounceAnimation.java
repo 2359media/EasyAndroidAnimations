@@ -1,111 +1,99 @@
 package com.androidanimator.animation;
 
-import java.util.ArrayList;
-import java.util.List;
 
-import android.animation.Animator.AnimatorListener;
+import com.androidanimator.animation.Animation.AnimationListener;
+
 import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.util.Property;
 import android.view.View;
+import android.view.ViewGroup;
 
 /**
- * @author phutang
+ * 
+ * @author SiYao
  * 
  */
 public class BounceAnimation extends Animation {
-    public int AMPLITUDE = 10;
-    AnimatorSet bounceAnim;
-    int oritention;
-    float amp;
 
-    public BounceAnimation() {
-        bounceAnim = new AnimatorSet();
-        oritention = Constant.HORIZONTAL;
-        amp = AMPLITUDE;
-    }
+	float bounceDistance;
+	int repetitions, bounceCount = 0;
+	
+	/**
+	 * The BounceAnimation causes the view to bounce by translating up and down
+	 * for a number of times before returning to its original position.
+	 * 
+	 * @param view
+	 *            the view to be animated
+	 */
+	public BounceAnimation() {
+		bounceDistance = 50;
+		repetitions = 1;
+		duration = Constant.DEFAULT_DURATION;
+	}
+	
+	/**
+	 * The BounceAnimation causes the view to bounce by translating up and down
+	 * for a number of times before returning to its original position.
+	 * 
+	 * @param view
+	 *            the view to be animated
+	 * @param bounceDistance
+	 *            the maximum distance of the bounce
+	 * @param repetitions
+	 *            the number of times the animation is repeated
+	 * @param duration
+	 *            the duration of the entire animation
+	 * @param listener
+	 *            the AnimationListener of animation @see
+	 *            {@link AnimationListener}
+	 */
+	public BounceAnimation(float bounceDistance, int repetitions, long duration, AnimationListener listener) {
+		this.bounceDistance = bounceDistance;
+		this.repetitions = repetitions;
+		this.duration = duration;
+		this.listener = listener;
+	}
 
-    public BounceAnimation(AnimationListener listener, long duration, int oritention, float amp) {
-        super(listener, duration);
-        bounceAnim = new AnimatorSet();
-        this.oritention = oritention;
-        this.amp = amp;
-    }
+	@Override
+	public void animate(View view) {
+		long singleBounceDuration = duration / repetitions;
+		if (singleBounceDuration == 0)
+			singleBounceDuration = 1;
+		AnimatorSet bounceAnim = new AnimatorSet(), bounceAnim1 = new AnimatorSet(), bounceAnim2 = new AnimatorSet();
+		bounceAnim1.playSequentially(ObjectAnimator.ofFloat(view, View.TRANSLATION_Y, bounceDistance), ObjectAnimator.ofFloat(view, View.TRANSLATION_Y, -bounceDistance));
+		bounceAnim2.playSequentially(ObjectAnimator.ofFloat(view, View.TRANSLATION_Y, bounceDistance), ObjectAnimator.ofFloat(view, View.TRANSLATION_Y, 0));
+		bounceAnim.playSequentially(bounceAnim1, bounceAnim2);
+		bounceAnim.setDuration(singleBounceDuration);
+		bounceAnim.start();
+		ViewGroup parentView = (ViewGroup) view.getParent(), rootView = (ViewGroup) view.getRootView();
+		while (!parentView.equals(rootView)) {
+			parentView.setClipChildren(false);
+			parentView = (ViewGroup) parentView.getParent();
+		}
+		rootView.setClipChildren(false);
+		bounceAnim.addListener(new AnimatorListenerAdapter() {
+			
+			@Override
+			public void onAnimationEnd(Animator animation) {
+				bounceCount++;
+				if (bounceCount != repetitions) {
+					animation.start();
+					if (bounceCount == repetitions - 1) {
+						animation.addListener(new AnimatorListenerAdapter() {
 
-    @Override
-    public void animate(View v) {
-        getAnimatorSet(v);
-        bounceAnim.start();
-    }
-
-    public AnimatorSet getBounceAnim() {
-        return bounceAnim;
-    }
-
-    public void setBounceAnim(AnimatorSet bounceAnim) {
-        this.bounceAnim = bounceAnim;
-    }
-
-    public int getOritention() {
-        return oritention;
-    }
-
-    public void setOritention(int oritention) {
-        this.oritention = oritention;
-    }
-
-    public float getAmp() {
-        return amp;
-    }
-
-    public void setAmp(float amp) {
-        this.amp = amp;
-    }
-
-    @Override
-    public AnimatorSet getAnimatorSet(View v) {
-        Property<View, Float> translate_type;
-        if (oritention == Constant.HORIZONTAL) {
-            translate_type = Constant.TRANSLATION_X;
-        } else {
-            translate_type = Constant.TRANSLATION_Y;
-        }
-        List<ObjectAnimator> move = new ArrayList<ObjectAnimator>();
-        for (int i = 0; i <= amp; i++) {
-            float currentAmp = amp - i;
-            ObjectAnimator moveRight = ObjectAnimator.ofFloat(v, translate_type, -currentAmp, currentAmp);
-            ObjectAnimator moveLeft = ObjectAnimator.ofFloat(v, translate_type, currentAmp, -currentAmp + 1);
-            move.add(moveRight);
-            move.add(moveLeft);
-        }
-        bounceAnim.playSequentially(move.toArray(new ObjectAnimator[move.size()]));
-        bounceAnim.setDuration((int) amp * 5);
-        if (getListener() != null) {
-            bounceAnim.addListener(new AnimatorListener() {
-
-                @Override
-                public void onAnimationStart(Animator animation) {
-
-                }
-
-                @Override
-                public void onAnimationRepeat(Animator animation) {
-
-                }
-
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    getListener().onAnimationEnd(BounceAnimation.this);
-                }
-
-                @Override
-                public void onAnimationCancel(Animator animation) {
-
-                }
-            });
-        }
-        return bounceAnim;
-    }
+							@Override
+							public void onAnimationEnd(Animator animation) {
+								if (getListener() != null) {
+									getListener().onAnimationEnd(BounceAnimation.this);
+								}
+							}
+						});
+					}
+				}
+			}
+		});
+	}
 
 }

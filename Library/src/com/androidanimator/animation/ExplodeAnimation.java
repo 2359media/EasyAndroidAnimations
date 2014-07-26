@@ -10,11 +10,9 @@ import android.widget.LinearLayout;
 
 import com.androidanimator.animation.Animation;
 import com.androidanimator.animation.Constant;
+import com.androidanimator.animation.Animation.AnimationListener;
 
 /**
- * The ExplodeAnimation creates a bitmap of the view, divides them into X x Y
- * parts and translates the parts away from the centre of the view to mimic an
- * explosion.
  * 
  * @author SiYao
  * 
@@ -24,13 +22,41 @@ public class ExplodeAnimation extends Animation {
 	ViewGroup parentView;
 	int xParts, yParts;
 
+	/**
+	 * The ExplodeAnimation creates a bitmap of the view, divides them into X
+	 * and Y parts and translates the parts away from the center of the view to
+	 * mimic an explosion. The number of parts can vary from 1x1 to 3x3. The
+	 * view is set to invisible and added back for reusing.
+	 * 
+	 * @param view
+	 *            the view to be animated
+	 */
 	public ExplodeAnimation() {
 		xParts = 3;
 		yParts = 3;
 		duration = Constant.DEFAULT_DURATION;
 	}
 
-	public ExplodeAnimation(int xParts, int yParts, long duration, AnimationListener listener) {
+	/**
+	 * The ExplodeAnimation creates a bitmap of the view, divides them into X
+	 * and Y parts and translates the parts away from the center of the view to
+	 * mimic an explosion. The number of parts can vary from 1x1 to 3x3. The
+	 * view is set to invisible and added back for reusing.
+	 * 
+	 * @param view
+	 *            the view to be animated
+	 * @param xParts
+	 *            the number of x parts to be exploded
+	 * @param yParts
+	 *            the number of y parts to be exploded
+	 * @param duration
+	 *            the duration of the entire animation
+	 * @param listener
+	 *            the AnimationListener of animation @see
+	 *            {@link AnimationListener}
+	 */
+	public ExplodeAnimation(int xParts, int yParts, long duration,
+			AnimationListener listener) {
 		this.xParts = xParts;
 		this.yParts = yParts;
 		this.duration = duration;
@@ -121,6 +147,7 @@ public class ExplodeAnimation extends Animation {
 				}
 				parentView = (ViewGroup) explodeLayout.getParent();
 				view.setLayoutParams(explodeLayout.getLayoutParams());
+				view.setVisibility(View.INVISIBLE);
 				parentView.removeView(explodeLayout);
 				parentView.addView(view, positionView);
 			}

@@ -1,6 +1,8 @@
 package com.androidanimator.animation;
 
 
+import com.androidanimator.animation.Animation.AnimationListener;
+
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
@@ -8,8 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
- * The SlideOutAnimation1 causes the view to slide out to the left, right, top or
- * bottom depending on the parameters provided by the user.
  * 
  * @author SiYao
  * 
@@ -19,11 +19,34 @@ public class SlideOutAnimation extends Animation {
 	int direction;
 	ObjectAnimator slideAnim;
 	
+	/**
+	 * The SlideOutAnimation causes the view to slide out to the left, right,
+	 * top or bottom of the screen depending on the parameters provided by the
+	 * user.
+	 * 
+	 * @param view
+	 *            the view to be animated
+	 */
 	public SlideOutAnimation() {
 		direction = Constant.DIRECTION_LEFT;
 		duration = Constant.DEFAULT_DURATION;
 	}
 
+	/**
+	 * The SlideOutAnimation causes the view to slide out to the left, right,
+	 * top or bottom of the screen depending on the parameters provided by the
+	 * user.
+	 * 
+	 * @param view
+	 *            the view to be animated
+	 * @param direction
+	 *            the direction to slide out to
+	 * @param duration
+	 *            the duration of the entire animation
+	 * @param listener
+	 *            the AnimationListener of animation @see
+	 *            {@link AnimationListener}
+	 */
 	public SlideOutAnimation(int direction, long duration, AnimationListener listener) {
 		this.direction = direction;
 		this.duration = duration;

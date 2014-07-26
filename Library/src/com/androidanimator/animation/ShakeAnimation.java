@@ -1,5 +1,7 @@
 package com.androidanimator.animation;
 
+import com.androidanimator.animation.Animation.AnimationListener;
+
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
@@ -8,8 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
- * The ShakeAnimation1 causes the view to shake from left to right for a number
- * of times before returning to its original position.
  * 
  * @author SiYao
  * 
@@ -19,12 +19,35 @@ public class ShakeAnimation extends Animation {
 	float shakeDistance;
 	int repetitions, shakeCount = 0;
 
+	/**
+	 * The ShakeAnimation causes the view to shake from left to right for a
+	 * number of times before returning to its original position.
+	 * 
+	 * @param view
+	 *            the view to be animated
+	 */
 	public ShakeAnimation() {
 		shakeDistance = 50;
 		repetitions = 1;
 		duration = Constant.DEFAULT_DURATION;
 	}
 
+	/**
+	 * The ShakeAnimation causes the view to shake from left to right for a
+	 * number of times before returning to its original position.
+	 * 
+	 * @param view
+	 *            the view to be animated
+	 * @param shakeDistance
+	 *            the maximum distance of the shake
+	 * @param repetitions
+	 *            the number of times the animation is repeated
+	 * @param duration
+	 *            the duration of the entire animation
+	 * @param listener
+	 *            the AnimationListener of animation @see
+	 *            {@link AnimationListener}
+	 */
 	public ShakeAnimation(float shakeDistance, int repetitions, long duration, AnimationListener listener) {
 		this.shakeDistance = shakeDistance;
 		this.repetitions = repetitions;

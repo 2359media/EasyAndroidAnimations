@@ -1,5 +1,7 @@
 package com.androidanimator.animation;
 
+import com.androidanimator.animation.Animation.AnimationListener;
+
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.view.View;
@@ -7,8 +9,6 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 /**
- * The SlideOutUnderneathAnimation causes the view to slide out underneath to
- * the left, right, up or down depending on the parameters provided by the user.
  * 
  * @author SiYao
  * 
@@ -17,11 +17,34 @@ public class SlideOutUnderneathAnimation extends Animation {
 
 	int direction;
 
+	/**
+	 * The SlideOutUnderneathAnimation causes the view to slide out underneath
+	 * to the left, right, up or down depending on the parameters provided by
+	 * the user.
+	 * 
+	 * @param view
+	 *            the view to be animated
+	 */
 	public SlideOutUnderneathAnimation() {
 		direction = Constant.DIRECTION_LEFT;
 		duration = Constant.DEFAULT_DURATION;
 	}
 
+	/**
+	 * The SlideOutUnderneathAnimation causes the view to slide out underneath
+	 * to the left, right, up or down depending on the parameters provided by
+	 * the user.
+	 * 
+	 * @param view
+	 *            the view to be animated
+	 * @param direction
+	 *            the direction to slide out underneath to
+	 * @param duration
+	 *            the duration of the entire animation
+	 * @param listener
+	 *            the AnimationListener of animation @see
+	 *            {@link AnimationListener}
+	 */
 	public SlideOutUnderneathAnimation(int direction, long duration,
 			AnimationListener listener) {
 		this.direction = direction;

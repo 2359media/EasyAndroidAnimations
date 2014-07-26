@@ -1,5 +1,7 @@
 package com.androidanimator.animation;
 
+import com.androidanimator.animation.Animation.AnimationListener;
+
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
@@ -8,8 +10,6 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 /**
- * The SlideInUnderneathAnimation causes the view to slide in underneath from
- * the left, right, up or down depending on the parameters provided by the user.
  * 
  * @author SiYao
  * 
@@ -19,11 +19,34 @@ public class SlideInUnderneathAnimation extends Animation {
 	int direction;
 	ObjectAnimator slideInAnim;
 	
+	/**
+	 * The SlideInUnderneathAnimation causes the view to slide in underneath
+	 * from the left, right, up or down depending on the parameters provided by
+	 * the user.
+	 * 
+	 * @param view
+	 *            the view to be animated
+	 */
 	public SlideInUnderneathAnimation() {
 		direction = Constant.DIRECTION_LEFT;
 		duration = Constant.DEFAULT_DURATION;
 	}
 	
+	/**
+	 * The SlideInUnderneathAnimation causes the view to slide in underneath
+	 * from the left, right, up or down depending on the parameters provided by
+	 * the user.
+	 * 
+	 * @param view
+	 *            the view to be animated
+	 * @param direction
+	 *            the direction to slide in underneath from
+	 * @param duration
+	 *            the duration of the entire animation
+	 * @param listener
+	 *            the AnimationListener of animation @see
+	 *            {@link AnimationListener}
+	 */
 	public SlideInUnderneathAnimation(int direction, long duration, AnimationListener listener) {
 		this.direction = direction;
 		this.duration = duration;

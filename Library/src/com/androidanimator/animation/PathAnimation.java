@@ -3,6 +3,8 @@ package com.androidanimator.animation;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.androidanimator.animation.Animation.AnimationListener;
+
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
@@ -13,10 +15,6 @@ import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
 
 /**
- * The PathAnimation translates the view within its parent view and according to
- * the ArrayList of Points provided by the user. The values of x and y in each
- * Point must be in the range of 0-100. Note that the status bar and action bar
- * are not taken into consideration.
  * 
  * @author SiYao
  * 
@@ -29,7 +27,49 @@ public class PathAnimation extends Animation {
 
 	ArrayList<Point> points;
 	int anchorPosition;
+	
+	/**
+	 * The PathAnimation translates the view within its parent view and
+	 * according to the ArrayList of Points provided by the user. The values of
+	 * x and y in each Point must be in the range of 0-100. Note that the status
+	 * bar and action bar are not taken into consideration.
+	 * 
+	 * @param view
+	 *            the view to be animated
+	 * @param points
+	 *            the ArrayList of Points that the view is translated to within
+	 *            its parent
+	 * @param duration
+	 *            the duration of the entire animation
+	 * @param anchorPosition
+	 *            the anchor position whereby the view is translated from
+	 */
+	public PathAnimation(ArrayList<Point> points, int anchorPosition,
+			long duration) {
+		this.points = points;
+		this.duration = duration;
+		this.anchorPosition = anchorPosition;
+	}
 
+	/**
+	 * The PathAnimation translates the view within its parent view and
+	 * according to the ArrayList of Points provided by the user. The values of
+	 * x and y in each Point must be in the range of 0-100. Note that the status
+	 * bar and action bar are not taken into consideration.
+	 * 
+	 * @param view
+	 *            the view to be animated
+	 * @param points
+	 *            the ArrayList of Points that the view is translated to within
+	 *            its parent
+	 * @param duration
+	 *            the duration of the entire animation
+	 * @param anchorPosition
+	 *            the anchor position whereby the view is translated from
+	 * @param listener
+	 *            the AnimationListener of animation @see
+	 *            {@link AnimationListener}
+	 */
 	public PathAnimation(ArrayList<Point> points, int anchorPosition,
 			long duration, AnimationListener listener) {
 		this.points = points;
