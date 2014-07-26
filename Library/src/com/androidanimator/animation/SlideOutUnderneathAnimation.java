@@ -22,8 +22,6 @@ public class SlideOutUnderneathAnimation extends Animation {
 	 * to the left, right, up or down depending on the parameters provided by
 	 * the user.
 	 * 
-	 * @param view
-	 *            the view to be animated
 	 */
 	public SlideOutUnderneathAnimation() {
 		direction = Constant.DIRECTION_LEFT;
@@ -35,8 +33,6 @@ public class SlideOutUnderneathAnimation extends Animation {
 	 * to the left, right, up or down depending on the parameters provided by
 	 * the user.
 	 * 
-	 * @param view
-	 *            the view to be animated
 	 * @param direction
 	 *            the direction to slide out underneath to
 	 * @param duration

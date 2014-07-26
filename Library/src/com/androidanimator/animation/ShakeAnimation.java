@@ -23,8 +23,6 @@ public class ShakeAnimation extends Animation {
 	 * The ShakeAnimation causes the view to shake from left to right for a
 	 * number of times before returning to its original position.
 	 * 
-	 * @param view
-	 *            the view to be animated
 	 */
 	public ShakeAnimation() {
 		shakeDistance = 50;
@@ -36,8 +34,6 @@ public class ShakeAnimation extends Animation {
 	 * The ShakeAnimation causes the view to shake from left to right for a
 	 * number of times before returning to its original position.
 	 * 
-	 * @param view
-	 *            the view to be animated
 	 * @param shakeDistance
 	 *            the maximum distance of the shake
 	 * @param repetitions

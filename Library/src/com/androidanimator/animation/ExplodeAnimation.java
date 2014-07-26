@@ -28,8 +28,6 @@ public class ExplodeAnimation extends Animation {
 	 * mimic an explosion. The number of parts can vary from 1x1 to 3x3. The
 	 * view is set to invisible and added back for reusing.
 	 * 
-	 * @param view
-	 *            the view to be animated
 	 */
 	public ExplodeAnimation() {
 		xParts = 3;
@@ -43,8 +41,6 @@ public class ExplodeAnimation extends Animation {
 	 * mimic an explosion. The number of parts can vary from 1x1 to 3x3. The
 	 * view is set to invisible and added back for reusing.
 	 * 
-	 * @param view
-	 *            the view to be animated
 	 * @param xParts
 	 *            the number of x parts to be exploded
 	 * @param yParts

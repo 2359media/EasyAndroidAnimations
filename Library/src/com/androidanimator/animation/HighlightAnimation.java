@@ -22,8 +22,6 @@ public class HighlightAnimation extends Animation {
 	 * The HighlightAnimation makes use of a translucent box to overlay the view
 	 * to mimic the highlighting of the view.
 	 * 
-	 * @param view
-	 *            the view to be animated
 	 */
 	public HighlightAnimation() {
 		color = Color.YELLOW;
@@ -34,8 +32,6 @@ public class HighlightAnimation extends Animation {
 	 * The HighlightAnimation makes use of a translucent box to overlay the view
 	 * to mimic the highlighting of the view.
 	 * 
-	 * @param view
-	 *            the view to be animated
 	 * @param color
 	 *            the color of the highlight
 	 * @param duration

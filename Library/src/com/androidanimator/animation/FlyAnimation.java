@@ -91,6 +91,7 @@ public class FlyAnimation extends Animation {
             alphaA = ObjectAnimator.ofFloat(v, Constant.ALPHA, v.getAlpha(), 0f);
             translation = ObjectAnimator.ofFloat(v, sTranslation, 0, distance);
         } else {
+        	v.setVisibility(View.VISIBLE);
             scaleX = ObjectAnimator.ofFloat(v, Constant.SCALE_X, 0f, 1f);
             scaleY = ObjectAnimator.ofFloat(v, Constant.SCALE_Y, 0f, 1f);
             alphaA = ObjectAnimator.ofFloat(v, Constant.ALPHA, v.getAlpha(), 1f);

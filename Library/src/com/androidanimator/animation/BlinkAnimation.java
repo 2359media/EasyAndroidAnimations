@@ -21,8 +21,6 @@ public class BlinkAnimation extends Animation {
 	 * The BlindAnimation makes use of a box that is of the same size as the
 	 * view to translate upwards to mimic the blind animation.
 	 * 
-	 * @param view
-	 *            the view to be animated
 	 */
 	public BlinkAnimation() {
 		repetitions = 2;
@@ -30,13 +28,13 @@ public class BlinkAnimation extends Animation {
 	}
 
 	/**
-	 * The BlindAnimation makes use of a box that is of the same size as the
-	 * view to translate upwards to mimic the blind animation.
+	 * The BlinkAnimation causes the view to blink a number of times to mimic a
+	 * blinking animation.
 	 * 
+	 * @param repetitions
+	 *            the number of times the animation is repeated
 	 * @param duration
 	 *            the duration of the entire animation
-	 * @param view
-	 *            the view to be animated
 	 * @param listener
 	 *            the AnimationListener of animation @see
 	 *            {@link AnimationListener}

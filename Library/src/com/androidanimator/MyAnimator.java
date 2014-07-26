@@ -19,6 +19,7 @@ import com.androidanimator.animation.FoldAnimation;
 import com.androidanimator.animation.HighlightAnimation;
 import com.androidanimator.animation.PathAnimation;
 import com.androidanimator.animation.PuffAnimation;
+import com.androidanimator.animation.RotationAnimation;
 import com.androidanimator.animation.ScaleAnimation;
 import com.androidanimator.animation.ShakeAnimation;
 import com.androidanimator.animation.SizeAnimation;
@@ -435,7 +436,40 @@ public class MyAnimator {
 		puffAnimation.setListener(listener);
 		puffAnimation.animate(view);
 	}
-	
+
+	/**
+	 * The RotationAnimation rotates the view depending on the parameters
+	 * provided by the user.
+	 * 
+	 * @param view
+	 *            the view to be animated
+	 */
+	public static void rotate(View view) {
+		new RotationAnimation().animate(view);
+	}
+
+	/**
+	 * The RotationAnimation rotates the view depending on the parameters
+	 * provided by the user.
+	 * 
+	 * @param view
+	 *            the view to be animated
+	 * @param degrees
+	 *            the number of degrees to rotate the view by
+	 * @param pivotPosition
+	 *            the pivot position around which the view is rotated
+	 * @param duration
+	 *            the duration of the entire animation
+	 * @param listener
+	 *            the AnimationListener of animation @see
+	 *            {@link AnimationListener}
+	 */
+	public static void rotate(View view, float degrees, int pivotPosition,
+			long duration, AnimationListener listener) {
+		new RotationAnimation(degrees, pivotPosition, duration, listener)
+				.animate(view);
+	}
+
 	/**
 	 * The ScaleAnimationIn scales in the view either upwards or downwards
 	 * depending on the parameters provided by the user before fading out of

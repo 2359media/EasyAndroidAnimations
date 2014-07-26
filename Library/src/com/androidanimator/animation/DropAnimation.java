@@ -1,7 +1,7 @@
 package com.androidanimator.animation;
 
-import android.animation.Animator.AnimatorListener;
 import android.animation.Animator;
+import android.animation.Animator.AnimatorListener;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.util.Property;
@@ -86,6 +86,7 @@ public class DropAnimation extends Animation {
             animX = ObjectAnimator.ofFloat(v, translateType, 0, distance);
             alpha = ObjectAnimator.ofFloat(v, Constant.ALPHA, v.getAlpha(), 0f);
         } else {
+        	v.setVisibility(View.VISIBLE);
             animX = ObjectAnimator.ofFloat(v, translateType, distance, 0);
             alpha = ObjectAnimator.ofFloat(v, Constant.ALPHA, v.getAlpha(), 1f);
         }

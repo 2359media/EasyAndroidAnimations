@@ -24,8 +24,6 @@ public class SlideOutAnimation extends Animation {
 	 * top or bottom of the screen depending on the parameters provided by the
 	 * user.
 	 * 
-	 * @param view
-	 *            the view to be animated
 	 */
 	public SlideOutAnimation() {
 		direction = Constant.DIRECTION_LEFT;
@@ -37,8 +35,6 @@ public class SlideOutAnimation extends Animation {
 	 * top or bottom of the screen depending on the parameters provided by the
 	 * user.
 	 * 
-	 * @param view
-	 *            the view to be animated
 	 * @param direction
 	 *            the direction to slide out to
 	 * @param duration

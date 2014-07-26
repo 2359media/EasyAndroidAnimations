@@ -48,6 +48,7 @@ public class PuffAnimation extends Animation {
             scaleX = ObjectAnimator.ofFloat(v, Constant.SCALE_X, 1f, 4f);
             alpha = ObjectAnimator.ofFloat(v, Constant.ALPHA, v.getAlpha(), 0f);
         } else {
+        	v.setVisibility(View.VISIBLE);
             scaleY = ObjectAnimator.ofFloat(v, Constant.SCALE_Y, 4, 1);
             scaleX = ObjectAnimator.ofFloat(v, Constant.SCALE_X, 4, 1);
             alpha = ObjectAnimator.ofFloat(v, Constant.ALPHA, v.getAlpha(), 1f);

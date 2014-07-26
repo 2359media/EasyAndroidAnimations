@@ -49,6 +49,7 @@ public class ScaleAnimation extends Animation {
             scaleX = ObjectAnimator.ofFloat(v, Constant.SCALE_X, 1f, 0f);
             scaleY = ObjectAnimator.ofFloat(v, Constant.SCALE_Y, 1f, 0f);
         } else {
+        	v.setVisibility(View.VISIBLE);
             scaleX = ObjectAnimator.ofFloat(v, Constant.SCALE_X, 0f, 1f);
             scaleY = ObjectAnimator.ofFloat(v, Constant.SCALE_Y, 0f, 1f);
         }

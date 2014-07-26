@@ -34,8 +34,6 @@ public class PathAnimation extends Animation {
 	 * x and y in each Point must be in the range of 0-100. Note that the status
 	 * bar and action bar are not taken into consideration.
 	 * 
-	 * @param view
-	 *            the view to be animated
 	 * @param points
 	 *            the ArrayList of Points that the view is translated to within
 	 *            its parent
@@ -57,8 +55,6 @@ public class PathAnimation extends Animation {
 	 * x and y in each Point must be in the range of 0-100. Note that the status
 	 * bar and action bar are not taken into consideration.
 	 * 
-	 * @param view
-	 *            the view to be animated
 	 * @param points
 	 *            the ArrayList of Points that the view is translated to within
 	 *            its parent

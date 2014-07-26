@@ -23,8 +23,6 @@ public class TransferAnimation extends Animation {
 	 * user through scaling and translation. The view is scaled to the same size
 	 * and is translated to the same position as the destination view.
 	 * 
-	 * @param view
-	 *            the view to be animated
 	 * @param destinationView
 	 *            the view to be transferred to
 	 * @param duration
@@ -40,8 +38,6 @@ public class TransferAnimation extends Animation {
 	 * user through scaling and translation. The view is scaled to the same size
 	 * and is translated to the same position as the destination view.
 	 * 
-	 * @param view
-	 *            the view to be animated
 	 * @param destinationView
 	 *            the view to be transferred to
 	 * @param duration

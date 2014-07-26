@@ -23,8 +23,6 @@ public class SlideInAnimation extends Animation {
 	 * top or bottom of the screen depending on the parameters provided by the
 	 * user.
 	 * 
-	 * @param view
-	 *            the view to be animated
 	 */
 	public SlideInAnimation() {
 		direction = Constant.DIRECTION_LEFT;
@@ -36,8 +34,6 @@ public class SlideInAnimation extends Animation {
 	 * top or bottom of the screen depending on the parameters provided by the
 	 * user.
 	 * 
-	 * @param view
-	 *            the view to be animated
 	 * @param direction
 	 *            the direction to slide in from
 	 * @param duration

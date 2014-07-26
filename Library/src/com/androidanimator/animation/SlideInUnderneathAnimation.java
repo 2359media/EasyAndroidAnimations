@@ -24,8 +24,6 @@ public class SlideInUnderneathAnimation extends Animation {
 	 * from the left, right, up or down depending on the parameters provided by
 	 * the user.
 	 * 
-	 * @param view
-	 *            the view to be animated
 	 */
 	public SlideInUnderneathAnimation() {
 		direction = Constant.DIRECTION_LEFT;
@@ -37,8 +35,6 @@ public class SlideInUnderneathAnimation extends Animation {
 	 * from the left, right, up or down depending on the parameters provided by
 	 * the user.
 	 * 
-	 * @param view
-	 *            the view to be animated
 	 * @param direction
 	 *            the direction to slide in underneath from
 	 * @param duration

@@ -24,8 +24,6 @@ public class BounceAnimation extends Animation {
 	 * The BounceAnimation causes the view to bounce by translating up and down
 	 * for a number of times before returning to its original position.
 	 * 
-	 * @param view
-	 *            the view to be animated
 	 */
 	public BounceAnimation() {
 		bounceDistance = 50;
@@ -37,8 +35,6 @@ public class BounceAnimation extends Animation {
 	 * The BounceAnimation causes the view to bounce by translating up and down
 	 * for a number of times before returning to its original position.
 	 * 
-	 * @param view
-	 *            the view to be animated
 	 * @param bounceDistance
 	 *            the maximum distance of the bounce
 	 * @param repetitions

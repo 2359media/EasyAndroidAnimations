@@ -17,6 +17,7 @@ import com.androidanimator.animation.Animation;
 import com.androidanimator.animation.Animation.AnimationListener;
 import com.androidanimator.animation.Constant;
 import com.androidanimator.animation.PathAnimation;
+import com.androidanimator.animation.RotationAnimation;
 import com.two359media.animationsample.dummy.DummyContent;
 
 /**
@@ -78,6 +79,10 @@ public class AnimationDetailFragment extends Fragment implements
 		} else {
 			mImgTarget.setImageResource(R.drawable.img1);
 		}
+
+		if (mItem.id == 4 || mItem.id == 9 || mItem.id == 14 || mItem.id == 17 || mItem.id == 21 || mItem.id == 22) {
+			mImgTarget.setVisibility(View.INVISIBLE);
+		}
 		return rootView;
 	}
 
@@ -91,11 +96,12 @@ public class AnimationDetailFragment extends Fragment implements
 	}
 
 	@Override
-	public void onClick(View v) {
+	public void onClick(final View v) {
 		MyAnimator.fadeOut(mPlayView, 300, new AnimationListener() {
 
 			@Override
 			public void onAnimationEnd(Animation animation) {
+				mPlayView.setVisibility(View.GONE);
 				doAnimation();
 			}
 		});
@@ -107,48 +113,60 @@ public class AnimationDetailFragment extends Fragment implements
 			MyAnimator.blind(mImgTarget);
 			break;
 		case 2:
-			MyAnimator.blink(mImgTarget, 5, Constant.DEFAULT_DURATION, new AnimationListener() {
-
-				@Override
-				public void onAnimationEnd(Animation animation) {
-					MyAnimator.fadeIn(mPlayView);
-				}
-			});
-			break;
-		case 3:
-			MyAnimator.bounce(mImgTarget, 10, 5, Constant.DEFAULT_DURATION, new AnimationListener() {
-
-				@Override
-				public void onAnimationEnd(Animation animation) {
-					MyAnimator.fadeIn(mPlayView);
-				}
-			});
-			break;
-		case 4:
-			MyAnimator.dropOut(mImgTarget, Constant.DEFAULT_DURATION, Constant.DIRECTION_LEFT, null);
-			break;
-		case 5:
-			MyAnimator.explode(mImgTarget, 3, 3, Constant.DEFAULT_DURATION, null);
-			break;
-		case 6:
-			MyAnimator.flipOut(mImgTarget, Constant.HORIZONTAL, Constant.DEFAULT_DURATION,
+			MyAnimator.blink(mImgTarget, 5, Constant.DEFAULT_DURATION,
 					new AnimationListener() {
 
 						@Override
 						public void onAnimationEnd(Animation animation) {
+							mPlayView.setVisibility(View.VISIBLE);
+							MyAnimator.fadeIn(mPlayView);
+						}
+					});
+			break;
+		case 3:
+			MyAnimator.bounce(mImgTarget, 10, 5, Constant.DEFAULT_DURATION,
+					new AnimationListener() {
+
+						@Override
+						public void onAnimationEnd(Animation animation) {
+							mPlayView.setVisibility(View.VISIBLE);
+							MyAnimator.fadeIn(mPlayView);
+						}
+					});
+			break;
+		case 4:
+			MyAnimator.dropIn(mImgTarget, Constant.DEFAULT_DURATION, Constant.DIRECTION_UP, null);
+			break;
+		case 5:
+			MyAnimator.dropOut(mImgTarget, Constant.DEFAULT_DURATION,
+					Constant.DIRECTION_LEFT, null);
+			break;
+		case 6:
+			MyAnimator.explode(mImgTarget, 3, 3, Constant.DEFAULT_DURATION,
+					null);
+			break;
+		case 7:
+			MyAnimator.flipOut(mImgTarget, Constant.HORIZONTAL,
+					Constant.DEFAULT_DURATION, new AnimationListener() {
+
+						@Override
+						public void onAnimationEnd(Animation animation) {
 							MyAnimator.flipIn(mImgTarget, Constant.HORIZONTAL,
-									Constant.DEFAULT_DURATION, new AnimationListener() {
+									Constant.DEFAULT_DURATION,
+									new AnimationListener() {
 
 										@Override
 										public void onAnimationEnd(
 												Animation animation) {
+											mPlayView
+													.setVisibility(View.VISIBLE);
 											MyAnimator.fadeIn(mPlayView);
 										}
 									});
 						}
 					});
 			break;
-		case 7:
+		case 8:
 			mImgBehind.setVisibility(View.VISIBLE);
 			MyAnimator.flipTogether(mImgTarget, mImgBehind, Constant.VERTICAL,
 					Constant.DEFAULT_DURATION, new AnimationListener() {
@@ -159,35 +177,34 @@ public class AnimationDetailFragment extends Fragment implements
 							ImageView temp = mImgBehind;
 							mImgBehind = mImgTarget;
 							mImgTarget = temp;
+							mPlayView.setVisibility(View.VISIBLE);
 							MyAnimator.fadeIn(mPlayView);
 						}
 					});
 			break;
-		case 8:
-			MyAnimator.flyIn(mImgTarget, Constant.DEFAULT_DURATION, Constant.DIRECTION_UP, new AnimationListener() {
-				
-				@Override
-				public void onAnimationEnd(Animation animation) {
-					MyAnimator.fadeIn(mPlayView);
-				}
-			});
-			break;
 		case 9:
-			MyAnimator.flyOut(mImgTarget, Constant.DEFAULT_DURATION, Constant.DIRECTION_UP, null);
+			MyAnimator.flyIn(mImgTarget, Constant.DEFAULT_DURATION,
+					Constant.DIRECTION_UP, null);
 			break;
 		case 10:
-			MyAnimator.fold(mImgTarget);
+			MyAnimator.flyOut(mImgTarget, Constant.DEFAULT_DURATION,
+					Constant.DIRECTION_UP, null);
 			break;
 		case 11:
-			MyAnimator.highlight(mImgTarget, Color.YELLOW, Constant.DEFAULT_DURATION, new AnimationListener() {
-				
-				@Override
-				public void onAnimationEnd(Animation animation) {
-					MyAnimator.fadeIn(mPlayView);
-				}
-			});
+			MyAnimator.fold(mImgTarget);
 			break;
 		case 12:
+			MyAnimator.highlight(mImgTarget, Color.YELLOW,
+					Constant.DEFAULT_DURATION, new AnimationListener() {
+
+						@Override
+						public void onAnimationEnd(Animation animation) {
+							mPlayView.setVisibility(View.VISIBLE);
+							MyAnimator.fadeIn(mPlayView);
+						}
+					});
+			break;
+		case 13:
 			final ArrayList<Point> points = new ArrayList<>();
 			points.add(new Point(50, 0));
 			points.add(new Point(100, 100));
@@ -200,74 +217,68 @@ public class AnimationDetailFragment extends Fragment implements
 
 						@Override
 						public void onAnimationEnd(Animation animation) {
+							mPlayView.setVisibility(View.VISIBLE);
 							MyAnimator.fadeIn(mPlayView);
 						}
 					});
 			break;
-		case 13:
-			MyAnimator.puffIn(mImgTarget, Constant.DEFAULT_DURATION, new AnimationListener() {
-				
-				@Override
-				public void onAnimationEnd(Animation animation) {
-					MyAnimator.fadeIn(mPlayView);
-				}
-			});
-			break;
 		case 14:
-			MyAnimator.puffOut(mImgTarget, Constant.DEFAULT_DURATION, null);
+			MyAnimator.puffIn(mImgTarget, Constant.DEFAULT_DURATION, null);
 			break;
 		case 15:
-			MyAnimator.scaleIn(mImgTarget, Constant.DEFAULT_DURATION, new AnimationListener() {
-				
-				@Override
-				public void onAnimationEnd(Animation animation) {
-					MyAnimator.fadeIn(mPlayView);
-				}
-			});
+			MyAnimator.puffOut(mImgTarget, Constant.DEFAULT_DURATION, null);
+			break;
 		case 16:
-			MyAnimator.scaleOut(mImgTarget, Constant.DEFAULT_DURATION, null);
+			MyAnimator.rotate(mImgTarget, 360,
+					RotationAnimation.PIVOT_TOP_LEFT,
+					Constant.DEFAULT_DURATION, new AnimationListener() {
+
+						@Override
+						public void onAnimationEnd(Animation animation) {
+							mPlayView.setVisibility(View.VISIBLE);
+							MyAnimator.fadeIn(mPlayView);
+						}
+					});
 			break;
 		case 17:
-			MyAnimator.shake(mImgTarget, 10, 5, Constant.DEFAULT_DURATION, new AnimationListener() {
-
-				@Override
-				public void onAnimationEnd(Animation animation) {
-					MyAnimator.fadeIn(mPlayView);
-				}
-			});
+			MyAnimator.scaleIn(mImgTarget, Constant.DEFAULT_DURATION, null);
 			break;
 		case 18:
-			MyAnimator.size(mImgTarget);
+			MyAnimator.scaleOut(mImgTarget, Constant.DEFAULT_DURATION, null);
 			break;
 		case 19:
-			MyAnimator.slideIn(mImgTarget, Constant.DIRECTION_UP, Constant.DEFAULT_DURATION,
+			MyAnimator.shake(mImgTarget, 10, 5, Constant.DEFAULT_DURATION,
 					new AnimationListener() {
 
 						@Override
 						public void onAnimationEnd(Animation animation) {
+							mPlayView.setVisibility(View.VISIBLE);
 							MyAnimator.fadeIn(mPlayView);
 						}
 					});
 			break;
 		case 20:
-			MyAnimator.slideInUnderneath(mImgTarget, Constant.DIRECTION_UP,
-					Constant.DEFAULT_DURATION, new AnimationListener() {
-
-						@Override
-						public void onAnimationEnd(Animation animation) {
-							MyAnimator.fadeIn(mPlayView);
-						}
-					});
+			MyAnimator.size(mImgTarget);
 			break;
 		case 21:
-			MyAnimator.slideOut(mImgTarget, Constant.DIRECTION_UP, Constant.DEFAULT_DURATION, null);
+			MyAnimator.slideIn(mImgTarget, Constant.DIRECTION_UP,
+					Constant.DEFAULT_DURATION, null);
 			break;
 		case 22:
-			MyAnimator.slideOutUnderneath(mImgTarget, Constant.DIRECTION_UP,
+			MyAnimator.slideInUnderneath(mImgTarget, Constant.DIRECTION_UP,
 					Constant.DEFAULT_DURATION, null);
 			break;
 		case 23:
-			MyAnimator.transfer(mImgTarget, mDestination, Constant.DEFAULT_DURATION, null);
+			MyAnimator.slideOut(mImgTarget, Constant.DIRECTION_UP,
+					Constant.DEFAULT_DURATION, null);
+			break;
+		case 24:
+			MyAnimator.slideOutUnderneath(mImgTarget, Constant.DIRECTION_UP,
+					Constant.DEFAULT_DURATION, null);
+			break;
+		case 25:
+			MyAnimator.transfer(mImgTarget, mDestination,
+					Constant.DEFAULT_DURATION, null);
 			break;
 		default:
 			break;
