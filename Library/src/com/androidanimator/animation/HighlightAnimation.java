@@ -10,8 +10,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 /**
- * The HighlightAnimation1 makes use of a translucent box to overlay the view to
- * mimic the highlighting of the view.
  * 
  * @author SiYao
  * 
@@ -20,11 +18,32 @@ public class HighlightAnimation extends Animation {
 
 	int color;
 
+	/**
+	 * The HighlightAnimation makes use of a translucent box to overlay the view
+	 * to mimic the highlighting of the view.
+	 * 
+	 * @param view
+	 *            the view to be animated
+	 */
 	public HighlightAnimation() {
 		color = Color.YELLOW;
 		duration = Constant.DEFAULT_DURATION;
 	}
 
+	/**
+	 * The HighlightAnimation makes use of a translucent box to overlay the view
+	 * to mimic the highlighting of the view.
+	 * 
+	 * @param view
+	 *            the view to be animated
+	 * @param color
+	 *            the color of the highlight
+	 * @param duration
+	 *            the duration of the entire animation
+	 * @param listener
+	 *            the AnimationListener of animation @see
+	 *            {@link AnimationListener}
+	 */
 	public HighlightAnimation(int color, long duration, AnimationListener listener) {
 		this.color = color;
 		this.duration = duration;
@@ -33,31 +52,30 @@ public class HighlightAnimation extends Animation {
 
 	@Override
 	public void animate(final View view) {
-		final ViewGroup parentView = (ViewGroup) view.getParent();
-		final LayoutParams layoutParams = view.getLayoutParams();
 		final FrameLayout highlightFrame = new FrameLayout(view.getContext());
-		highlightFrame.setLayoutParams(layoutParams);
-		final ImageView highlight = new ImageView(view.getContext());
-		highlight.setLayoutParams(layoutParams);
-		highlight.setBackgroundColor(color);
-		highlight.setAlpha(0.5f);
-		final int positionView = parentView.indexOfChild(view);
-		parentView.removeView(view);
-		highlightFrame.addView(view);
-		highlightFrame.addView(highlight);
-		parentView.addView(highlightFrame, positionView);
+		final LayoutParams layoutParams = new LayoutParams(view.getLayoutParams());
 		
-		highlight.animate().alpha(0).setDuration(duration).setListener(new AnimatorListenerAdapter() {
+		ImageView highlightView = new ImageView(view.getContext());
+		highlightView.setBackgroundColor(color);
+		highlightView.setAlpha(0.5f);
+		
+		final ViewGroup parentView = (ViewGroup) view.getParent();
+		final int positionView = parentView.indexOfChild(view);
+		parentView.removeViewAt(positionView);
+		highlightFrame.addView(view, layoutParams);
+		highlightFrame.addView(highlightView, layoutParams);
+		parentView.addView(highlightFrame, positionView, layoutParams);
+		
+		highlightView.animate().alpha(0).setDuration(duration).setListener(new AnimatorListenerAdapter() {
 
 			@Override
 			public void onAnimationEnd(Animator animation) {
+				highlightFrame.removeAllViews();
+				parentView.removeViewAt(positionView);
+				parentView.addView(view, positionView, layoutParams);
 				if (getListener() != null) {
 					getListener().onAnimationEnd(HighlightAnimation.this);
 				}
-				highlightFrame.removeAllViews();
-				parentView.removeView(highlightFrame);
-				view.setLayoutParams(layoutParams);
-				parentView.addView(view, positionView);
 			}
 		});
 	}

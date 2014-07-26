@@ -179,7 +179,13 @@ public class AnimationDetailFragment extends Fragment implements
 			MyAnimator.fold(mImgTarget);
 			break;
 		case 11:
-			MyAnimator.highlight(mImgTarget);
+			MyAnimator.highlight(mImgTarget, Color.YELLOW, Constant.DEFAULT_DURATION, new AnimationListener() {
+				
+				@Override
+				public void onAnimationEnd(Animation animation) {
+					MyAnimator.fadeIn(mPlayView);
+				}
+			});
 			break;
 		case 12:
 			final ArrayList<Point> points = new ArrayList<>();
