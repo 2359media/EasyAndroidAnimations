@@ -24,7 +24,7 @@ public class BlinkAnimation extends Animation {
 	 */
 	public BlinkAnimation() {
 		repetitions = 2;
-		duration = Constant.DEFAULT_DURATION;
+		duration = Animation.DEFAULT_DURATION;
 	}
 
 	/**

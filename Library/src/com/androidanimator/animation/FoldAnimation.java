@@ -42,8 +42,8 @@ public class FoldAnimation extends Animation {
         animationLayout.removeView(child);
         child.setLayoutParams(originalParam);
         parent.addView(child);
-        ObjectAnimator scaleY = ObjectAnimator.ofFloat(child, Constant.SCALE_Y, 1f);
-        ObjectAnimator alphaA = ObjectAnimator.ofFloat(child, Constant.SCALE_X, 1f);
+        ObjectAnimator scaleY = ObjectAnimator.ofFloat(child, View.SCALE_Y, 1f);
+        ObjectAnimator alphaA = ObjectAnimator.ofFloat(child, View.SCALE_X, 1f);
 
         AnimatorSet animFold = new AnimatorSet();
         animFold.playTogether(scaleY, alphaA);
@@ -68,13 +68,13 @@ public class FoldAnimation extends Animation {
     @Override
     public AnimatorSet getAnimatorSet(View v) {
         addToAnimatioView(v);
-        ObjectAnimator animY1 = ObjectAnimator.ofFloat(animationLayout, Constant.SCALE_Y, 1f, 0.5f);
-        ObjectAnimator animY1_child = ObjectAnimator.ofFloat(child, Constant.SCALE_Y, 1f, 2f);
+        ObjectAnimator animY1 = ObjectAnimator.ofFloat(animationLayout, View.SCALE_Y, 1f, 0.5f);
+        ObjectAnimator animY1_child = ObjectAnimator.ofFloat(child, View.SCALE_Y, 1f, 2f);
 
-        ObjectAnimator animY2 = ObjectAnimator.ofFloat(animationLayout, Constant.SCALE_Y, 0.5f, 0f);
-        ObjectAnimator animX = ObjectAnimator.ofFloat(animationLayout, Constant.SCALE_X, 1f, 0f);
-        ObjectAnimator animY2_child = ObjectAnimator.ofFloat(child, Constant.SCALE_Y, 2f, 2.5f);
-        ObjectAnimator animX_child = ObjectAnimator.ofFloat(child, Constant.SCALE_X, 1f, 2.5f);
+        ObjectAnimator animY2 = ObjectAnimator.ofFloat(animationLayout, View.SCALE_Y, 0.5f, 0f);
+        ObjectAnimator animX = ObjectAnimator.ofFloat(animationLayout, View.SCALE_X, 1f, 0f);
+        ObjectAnimator animY2_child = ObjectAnimator.ofFloat(child, View.SCALE_Y, 2f, 2.5f);
+        ObjectAnimator animX_child = ObjectAnimator.ofFloat(child, View.SCALE_X, 1f, 2.5f);
 
         AnimatorSet fold2 = new AnimatorSet();
         fold2.playTogether(animY2, animX, animY2_child, animX_child);

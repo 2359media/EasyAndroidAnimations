@@ -28,7 +28,7 @@ public class BounceAnimation extends Animation {
 	public BounceAnimation() {
 		bounceDistance = 50;
 		repetitions = 1;
-		duration = Constant.DEFAULT_DURATION;
+		duration = Animation.DEFAULT_DURATION;
 	}
 	
 	/**

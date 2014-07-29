@@ -25,7 +25,7 @@ public class HighlightAnimation extends Animation {
 	 */
 	public HighlightAnimation() {
 		color = Color.YELLOW;
-		duration = Constant.DEFAULT_DURATION;
+		duration = Animation.DEFAULT_DURATION;
 	}
 
 	/**

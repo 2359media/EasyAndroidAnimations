@@ -30,9 +30,9 @@ public class SizeAnimation extends Animation {
 
 
     public void reset(View v) {
-        ObjectAnimator scaleX = ObjectAnimator.ofFloat(v, Constant.SCALE_X, 1f);
-        ObjectAnimator scaleY = ObjectAnimator.ofFloat(v, Constant.SCALE_Y, 1f);
-        ObjectAnimator alphaA = ObjectAnimator.ofFloat(v, Constant.ALPHA, 1f);
+        ObjectAnimator scaleX = ObjectAnimator.ofFloat(v, View.SCALE_X, 1f);
+        ObjectAnimator scaleY = ObjectAnimator.ofFloat(v, View.SCALE_Y, 1f);
+        ObjectAnimator alphaA = ObjectAnimator.ofFloat(v, View.ALPHA, 1f);
         AnimatorSet scale = new AnimatorSet();
         scale.playTogether(scaleX, scaleY, alphaA);
         scale.start();
@@ -40,9 +40,9 @@ public class SizeAnimation extends Animation {
 
     @Override
     public AnimatorSet getAnimatorSet(View v) {
-        ObjectAnimator scaleX = ObjectAnimator.ofFloat(v, Constant.SCALE_X, 1f, 0.5f);
-        ObjectAnimator scaleY = ObjectAnimator.ofFloat(v, Constant.SCALE_Y, 1f, 0.5f);
-        ObjectAnimator alphaA = ObjectAnimator.ofFloat(v, Constant.ALPHA, 1f, 0f);
+        ObjectAnimator scaleX = ObjectAnimator.ofFloat(v, View.SCALE_X, 1f, 0.5f);
+        ObjectAnimator scaleY = ObjectAnimator.ofFloat(v, View.SCALE_Y, 1f, 0.5f);
+        ObjectAnimator alphaA = ObjectAnimator.ofFloat(v, View.ALPHA, 1f, 0f);
         AnimatorSet scale = new AnimatorSet();
         scale.playTogether(scaleX, scaleY);
         sizeAnimatorSet.playSequentially(scale, alphaA);

@@ -1,5 +1,7 @@
 package com.androidanimator.animation;
 
+import com.androidanimator.AndroidAnimator;
+
 import android.animation.Animator.AnimatorListener;
 import android.animation.Animator;
 import android.animation.AnimatorSet;
@@ -16,7 +18,7 @@ public class FadeAnimation extends Animation {
 
     public FadeAnimation() {
         anim = new ObjectAnimator();
-        type = Constant.OUT;
+        type = AndroidAnimator.BEHAVIOR_OUT;
     }
 
     /**
@@ -47,10 +49,10 @@ public class FadeAnimation extends Animation {
 
     @Override
     public AnimatorSet getAnimatorSet(View v) {
-        if (type == Constant.OUT) {
-            anim = ObjectAnimator.ofFloat(v, Constant.ALPHA, v.getAlpha(), 0f);
+        if (type == AndroidAnimator.BEHAVIOR_OUT) {
+            anim = ObjectAnimator.ofFloat(v, View.ALPHA, v.getAlpha(), 0f);
         } else {
-            anim = ObjectAnimator.ofFloat(v, Constant.ALPHA, 0f, 1f);
+            anim = ObjectAnimator.ofFloat(v, View.ALPHA, 0f, 1f);
         }
         anim.setDuration(getDuration());
         if (getListener() != null) {

@@ -27,7 +27,7 @@ public class ShakeAnimation extends Animation {
 	public ShakeAnimation() {
 		shakeDistance = 50;
 		repetitions = 1;
-		duration = Constant.DEFAULT_DURATION;
+		duration = Animation.DEFAULT_DURATION;
 	}
 
 	/**

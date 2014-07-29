@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.androidanimator.animation.Animation;
-import com.androidanimator.animation.Constant;
 import com.androidanimator.animation.Animation.AnimationListener;
 
 /**
@@ -32,7 +31,7 @@ public class ExplodeAnimation extends Animation {
 	public ExplodeAnimation() {
 		xParts = 3;
 		yParts = 3;
-		duration = Constant.DEFAULT_DURATION;
+		duration = Animation.DEFAULT_DURATION;
 	}
 
 	/**

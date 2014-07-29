@@ -28,7 +28,7 @@ public class RotationAnimation extends Animation {
 	public RotationAnimation() {
 		degrees = 360;
 		pivotPosition = PIVOT_CENTER;
-		duration = Constant.DEFAULT_DURATION;
+		duration = Animation.DEFAULT_DURATION;
 	}
 	
 	/**

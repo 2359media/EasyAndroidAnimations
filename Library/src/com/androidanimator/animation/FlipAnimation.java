@@ -1,5 +1,7 @@
 package com.androidanimator.animation;
 
+import com.androidanimator.AndroidAnimator;
+
 import android.animation.Animator;
 import android.animation.Animator.AnimatorListener;
 import android.animation.AnimatorSet;
@@ -7,23 +9,23 @@ import android.animation.ObjectAnimator;
 import android.view.View;
 
 public class FlipAnimation extends Animation {
-
-    AnimatorSet flipSet;
-    int oritention;
+	
+	AnimatorSet flipSet;
+    int orientation;
     int type;
 
     public FlipAnimation(int type, int oritention, AnimationListener listener, long duration) {
         super(listener, duration);
         flipSet = new AnimatorSet();
-        this.oritention = oritention;
+        this.orientation = oritention;
         this.type = type;
     }
 
     public FlipAnimation() {
         super();
         flipSet = new AnimatorSet();
-        oritention = Constant.VERTICAL;
-        type = Constant.OUT;
+        orientation = AndroidAnimator.ORIENTATION_VERTICAL;
+        type = AndroidAnimator.BEHAVIOR_OUT;
     }
 
     @Override
@@ -31,7 +33,7 @@ public class FlipAnimation extends Animation {
         ObjectAnimator rotate;
         ObjectAnimator scale;
         int fromValueRotate, toValueRotate, fromValueScale, toValueScale;
-        if (type == Constant.IN) {
+        if (type == AndroidAnimator.BEHAVIOR_IN) {
             fromValueRotate = 270;
             toValueRotate = 360;
             fromValueScale = 0;
@@ -42,7 +44,7 @@ public class FlipAnimation extends Animation {
             fromValueScale = 1;
             toValueScale = 0;
         }
-        if (oritention == Constant.VERTICAL) {
+        if (orientation == AndroidAnimator.ORIENTATION_VERTICAL) {
             rotate = ObjectAnimator.ofFloat(v, View.ROTATION_X, fromValueRotate, toValueRotate);
             scale = ObjectAnimator.ofFloat(v, View.SCALE_Y, fromValueScale, toValueScale);
         } else {
@@ -84,7 +86,7 @@ public class FlipAnimation extends Animation {
 
     public void flipTwoViews(View front, View behind) {
         ObjectAnimator rotateFront, rotateBehind,rotateBehind2;
-        if (oritention == Constant.VERTICAL) {
+        if (orientation == AndroidAnimator.ORIENTATION_VERTICAL) {
             rotateFront = ObjectAnimator.ofFloat(front, View.ROTATION_X, 0, 90);
             rotateBehind2 = ObjectAnimator.ofFloat(behind, View.ROTATION_X, 0,90);
             rotateBehind = ObjectAnimator.ofFloat(behind, View.ROTATION_X, 270, 360);

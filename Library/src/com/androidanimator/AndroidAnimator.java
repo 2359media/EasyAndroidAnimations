@@ -5,11 +5,11 @@ import java.util.ArrayList;
 import android.graphics.Point;
 import android.view.View;
 
+import com.androidanimator.animation.Animation;
 import com.androidanimator.animation.Animation.AnimationListener;
 import com.androidanimator.animation.BlindAnimation;
 import com.androidanimator.animation.BlinkAnimation;
 import com.androidanimator.animation.BounceAnimation;
-import com.androidanimator.animation.Constant;
 import com.androidanimator.animation.DropAnimation;
 import com.androidanimator.animation.ExplodeAnimation;
 import com.androidanimator.animation.FadeAnimation;
@@ -29,8 +29,22 @@ import com.androidanimator.animation.SlideOutAnimation;
 import com.androidanimator.animation.SlideOutUnderneathAnimation;
 import com.androidanimator.animation.TransferAnimation;
 
-public class MyAnimator {
+public class AndroidAnimator {
 
+	
+	// constants
+	public static final int DIRECTION_LEFT = 1;
+	public static final int DIRECTION_RIGHT = 2;
+	public static final int DIRECTION_UP = 3;
+	public static final int DIRECTION_DOWN = 4;
+	
+	public static final int BEHAVIOR_IN = 1;
+	public static final int BEHAVIOR_OUT = 2;
+	
+	public static final int ORIENTATION_VERTICAL = 1;
+	public static final int ORIENTATION_HORIZONTAL = 0;
+	
+	
 	/**
 	 * The BlindAnimation makes use of a box that is of the same size as the
 	 * view to translate upwards to mimic the blind animation.
@@ -124,14 +138,14 @@ public class MyAnimator {
 
 	public static void dropIn(View view) {
 		DropAnimation animation = new DropAnimation();
-		animation.setType(Constant.IN);
+		animation.setType(AndroidAnimator.BEHAVIOR_IN);
 		animation.animate(view);
 	}
 
 	public static void dropIn(View view, int duration, int direction,
 			AnimationListener listener) {
 		DropAnimation animation = new DropAnimation();
-		animation.setType(Constant.IN);
+		animation.setType(AndroidAnimator.BEHAVIOR_IN);
 		animation.setDuration(duration);
 		animation.setDirection(direction);
 		animation.setListener(listener);
@@ -140,14 +154,14 @@ public class MyAnimator {
 
 	public static void dropOut(View view) {
 		DropAnimation animation = new DropAnimation();
-		animation.setType(Constant.OUT);
+		animation.setType(AndroidAnimator.BEHAVIOR_OUT);
 		animation.animate(view);
 	}
 
 	public static void dropOut(View view, int duration, int direction,
 			AnimationListener listener) {
 		DropAnimation animation = new DropAnimation();
-		animation.setType(Constant.OUT);
+		animation.setType(AndroidAnimator.BEHAVIOR_OUT);
 		animation.setDuration(duration);
 		animation.setDirection(direction);
 		animation.setListener(listener);
@@ -191,13 +205,13 @@ public class MyAnimator {
 	}
 
 	public static void fadeIn(View view) {
-		new FadeAnimation(null, Constant.DEFAULT_DURATION, Constant.IN)
+		new FadeAnimation(null, Animation.DEFAULT_DURATION, AndroidAnimator.BEHAVIOR_IN)
 				.animate(view);
 	}
 
 	public static void fadeIn(View view, long duration,
 			AnimationListener listener) {
-		new FadeAnimation(listener, duration, Constant.IN).animate(view);
+		new FadeAnimation(listener, duration, AndroidAnimator.BEHAVIOR_IN).animate(view);
 	}
 
 	public static void fadeOut(View view) {
@@ -206,7 +220,7 @@ public class MyAnimator {
 
 	public static void fadeOut(View view, long duration,
 			AnimationListener listener) {
-		new FadeAnimation(listener, duration, Constant.OUT).animate(view);
+		new FadeAnimation(listener, duration, AndroidAnimator.BEHAVIOR_OUT).animate(view);
 	}
 
 	/**
@@ -216,8 +230,8 @@ public class MyAnimator {
 	 *            the view to be animated
 	 */
 	public static void flipIn(View view) {
-		new FlipAnimation(Constant.IN, Constant.VERTICAL, null,
-				Constant.DEFAULT_DURATION).animate(view);
+		new FlipAnimation(AndroidAnimator.BEHAVIOR_IN, AndroidAnimator.ORIENTATION_VERTICAL, null,
+				Animation.DEFAULT_DURATION).animate(view);
 	}
 
 	/**
@@ -235,7 +249,7 @@ public class MyAnimator {
 	 */
 	public static void flipIn(View view, int oritention, long duration,
 			AnimationListener listener) {
-		new FlipAnimation(Constant.IN, oritention, listener, duration)
+		new FlipAnimation(AndroidAnimator.BEHAVIOR_IN, oritention, listener, duration)
 				.animate(view);
 	}
 
@@ -246,8 +260,8 @@ public class MyAnimator {
 	 *            the view to be animated
 	 */
 	public static void flipOut(View view) {
-		new FlipAnimation(Constant.OUT, Constant.VERTICAL, null,
-				Constant.DEFAULT_DURATION).animate(view);
+		new FlipAnimation(AndroidAnimator.BEHAVIOR_OUT, AndroidAnimator.ORIENTATION_VERTICAL, null,
+				Animation.DEFAULT_DURATION).animate(view);
 	}
 
 	/**
@@ -265,7 +279,7 @@ public class MyAnimator {
 	 */
 	public static void flipOut(View view, int oritention, long duration,
 			AnimationListener listener) {
-		new FlipAnimation(Constant.OUT, oritention, listener, duration)
+		new FlipAnimation(AndroidAnimator.BEHAVIOR_OUT, oritention, listener, duration)
 				.animate(view);
 	}
 
@@ -302,14 +316,14 @@ public class MyAnimator {
 
 	public static void flyIn(View view) {
 		FlyAnimation transferAnimation = new FlyAnimation();
-		transferAnimation.setType(Constant.IN);
+		transferAnimation.setType(AndroidAnimator.BEHAVIOR_IN);
 		transferAnimation.animate(view);
 	}
 
 	public static void flyIn(View view, long duration, int direction,
 			AnimationListener listener) {
 		FlyAnimation transferAnimation = new FlyAnimation();
-		transferAnimation.setType(Constant.IN);
+		transferAnimation.setType(AndroidAnimator.BEHAVIOR_IN);
 		transferAnimation.setDuration(duration);
 		transferAnimation.setListener(listener);
 		transferAnimation.setDirection(direction);
@@ -323,7 +337,7 @@ public class MyAnimator {
 	public static void flyOut(View view, long duration, int direction,
 			AnimationListener listener) {
 		FlyAnimation transferAnimation = new FlyAnimation();
-		transferAnimation.setType(Constant.OUT);
+		transferAnimation.setType(AndroidAnimator.BEHAVIOR_OUT);
 		transferAnimation.setDuration(duration);
 		transferAnimation.setListener(listener);
 		transferAnimation.setDirection(direction);
@@ -415,13 +429,13 @@ public class MyAnimator {
 		PuffAnimation puffAnimation = new PuffAnimation();
 		puffAnimation.setDuration(duration);
 		puffAnimation.setListener(listener);
-		puffAnimation.setType(Constant.IN);
+		puffAnimation.setType(AndroidAnimator.BEHAVIOR_IN);
 		puffAnimation.animate(view);
 	}
 
 	public static void puffIn(View view) {
 		PuffAnimation puffAnimation = new PuffAnimation();
-		puffAnimation.setType(Constant.IN);
+		puffAnimation.setType(AndroidAnimator.BEHAVIOR_IN);
 		puffAnimation.animate(view);
 	}
 
@@ -480,7 +494,7 @@ public class MyAnimator {
 	 */
 	public static void scaleIn(View view) {
 		ScaleAnimation scaleAnimation = new ScaleAnimation();
-		scaleAnimation.setType(Constant.IN);
+		scaleAnimation.setType(AndroidAnimator.BEHAVIOR_IN);
 		scaleAnimation.animate(view);
 	}
 
@@ -489,7 +503,7 @@ public class MyAnimator {
 		ScaleAnimation scaleAnimation = new ScaleAnimation();
 		scaleAnimation.setDuration(duration);
 		scaleAnimation.setListener(listener);
-		scaleAnimation.setType(Constant.IN);
+		scaleAnimation.setType(AndroidAnimator.BEHAVIOR_IN);
 		scaleAnimation.animate(view);
 	}
 
@@ -503,7 +517,7 @@ public class MyAnimator {
 	 */
 	public static void scaleOut(View view) {
 		ScaleAnimation scaleAnimation = new ScaleAnimation();
-		scaleAnimation.setType(Constant.OUT);
+		scaleAnimation.setType(AndroidAnimator.BEHAVIOR_OUT);
 		scaleAnimation.animate(view);
 	}
 
@@ -512,7 +526,7 @@ public class MyAnimator {
 		ScaleAnimation scaleAnimation = new ScaleAnimation();
 		scaleAnimation.setDuration(duration);
 		scaleAnimation.setListener(listener);
-		scaleAnimation.setType(Constant.OUT);
+		scaleAnimation.setType(AndroidAnimator.BEHAVIOR_OUT);
 		scaleAnimation.animate(view);
 	}
 
@@ -719,5 +733,6 @@ public class MyAnimator {
 		new TransferAnimation(destinationView, duration, listener)
 				.animate(view);
 	}
+
 
 }

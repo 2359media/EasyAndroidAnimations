@@ -1,5 +1,6 @@
 package com.androidanimator.animation;
 
+import com.androidanimator.AndroidAnimator;
 import com.androidanimator.animation.Animation.AnimationListener;
 
 import android.animation.Animator;
@@ -25,8 +26,8 @@ public class SlideInAnimation extends Animation {
 	 * 
 	 */
 	public SlideInAnimation() {
-		direction = Constant.DIRECTION_LEFT;
-		duration = Constant.DEFAULT_DURATION;
+		direction = AndroidAnimator.DIRECTION_LEFT;
+		duration = Animation.DEFAULT_DURATION;
 	}
 
 	/**
@@ -62,19 +63,19 @@ public class SlideInAnimation extends Animation {
 		view.getLocationOnScreen(locationView);
 
 		switch (direction) {
-		case Constant.DIRECTION_LEFT:
+		case AndroidAnimator.DIRECTION_LEFT:
 			slideAnim = ObjectAnimator.ofFloat(view, View.X, -locationView[0]
 					- view.getWidth(), view.getX());
 			break;
-		case Constant.DIRECTION_RIGHT:
+		case AndroidAnimator.DIRECTION_RIGHT:
 			slideAnim = ObjectAnimator.ofFloat(view, View.X,
 					rootView.getRight(), view.getX());
 			break;
-		case Constant.DIRECTION_UP:
+		case AndroidAnimator.DIRECTION_UP:
 			slideAnim = ObjectAnimator.ofFloat(view, View.Y, -locationView[1]
 					- view.getHeight(), view.getY());
 			break;
-		case Constant.DIRECTION_DOWN:
+		case AndroidAnimator.DIRECTION_DOWN:
 			slideAnim = ObjectAnimator.ofFloat(view, View.Y,
 					rootView.getBottom(), view.getY());
 			break;

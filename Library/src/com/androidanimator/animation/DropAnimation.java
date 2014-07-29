@@ -1,5 +1,7 @@
 package com.androidanimator.animation;
 
+import com.androidanimator.AndroidAnimator;
+
 import android.animation.Animator;
 import android.animation.Animator.AnimatorListener;
 import android.animation.AnimatorSet;
@@ -20,7 +22,7 @@ public class DropAnimation extends Animation {
     public DropAnimation() {
         animDrop = new AnimatorSet();
         distance = -1;
-        type = Constant.OUT;
+        type = AndroidAnimator.BEHAVIOR_OUT;
     }
 
     public DropAnimation(AnimationListener listener, long duration, float distance, int direction, int type) {
@@ -61,20 +63,20 @@ public class DropAnimation extends Animation {
         ObjectAnimator animX;
         Property<View, Float> translateType = null;
         switch (direction) {
-        case Constant.DIRECTION_LEFT:
-            translateType = Constant.TRANSLATION_X;
+        case AndroidAnimator.DIRECTION_LEFT:
+            translateType = View.TRANSLATION_X;
             distance = (-1) * distance;
             break;
-        case Constant.DIRECTION_RIGHT:
-            translateType = Constant.TRANSLATION_X;
+        case AndroidAnimator.DIRECTION_RIGHT:
+            translateType = View.TRANSLATION_X;
 
             break;
-        case Constant.DIRECTION_UP:
-            translateType = Constant.TRANSLATION_Y;
+        case AndroidAnimator.DIRECTION_UP:
+            translateType = View.TRANSLATION_Y;
             distance = (-1) * distance;
             break;
-        case Constant.DIRECTION_DOWN:
-            translateType = Constant.TRANSLATION_Y;
+        case AndroidAnimator.DIRECTION_DOWN:
+            translateType = View.TRANSLATION_Y;
 
             break;
         default:
@@ -82,13 +84,13 @@ public class DropAnimation extends Animation {
         }
         // TODO
         ObjectAnimator alpha;
-        if (type == Constant.OUT) {
+        if (type == AndroidAnimator.BEHAVIOR_OUT) {
             animX = ObjectAnimator.ofFloat(v, translateType, 0, distance);
-            alpha = ObjectAnimator.ofFloat(v, Constant.ALPHA, v.getAlpha(), 0f);
+            alpha = ObjectAnimator.ofFloat(v, View.ALPHA, v.getAlpha(), 0f);
         } else {
         	v.setVisibility(View.VISIBLE);
             animX = ObjectAnimator.ofFloat(v, translateType, distance, 0);
-            alpha = ObjectAnimator.ofFloat(v, Constant.ALPHA, v.getAlpha(), 1f);
+            alpha = ObjectAnimator.ofFloat(v, View.ALPHA, v.getAlpha(), 1f);
         }
         animDrop.setDuration(getDuration());
         animDrop.playTogether(animX, alpha);

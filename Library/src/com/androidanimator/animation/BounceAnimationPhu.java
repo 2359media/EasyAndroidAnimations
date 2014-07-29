@@ -15,15 +15,18 @@ import android.view.View;
  * 
  */
 public class BounceAnimationPhu extends Animation {
-    public int AMPLITUDE = 10;
+	
+	public static final int HORIZONTAL = 0;
+    public static final int VERTICAL = 1;
+    public static final int AMPLITUDE = 10;
     AnimatorSet bounceAnim;
     int oritention;
     float amp;
 
     public BounceAnimationPhu() {
         bounceAnim = new AnimatorSet();
-        oritention = Constant.HORIZONTAL;
-        amp = AMPLITUDE;
+        oritention = BounceAnimationPhu.HORIZONTAL;
+        amp = BounceAnimationPhu.AMPLITUDE;
     }
 
     public BounceAnimationPhu(AnimationListener listener, long duration, int oritention, float amp) {
@@ -66,10 +69,10 @@ public class BounceAnimationPhu extends Animation {
     @Override
     public AnimatorSet getAnimatorSet(View v) {
         Property<View, Float> translate_type;
-        if (oritention == Constant.HORIZONTAL) {
-            translate_type = Constant.TRANSLATION_X;
+        if (oritention == BounceAnimationPhu.HORIZONTAL) {
+            translate_type = View.TRANSLATION_X;
         } else {
-            translate_type = Constant.TRANSLATION_Y;
+            translate_type = View.TRANSLATION_Y;
         }
         List<ObjectAnimator> move = new ArrayList<ObjectAnimator>();
         for (int i = 0; i <= amp; i++) {

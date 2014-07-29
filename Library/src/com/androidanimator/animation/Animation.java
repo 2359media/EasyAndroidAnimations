@@ -11,6 +11,8 @@ public abstract class Animation {
 
     protected AnimationListener listener;
     protected long duration;
+    
+    public static final int DEFAULT_DURATION = 500; // 500 ms
 
     public Animation(AnimationListener listener, long duration) {
         super();
@@ -19,7 +21,7 @@ public abstract class Animation {
     }
 
     public Animation() {
-        duration = Constant.DEFAULT_DURATION;
+        duration = Animation.DEFAULT_DURATION;
     };
 
     public AnimationListener getListener() {

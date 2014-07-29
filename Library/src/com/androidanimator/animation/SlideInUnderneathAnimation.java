@@ -1,5 +1,6 @@
 package com.androidanimator.animation;
 
+import com.androidanimator.AndroidAnimator;
 import com.androidanimator.animation.Animation.AnimationListener;
 
 import android.animation.Animator;
@@ -26,8 +27,8 @@ public class SlideInUnderneathAnimation extends Animation {
 	 * 
 	 */
 	public SlideInUnderneathAnimation() {
-		direction = Constant.DIRECTION_LEFT;
-		duration = Constant.DEFAULT_DURATION;
+		direction = AndroidAnimator.DIRECTION_LEFT;
+		duration = Animation.DEFAULT_DURATION;
 	}
 	
 	/**
@@ -61,16 +62,16 @@ public class SlideInUnderneathAnimation extends Animation {
 		parentView.addView(slideInFrame, positionView);
 		
 		switch (direction) {
-		case Constant.DIRECTION_LEFT:
+		case AndroidAnimator.DIRECTION_LEFT:
 			slideInAnim = ObjectAnimator.ofFloat(view, View.X, -view.getWidth(), slideInFrame.getX());
 			break;
-		case Constant.DIRECTION_RIGHT:
+		case AndroidAnimator.DIRECTION_RIGHT:
 			slideInAnim = ObjectAnimator.ofFloat(view, View.X, view.getWidth(), slideInFrame.getX());
 			break;
-		case Constant.DIRECTION_UP:
+		case AndroidAnimator.DIRECTION_UP:
 			slideInAnim = ObjectAnimator.ofFloat(view, View.Y, -view.getHeight(), slideInFrame.getY());
 			break;
-		case Constant.DIRECTION_DOWN:
+		case AndroidAnimator.DIRECTION_DOWN:
 			slideInAnim = ObjectAnimator.ofFloat(view, View.Y, view.getHeight(), slideInFrame.getY());
 			break;
 		default:

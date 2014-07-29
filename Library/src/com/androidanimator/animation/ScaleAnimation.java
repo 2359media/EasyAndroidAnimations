@@ -1,5 +1,7 @@
 package com.androidanimator.animation;
 
+import com.androidanimator.AndroidAnimator;
+
 import android.animation.Animator.AnimatorListener;
 import android.animation.Animator;
 import android.animation.AnimatorSet;
@@ -19,7 +21,7 @@ public class ScaleAnimation extends Animation {
 
     public ScaleAnimation() {
         scaleAnimatorSet = new AnimatorSet();
-        type = Constant.OUT;
+        type = AndroidAnimator.BEHAVIOR_OUT;
     }
 
     public ScaleAnimation(AnimationListener listener, long duration, int type) {
@@ -45,13 +47,13 @@ public class ScaleAnimation extends Animation {
     @Override
     public AnimatorSet getAnimatorSet(View v) {
         ObjectAnimator scaleX, scaleY;
-        if (type == Constant.OUT) {
-            scaleX = ObjectAnimator.ofFloat(v, Constant.SCALE_X, 1f, 0f);
-            scaleY = ObjectAnimator.ofFloat(v, Constant.SCALE_Y, 1f, 0f);
+        if (type == AndroidAnimator.BEHAVIOR_OUT) {
+            scaleX = ObjectAnimator.ofFloat(v, View.SCALE_X, 1f, 0f);
+            scaleY = ObjectAnimator.ofFloat(v, View.SCALE_Y, 1f, 0f);
         } else {
         	v.setVisibility(View.VISIBLE);
-            scaleX = ObjectAnimator.ofFloat(v, Constant.SCALE_X, 0f, 1f);
-            scaleY = ObjectAnimator.ofFloat(v, Constant.SCALE_Y, 0f, 1f);
+            scaleX = ObjectAnimator.ofFloat(v, View.SCALE_X, 0f, 1f);
+            scaleY = ObjectAnimator.ofFloat(v, View.SCALE_Y, 0f, 1f);
         }
         scaleAnimatorSet.playTogether(scaleX, scaleY);
         scaleAnimatorSet.setDuration(getDuration());

@@ -1,6 +1,7 @@
 package com.androidanimator.animation;
 
 
+import com.androidanimator.AndroidAnimator;
 import com.androidanimator.animation.Animation.AnimationListener;
 
 import android.animation.Animator;
@@ -26,8 +27,8 @@ public class SlideOutAnimation extends Animation {
 	 * 
 	 */
 	public SlideOutAnimation() {
-		direction = Constant.DIRECTION_LEFT;
-		duration = Constant.DEFAULT_DURATION;
+		direction = AndroidAnimator.DIRECTION_LEFT;
+		duration = Animation.DEFAULT_DURATION;
 	}
 
 	/**
@@ -62,16 +63,16 @@ public class SlideOutAnimation extends Animation {
 		view.getLocationOnScreen(locationView);
 		
 		switch (direction) {
-		case Constant.DIRECTION_LEFT:
+		case AndroidAnimator.DIRECTION_LEFT:
 			slideAnim = ObjectAnimator.ofFloat(view, View.X, -locationView[0] - view.getWidth());
 			break;
-		case Constant.DIRECTION_RIGHT:
+		case AndroidAnimator.DIRECTION_RIGHT:
 			slideAnim = ObjectAnimator.ofFloat(view, View.X, rootView.getRight());
 			break;
-		case Constant.DIRECTION_UP:
+		case AndroidAnimator.DIRECTION_UP:
 			slideAnim = ObjectAnimator.ofFloat(view, View.Y, -locationView[1] - view.getHeight());
 			break;
-		case Constant.DIRECTION_DOWN:
+		case AndroidAnimator.DIRECTION_DOWN:
 			slideAnim = ObjectAnimator.ofFloat(view, View.Y, rootView.getBottom());
 			break;
 		default:

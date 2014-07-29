@@ -57,10 +57,10 @@ public class BlindAnimation extends Animation {
     @Override
     public AnimatorSet getAnimatorSet(View v) {
         addToAnimatioView(v);
-        ObjectAnimator scaleY = ObjectAnimator.ofFloat(animationLayout, Constant.SCALE_Y, 1f, 0f);
+        ObjectAnimator scaleY = ObjectAnimator.ofFloat(animationLayout, View.SCALE_Y, 1f, 0f);
         child.setPivotX(1f);
         child.setPivotY(1f);
-        ObjectAnimator scaleY_child = ObjectAnimator.ofFloat(child, Constant.SCALE_Y, 1f, 2.5f);
+        ObjectAnimator scaleY_child = ObjectAnimator.ofFloat(child, View.SCALE_Y, 1f, 2.5f);
         blindAnimationSet.playTogether(scaleY, scaleY_child);
         blindAnimationSet.setDuration(getDuration());
         if (getListener() != null) {
