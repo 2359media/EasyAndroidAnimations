@@ -18,19 +18,9 @@ import android.view.ViewGroup;
 public class SlideOutAnimation extends Animation {
 
 	int direction;
-	ObjectAnimator slideAnim;
+	long duration;
+	AnimationListener listener;
 	
-	/**
-	 * The SlideOutAnimation causes the view to slide out to the left, right,
-	 * top or bottom of the screen depending on the parameters provided by the
-	 * user.
-	 * 
-	 */
-	public SlideOutAnimation() {
-		direction = AndroidAnimator.DIRECTION_LEFT;
-		duration = Animation.DEFAULT_DURATION;
-	}
-
 	/**
 	 * The SlideOutAnimation causes the view to slide out to the left, right,
 	 * top or bottom of the screen depending on the parameters provided by the
@@ -44,10 +34,10 @@ public class SlideOutAnimation extends Animation {
 	 *            the AnimationListener of animation @see
 	 *            {@link AnimationListener}
 	 */
-	public SlideOutAnimation(int direction, long duration, AnimationListener listener) {
-		this.direction = direction;
-		this.duration = duration;
-		this.listener = listener;
+	public SlideOutAnimation() {
+		direction = AndroidAnimator.DIRECTION_LEFT;
+		duration = Animation.DEFAULT_DURATION;
+		listener = null;
 	}
 	
 	@Override
@@ -62,6 +52,7 @@ public class SlideOutAnimation extends Animation {
 		final int[] locationView = new int[2];
 		view.getLocationOnScreen(locationView);
 		
+		ObjectAnimator slideAnim = null;
 		switch (direction) {
 		case AndroidAnimator.DIRECTION_LEFT:
 			slideAnim = ObjectAnimator.ofFloat(view, View.X, -locationView[0] - view.getWidth());
@@ -89,6 +80,51 @@ public class SlideOutAnimation extends Animation {
 				}
 			}
 		});
+	}
+
+	/**
+	 * @return the direction
+	 */
+	public int getDirection() {
+		return direction;
+	}
+
+	/**
+	 * @param direction the direction to set
+	 */
+	public SlideOutAnimation setDirection(int direction) {
+		this.direction = direction;
+		return this;
+	}
+
+	/**
+	 * @return the duration
+	 */
+	public long getDuration() {
+		return duration;
+	}
+
+	/**
+	 * @param duration the duration to set
+	 */
+	public SlideOutAnimation setDuration(long duration) {
+		this.duration = duration;
+		return this;
+	}
+
+	/**
+	 * @return the listener
+	 */
+	public AnimationListener getListener() {
+		return listener;
+	}
+
+	/**
+	 * @param listener the listener to set
+	 */
+	public SlideOutAnimation setListener(AnimationListener listener) {
+		this.listener = listener;
+		return this;
 	}
 	
 }

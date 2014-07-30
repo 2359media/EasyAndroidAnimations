@@ -20,19 +20,8 @@ public class ExplodeAnimation extends Animation {
 
 	ViewGroup parentView;
 	int xParts, yParts;
-
-	/**
-	 * The ExplodeAnimation creates a bitmap of the view, divides them into X
-	 * and Y parts and translates the parts away from the center of the view to
-	 * mimic an explosion. The number of parts can vary from 1x1 to 3x3. The
-	 * view is set to invisible and added back for reusing.
-	 * 
-	 */
-	public ExplodeAnimation() {
-		xParts = 3;
-		yParts = 3;
-		duration = Animation.DEFAULT_DURATION;
-	}
+	long duration;
+	AnimationListener listener;
 
 	/**
 	 * The ExplodeAnimation creates a bitmap of the view, divides them into X
@@ -50,12 +39,11 @@ public class ExplodeAnimation extends Animation {
 	 *            the AnimationListener of animation @see
 	 *            {@link AnimationListener}
 	 */
-	public ExplodeAnimation(int xParts, int yParts, long duration,
-			AnimationListener listener) {
-		this.xParts = xParts;
-		this.yParts = yParts;
-		this.duration = duration;
-		this.listener = listener;
+	public ExplodeAnimation() {
+		xParts = 3;
+		yParts = 3;
+		duration = Animation.DEFAULT_DURATION;
+		listener = null;
 	}
 
 	@Override
@@ -137,14 +125,14 @@ public class ExplodeAnimation extends Animation {
 
 			@Override
 			public void onAnimationEnd(Animator animation) {
-				if (getListener() != null) {
-					getListener().onAnimationEnd(ExplodeAnimation.this);
-				}
 				parentView = (ViewGroup) explodeLayout.getParent();
 				view.setLayoutParams(explodeLayout.getLayoutParams());
 				view.setVisibility(View.INVISIBLE);
 				parentView.removeView(explodeLayout);
 				parentView.addView(view, positionView);
+				if (getListener() != null) {
+					getListener().onAnimationEnd(ExplodeAnimation.this);
+				}
 			}
 		});
 	}
@@ -168,6 +156,70 @@ public class ExplodeAnimation extends Animation {
 			}
 		}
 		return translation;
+	}
+
+	/**
+	 * @return the xParts
+	 */
+	public int getxParts() {
+		return xParts;
+	}
+
+	/**
+	 * @param xParts
+	 *            the xParts to set
+	 */
+	public ExplodeAnimation setxParts(int xParts) {
+		this.xParts = xParts;
+		return this;
+	}
+
+	/**
+	 * @return the yParts
+	 */
+	public int getyParts() {
+		return yParts;
+	}
+
+	/**
+	 * @param yParts
+	 *            the yParts to set
+	 */
+	public ExplodeAnimation setyParts(int yParts) {
+		this.yParts = yParts;
+		return this;
+	}
+
+	/**
+	 * @return the duration
+	 */
+	public long getDuration() {
+		return duration;
+	}
+
+	/**
+	 * @param duration
+	 *            the duration to set
+	 */
+	public ExplodeAnimation setDuration(long duration) {
+		this.duration = duration;
+		return this;
+	}
+
+	/**
+	 * @return the listener
+	 */
+	public AnimationListener getListener() {
+		return listener;
+	}
+
+	/**
+	 * @param listener
+	 *            the listener to set
+	 */
+	public ExplodeAnimation setListener(AnimationListener listener) {
+		this.listener = listener;
+		return this;
 	}
 
 }

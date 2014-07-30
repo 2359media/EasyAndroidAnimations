@@ -16,22 +16,14 @@ import android.view.View;
 public class BlinkAnimation extends Animation {
 
 	int repetitions, blinkCount = 0;
-
-	/**
-	 * The BlindAnimation makes use of a box that is of the same size as the
-	 * view to translate upwards to mimic the blind animation.
-	 * 
-	 */
-	public BlinkAnimation() {
-		repetitions = 2;
-		duration = Animation.DEFAULT_DURATION;
-	}
+	long duration;
+	AnimationListener listener;
 
 	/**
 	 * The BlinkAnimation causes the view to blink a number of times to mimic a
 	 * blinking animation.
 	 * 
-	 * @param repetitions
+	 * @param bounces
 	 *            the number of times the animation is repeated
 	 * @param duration
 	 *            the duration of the entire animation
@@ -39,10 +31,10 @@ public class BlinkAnimation extends Animation {
 	 *            the AnimationListener of animation @see
 	 *            {@link AnimationListener}
 	 */
-	public BlinkAnimation(int repetitions, long duration, AnimationListener listener) {
-		this.repetitions = repetitions;
-		this.duration = duration;
-		this.listener = listener;
+	public BlinkAnimation() {
+		repetitions = 2;
+		duration = Animation.DEFAULT_DURATION;
+		listener = null;
 	}
 
 	@Override
@@ -69,7 +61,8 @@ public class BlinkAnimation extends Animation {
 							@Override
 							public void onAnimationEnd(Animator animation) {
 								if (getListener() != null) {
-									getListener().onAnimationEnd(BlinkAnimation.this);
+									getListener().onAnimationEnd(
+											BlinkAnimation.this);
 								}
 							}
 						});
@@ -77,6 +70,54 @@ public class BlinkAnimation extends Animation {
 				}
 			}
 		});
+	}
+
+	/**
+	 * @return the repetitions
+	 */
+	public int getRepetitions() {
+		return repetitions;
+	}
+
+	/**
+	 * @param repetitions
+	 *            the repetitions to set
+	 */
+	public BlinkAnimation setRepetitions(int repetitions) {
+		this.repetitions = repetitions;
+		return this;
+	}
+
+	/**
+	 * @return the duration
+	 */
+	public long getDuration() {
+		return duration;
+	}
+
+	/**
+	 * @param duration
+	 *            the duration to set
+	 */
+	public BlinkAnimation setDuration(long duration) {
+		this.duration = duration;
+		return this;
+	}
+
+	/**
+	 * @return the listener
+	 */
+	public AnimationListener getListener() {
+		return listener;
+	}
+
+	/**
+	 * @param listener
+	 *            the listener to set
+	 */
+	public BlinkAnimation setListener(AnimationListener listener) {
+		this.listener = listener;
+		return this;
 	}
 
 }

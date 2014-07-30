@@ -19,18 +19,9 @@ public class RotationAnimation extends Animation {
 
 	float degrees;
 	int pivotPosition;
+	long duration;
+	AnimationListener listener;
 
-	/**
-	 * The RotationAnimation rotates the view depending on the parameters
-	 * provided by the user.
-	 * 
-	 */
-	public RotationAnimation() {
-		degrees = 360;
-		pivotPosition = PIVOT_CENTER;
-		duration = Animation.DEFAULT_DURATION;
-	}
-	
 	/**
 	 * The RotationAnimation rotates the view depending on the parameters
 	 * provided by the user.
@@ -45,13 +36,13 @@ public class RotationAnimation extends Animation {
 	 *            the AnimationListener of animation @see
 	 *            {@link AnimationListener}
 	 */
-	public RotationAnimation(float degrees, int pivotPosition, long duration, AnimationListener listener) {
-		this.degrees = degrees;
-		this.pivotPosition = pivotPosition;
-		this.duration = duration;
-		this.listener = listener;
+	public RotationAnimation() {
+		degrees = 360;
+		pivotPosition = PIVOT_CENTER;
+		duration = Animation.DEFAULT_DURATION;
+		listener = null;
 	}
-
+	
 	@Override
 	public void animate(View view) {
 		ViewGroup parentView = (ViewGroup) view.getParent(), rootView = (ViewGroup) view
@@ -96,6 +87,66 @@ public class RotationAnimation extends Animation {
 				}
 			}
 		});
+	}
+
+	/**
+	 * @return the degrees
+	 */
+	public float getDegrees() {
+		return degrees;
+	}
+
+	/**
+	 * @param degrees the degrees to set
+	 */
+	public RotationAnimation setDegrees(float degrees) {
+		this.degrees = degrees;
+		return this;
+	}
+
+	/**
+	 * @return the pivotPosition
+	 */
+	public int getPivotPosition() {
+		return pivotPosition;
+	}
+
+	/**
+	 * @param pivotPosition the pivotPosition to set
+	 */
+	public RotationAnimation setPivotPosition(int pivotPosition) {
+		this.pivotPosition = pivotPosition;
+		return this;
+	}
+
+	/**
+	 * @return the duration
+	 */
+	public long getDuration() {
+		return duration;
+	}
+
+	/**
+	 * @param duration the duration to set
+	 */
+	public RotationAnimation setDuration(long duration) {
+		this.duration = duration;
+		return this;
+	}
+
+	/**
+	 * @return the listener
+	 */
+	public AnimationListener getListener() {
+		return listener;
+	}
+
+	/**
+	 * @param listener the listener to set
+	 */
+	public RotationAnimation setListener(AnimationListener listener) {
+		this.listener = listener;
+		return this;
 	}
 
 }

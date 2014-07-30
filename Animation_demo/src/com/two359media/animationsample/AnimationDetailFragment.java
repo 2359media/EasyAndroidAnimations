@@ -3,7 +3,6 @@ package com.two359media.animationsample;
 import java.util.ArrayList;
 
 import android.app.Fragment;
-import android.graphics.Color;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,11 +11,25 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.androidanimator.AA;
 import com.androidanimator.animation.Animation;
 import com.androidanimator.animation.Animation.AnimationListener;
+import com.androidanimator.animation.BlindAnimation;
+import com.androidanimator.animation.BlinkAnimation;
+import com.androidanimator.animation.BounceAnimation;
+import com.androidanimator.animation.ExplodeAnimation;
+import com.androidanimator.animation.FlipHorizontalAnimation;
+import com.androidanimator.animation.FlipHorizontalToAnimation;
+import com.androidanimator.animation.FlipVerticalAnimation;
+import com.androidanimator.animation.FlipVerticalToAnimation;
+import com.androidanimator.animation.HighlightAnimation;
 import com.androidanimator.animation.PathAnimation;
 import com.androidanimator.animation.RotationAnimation;
+import com.androidanimator.animation.ShakeAnimation;
+import com.androidanimator.animation.SlideInAnimation;
+import com.androidanimator.animation.SlideInUnderneathAnimation;
+import com.androidanimator.animation.SlideOutAnimation;
+import com.androidanimator.animation.SlideOutUnderneathAnimation;
+import com.androidanimator.animation.TransferAnimation;
 import com.two359media.animationsample.dummy.DemoItem;
 
 /**
@@ -36,7 +49,7 @@ public class AnimationDetailFragment extends Fragment implements
 	 * The dummy content this fragment is presenting.
 	 */
 	private DemoItem.DummyItem mItem;
-	private View mParentView, mPlayView, mDestination;
+	private View mPlayView, mDestination;
 	private ImageView mImgTarget, mImgBehind;
 
 	/**
@@ -54,8 +67,7 @@ public class AnimationDetailFragment extends Fragment implements
 			// Load the dummy content specified by the fragment
 			// arguments. In a real-world scenario, use a Loader
 			// to load content from a content provider.
-			mItem = DemoItem.ITEM_MAP.get(getArguments()
-					.getInt(ARG_ITEM_ID));
+			mItem = DemoItem.ITEM_MAP.get(getArguments().getInt(ARG_ITEM_ID));
 		}
 	}
 
@@ -66,218 +78,180 @@ public class AnimationDetailFragment extends Fragment implements
 				container, false);
 
 		initView(rootView);
-		AA.fadeIn(mParentView);
-		if (mItem.id <= 3) {
+		// AA.fadeIn(mParentView);
+		if (mItem.id <= 5) {
 			mImgTarget.setImageResource(R.drawable.img1);
-		} else if (mItem.id > 3 && mItem.id < 6) {
+		} else if (mItem.id > 5 && mItem.id <= 10) {
 			mImgTarget.setImageResource(R.drawable.img2);
-		} else if (mItem.id < 9) {
+		} else if (mItem.id > 10 && mItem.id <= 20) {
 			mImgTarget.setImageResource(R.drawable.img3);
-		} else if (mItem.id < 12) {
-			mImgTarget.setImageResource(R.drawable.img4);
 		} else {
-			mImgTarget.setImageResource(R.drawable.img1);
+			mImgTarget.setImageResource(R.drawable.img4);
 		}
 
-		if (mItem.id == 4 || mItem.id == 9 || mItem.id == 14 || mItem.id == 17 || mItem.id == 21 || mItem.id == 22) {
+		if (mItem.id == 9 || mItem.id == 14 || mItem.id == 17 || mItem.id == 21
+				|| mItem.id == 22) {
 			mImgTarget.setVisibility(View.INVISIBLE);
 		}
 		return rootView;
 	}
 
 	private void initView(View v) {
-		mParentView = v.findViewById(R.id.animation_detail);
 		mPlayView = v.findViewById(R.id.imgPlay);
 		mImgTarget = (ImageView) v.findViewById(R.id.imgTarget);
 		mPlayView.setOnClickListener(this);
 		mImgBehind = (ImageView) v.findViewById(R.id.imgBehind);
 		mDestination = v.findViewById(R.id.textView1);
+		mImgBehind.setVisibility(View.INVISIBLE);
+		if (mItem.id != 25) {
+			mDestination.setVisibility(View.INVISIBLE);
+		}
 	}
 
 	@Override
 	public void onClick(final View v) {
-		AA.fadeOut(mPlayView, 300, new AnimationListener() {
-
-			@Override
-			public void onAnimationEnd(Animation animation) {
-				mPlayView.setVisibility(View.GONE);
-				doAnimation();
-			}
-		});
+		mPlayView.setVisibility(View.INVISIBLE);
+		doAnimation();
 	}
 
 	private void doAnimation() {
 		switch (mItem.id) {
 		case 1:
-			AA.blind(mImgTarget);
+			new BlindAnimation().animate(mImgTarget);
 			break;
 		case 2:
-			AA.blink(mImgTarget, 5, Animation.DEFAULT_DURATION,
-					new AnimationListener() {
+			new BlinkAnimation().setListener(new AnimationListener() {
 
-						@Override
-						public void onAnimationEnd(Animation animation) {
-							mPlayView.setVisibility(View.VISIBLE);
-							AA.fadeIn(mPlayView);
-						}
-					});
+				@Override
+				public void onAnimationEnd(Animation animation) {
+					mPlayView.setVisibility(View.VISIBLE);
+				}
+			}).animate(mImgTarget);
 			break;
 		case 3:
-			AA.bounce(mImgTarget, 10, 5, Animation.DEFAULT_DURATION,
-					new AnimationListener() {
+			new BounceAnimation().setDuration(100)
+					.setListener(new AnimationListener() {
 
 						@Override
 						public void onAnimationEnd(Animation animation) {
 							mPlayView.setVisibility(View.VISIBLE);
-							AA.fadeIn(mPlayView);
 						}
-					});
+					}).animate(mImgTarget);
 			break;
 		case 4:
-			AA.dropIn(mImgTarget, Animation.DEFAULT_DURATION, AA.DIRECTION_UP, null);
+			new ExplodeAnimation().animate(mImgTarget);
 			break;
 		case 5:
-			AA.dropOut(mImgTarget, Animation.DEFAULT_DURATION,
-					AA.DIRECTION_LEFT, null);
+			new FlipHorizontalAnimation().setListener(new AnimationListener() {
+
+				@Override
+				public void onAnimationEnd(Animation animation) {
+					mPlayView.setVisibility(View.VISIBLE);
+				}
+			}).animate(mImgTarget);
 			break;
 		case 6:
-			AA.explode(mImgTarget, 3, 3, Animation.DEFAULT_DURATION,
-					null);
+			new FlipHorizontalToAnimation().setFlipToView(mImgBehind).animate(
+					mImgTarget);
 			break;
 		case 7:
-			AA.flipOut(mImgTarget, AA.ORIENTATION_HORIZONTAL,
-					Animation.DEFAULT_DURATION, new AnimationListener() {
+			new FlipVerticalAnimation().setListener(new AnimationListener() {
 
-						@Override
-						public void onAnimationEnd(Animation animation) {
-							AA.flipIn(mImgTarget, AA.ORIENTATION_HORIZONTAL,
-									Animation.DEFAULT_DURATION,
-									new AnimationListener() {
-
-										@Override
-										public void onAnimationEnd(
-												Animation animation) {
-											mPlayView
-													.setVisibility(View.VISIBLE);
-											AA.fadeIn(mPlayView);
-										}
-									});
-						}
-					});
+				@Override
+				public void onAnimationEnd(Animation animation) {
+					mPlayView.setVisibility(View.VISIBLE);
+				}
+			}).animate(mImgTarget);
 			break;
 		case 8:
-			mImgBehind.setVisibility(View.VISIBLE);
-			AA.flipTogether(mImgTarget, mImgBehind, AA.ORIENTATION_VERTICAL,
-					Animation.DEFAULT_DURATION, new AnimationListener() {
-
-						@Override
-						public void onAnimationEnd(Animation animation) {
-							// swap
-							ImageView temp = mImgBehind;
-							mImgBehind = mImgTarget;
-							mImgTarget = temp;
-							mPlayView.setVisibility(View.VISIBLE);
-							AA.fadeIn(mPlayView);
-						}
-					});
+			new FlipVerticalToAnimation().setFlipToView(mImgBehind).animate(
+					mImgTarget);
 			break;
 		case 9:
-			AA.flyIn(mImgTarget, Animation.DEFAULT_DURATION,
-					AA.DIRECTION_UP, null);
+			// fly in
 			break;
 		case 10:
-			AA.flyOut(mImgTarget, Animation.DEFAULT_DURATION,
-					AA.DIRECTION_UP, null);
+			// fly out
 			break;
 		case 11:
-			AA.fold(mImgTarget);
+			// fold
 			break;
 		case 12:
-			AA.highlight(mImgTarget, Color.YELLOW,
-					Animation.DEFAULT_DURATION, new AnimationListener() {
+			new HighlightAnimation().setListener(new AnimationListener() {
 
-						@Override
-						public void onAnimationEnd(Animation animation) {
-							mPlayView.setVisibility(View.VISIBLE);
-							AA.fadeIn(mPlayView);
-						}
-					});
+				@Override
+				public void onAnimationEnd(Animation animation) {
+					mPlayView.setVisibility(View.VISIBLE);
+				}
+			}).animate(mImgTarget);
 			break;
 		case 13:
-			final ArrayList<Point> points = new ArrayList<Point>();
+			ArrayList<Point> points = new ArrayList<>();
+			points.add(new Point(0, 100));
 			points.add(new Point(50, 0));
 			points.add(new Point(100, 100));
 			points.add(new Point(0, 50));
 			points.add(new Point(100, 50));
 			points.add(new Point(0, 100));
 			points.add(new Point(50, 50));
-			AA.path(mImgTarget, points, PathAnimation.ANCHOR_CENTER,
-					Animation.DEFAULT_DURATION, new AnimationListener() {
+			new PathAnimation().setPoints(points)
+					.setListener(new AnimationListener() {
 
 						@Override
 						public void onAnimationEnd(Animation animation) {
 							mPlayView.setVisibility(View.VISIBLE);
-							AA.fadeIn(mPlayView);
 						}
-					});
+					}).animate(mImgTarget);
 			break;
 		case 14:
-			AA.puffIn(mImgTarget, Animation.DEFAULT_DURATION, null);
+			// puff in
 			break;
 		case 15:
-			AA.puffOut(mImgTarget, Animation.DEFAULT_DURATION, null);
+			// puff out
 			break;
 		case 16:
-			AA.rotate(mImgTarget, 360,
-					RotationAnimation.PIVOT_TOP_LEFT,
-					Animation.DEFAULT_DURATION, new AnimationListener() {
+			new RotationAnimation().setListener(new AnimationListener() {
 
-						@Override
-						public void onAnimationEnd(Animation animation) {
-							mPlayView.setVisibility(View.VISIBLE);
-							AA.fadeIn(mPlayView);
-						}
-					});
+				@Override
+				public void onAnimationEnd(Animation animation) {
+					mPlayView.setVisibility(View.VISIBLE);
+				}
+			}).animate(mImgTarget);
 			break;
 		case 17:
-			AA.scaleIn(mImgTarget, Animation.DEFAULT_DURATION, null);
+			// scale in
 			break;
 		case 18:
-			AA.scaleOut(mImgTarget, Animation.DEFAULT_DURATION, null);
+			// scale out
 			break;
 		case 19:
-			AA.shake(mImgTarget, 10, 5, Animation.DEFAULT_DURATION,
-					new AnimationListener() {
+			new ShakeAnimation().setDuration(100)
+					.setListener(new AnimationListener() {
 
 						@Override
 						public void onAnimationEnd(Animation animation) {
 							mPlayView.setVisibility(View.VISIBLE);
-							AA.fadeIn(mPlayView);
 						}
-					});
+					}).animate(mImgTarget);
 			break;
 		case 20:
-			AA.size(mImgTarget);
+			// size
 			break;
 		case 21:
-			AA.slideIn(mImgTarget, AA.DIRECTION_UP,
-					Animation.DEFAULT_DURATION, null);
+			new SlideInAnimation().animate(mImgTarget);
 			break;
 		case 22:
-			AA.slideInUnderneath(mImgTarget, AA.DIRECTION_UP,
-					Animation.DEFAULT_DURATION, null);
+			new SlideInUnderneathAnimation().animate(mImgTarget);
 			break;
 		case 23:
-			AA.slideOut(mImgTarget, AA.DIRECTION_UP,
-					Animation.DEFAULT_DURATION, null);
+			new SlideOutAnimation().animate(mImgTarget);
 			break;
 		case 24:
-			AA.slideOutUnderneath(mImgTarget, AA.DIRECTION_UP,
-					Animation.DEFAULT_DURATION, null);
+			new SlideOutUnderneathAnimation().animate(mImgTarget);
 			break;
 		case 25:
-			AA.transfer(mImgTarget, mDestination,
-					Animation.DEFAULT_DURATION, null);
+			new TransferAnimation().setDestinationView(mDestination).animate(
+					mImgTarget);
 			break;
 		default:
 			break;

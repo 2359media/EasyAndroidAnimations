@@ -17,16 +17,8 @@ import android.widget.ImageView;
 public class HighlightAnimation extends Animation {
 
 	int color;
-
-	/**
-	 * The HighlightAnimation makes use of a translucent box to overlay the view
-	 * to mimic the highlighting of the view.
-	 * 
-	 */
-	public HighlightAnimation() {
-		color = Color.YELLOW;
-		duration = Animation.DEFAULT_DURATION;
-	}
+	long duration;
+	AnimationListener listener;
 
 	/**
 	 * The HighlightAnimation makes use of a translucent box to overlay the view
@@ -40,40 +32,89 @@ public class HighlightAnimation extends Animation {
 	 *            the AnimationListener of animation @see
 	 *            {@link AnimationListener}
 	 */
-	public HighlightAnimation(int color, long duration, AnimationListener listener) {
-		this.color = color;
-		this.duration = duration;
-		this.listener = listener;
+	public HighlightAnimation() {
+		color = Color.YELLOW;
+		duration = Animation.DEFAULT_DURATION;
+		listener = null;
 	}
 
 	@Override
 	public void animate(final View view) {
 		final FrameLayout highlightFrame = new FrameLayout(view.getContext());
-		final LayoutParams layoutParams = new LayoutParams(view.getLayoutParams());
-		
+		LayoutParams layoutParams = new LayoutParams(view.getWidth(), view.getHeight());
 		ImageView highlightView = new ImageView(view.getContext());
 		highlightView.setBackgroundColor(color);
 		highlightView.setAlpha(0.5f);
+		highlightView.setVisibility(View.VISIBLE);
 		
 		final ViewGroup parentView = (ViewGroup) view.getParent();
 		final int positionView = parentView.indexOfChild(view);
-		parentView.removeViewAt(positionView);
-		highlightFrame.addView(view, layoutParams);
-		highlightFrame.addView(highlightView, layoutParams);
 		parentView.addView(highlightFrame, positionView, layoutParams);
+		highlightFrame.setX(view.getLeft());
+		highlightFrame.setY(view.getTop());
+		parentView.removeView(view);
+		highlightFrame.addView(view);
+		highlightFrame.addView(highlightView);
 		
 		highlightView.animate().alpha(0).setDuration(duration).setListener(new AnimatorListenerAdapter() {
 
 			@Override
 			public void onAnimationEnd(Animator animation) {
 				highlightFrame.removeAllViews();
-				parentView.removeViewAt(positionView);
-				parentView.addView(view, positionView, layoutParams);
+				parentView.addView(view, positionView);
+				view.setX(highlightFrame.getLeft());
+				view.setY(highlightFrame.getTop());
+				parentView.removeView(highlightFrame);
 				if (getListener() != null) {
 					getListener().onAnimationEnd(HighlightAnimation.this);
 				}
 			}
 		});
+	}
+
+	/**
+	 * @return the color
+	 */
+	public int getColor() {
+		return color;
+	}
+
+	/**
+	 * @param color the color to set
+	 */
+	public HighlightAnimation setColor(int color) {
+		this.color = color;
+		return this;
+	}
+
+	/**
+	 * @return the duration
+	 */
+	public long getDuration() {
+		return duration;
+	}
+
+	/**
+	 * @param duration the duration to set
+	 */
+	public HighlightAnimation setDuration(long duration) {
+		this.duration = duration;
+		return this;
+	}
+
+	/**
+	 * @return the listener
+	 */
+	public AnimationListener getListener() {
+		return listener;
+	}
+
+	/**
+	 * @param listener the listener to set
+	 */
+	public HighlightAnimation setListener(AnimationListener listener) {
+		this.listener = listener;
+		return this;
 	}
 
 }

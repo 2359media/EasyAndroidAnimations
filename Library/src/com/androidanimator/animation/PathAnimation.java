@@ -27,27 +27,8 @@ public class PathAnimation extends Animation {
 
 	ArrayList<Point> points;
 	int anchorPosition;
-	
-	/**
-	 * The PathAnimation translates the view within its parent view and
-	 * according to the ArrayList of Points provided by the user. The values of
-	 * x and y in each Point must be in the range of 0-100. Note that the status
-	 * bar and action bar are not taken into consideration.
-	 * 
-	 * @param points
-	 *            the ArrayList of Points that the view is translated to within
-	 *            its parent
-	 * @param duration
-	 *            the duration of the entire animation
-	 * @param anchorPosition
-	 *            the anchor position whereby the view is translated from
-	 */
-	public PathAnimation(ArrayList<Point> points, int anchorPosition,
-			long duration) {
-		this.points = points;
-		this.duration = duration;
-		this.anchorPosition = anchorPosition;
-	}
+	long duration;
+	AnimationListener listener;
 
 	/**
 	 * The PathAnimation translates the view within its parent view and
@@ -66,12 +47,11 @@ public class PathAnimation extends Animation {
 	 *            the AnimationListener of animation @see
 	 *            {@link AnimationListener}
 	 */
-	public PathAnimation(ArrayList<Point> points, int anchorPosition,
-			long duration, AnimationListener listener) {
-		this.points = points;
-		this.duration = duration;
-		this.anchorPosition = anchorPosition;
-		this.listener = listener;
+	public PathAnimation() {
+		points = null;
+		anchorPosition = ANCHOR_CENTER;
+		duration = Animation.DEFAULT_DURATION;
+		listener = null;
 	}
 
 	@Override
@@ -136,5 +116,65 @@ public class PathAnimation extends Animation {
 				}
 			}
 		});
+	}
+
+	/**
+	 * @return the points
+	 */
+	public ArrayList<Point> getPoints() {
+		return points;
+	}
+
+	/**
+	 * @param points the points to set
+	 */
+	public PathAnimation setPoints(ArrayList<Point> points) {
+		this.points = points;
+		return this;
+	}
+
+	/**
+	 * @return the anchorPosition
+	 */
+	public int getAnchorPosition() {
+		return anchorPosition;
+	}
+
+	/**
+	 * @param anchorPosition the anchorPosition to set
+	 */
+	public PathAnimation setAnchorPosition(int anchorPosition) {
+		this.anchorPosition = anchorPosition;
+		return this;
+	}
+
+	/**
+	 * @return the duration
+	 */
+	public long getDuration() {
+		return duration;
+	}
+
+	/**
+	 * @param duration the duration to set
+	 */
+	public PathAnimation setDuration(long duration) {
+		this.duration = duration;
+		return this;
+	}
+
+	/**
+	 * @return the listener
+	 */
+	public AnimationListener getListener() {
+		return listener;
+	}
+
+	/**
+	 * @param listener the listener to set
+	 */
+	public PathAnimation setListener(AnimationListener listener) {
+		this.listener = listener;
+		return this;
 	}
 }

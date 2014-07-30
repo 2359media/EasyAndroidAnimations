@@ -17,17 +17,8 @@ import android.widget.FrameLayout;
 public class SlideOutUnderneathAnimation extends Animation {
 
 	int direction;
-
-	/**
-	 * The SlideOutUnderneathAnimation causes the view to slide out underneath
-	 * to the left, right, up or down depending on the parameters provided by
-	 * the user.
-	 * 
-	 */
-	public SlideOutUnderneathAnimation() {
-		direction = AndroidAnimator.DIRECTION_LEFT;
-		duration = Animation.DEFAULT_DURATION;
-	}
+	long duration;
+	AnimationListener listener;
 
 	/**
 	 * The SlideOutUnderneathAnimation causes the view to slide out underneath
@@ -42,11 +33,10 @@ public class SlideOutUnderneathAnimation extends Animation {
 	 *            the AnimationListener of animation @see
 	 *            {@link AnimationListener}
 	 */
-	public SlideOutUnderneathAnimation(int direction, long duration,
-			AnimationListener listener) {
-		this.direction = direction;
-		this.duration = duration;
-		this.listener = listener;
+	public SlideOutUnderneathAnimation() {
+		direction = AndroidAnimator.DIRECTION_LEFT;
+		duration = Animation.DEFAULT_DURATION;
+		listener = null;
 	}
 
 	@Override
@@ -92,6 +82,51 @@ public class SlideOutUnderneathAnimation extends Animation {
 						}
 					}
 				});
+	}
+
+	/**
+	 * @return the direction
+	 */
+	public int getDirection() {
+		return direction;
+	}
+
+	/**
+	 * @param direction the direction to set
+	 */
+	public SlideOutUnderneathAnimation setDirection(int direction) {
+		this.direction = direction;
+		return this;
+	}
+
+	/**
+	 * @return the duration
+	 */
+	public long getDuration() {
+		return duration;
+	}
+
+	/**
+	 * @param duration the duration to set
+	 */
+	public SlideOutUnderneathAnimation setDuration(long duration) {
+		this.duration = duration;
+		return this;
+	}
+
+	/**
+	 * @return the listener
+	 */
+	public AnimationListener getListener() {
+		return listener;
+	}
+
+	/**
+	 * @param listener the listener to set
+	 */
+	public SlideOutUnderneathAnimation setListener(AnimationListener listener) {
+		this.listener = listener;
+		return this;
 	}
 
 }

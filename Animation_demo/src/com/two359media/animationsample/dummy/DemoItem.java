@@ -28,11 +28,11 @@ public class DemoItem {
 		addItem(new DummyItem(1, "Blind"));
 		addItem(new DummyItem(2, "Blink"));
 		addItem(new DummyItem(3, "Bounce"));
-		addItem(new DummyItem(4, "Drop In"));
-		addItem(new DummyItem(5, "Drop Out"));
-		addItem(new DummyItem(6, "Explode"));
-		addItem(new DummyItem(7, "Flip"));
-		addItem(new DummyItem(8, "Flip Together"));
+		addItem(new DummyItem(4, "Explode"));
+		addItem(new DummyItem(5, "Flip Horizontal"));
+		addItem(new DummyItem(6, "Flip Horizontal To"));
+		addItem(new DummyItem(7, "Flip Vertical"));
+		addItem(new DummyItem(8, "Flip Vertical To"));
 		addItem(new DummyItem(9, "Fly In"));
 		addItem(new DummyItem(10, "Fly Out"));
 		addItem(new DummyItem(11, "Fold"));

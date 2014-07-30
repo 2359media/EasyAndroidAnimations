@@ -9,40 +9,41 @@ import android.view.View;
  */
 public abstract class Animation {
 
-    protected AnimationListener listener;
-    protected long duration;
+//    protected AnimationListener listener;
+//    protected long duration;
     
     public static final int DEFAULT_DURATION = 500; // 500 ms
 
-    public Animation(AnimationListener listener, long duration) {
-        super();
-        this.listener = listener;
-        this.duration = duration;
-    }
-
+//    public Animation(AnimationListener listener, long duration) {
+//        super();
+//        this.listener = listener;
+//        this.duration = duration;
+//    }
+//
     public Animation() {
-        duration = Animation.DEFAULT_DURATION;
+//        duration = Animation.DEFAULT_DURATION;
     };
+//
+//    public AnimationListener getListener() {
+//        return listener;
+//    }
+//
+//    public void setListener(AnimationListener listener) {
+//        this.listener = listener;
+//    }
+//
+//    public long getDuration() {
+//        return duration;
+//    }
+//
+//    public Animation setDuration(long duration) {
+//        this.duration = duration;
+//        return this;
+//    }
 
-    public AnimationListener getListener() {
-        return listener;
-    }
+    public abstract void animate(View view);
 
-    public void setListener(AnimationListener listener) {
-        this.listener = listener;
-    }
-
-    public long getDuration() {
-        return duration;
-    }
-
-    public void setDuration(long duration) {
-        this.duration = duration;
-    }
-
-    public abstract void animate(View v);
-
-    public AnimatorSet getAnimatorSet(View v) {
+    public AnimatorSet getAnimatorSet(View view) {
         return null;
     }
 

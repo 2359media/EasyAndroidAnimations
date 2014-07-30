@@ -14,25 +14,12 @@ import android.view.ViewGroup;
  */
 public class TransferAnimation extends Animation {
 
-	View destinationView;
 	ViewGroup parentView;
+	View destinationView;
 	int transX, transY;
+	long duration;
+	AnimationListener listener;
 	
-	/**
-	 * The TransferAnimation transfers the view to another view provided by the
-	 * user through scaling and translation. The view is scaled to the same size
-	 * and is translated to the same position as the destination view.
-	 * 
-	 * @param destinationView
-	 *            the view to be transferred to
-	 * @param duration
-	 *            the duration of the entire animation
-	 */
-	public TransferAnimation(View destinationView, long duration) {
-		this.destinationView = destinationView;
-		this.duration = duration;
-	}
-
 	/**
 	 * The TransferAnimation transfers the view to another view provided by the
 	 * user through scaling and translation. The view is scaled to the same size
@@ -46,11 +33,10 @@ public class TransferAnimation extends Animation {
 	 *            the AnimationListener of animation @see
 	 *            {@link AnimationListener}
 	 */
-	public TransferAnimation(View destinationView, long duration,
-			AnimationListener listener) {
-		this.destinationView = destinationView;
-		this.duration = duration;
-		this.listener = listener;
+	public TransferAnimation() {
+		destinationView = null;
+		duration = Animation.DEFAULT_DURATION;
+		listener = null;
 	}
 
 	@Override
@@ -87,5 +73,80 @@ public class TransferAnimation extends Animation {
 						}
 					}
 				});
+	}
+
+	/**
+	 * @return the destinationView
+	 */
+	public View getDestinationView() {
+		return destinationView;
+	}
+
+	/**
+	 * @param destinationView the destinationView to set
+	 */
+	public TransferAnimation setDestinationView(View destinationView) {
+		this.destinationView = destinationView;
+		return this;
+	}
+
+	/**
+	 * @return the transX
+	 */
+	public int getTransX() {
+		return transX;
+	}
+
+	/**
+	 * @param transX the transX to set
+	 */
+	public TransferAnimation setTransX(int transX) {
+		this.transX = transX;
+		return this;
+	}
+
+	/**
+	 * @return the transY
+	 */
+	public int getTransY() {
+		return transY;
+	}
+
+	/**
+	 * @param transY the transY to set
+	 */
+	public TransferAnimation setTransY(int transY) {
+		this.transY = transY;
+		return this;
+	}
+
+	/**
+	 * @return the duration
+	 */
+	public long getDuration() {
+		return duration;
+	}
+
+	/**
+	 * @param duration the duration to set
+	 */
+	public TransferAnimation setDuration(long duration) {
+		this.duration = duration;
+		return this;
+	}
+
+	/**
+	 * @return the listener
+	 */
+	public AnimationListener getListener() {
+		return listener;
+	}
+
+	/**
+	 * @param listener the listener to set
+	 */
+	public TransferAnimation setListener(AnimationListener listener) {
+		this.listener = listener;
+		return this;
 	}
 }

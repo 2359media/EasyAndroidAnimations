@@ -17,18 +17,9 @@ import android.view.ViewGroup;
 public class ShakeAnimation extends Animation {
 
 	float shakeDistance;
-	int repetitions, shakeCount = 0;
-
-	/**
-	 * The ShakeAnimation causes the view to shake from left to right for a
-	 * number of times before returning to its original position.
-	 * 
-	 */
-	public ShakeAnimation() {
-		shakeDistance = 50;
-		repetitions = 1;
-		duration = Animation.DEFAULT_DURATION;
-	}
+	int shakes, shakeCount = 0;
+	long duration;
+	AnimationListener listener;
 
 	/**
 	 * The ShakeAnimation causes the view to shake from left to right for a
@@ -36,7 +27,7 @@ public class ShakeAnimation extends Animation {
 	 * 
 	 * @param shakeDistance
 	 *            the maximum distance of the shake
-	 * @param repetitions
+	 * @param bounces
 	 *            the number of times the animation is repeated
 	 * @param duration
 	 *            the duration of the entire animation
@@ -44,16 +35,16 @@ public class ShakeAnimation extends Animation {
 	 *            the AnimationListener of animation @see
 	 *            {@link AnimationListener}
 	 */
-	public ShakeAnimation(float shakeDistance, int repetitions, long duration, AnimationListener listener) {
-		this.shakeDistance = shakeDistance;
-		this.repetitions = repetitions;
-		this.duration = duration;
-		this.listener = listener;
+	public ShakeAnimation() {
+		shakeDistance = 20;
+		shakes = 2;
+		duration = Animation.DEFAULT_DURATION;
+		listener = null;
 	}
 
 	@Override
 	public void animate(View view) {
-		duration /= repetitions;
+		duration /= shakes;
 		AnimatorSet shakeAnim = new AnimatorSet(), shakeAnim1 = new AnimatorSet(), shakeAnim2 = new AnimatorSet();
 		shakeAnim1
 				.playSequentially(ObjectAnimator.ofFloat(view,
@@ -78,22 +69,76 @@ public class ShakeAnimation extends Animation {
 			@Override
 			public void onAnimationEnd(Animator animation) {
 				shakeCount++;
-				if (shakeCount != repetitions) {
-					animation.start();
-					if (shakeCount == repetitions - 1) {
-						animation.addListener(new AnimatorListenerAdapter() {
-
-							@Override
-							public void onAnimationEnd(Animator animation) {
-								if (getListener() != null) {
-									getListener().onAnimationEnd(ShakeAnimation.this);
-								}
-							}
-						});
+				if (shakeCount == shakes) {
+					if (getListener() != null) {
+						getListener().onAnimationEnd(ShakeAnimation.this);
 					}
+				}
+				else {
+					animation.start();
 				}
 			}
 		});
+	}
+
+	/**
+	 * @return the shakeDistance
+	 */
+	public float getShakeDistance() {
+		return shakeDistance;
+	}
+
+	/**
+	 * @param shakeDistance the shakeDistance to set
+	 */
+	public ShakeAnimation setShakeDistance(float shakeDistance) {
+		this.shakeDistance = shakeDistance;
+		return this;
+	}
+
+	/**
+	 * @return the repetitions
+	 */
+	public int getRepetitions() {
+		return shakes;
+	}
+
+	/**
+	 * @param repetitions the repetitions to set
+	 */
+	public ShakeAnimation setRepetitions(int repetitions) {
+		this.shakes = repetitions;
+		return this;
+	}
+
+	/**
+	 * @return the duration
+	 */
+	public long getDuration() {
+		return duration;
+	}
+
+	/**
+	 * @param duration the duration to set
+	 */
+	public ShakeAnimation setDuration(long duration) {
+		this.duration = duration;
+		return this;
+	}
+
+	/**
+	 * @return the listener
+	 */
+	public AnimationListener getListener() {
+		return listener;
+	}
+
+	/**
+	 * @param listener the listener to set
+	 */
+	public ShakeAnimation setListener(AnimationListener listener) {
+		this.listener = listener;
+		return this;
 	}
 
 }
