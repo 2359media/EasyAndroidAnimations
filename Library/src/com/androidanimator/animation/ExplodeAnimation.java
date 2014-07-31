@@ -162,7 +162,7 @@ public class ExplodeAnimation extends Animation {
 	/**
 	 * @return the xParts
 	 */
-	public int getxParts() {
+	public int getXParts() {
 		return xParts;
 	}
 
@@ -170,7 +170,7 @@ public class ExplodeAnimation extends Animation {
 	 * @param xParts
 	 *            the xParts to set
 	 */
-	public ExplodeAnimation setxParts(int xParts) {
+	public ExplodeAnimation setXParts(int xParts) {
 		this.xParts = xParts;
 		return this;
 	}
@@ -178,7 +178,7 @@ public class ExplodeAnimation extends Animation {
 	/**
 	 * @return the yParts
 	 */
-	public int getyParts() {
+	public int getYParts() {
 		return yParts;
 	}
 
@@ -186,7 +186,7 @@ public class ExplodeAnimation extends Animation {
 	 * @param yParts
 	 *            the yParts to set
 	 */
-	public ExplodeAnimation setyParts(int yParts) {
+	public ExplodeAnimation setYParts(int yParts) {
 		this.yParts = yParts;
 		return this;
 	}
