@@ -104,7 +104,7 @@ public class BounceAnimation extends Animation {
 	/**
 	 * @return the repetitions
 	 */
-	public int getRepetitions() {
+	public int getBounces() {
 		return bounces;
 	}
 
@@ -112,7 +112,7 @@ public class BounceAnimation extends Animation {
 	 * @param repetitions
 	 *            the repetitions to set
 	 */
-	public BounceAnimation setRepetitions(int repetitions) {
+	public BounceAnimation setBounces(int repetitions) {
 		this.bounces = repetitions;
 		return this;
 	}

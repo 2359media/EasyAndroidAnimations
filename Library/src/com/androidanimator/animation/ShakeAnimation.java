@@ -101,14 +101,14 @@ public class ShakeAnimation extends Animation {
 	/**
 	 * @return the repetitions
 	 */
-	public int getRepetitions() {
+	public int getShakes() {
 		return shakes;
 	}
 
 	/**
 	 * @param repetitions the repetitions to set
 	 */
-	public ShakeAnimation setRepetitions(int repetitions) {
+	public ShakeAnimation setShakes(int repetitions) {
 		this.shakes = repetitions;
 		return this;
 	}
