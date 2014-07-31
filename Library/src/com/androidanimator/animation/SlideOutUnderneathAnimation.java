@@ -30,14 +30,15 @@ public class SlideOutUnderneathAnimation extends Animation {
 	 *            the AnimationListener of animation @see
 	 *            {@link AnimationListener}
 	 */
-	public SlideOutUnderneathAnimation() {
+	public SlideOutUnderneathAnimation(View view) {
+		this.view = view;
 		direction = Animation.DIRECTION_LEFT;
 		duration = Animation.DEFAULT_DURATION;
 		listener = null;
 	}
 
 	@Override
-	public void animate(final View view) {
+	public void animate() {
 		final ViewGroup parentView = (ViewGroup) view.getParent();
 		final FrameLayout slideOutFrame = new FrameLayout(view.getContext());
 		final int positionView = parentView.indexOfChild(view);

@@ -14,11 +14,11 @@ import android.view.ViewGroup;
  */
 public class TransferAnimation extends Animation {
 
-	ViewGroup parentView;
 	View destinationView;
 	int transX, transY;
 	long duration;
 	AnimationListener listener;
+	ViewGroup parentView;
 	
 	/**
 	 * The TransferAnimation transfers the view to another view provided by the
@@ -33,14 +33,15 @@ public class TransferAnimation extends Animation {
 	 *            the AnimationListener of animation @see
 	 *            {@link AnimationListener}
 	 */
-	public TransferAnimation() {
+	public TransferAnimation(View view) {
+		this.view = view;
 		destinationView = null;
 		duration = Animation.DEFAULT_DURATION;
 		listener = null;
 	}
 
 	@Override
-	public void animate(final View view) {
+	public void animate() {
 		parentView = (ViewGroup) view.getParent();
 		final ViewGroup rootView = (ViewGroup) view.getRootView();
 		while (!parentView.equals(rootView)) {

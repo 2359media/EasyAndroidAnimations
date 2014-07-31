@@ -122,67 +122,70 @@ public class AnimationDetailFragment extends Fragment implements
 	private void doAnimation() {
 		switch (mItem.id) {
 		case 1:
-			new BlindAnimation().animate(mImgTarget);
+			new BlindAnimation(mImgTarget).animate();
 			break;
 		case 2:
-			new BlinkAnimation().setListener(new AnimationListener() {
+			new BlinkAnimation(mImgTarget).setListener(new AnimationListener() {
 
 				@Override
 				public void onAnimationEnd(Animation animation) {
 					mPlayView.setVisibility(View.VISIBLE);
 				}
-			}).animate(mImgTarget);
+			}).animate();
 			break;
 		case 3:
-			new BounceAnimation().setDuration(100)
+			new BounceAnimation(mImgTarget).setDuration(100)
 					.setListener(new AnimationListener() {
 
 						@Override
 						public void onAnimationEnd(Animation animation) {
 							mPlayView.setVisibility(View.VISIBLE);
 						}
-					}).animate(mImgTarget);
+					}).animate();
 			break;
 		case 4:
-			new ExplodeAnimation().animate(mImgTarget);
+			new ExplodeAnimation(mImgTarget).animate();
 			break;
 		case 5:
-			new FlipHorizontalAnimation().setListener(new AnimationListener() {
+			new FlipHorizontalAnimation(mImgTarget).setListener(
+					new AnimationListener() {
 
-				@Override
-				public void onAnimationEnd(Animation animation) {
-					mPlayView.setVisibility(View.VISIBLE);
-				}
-			}).animate(mImgTarget);
+						@Override
+						public void onAnimationEnd(Animation animation) {
+							mPlayView.setVisibility(View.VISIBLE);
+						}
+					}).animate();
 			break;
 		case 6:
-			new FlipHorizontalToAnimation().setFlipToView(mImgBehind)
-					.setDuration(300).animate(mImgTarget);
+			new FlipHorizontalToAnimation(mImgTarget).setFlipToView(mImgBehind)
+					.setDuration(300).animate();
 			break;
 		case 7:
-			new FlipVerticalAnimation().setListener(new AnimationListener() {
+			new FlipVerticalAnimation(mImgTarget).setListener(
+					new AnimationListener() {
 
-				@Override
-				public void onAnimationEnd(Animation animation) {
-					mPlayView.setVisibility(View.VISIBLE);
-				}
-			}).animate(mImgTarget);
+						@Override
+						public void onAnimationEnd(Animation animation) {
+							mPlayView.setVisibility(View.VISIBLE);
+						}
+					}).animate();
 			break;
 		case 8:
-			new FlipVerticalToAnimation().setFlipToView(mImgBehind)
-					.setDuration(300).animate(mImgTarget);
+			new FlipVerticalToAnimation(mImgTarget).setFlipToView(mImgBehind)
+					.setDuration(300).animate();
 			break;
 		case 9:
-			new FoldAnimation().animate(mImgTarget);
+			new FoldAnimation(mImgTarget).animate();
 			break;
 		case 10:
-			new HighlightAnimation().setListener(new AnimationListener() {
+			new HighlightAnimation(mImgTarget).setListener(
+					new AnimationListener() {
 
-				@Override
-				public void onAnimationEnd(Animation animation) {
-					mPlayView.setVisibility(View.VISIBLE);
-				}
-			}).animate(mImgTarget);
+						@Override
+						public void onAnimationEnd(Animation animation) {
+							mPlayView.setVisibility(View.VISIBLE);
+						}
+					}).animate();
 			break;
 		case 11:
 			ArrayList<Point> points = new ArrayList<>();
@@ -193,69 +196,70 @@ public class AnimationDetailFragment extends Fragment implements
 			points.add(new Point(100, 50));
 			points.add(new Point(0, 100));
 			points.add(new Point(50, 50));
-			new PathAnimation().setPoints(points)
+			new PathAnimation(mImgTarget).setPoints(points)
 					.setListener(new AnimationListener() {
 
 						@Override
 						public void onAnimationEnd(Animation animation) {
 							mPlayView.setVisibility(View.VISIBLE);
 						}
-					}).animate(mImgTarget);
+					}).animate();
 			break;
 		case 12:
-			new PuffInAnimation().animate(mImgTarget);
+			new PuffInAnimation(mImgTarget).animate();
 			break;
 		case 13:
-			new PuffOutAnimation().animate(mImgTarget);
+			new PuffOutAnimation(mImgTarget).animate();
 			break;
 		case 14:
-			new RotationAnimation().setPivot(RotationAnimation.PIVOT_TOP_LEFT)
+			new RotationAnimation(mImgTarget)
+					.setPivot(RotationAnimation.PIVOT_TOP_LEFT)
 					.setListener(new AnimationListener() {
 
 						@Override
 						public void onAnimationEnd(Animation animation) {
 							mPlayView.setVisibility(View.VISIBLE);
 						}
-					}).animate(mImgTarget);
+					}).animate();
 			break;
 		case 15:
-			new ScaleInAnimation().animate(mImgTarget);
+			new ScaleInAnimation(mImgTarget).animate();
 			break;
 		case 16:
-			new ScaleOutAnimation().animate(mImgTarget);
+			new ScaleOutAnimation(mImgTarget).animate();
 			break;
 		case 17:
-			new ShakeAnimation().setDuration(100)
+			new ShakeAnimation(mImgTarget).setDuration(100)
 					.setListener(new AnimationListener() {
 
 						@Override
 						public void onAnimationEnd(Animation animation) {
 							mPlayView.setVisibility(View.VISIBLE);
 						}
-					}).animate(mImgTarget);
+					}).animate();
 			break;
 		case 18:
-			new SizeAnimation().animate(mImgTarget);
+			new SizeAnimation(mImgTarget).animate();
 			break;
 		case 19:
-			new SlideInAnimation().setDirection(Animation.DIRECTION_UP)
-					.animate(mImgTarget);
+			new SlideInAnimation(mImgTarget).setDirection(
+					Animation.DIRECTION_UP).animate();
 			break;
 		case 20:
-			new SlideInUnderneathAnimation().setDirection(
-					Animation.DIRECTION_DOWN).animate(mImgTarget);
+			new SlideInUnderneathAnimation(mImgTarget).setDirection(
+					Animation.DIRECTION_DOWN).animate();
 			break;
 		case 21:
-			new SlideOutAnimation().setDirection(Animation.DIRECTION_LEFT)
-					.animate(mImgTarget);
+			new SlideOutAnimation(mImgTarget).setDirection(
+					Animation.DIRECTION_LEFT).animate();
 			break;
 		case 22:
-			new SlideOutUnderneathAnimation().setDirection(
-					Animation.DIRECTION_RIGHT).animate(mImgTarget);
+			new SlideOutUnderneathAnimation(mImgTarget).setDirection(
+					Animation.DIRECTION_RIGHT).animate();
 			break;
 		case 23:
-			new TransferAnimation().setDestinationView(mDestination).animate(
-					mImgTarget);
+			new TransferAnimation(mImgTarget).setDestinationView(mDestination)
+					.animate();
 			break;
 		default:
 			break;

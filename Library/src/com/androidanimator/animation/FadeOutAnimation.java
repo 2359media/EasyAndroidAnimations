@@ -9,13 +9,14 @@ public class FadeOutAnimation extends Animation {
 	long duration;
 	AnimationListener listener;
 
-	public FadeOutAnimation() {
+	public FadeOutAnimation(View view) {
+		this.view = view;
 		duration = Animation.DEFAULT_DURATION;
 		listener = null;
 	}
 
 	@Override
-	public void animate(View view) {
+	public void animate() {
 		view.animate().alpha(0f).setDuration(duration)
 				.setListener(new AnimatorListenerAdapter() {
 

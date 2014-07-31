@@ -31,14 +31,15 @@ public class SlideInUnderneathAnimation extends Animation {
 	 *            the AnimationListener of animation @see
 	 *            {@link AnimationListener}
 	 */
-	public SlideInUnderneathAnimation() {
+	public SlideInUnderneathAnimation(View view) {
+		this.view = view;  
 		direction = Animation.DIRECTION_LEFT;
 		duration = Animation.DEFAULT_DURATION;
 		listener = null;
 	}
 
 	@Override
-	public void animate(final View view) {
+	public void animate() {
 		final ViewGroup parentView = (ViewGroup) view.getParent();
 		final FrameLayout slideInFrame = new FrameLayout(view.getContext());
 		final int positionView = parentView.indexOfChild(view);

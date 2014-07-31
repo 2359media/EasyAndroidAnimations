@@ -39,7 +39,8 @@ public class ExplodeAnimation extends Animation {
 	 *            the AnimationListener of animation @see
 	 *            {@link AnimationListener}
 	 */
-	public ExplodeAnimation() {
+	public ExplodeAnimation(View view) {
+		this.view = view;
 		xParts = 3;
 		yParts = 3;
 		duration = Animation.DEFAULT_DURATION;
@@ -47,7 +48,7 @@ public class ExplodeAnimation extends Animation {
 	}
 
 	@Override
-	public void animate(final View view) {
+	public void animate() {
 		final LinearLayout explodeLayout = new LinearLayout(view.getContext());
 		LinearLayout[] layouts = new LinearLayout[yParts];
 		parentView = (ViewGroup) view.getParent();

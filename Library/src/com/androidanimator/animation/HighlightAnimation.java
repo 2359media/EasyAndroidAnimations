@@ -32,14 +32,15 @@ public class HighlightAnimation extends Animation {
 	 *            the AnimationListener of animation @see
 	 *            {@link AnimationListener}
 	 */
-	public HighlightAnimation() {
+	public HighlightAnimation(View view) {
+		this.view = view;
 		color = Color.YELLOW;
 		duration = Animation.DEFAULT_DURATION;
 		listener = null;
 	}
 
 	@Override
-	public void animate(final View view) {
+	public void animate() {
 		final FrameLayout highlightFrame = new FrameLayout(view.getContext());
 		LayoutParams layoutParams = new LayoutParams(view.getWidth(), view.getHeight());
 		ImageView highlightView = new ImageView(view.getContext());

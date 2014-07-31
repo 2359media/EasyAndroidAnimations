@@ -9,13 +9,14 @@ public class PuffOutAnimation extends Animation {
 	long duration;
 	AnimationListener listener;
 
-	public PuffOutAnimation() {
+	public PuffOutAnimation(View view) {
+		this.view = view;
 		duration = Animation.DEFAULT_DURATION;
 		listener = null;
 	}
 
 	@Override
-	public void animate(View view) {
+	public void animate() {
 		view.animate().scaleX(4f).scaleY(4f).alpha(0f).setDuration(duration)
 				.setListener(new AnimatorListenerAdapter() {
 

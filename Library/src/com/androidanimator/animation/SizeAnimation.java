@@ -11,13 +11,14 @@ public class SizeAnimation extends Animation {
 	long duration;
 	AnimationListener listener;
 
-	public SizeAnimation() {
+	public SizeAnimation(View view) {
+		this.view = view;
 		duration = Animation.DEFAULT_DURATION;
 		listener = null;
 	}
 
 	@Override
-	public void animate(View view) {
+	public void animate() {
 		view.setPivotX(1f);
 		view.setPivotY(1f);
 		AnimatorSet scale = new AnimatorSet(), sizeAnimSet = new AnimatorSet();

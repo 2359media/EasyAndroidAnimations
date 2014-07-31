@@ -14,13 +14,14 @@ public class BlindAnimation extends Animation {
 	long duration;
 	AnimationListener listener;
 
-	public BlindAnimation() {
+	public BlindAnimation(View view) {
+		this.view = view;
 		duration = Animation.DEFAULT_DURATION;
 		listener = null;
 	}
 
 	@Override
-	public void animate(View view) {
+	public void animate() {
 		ViewGroup parent = (ViewGroup) view.getParent();
 		parent.removeView(view);
 		LayoutParams originalParam = view.getLayoutParams();

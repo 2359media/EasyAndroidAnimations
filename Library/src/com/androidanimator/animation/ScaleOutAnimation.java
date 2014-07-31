@@ -9,13 +9,14 @@ public class ScaleOutAnimation extends Animation {
 	long duration;
 	AnimationListener listener;
 	
-	public ScaleOutAnimation() {
+	public ScaleOutAnimation(View view) {
+		this.view = view;
 		duration = Animation.DEFAULT_DURATION;
 		listener = null;
 	}
 
 	@Override
-	public void animate(View view) {
+	public void animate() {
 		view.setScaleX(1f);
 		view.setScaleY(1f);
 		view.animate().scaleX(0f).scaleY(0f).setDuration(duration).setListener(new AnimatorListenerAdapter() {

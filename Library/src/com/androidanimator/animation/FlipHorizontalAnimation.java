@@ -14,7 +14,8 @@ public class FlipHorizontalAnimation extends Animation {
 	long duration;
 	AnimationListener listener;
 
-	public FlipHorizontalAnimation() {
+	public FlipHorizontalAnimation(View view) {
+		this.view = view;
 		degrees = 360;
 		pivot = PIVOT_CENTER;
 		duration = Animation.DEFAULT_DURATION;
@@ -22,7 +23,7 @@ public class FlipHorizontalAnimation extends Animation {
 	}
 
 	@Override
-	public void animate(View view) {
+	public void animate() {
 		ViewGroup parentView = (ViewGroup) view.getParent(), rootView = (ViewGroup) view
 				.getRootView();
 		while (parentView != rootView) {

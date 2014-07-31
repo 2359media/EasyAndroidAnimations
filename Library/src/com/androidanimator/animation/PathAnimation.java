@@ -47,7 +47,8 @@ public class PathAnimation extends Animation {
 	 *            the AnimationListener of animation @see
 	 *            {@link AnimationListener}
 	 */
-	public PathAnimation() {
+	public PathAnimation(View view) {
+		this.view = view;
 		points = null;
 		anchorPosition = ANCHOR_CENTER;
 		duration = Animation.DEFAULT_DURATION;
@@ -55,7 +56,7 @@ public class PathAnimation extends Animation {
 	}
 
 	@Override
-	public void animate(View view) {
+	public void animate() {
 		ViewGroup parentView = (ViewGroup) view.getParent(), rootView = (ViewGroup) view
 				.getRootView();
 		AnimatorSet allPathsAnim = new AnimatorSet(), pathAnim = new AnimatorSet();

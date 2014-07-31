@@ -9,13 +9,14 @@ public class ScaleInAnimation extends Animation {
 	long duration;
 	AnimationListener listener;
 	
-	public ScaleInAnimation() {
+	public ScaleInAnimation(View view) {
+		this.view = view;
 		duration = Animation.DEFAULT_DURATION;
 		listener = null;
 	}
 
 	@Override
-	public void animate(View view) {
+	public void animate() {
 		view.setScaleX(0f);
 		view.setScaleY(0f);
 		view.setVisibility(View.VISIBLE);

@@ -36,7 +36,8 @@ public class RotationAnimation extends Animation {
 	 *            the AnimationListener of animation @see
 	 *            {@link AnimationListener}
 	 */
-	public RotationAnimation() {
+	public RotationAnimation(View view) {
+		this.view = view;
 		degrees = 360;
 		pivot = PIVOT_CENTER;
 		duration = Animation.DEFAULT_DURATION;
@@ -44,7 +45,7 @@ public class RotationAnimation extends Animation {
 	}
 	
 	@Override
-	public void animate(View view) {
+	public void animate() {
 		ViewGroup parentView = (ViewGroup) view.getParent(), rootView = (ViewGroup) view
 				.getRootView();
 		while (parentView != rootView) {

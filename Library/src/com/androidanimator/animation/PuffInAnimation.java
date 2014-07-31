@@ -9,13 +9,14 @@ public class PuffInAnimation extends Animation {
 	long duration;
 	AnimationListener listener;
 
-	public PuffInAnimation() {
+	public PuffInAnimation(View view) {
+		this.view = view;
 		duration = Animation.DEFAULT_DURATION;
 		listener = null;
 	}
 
 	@Override
-	public void animate(final View view) {
+	public void animate() {
 		view.setScaleX(4f);
 		view.setScaleY(4f);
 		view.setAlpha(0f);

@@ -35,7 +35,8 @@ public class ShakeAnimation extends Animation {
 	 *            the AnimationListener of animation @see
 	 *            {@link AnimationListener}
 	 */
-	public ShakeAnimation() {
+	public ShakeAnimation(View view) {
+		this.view = view;
 		shakeDistance = 20;
 		shakes = 2;
 		duration = Animation.DEFAULT_DURATION;
@@ -43,7 +44,7 @@ public class ShakeAnimation extends Animation {
 	}
 
 	@Override
-	public void animate(View view) {
+	public void animate() {
 		duration /= shakes;
 		AnimatorSet shakeAnim = new AnimatorSet(), shakeAnim1 = new AnimatorSet(), shakeAnim2 = new AnimatorSet();
 		shakeAnim1

@@ -14,13 +14,14 @@ public class FoldAnimation extends Animation {
 	long duration;
 	AnimationListener listener;
 
-	public FoldAnimation() {
+	public FoldAnimation(View view) {
+		this.view = view;
 		duration = Animation.DEFAULT_DURATION;
 		listener = null;
 	}
 
 	@Override
-	public void animate(View view) {
+	public void animate() {
 		ViewGroup parent = (ViewGroup) view.getParent();
 		parent.removeView(view);
 		LayoutParams originalParam = view.getLayoutParams(), newParam = new LayoutParams(

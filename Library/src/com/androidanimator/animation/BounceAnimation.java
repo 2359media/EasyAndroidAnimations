@@ -36,7 +36,8 @@ public class BounceAnimation extends Animation {
 	 *            the AnimationListener of animation @see
 	 *            {@link AnimationListener}
 	 */
-	public BounceAnimation() {
+	public BounceAnimation(View view) {
+		this.view = view;
 		bounceDistance = 20;
 		bounces = 2;
 		duration = Animation.DEFAULT_DURATION;
@@ -44,7 +45,7 @@ public class BounceAnimation extends Animation {
 	}
 
 	@Override
-	public void animate(View view) {
+	public void animate() {
 		long singleBounceDuration = duration / bounces;
 		if (singleBounceDuration == 0)
 			singleBounceDuration = 1;

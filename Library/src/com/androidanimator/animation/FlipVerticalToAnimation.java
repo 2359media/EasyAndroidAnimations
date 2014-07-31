@@ -18,7 +18,8 @@ public class FlipVerticalToAnimation extends Animation {
 	long duration;
 	AnimationListener listener;
 
-	public FlipVerticalToAnimation() {
+	public FlipVerticalToAnimation(View view) {
+		this.view = view;
 		flipToView = null;
 		pivotPosition = PIVOT_CENTER;
 		direction = FLIP_UP;
@@ -27,7 +28,7 @@ public class FlipVerticalToAnimation extends Animation {
 	}
 
 	@Override
-	public void animate(View view) {
+	public void animate() {
 		ViewGroup parentView = (ViewGroup) view.getParent(), rootView = (ViewGroup) view
 				.getRootView();
 

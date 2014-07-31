@@ -31,14 +31,15 @@ public class BlinkAnimation extends Animation {
 	 *            the AnimationListener of animation @see
 	 *            {@link AnimationListener}
 	 */
-	public BlinkAnimation() {
+	public BlinkAnimation(View view) {
+		this.view = view;
 		repetitions = 2;
 		duration = Animation.DEFAULT_DURATION;
 		listener = null;
 	}
 
 	@Override
-	public void animate(final View view) {
+	public void animate() {
 		long singleBlinkDuration = duration / repetitions;
 		if (singleBlinkDuration == 0)
 			singleBlinkDuration = 1;
