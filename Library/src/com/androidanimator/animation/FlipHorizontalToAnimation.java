@@ -14,14 +14,14 @@ public class FlipHorizontalToAnimation extends Animation {
 			FLIP_LEFT = 0, FLIP_RIGHT = 1;
 
 	View flipToView;
-	int pivotPosition, flipDirection;
+	int pivot, direction;
 	long duration;
 	AnimationListener listener;
 
 	public FlipHorizontalToAnimation() {
 		flipToView = null;
-		pivotPosition = PIVOT_CENTER;
-		flipDirection = FLIP_RIGHT;
+		pivot = PIVOT_CENTER;
+		direction = FLIP_RIGHT;
 		duration = Animation.DEFAULT_DURATION;
 		listener = null;
 	}
@@ -33,7 +33,7 @@ public class FlipHorizontalToAnimation extends Animation {
 
 		float pivotX, pivotY, flipAngle = 270f, viewWidth = view.getWidth(), viewHeight = view
 				.getHeight();
-		switch (pivotPosition) {
+		switch (pivot) {
 		case PIVOT_LEFT:
 			pivotX = 0f;
 			pivotY = viewHeight / 2;
@@ -64,7 +64,7 @@ public class FlipHorizontalToAnimation extends Animation {
 		rootView.setClipChildren(false);
 
 		AnimatorSet flipToAnim = new AnimatorSet();
-		if (flipDirection == FLIP_RIGHT) {
+		if (direction == FLIP_RIGHT) {
 			flipToView.setRotationY(270f);
 			flipToAnim.playSequentially(ObjectAnimator.ofFloat(view,
 					View.ROTATION_Y, 0f, flipAngle), ObjectAnimator.ofFloat(
@@ -106,32 +106,32 @@ public class FlipHorizontalToAnimation extends Animation {
 	}
 
 	/**
-	 * @return the pivotPosition
+	 * @return the pivot
 	 */
-	public int getPivotPosition() {
-		return pivotPosition;
+	public int getPivot() {
+		return pivot;
 	}
 
 	/**
-	 * @param pivotPosition the pivotPosition to set
+	 * @param pivot the pivot to set
 	 */
-	public FlipHorizontalToAnimation setPivotPosition(int pivotPosition) {
-		this.pivotPosition = pivotPosition;
+	public FlipHorizontalToAnimation setPivot(int pivot) {
+		this.pivot = pivot;
 		return this;
 	}
 
 	/**
-	 * @return the flipDirection
+	 * @return the direction
 	 */
-	public int getFlipDirection() {
-		return flipDirection;
+	public int getDirection() {
+		return direction;
 	}
 
 	/**
-	 * @param flipDirection the flipDirection to set
+	 * @param direction the direction to set
 	 */
-	public FlipHorizontalToAnimation setFlipDirection(int flipDirection) {
-		this.flipDirection = flipDirection;
+	public FlipHorizontalToAnimation setDirection(int direction) {
+		this.direction = direction;
 		return this;
 	}
 

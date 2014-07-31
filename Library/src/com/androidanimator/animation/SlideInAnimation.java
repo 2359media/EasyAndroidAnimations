@@ -1,8 +1,5 @@
 package com.androidanimator.animation;
 
-import com.androidanimator.AndroidAnimator;
-import com.androidanimator.animation.Animation.AnimationListener;
-
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
@@ -34,13 +31,13 @@ public class SlideInAnimation extends Animation {
 	 *            {@link AnimationListener}
 	 */
 	public SlideInAnimation() {
-		direction = AndroidAnimator.DIRECTION_LEFT;
+		direction = Animation.DIRECTION_LEFT;
 		duration = Animation.DEFAULT_DURATION;
 		listener = null;
 	}
 
 	@Override
-	public void animate(View view) {
+	public void animate(final View view) {
 		ViewGroup parentView = (ViewGroup) view.getParent(), rootView = (ViewGroup) view
 				.getRootView();
 		while (!parentView.equals(rootView)) {
@@ -53,29 +50,32 @@ public class SlideInAnimation extends Animation {
 
 		ObjectAnimator slideAnim = null;
 		switch (direction) {
-		case AndroidAnimator.DIRECTION_LEFT:
+		case Animation.DIRECTION_LEFT:
 			slideAnim = ObjectAnimator.ofFloat(view, View.X, -locationView[0]
 					- view.getWidth(), view.getX());
 			break;
-		case AndroidAnimator.DIRECTION_RIGHT:
+		case Animation.DIRECTION_RIGHT:
 			slideAnim = ObjectAnimator.ofFloat(view, View.X,
 					rootView.getRight(), view.getX());
 			break;
-		case AndroidAnimator.DIRECTION_UP:
+		case Animation.DIRECTION_UP:
 			slideAnim = ObjectAnimator.ofFloat(view, View.Y, -locationView[1]
 					- view.getHeight(), view.getY());
 			break;
-		case AndroidAnimator.DIRECTION_DOWN:
+		case Animation.DIRECTION_DOWN:
 			slideAnim = ObjectAnimator.ofFloat(view, View.Y,
 					rootView.getBottom(), view.getY());
 			break;
 		default:
 			break;
 		}
-		view.setVisibility(View.VISIBLE);
 		slideAnim.setDuration(duration);
-		slideAnim.start();
 		slideAnim.addListener(new AnimatorListenerAdapter() {
+			
+			@Override
+			public void onAnimationStart(Animator animation) {
+				view.setVisibility(View.VISIBLE);
+			}
 
 			@Override
 			public void onAnimationEnd(Animator animation) {
@@ -84,6 +84,7 @@ public class SlideInAnimation extends Animation {
 				}
 			}
 		});
+		slideAnim.start();
 	}
 
 	/**

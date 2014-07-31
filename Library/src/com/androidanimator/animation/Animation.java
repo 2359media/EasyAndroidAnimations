@@ -1,51 +1,18 @@
 package com.androidanimator.animation;
 
-import android.animation.AnimatorSet;
 import android.view.View;
 
-/**
- * @author phutang
- * 
- */
 public abstract class Animation {
-
-//    protected AnimationListener listener;
-//    protected long duration;
+	
+	// constants
+	public static final int DIRECTION_LEFT = 1;
+	public static final int DIRECTION_RIGHT = 2;
+	public static final int DIRECTION_UP = 3;
+	public static final int DIRECTION_DOWN = 4;
     
     public static final int DEFAULT_DURATION = 500; // 500 ms
 
-//    public Animation(AnimationListener listener, long duration) {
-//        super();
-//        this.listener = listener;
-//        this.duration = duration;
-//    }
-//
-    public Animation() {
-//        duration = Animation.DEFAULT_DURATION;
-    };
-//
-//    public AnimationListener getListener() {
-//        return listener;
-//    }
-//
-//    public void setListener(AnimationListener listener) {
-//        this.listener = listener;
-//    }
-//
-//    public long getDuration() {
-//        return duration;
-//    }
-//
-//    public Animation setDuration(long duration) {
-//        this.duration = duration;
-//        return this;
-//    }
-
     public abstract void animate(View view);
-
-    public AnimatorSet getAnimatorSet(View view) {
-        return null;
-    }
 
     public interface AnimationListener {
         //TODO add onAnimationStart

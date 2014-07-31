@@ -24,7 +24,7 @@ public class DemoItem {
 	public static Map<Integer, DummyItem> ITEM_MAP = new HashMap<Integer, DummyItem>();
 
 	static {
-		// Animations not added: BounceAnimationPhu, FadeAnimation
+		//Animations not included: Fly
 		addItem(new DummyItem(1, "Blind"));
 		addItem(new DummyItem(2, "Blink"));
 		addItem(new DummyItem(3, "Bounce"));
@@ -33,23 +33,21 @@ public class DemoItem {
 		addItem(new DummyItem(6, "Flip Horizontal To"));
 		addItem(new DummyItem(7, "Flip Vertical"));
 		addItem(new DummyItem(8, "Flip Vertical To"));
-		addItem(new DummyItem(9, "Fly In"));
-		addItem(new DummyItem(10, "Fly Out"));
-		addItem(new DummyItem(11, "Fold"));
-		addItem(new DummyItem(12, "Highlight"));
-		addItem(new DummyItem(13, "Path"));
-		addItem(new DummyItem(14, "Puff In"));
-		addItem(new DummyItem(15, "Puff Out"));
-		addItem(new DummyItem(16, "Rotate"));
-		addItem(new DummyItem(17, "Scale In"));
-		addItem(new DummyItem(18, "Scale Out"));
-		addItem(new DummyItem(19, "Shake"));
-		addItem(new DummyItem(20, "Size"));
-		addItem(new DummyItem(21, "Slide In"));
-		addItem(new DummyItem(22, "Slide In Underneath"));
-		addItem(new DummyItem(23, "Slide Out"));
-		addItem(new DummyItem(24, "Slide Out Underneath"));
-		addItem(new DummyItem(25, "Transfer"));
+		addItem(new DummyItem(9, "Fold"));
+		addItem(new DummyItem(10, "Highlight"));
+		addItem(new DummyItem(11, "Path"));
+		addItem(new DummyItem(12, "Puff In"));
+		addItem(new DummyItem(13, "Puff Out"));
+		addItem(new DummyItem(14, "Rotate"));
+		addItem(new DummyItem(15, "Scale In"));
+		addItem(new DummyItem(16, "Scale Out"));
+		addItem(new DummyItem(17, "Shake"));
+		addItem(new DummyItem(18, "Size"));
+		addItem(new DummyItem(19, "Slide In"));
+		addItem(new DummyItem(20, "Slide In Underneath"));
+		addItem(new DummyItem(21, "Slide Out"));
+		addItem(new DummyItem(22, "Slide Out Underneath"));
+		addItem(new DummyItem(23, "Transfer"));
 	}
 
 	private static void addItem(DummyItem item) {

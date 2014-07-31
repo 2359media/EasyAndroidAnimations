@@ -1,8 +1,5 @@
 package com.androidanimator.animation;
 
-import com.androidanimator.AndroidAnimator;
-import com.androidanimator.animation.Animation.AnimationListener;
-
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
@@ -16,11 +13,11 @@ import android.widget.FrameLayout;
  * 
  */
 public class SlideInUnderneathAnimation extends Animation {
-	
+
 	int direction;
 	long duration;
 	AnimationListener listener;
-	
+
 	/**
 	 * The SlideInUnderneathAnimation causes the view to slide in underneath
 	 * from the left, right, up or down depending on the parameters provided by
@@ -35,7 +32,7 @@ public class SlideInUnderneathAnimation extends Animation {
 	 *            {@link AnimationListener}
 	 */
 	public SlideInUnderneathAnimation() {
-		direction = AndroidAnimator.DIRECTION_LEFT;
+		direction = Animation.DIRECTION_LEFT;
 		duration = Animation.DEFAULT_DURATION;
 		listener = null;
 	}
@@ -50,28 +47,40 @@ public class SlideInUnderneathAnimation extends Animation {
 		parentView.removeView(view);
 		slideInFrame.addView(view);
 		parentView.addView(slideInFrame, positionView);
-		
+
 		ObjectAnimator slideInAnim = null;
+		float viewWidth = view.getWidth(), viewHeight = view.getHeight();
 		switch (direction) {
-		case AndroidAnimator.DIRECTION_LEFT:
-			slideInAnim = ObjectAnimator.ofFloat(view, View.X, -view.getWidth(), slideInFrame.getX());
+		case Animation.DIRECTION_LEFT:
+			view.setTranslationX(-viewWidth);
+			slideInAnim = ObjectAnimator.ofFloat(view, View.TRANSLATION_X,
+					slideInFrame.getX());
 			break;
-		case AndroidAnimator.DIRECTION_RIGHT:
-			slideInAnim = ObjectAnimator.ofFloat(view, View.X, view.getWidth(), slideInFrame.getX());
+		case Animation.DIRECTION_RIGHT:
+			view.setTranslationX(viewWidth);
+			slideInAnim = ObjectAnimator.ofFloat(view, View.TRANSLATION_X,
+					slideInFrame.getX());
 			break;
-		case AndroidAnimator.DIRECTION_UP:
-			slideInAnim = ObjectAnimator.ofFloat(view, View.Y, -view.getHeight(), slideInFrame.getY());
+		case Animation.DIRECTION_UP:
+			view.setTranslationY(-viewHeight);
+			slideInAnim = ObjectAnimator.ofFloat(view, View.TRANSLATION_Y,
+					slideInFrame.getY());
 			break;
-		case AndroidAnimator.DIRECTION_DOWN:
-			slideInAnim = ObjectAnimator.ofFloat(view, View.Y, view.getHeight(), slideInFrame.getY());
+		case Animation.DIRECTION_DOWN:
+			view.setTranslationY(viewHeight);
+			slideInAnim = ObjectAnimator.ofFloat(view, View.TRANSLATION_Y,
+					slideInFrame.getY());
 			break;
 		default:
 			break;
 		}
-		view.setVisibility(View.VISIBLE);
 		slideInAnim.setDuration(duration);
-		slideInAnim.start();
 		slideInAnim.addListener(new AnimatorListenerAdapter() {
+
+			@Override
+			public void onAnimationStart(Animator animation) {
+				view.setVisibility(View.VISIBLE);
+			}
 
 			@Override
 			public void onAnimationEnd(Animator animation) {
@@ -79,12 +88,14 @@ public class SlideInUnderneathAnimation extends Animation {
 				view.setLayoutParams(slideInFrame.getLayoutParams());
 				parentView.addView(view, positionView);
 				if (getListener() != null) {
-					getListener().onAnimationEnd(SlideInUnderneathAnimation.this);
+					getListener().onAnimationEnd(
+							SlideInUnderneathAnimation.this);
 				}
 			}
 		});
+		slideInAnim.start();
 	}
-	
+
 	/**
 	 * @return the direction
 	 */
@@ -93,7 +104,8 @@ public class SlideInUnderneathAnimation extends Animation {
 	}
 
 	/**
-	 * @param direction the direction to set
+	 * @param direction
+	 *            the direction to set
 	 */
 	public SlideInUnderneathAnimation setDirection(int direction) {
 		this.direction = direction;
@@ -108,7 +120,8 @@ public class SlideInUnderneathAnimation extends Animation {
 	}
 
 	/**
-	 * @param duration the duration to set
+	 * @param duration
+	 *            the duration to set
 	 */
 	public SlideInUnderneathAnimation setDuration(long duration) {
 		this.duration = duration;
@@ -123,7 +136,8 @@ public class SlideInUnderneathAnimation extends Animation {
 	}
 
 	/**
-	 * @param listener the listener to set
+	 * @param listener
+	 *            the listener to set
 	 */
 	public SlideInUnderneathAnimation setListener(AnimationListener listener) {
 		this.listener = listener;

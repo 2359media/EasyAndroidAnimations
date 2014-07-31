@@ -1,42 +1,20 @@
 package com.androidanimator;
 
-import java.util.ArrayList;
-
-import android.graphics.Point;
-import android.view.View;
-
-import com.androidanimator.animation.Animation.AnimationListener;
-import com.androidanimator.animation.BlinkAnimation;
-import com.androidanimator.animation.BounceAnimation;
-import com.androidanimator.animation.ExplodeAnimation;
-import com.androidanimator.animation.FlipHorizontalAnimation;
-import com.androidanimator.animation.FlipHorizontalToAnimation;
-import com.androidanimator.animation.FlipVerticalAnimation;
-import com.androidanimator.animation.FlipVerticalToAnimation;
-import com.androidanimator.animation.HighlightAnimation;
-import com.androidanimator.animation.PathAnimation;
-import com.androidanimator.animation.RotationAnimation;
-import com.androidanimator.animation.ShakeAnimation;
-import com.androidanimator.animation.SlideInAnimation;
-import com.androidanimator.animation.SlideInUnderneathAnimation;
-import com.androidanimator.animation.SlideOutAnimation;
-import com.androidanimator.animation.SlideOutUnderneathAnimation;
-import com.androidanimator.animation.TransferAnimation;
 
 public class AndroidAnimator {
 
 	
 	// constants
-	public static final int DIRECTION_LEFT = 1;
-	public static final int DIRECTION_RIGHT = 2;
-	public static final int DIRECTION_UP = 3;
-	public static final int DIRECTION_DOWN = 4;
-	
-	public static final int BEHAVIOR_IN = 1;
-	public static final int BEHAVIOR_OUT = 2;
-	
-	public static final int ORIENTATION_VERTICAL = 1;
-	public static final int ORIENTATION_HORIZONTAL = 0;
+//	public static final int DIRECTION_LEFT = 1;
+//	public static final int DIRECTION_RIGHT = 2;
+//	public static final int DIRECTION_UP = 3;
+//	public static final int DIRECTION_DOWN = 4;
+//	
+//	public static final int BEHAVIOR_IN = 1;
+//	public static final int BEHAVIOR_OUT = 2;
+//	
+//	public static final int ORIENTATION_VERTICAL = 1;
+//	public static final int ORIENTATION_HORIZONTAL = 0;
 	
 	
 //	/**

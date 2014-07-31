@@ -18,7 +18,7 @@ public class RotationAnimation extends Animation {
 			PIVOT_TOP_RIGHT = 2, PIVOT_BOTTOM_LEFT = 3, PIVOT_BOTTOM_RIGHT = 4;
 
 	float degrees;
-	int pivotPosition;
+	int pivot;
 	long duration;
 	AnimationListener listener;
 
@@ -28,8 +28,8 @@ public class RotationAnimation extends Animation {
 	 * 
 	 * @param degrees
 	 *            the number of degrees to rotate the view by
-	 * @param pivotPosition
-	 *            the pivot position around which the view is rotated
+	 * @param pivot
+	 *            the pivot around which the view is rotated
 	 * @param duration
 	 *            the duration of the entire animation
 	 * @param listener
@@ -38,7 +38,7 @@ public class RotationAnimation extends Animation {
 	 */
 	public RotationAnimation() {
 		degrees = 360;
-		pivotPosition = PIVOT_CENTER;
+		pivot = PIVOT_CENTER;
 		duration = Animation.DEFAULT_DURATION;
 		listener = null;
 	}
@@ -54,7 +54,7 @@ public class RotationAnimation extends Animation {
 		rootView.setClipChildren(false);
 
 		float pivotX, pivotY, viewWidth = view.getWidth(), viewHeight = view.getHeight();
-		switch (pivotPosition) {
+		switch (pivot) {
 		case PIVOT_TOP_LEFT:
 			pivotX = 1f;
 			pivotY = 1f;
@@ -72,8 +72,8 @@ public class RotationAnimation extends Animation {
 			pivotY = viewHeight;
 			break;
 		default:
-			pivotX = 0f;
-			pivotY = 0f;
+			pivotX = viewWidth/2;
+			pivotY = viewHeight/2;
 			break;
 		}
 		view.setPivotX(pivotX);
@@ -105,17 +105,17 @@ public class RotationAnimation extends Animation {
 	}
 
 	/**
-	 * @return the pivotPosition
+	 * @return the pivot
 	 */
-	public int getPivotPosition() {
-		return pivotPosition;
+	public int getPivot() {
+		return pivot;
 	}
 
 	/**
-	 * @param pivotPosition the pivotPosition to set
+	 * @param pivot the pivot to set
 	 */
-	public RotationAnimation setPivotPosition(int pivotPosition) {
-		this.pivotPosition = pivotPosition;
+	public RotationAnimation setPivot(int pivot) {
+		this.pivot = pivot;
 		return this;
 	}
 

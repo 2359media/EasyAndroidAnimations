@@ -10,13 +10,13 @@ public class FlipHorizontalAnimation extends Animation {
 	public static final int PIVOT_CENTER = 0, PIVOT_LEFT = 1, PIVOT_RIGHT = 2;
 
 	float degrees;
-	int pivotPosition;
+	int pivot;
 	long duration;
 	AnimationListener listener;
 
 	public FlipHorizontalAnimation() {
 		degrees = 360;
-		pivotPosition = PIVOT_CENTER;
+		pivot = PIVOT_CENTER;
 		duration = Animation.DEFAULT_DURATION;
 		listener = null;
 	}
@@ -33,7 +33,7 @@ public class FlipHorizontalAnimation extends Animation {
 
 		float pivotX, pivotY, viewWidth = view.getWidth(), viewHeight = view
 				.getHeight();
-		switch (pivotPosition) {
+		switch (pivot) {
 		case PIVOT_LEFT:
 			pivotX = 0f;
 			pivotY = viewHeight / 2;
@@ -79,17 +79,17 @@ public class FlipHorizontalAnimation extends Animation {
 	}
 
 	/**
-	 * @return the pivotPosition
+	 * @return the pivot
 	 */
-	public int getPivotPosition() {
-		return pivotPosition;
+	public int getPivot() {
+		return pivot;
 	}
 
 	/**
-	 * @param pivotPosition the pivotPosition to set
+	 * @param pivot the pivot to set
 	 */
-	public FlipHorizontalAnimation setPivotPosition(int pivotPosition) {
-		this.pivotPosition = pivotPosition;
+	public FlipHorizontalAnimation setPivot(int pivot) {
+		this.pivot = pivot;
 		return this;
 	}
 

@@ -10,13 +10,13 @@ public class FlipVerticalAnimation extends Animation {
 	public static final int PIVOT_CENTER = 0, PIVOT_TOP = 1, PIVOT_BOTTOM = 2;
 
 	float degrees;
-	int pivotPosition;
+	int pivot;
 	long duration;
 	AnimationListener listener;
 
 	public FlipVerticalAnimation() {
 		degrees = 360;
-		pivotPosition = PIVOT_CENTER;
+		pivot = PIVOT_CENTER;
 		duration = Animation.DEFAULT_DURATION;
 		listener = null;
 	}
@@ -33,7 +33,7 @@ public class FlipVerticalAnimation extends Animation {
 
 		float pivotX, pivotY, viewWidth = view.getWidth(), viewHeight = view
 				.getHeight();
-		switch (pivotPosition) {
+		switch (pivot) {
 		case PIVOT_TOP:
 			pivotX = viewWidth / 2;
 			pivotY = 0f;
@@ -79,17 +79,17 @@ public class FlipVerticalAnimation extends Animation {
 	}
 
 	/**
-	 * @return the pivotPosition
+	 * @return the pivot
 	 */
-	public int getPivotPosition() {
-		return pivotPosition;
+	public int getPivot() {
+		return pivot;
 	}
 
 	/**
-	 * @param pivotPosition the pivotPosition to set
+	 * @param pivot the pivot to set
 	 */
-	public FlipVerticalAnimation setPivotPosition(int pivotPosition) {
-		this.pivotPosition = pivotPosition;
+	public FlipVerticalAnimation setPivot(int pivot) {
+		this.pivot = pivot;
 		return this;
 	}
 

@@ -1,8 +1,5 @@
 package com.androidanimator.animation;
 
-import com.androidanimator.AndroidAnimator;
-import com.androidanimator.animation.Animation.AnimationListener;
-
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.view.View;
@@ -34,7 +31,7 @@ public class SlideOutUnderneathAnimation extends Animation {
 	 *            {@link AnimationListener}
 	 */
 	public SlideOutUnderneathAnimation() {
-		direction = AndroidAnimator.DIRECTION_LEFT;
+		direction = Animation.DIRECTION_LEFT;
 		duration = Animation.DEFAULT_DURATION;
 		listener = null;
 	}
@@ -51,16 +48,16 @@ public class SlideOutUnderneathAnimation extends Animation {
 		parentView.addView(slideOutFrame, positionView);
 
 		switch (direction) {
-		case AndroidAnimator.DIRECTION_LEFT:
+		case Animation.DIRECTION_LEFT:
 			view.animate().translationXBy(-view.getWidth());
 			break;
-		case AndroidAnimator.DIRECTION_RIGHT:
+		case Animation.DIRECTION_RIGHT:
 			view.animate().translationXBy(view.getWidth());
 			break;
-		case AndroidAnimator.DIRECTION_UP:
+		case Animation.DIRECTION_UP:
 			view.animate().translationYBy(-view.getHeight());
 			break;
-		case AndroidAnimator.DIRECTION_DOWN:
+		case Animation.DIRECTION_DOWN:
 			view.animate().translationYBy(view.getHeight());
 			break;
 		default:

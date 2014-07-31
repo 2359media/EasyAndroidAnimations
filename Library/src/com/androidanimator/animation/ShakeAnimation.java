@@ -56,7 +56,7 @@ public class ShakeAnimation extends Animation {
 						.ofFloat(view, View.TRANSLATION_X, 0));
 		shakeAnim.playSequentially(shakeAnim1, shakeAnim2);
 		shakeAnim.setDuration(duration);
-		shakeAnim.start();
+		
 		ViewGroup parentView = (ViewGroup) view.getParent(), rootView = (ViewGroup) view
 				.getRootView();
 		while (!parentView.equals(rootView)) {
@@ -79,6 +79,7 @@ public class ShakeAnimation extends Animation {
 				}
 			}
 		});
+		shakeAnim.start();
 	}
 
 	/**

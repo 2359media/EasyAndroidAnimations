@@ -58,7 +58,7 @@ public class BounceAnimation extends Animation {
 		bounceAnim.playSequentially(bounceAnim1, bounceAnim2);
 		bounceAnim.setInterpolator(new LinearInterpolator());
 		bounceAnim.setDuration(singleBounceDuration);
-		bounceAnim.start();
+		
 		ViewGroup parentView = (ViewGroup) view.getParent(), rootView = (ViewGroup) view
 				.getRootView();
 		while (!parentView.equals(rootView)) {
@@ -81,6 +81,7 @@ public class BounceAnimation extends Animation {
 				}
 			}
 		});
+		bounceAnim.start();
 	}
 
 	/**

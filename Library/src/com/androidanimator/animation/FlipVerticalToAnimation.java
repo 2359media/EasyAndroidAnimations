@@ -14,14 +14,14 @@ public class FlipVerticalToAnimation extends Animation {
 			FLIP_UP = 0, FLIP_DOWN = 1;
 
 	View flipToView;
-	int pivotPosition, flipDirection;
+	int pivotPosition, direction;
 	long duration;
 	AnimationListener listener;
 
 	public FlipVerticalToAnimation() {
 		flipToView = null;
 		pivotPosition = PIVOT_CENTER;
-		flipDirection = FLIP_UP;
+		direction = FLIP_UP;
 		duration = Animation.DEFAULT_DURATION;
 		listener = null;
 	}
@@ -64,7 +64,7 @@ public class FlipVerticalToAnimation extends Animation {
 		rootView.setClipChildren(false);
 
 		AnimatorSet flipToAnim = new AnimatorSet();
-		if (flipDirection == FLIP_UP) {
+		if (direction == FLIP_UP) {
 			flipToView.setRotationX(270f);
 			flipToAnim.playSequentially(ObjectAnimator.ofFloat(view,
 					View.ROTATION_X, 0f, flipAngle), ObjectAnimator.ofFloat(
@@ -122,15 +122,15 @@ public class FlipVerticalToAnimation extends Animation {
 	/**
 	 * @return the flipDirection
 	 */
-	public int getFlipDirection() {
-		return flipDirection;
+	public int getDirection() {
+		return direction;
 	}
 
 	/**
 	 * @param flipDirection the flipDirection to set
 	 */
-	public FlipVerticalToAnimation setFlipDirection(int flipDirection) {
-		this.flipDirection = flipDirection;
+	public FlipVerticalToAnimation setDirection(int direction) {
+		this.direction = direction;
 		return this;
 	}
 

@@ -106,7 +106,6 @@ public class PathAnimation extends Animation {
 		allPathsAnim.playSequentially(pathAnimList);
 		pathAnim.play(allPathsAnim);
 		allPathsAnim.setDuration(duration);
-		allPathsAnim.start();
 		allPathsAnim.addListener(new AnimatorListenerAdapter() {
 
 			@Override
@@ -116,6 +115,7 @@ public class PathAnimation extends Animation {
 				}
 			}
 		});
+		allPathsAnim.start();
 	}
 
 	/**

@@ -47,7 +47,7 @@ public class BlinkAnimation extends Animation {
 		final AnimatorSet animatorSet = new AnimatorSet();
 		animatorSet.playSequentially(fadeOut, fadeIn);
 		animatorSet.setDuration(singleBlinkDuration);
-		animatorSet.start();
+		
 		animatorSet.addListener(new AnimatorListenerAdapter() {
 
 			@Override
@@ -70,6 +70,7 @@ public class BlinkAnimation extends Animation {
 				}
 			}
 		});
+		animatorSet.start();
 	}
 
 	/**
