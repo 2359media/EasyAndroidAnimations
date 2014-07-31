@@ -46,7 +46,7 @@ public class BounceAnimation extends Animation {
 
 	@Override
 	public void animate() {
-		long singleBounceDuration = duration / bounces;
+		long singleBounceDuration = duration / bounces / 2;
 		if (singleBounceDuration == 0)
 			singleBounceDuration = 1;
 		AnimatorSet bounceAnim = new AnimatorSet(), bounceAnim1 = new AnimatorSet(), bounceAnim2 = new AnimatorSet();

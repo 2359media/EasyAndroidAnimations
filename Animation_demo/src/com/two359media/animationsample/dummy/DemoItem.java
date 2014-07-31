@@ -25,6 +25,7 @@ public class DemoItem {
 
 	static {
 		//Animations not included: Fly
+		addItem(new DummyItem(24, "Combine"));
 		addItem(new DummyItem(1, "Blind"));
 		addItem(new DummyItem(2, "Blink"));
 		addItem(new DummyItem(3, "Bounce"));

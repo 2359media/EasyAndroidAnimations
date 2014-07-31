@@ -45,7 +45,9 @@ public class ShakeAnimation extends Animation {
 
 	@Override
 	public void animate() {
-		duration /= shakes;
+		long singleShakeDuration = duration / shakes / 2;
+		if (singleShakeDuration == 0)
+			singleShakeDuration = 1;
 		AnimatorSet shakeAnim = new AnimatorSet(), shakeAnim1 = new AnimatorSet(), shakeAnim2 = new AnimatorSet();
 		shakeAnim1
 				.playSequentially(ObjectAnimator.ofFloat(view,
@@ -56,7 +58,7 @@ public class ShakeAnimation extends Animation {
 						View.TRANSLATION_X, shakeDistance), ObjectAnimator
 						.ofFloat(view, View.TRANSLATION_X, 0));
 		shakeAnim.playSequentially(shakeAnim1, shakeAnim2);
-		shakeAnim.setDuration(duration);
+		shakeAnim.setDuration(singleShakeDuration);
 		
 		ViewGroup parentView = (ViewGroup) view.getParent(), rootView = (ViewGroup) view
 				.getRootView();

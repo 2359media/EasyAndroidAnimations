@@ -16,6 +16,7 @@ import com.androidanimator.animation.Animation.AnimationListener;
 import com.androidanimator.animation.BlindAnimation;
 import com.androidanimator.animation.BlinkAnimation;
 import com.androidanimator.animation.BounceAnimation;
+import com.androidanimator.animation.CombinableAnimation;
 import com.androidanimator.animation.ExplodeAnimation;
 import com.androidanimator.animation.FlipHorizontalAnimation;
 import com.androidanimator.animation.FlipHorizontalToAnimation;
@@ -121,6 +122,26 @@ public class AnimationDetailFragment extends Fragment implements
 
 	private void doAnimation() {
 		switch (mItem.id) {
+		case 24:
+			new CombinableAnimation()
+					.combine(
+							new FlipVerticalAnimation(mImgTarget)
+									.setDuration(500))
+					.combine(
+							new FlipHorizontalAnimation(mImgTarget)
+									.setDuration(500))
+					.combine(
+							new BounceAnimation(mImgTarget).setDuration(500)
+									.setListener(new AnimationListener() {
+
+										@Override
+										public void onAnimationEnd(
+												Animation animation) {
+											mPlayView
+													.setVisibility(View.VISIBLE);
+										}
+									})).animate();
+			break;
 		case 1:
 			new BlindAnimation(mImgTarget).animate();
 			break;
