@@ -13,22 +13,30 @@ Usage
 
   1. For example, if you wanted a view to mimic the bounce animation with the default parameters,
   ```
-    MyAnimator.bounce(yourView);
+    new BounceAnimation(yourView).animate();
   ```
 
-  2. If you wanted to use your own parameters instead of the default ones,
+  2. If you wanted to use some of your own parameters instead of the default ones,
   ```
-    MyAnimator.bounce(yourView, bounceDistance, repetitions, duration, null);
+    new BounceAnimation(yourView)
+      .setBounceDistance(50)
+      .setBounces(5)
+      .setDuration(500)
+      .animate();
   ```
 
   3. Here's another example of mimicking the explode animation with your own parameters as well as the addition of an animation listener.
   ```
-    MyAnimator.explode(yourView, xParts, yParts, duration, new AnimationListener() {
+    new ExplodeAnimation(yourView)
+      .setxParts(2)
+      .setyParts(2)
+      .setDuration(300)
+      .setListener(new AnimationListener() {
         @Override
         public void onAnimationEnd(Animation animation) {
-            *perform your own functions here when animation ends*
-        }
-    });
+          *perform your own functions here when animation ends*
+        })
+      .animate();
   ```
 
 
