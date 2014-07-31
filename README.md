@@ -35,7 +35,8 @@ Usage
         @Override
         public void onAnimationEnd(Animation animation) {
           *perform your own functions here when animation ends*
-        })
+        }
+      })
       .animate();
   ```
 
