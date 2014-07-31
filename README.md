@@ -28,8 +28,8 @@ Usage
   3. Here's another example of mimicking the explode animation with your own parameters as well as the addition of an animation listener.
   ```
     new ExplodeAnimation(yourView)
-      .setxParts(2)
-      .setyParts(2)
+      .setXParts(2)
+      .setYParts(2)
       .setDuration(300)
       .setListener(new AnimationListener() {
         @Override
