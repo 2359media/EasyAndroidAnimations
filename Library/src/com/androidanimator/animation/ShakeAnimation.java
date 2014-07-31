@@ -8,6 +8,7 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.LinearInterpolator;
 
 /**
  * 
@@ -17,7 +18,7 @@ import android.view.ViewGroup;
 public class ShakeAnimation extends Animation {
 
 	float shakeDistance;
-	int shakes, shakeCount = 0;
+	int numOfShakes, shakeCount = 0;
 	long duration;
 	AnimationListener listener;
 
@@ -38,28 +39,27 @@ public class ShakeAnimation extends Animation {
 	public ShakeAnimation(View view) {
 		this.view = view;
 		shakeDistance = 20;
-		shakes = 2;
+		numOfShakes = 2;
 		duration = Animation.DEFAULT_DURATION;
 		listener = null;
 	}
 
 	@Override
 	public void animate() {
-		long singleShakeDuration = duration / shakes / 2;
+		long singleShakeDuration = duration / numOfShakes / 2;
 		if (singleShakeDuration == 0)
 			singleShakeDuration = 1;
-		AnimatorSet shakeAnim = new AnimatorSet(), shakeAnim1 = new AnimatorSet(), shakeAnim2 = new AnimatorSet();
-		shakeAnim1
+		final AnimatorSet shakeAnim = new AnimatorSet();
+		shakeAnim
 				.playSequentially(ObjectAnimator.ofFloat(view,
 						View.TRANSLATION_X, shakeDistance), ObjectAnimator
-						.ofFloat(view, View.TRANSLATION_X, -shakeDistance));
-		shakeAnim2
-				.playSequentially(ObjectAnimator.ofFloat(view,
-						View.TRANSLATION_X, shakeDistance), ObjectAnimator
-						.ofFloat(view, View.TRANSLATION_X, 0));
-		shakeAnim.playSequentially(shakeAnim1, shakeAnim2);
+						.ofFloat(view, View.TRANSLATION_X, -shakeDistance),
+						ObjectAnimator.ofFloat(view, View.TRANSLATION_X,
+								shakeDistance), ObjectAnimator.ofFloat(view,
+								View.TRANSLATION_X, 0));
+		shakeAnim.setInterpolator(new LinearInterpolator());
 		shakeAnim.setDuration(singleShakeDuration);
-		
+
 		ViewGroup parentView = (ViewGroup) view.getParent(), rootView = (ViewGroup) view
 				.getRootView();
 		while (!parentView.equals(rootView)) {
@@ -72,13 +72,12 @@ public class ShakeAnimation extends Animation {
 			@Override
 			public void onAnimationEnd(Animator animation) {
 				shakeCount++;
-				if (shakeCount == shakes) {
+				if (shakeCount == numOfShakes) {
 					if (getListener() != null) {
 						getListener().onAnimationEnd(ShakeAnimation.this);
 					}
-				}
-				else {
-					animation.start();
+				} else {
+					shakeAnim.start();
 				}
 			}
 		});
@@ -93,7 +92,8 @@ public class ShakeAnimation extends Animation {
 	}
 
 	/**
-	 * @param shakeDistance the shakeDistance to set
+	 * @param shakeDistance
+	 *            the shakeDistance to set
 	 */
 	public ShakeAnimation setShakeDistance(float shakeDistance) {
 		this.shakeDistance = shakeDistance;
@@ -101,17 +101,18 @@ public class ShakeAnimation extends Animation {
 	}
 
 	/**
-	 * @return the repetitions
+	 * @return the numOfShakes
 	 */
-	public int getShakes() {
-		return shakes;
+	public int getNumOfShakes() {
+		return numOfShakes;
 	}
 
 	/**
-	 * @param repetitions the repetitions to set
+	 * @param numOfShakes
+	 *            the numOfShakes to set
 	 */
-	public ShakeAnimation setShakes(int repetitions) {
-		this.shakes = repetitions;
+	public ShakeAnimation setNumOfShakes(int numOfShakes) {
+		this.numOfShakes = numOfShakes;
 		return this;
 	}
 
@@ -123,7 +124,8 @@ public class ShakeAnimation extends Animation {
 	}
 
 	/**
-	 * @param duration the duration to set
+	 * @param duration
+	 *            the duration to set
 	 */
 	public ShakeAnimation setDuration(long duration) {
 		this.duration = duration;
@@ -138,7 +140,8 @@ public class ShakeAnimation extends Animation {
 	}
 
 	/**
-	 * @param listener the listener to set
+	 * @param listener
+	 *            the listener to set
 	 */
 	public ShakeAnimation setListener(AnimationListener listener) {
 		this.listener = listener;

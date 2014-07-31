@@ -1,7 +1,5 @@
 package com.androidanimator.animation;
 
-import com.androidanimator.animation.Animation.AnimationListener;
-
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
@@ -18,7 +16,7 @@ import android.view.animation.LinearInterpolator;
 public class BounceAnimation extends Animation {
 
 	float bounceDistance;
-	int bounces, bounceCount = 0;
+	int numOfBounces, bounceCount = 0;
 	long duration;
 	AnimationListener listener;
 
@@ -28,7 +26,7 @@ public class BounceAnimation extends Animation {
 	 * 
 	 * @param bounceDistance
 	 *            the maximum distance of the bounce
-	 * @param bounces
+	 * @param numOfBounces
 	 *            the number of times the animation is repeated
 	 * @param duration
 	 *            the duration of the entire animation
@@ -39,27 +37,25 @@ public class BounceAnimation extends Animation {
 	public BounceAnimation(View view) {
 		this.view = view;
 		bounceDistance = 20;
-		bounces = 2;
+		numOfBounces = 2;
 		duration = Animation.DEFAULT_DURATION;
 		listener = null;
 	}
 
 	@Override
 	public void animate() {
-		long singleBounceDuration = duration / bounces / 2;
+		long singleBounceDuration = duration / numOfBounces / 4;
 		if (singleBounceDuration == 0)
 			singleBounceDuration = 1;
-		AnimatorSet bounceAnim = new AnimatorSet(), bounceAnim1 = new AnimatorSet(), bounceAnim2 = new AnimatorSet();
-		bounceAnim1.playSequentially(ObjectAnimator.ofFloat(view,
+		final AnimatorSet bounceAnim = new AnimatorSet();
+		bounceAnim.playSequentially(ObjectAnimator.ofFloat(view,
 				View.TRANSLATION_Y, bounceDistance), ObjectAnimator.ofFloat(
-				view, View.TRANSLATION_Y, -bounceDistance));
-		bounceAnim2.playSequentially(ObjectAnimator.ofFloat(view,
-				View.TRANSLATION_Y, bounceDistance), ObjectAnimator.ofFloat(
-				view, View.TRANSLATION_Y, 0));
-		bounceAnim.playSequentially(bounceAnim1, bounceAnim2);
+				view, View.TRANSLATION_Y, -bounceDistance), ObjectAnimator
+				.ofFloat(view, View.TRANSLATION_Y, bounceDistance),
+				ObjectAnimator.ofFloat(view, View.TRANSLATION_Y, 0));
 		bounceAnim.setInterpolator(new LinearInterpolator());
 		bounceAnim.setDuration(singleBounceDuration);
-		
+
 		ViewGroup parentView = (ViewGroup) view.getParent(), rootView = (ViewGroup) view
 				.getRootView();
 		while (!parentView.equals(rootView)) {
@@ -72,13 +68,12 @@ public class BounceAnimation extends Animation {
 			@Override
 			public void onAnimationEnd(Animator animation) {
 				bounceCount++;
-				if (bounceCount == bounces) {
+				if (bounceCount == numOfBounces) {
 					if (getListener() != null) {
 						getListener().onAnimationEnd(BounceAnimation.this);
 					}
-				}
-				else {
-					animation.start();
+				} else {
+					bounceAnim.start();
 				}
 			}
 		});
@@ -102,18 +97,18 @@ public class BounceAnimation extends Animation {
 	}
 
 	/**
-	 * @return the repetitions
+	 * @return the numOfBounces
 	 */
-	public int getBounces() {
-		return bounces;
+	public int getNumOfBounces() {
+		return numOfBounces;
 	}
 
 	/**
-	 * @param repetitions
-	 *            the repetitions to set
+	 * @param numOfBounces
+	 *            the numOfBounces to set
 	 */
-	public BounceAnimation setBounces(int repetitions) {
-		this.bounces = repetitions;
+	public BounceAnimation setNumOfBounces(int numOfBounces) {
+		this.numOfBounces = numOfBounces;
 		return this;
 	}
 

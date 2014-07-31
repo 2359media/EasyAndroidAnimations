@@ -131,16 +131,10 @@ public class AnimationDetailFragment extends Fragment implements
 							new FlipHorizontalAnimation(mImgTarget)
 									.setDuration(500))
 					.combine(
-							new BounceAnimation(mImgTarget).setDuration(500)
-									.setListener(new AnimationListener() {
-
-										@Override
-										public void onAnimationEnd(
-												Animation animation) {
-											mPlayView
-													.setVisibility(View.VISIBLE);
-										}
-									})).animate();
+							new SlideOutAnimation(mImgTarget).setDuration(1000))
+					.combine(
+							new BounceAnimation(mImgTarget).setBounceDistance(
+									20).setDuration(500)).animate();
 			break;
 		case 1:
 			new BlindAnimation(mImgTarget).animate();
