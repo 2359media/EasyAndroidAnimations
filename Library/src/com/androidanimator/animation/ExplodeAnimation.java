@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.androidanimator.animation.Animation;
-import com.androidanimator.animation.Animation.AnimationListener;
+import com.androidanimator.animation.AnimationListener;
 
 /**
  * 
@@ -19,9 +19,33 @@ import com.androidanimator.animation.Animation.AnimationListener;
 public class ExplodeAnimation extends Animation {
 
 	ViewGroup parentView;
-	int xParts, yParts;
+	private int xParts, yParts;
+	int matrix;
 	long duration;
 	AnimationListener listener;
+	
+	public final static int MATRIX_1X2 = 12;
+	public final static int MATRIX_1X3 = 13;
+	public final static int MATRIX_2X1 = 21;
+	public final static int MATRIX_2X2 = 22;
+	public final static int MATRIX_2X3 = 23;
+	public final static int MATRIX_3X1 = 31;
+	public final static int MATRIX_3X2 = 32;
+	public final static int MATRIX_3X3 = 33;
+	
+	
+	
+
+	public int getExplodeMatrix() {
+		return matrix;
+	}
+
+	public ExplodeAnimation setExplodeMatrix(int matrix) {
+		this.matrix = matrix;
+		 xParts = matrix / 10;
+		 yParts = matrix % 10;
+		 return this;
+	}
 
 	/**
 	 * The ExplodeAnimation creates a bitmap of the view, divides them into X
@@ -162,34 +186,34 @@ public class ExplodeAnimation extends Animation {
 	/**
 	 * @return the xParts
 	 */
-	public int getXParts() {
-		return xParts;
-	}
+//	public int getXParts() {
+//		return xParts;
+//	}
 
 	/**
 	 * @param xParts
 	 *            the xParts to set
 	 */
-	public ExplodeAnimation setXParts(int xParts) {
-		this.xParts = xParts;
-		return this;
-	}
+//	public ExplodeAnimation setXParts(int xParts) {
+//		this.xParts = xParts;
+//		return this;
+//	}
 
 	/**
 	 * @return the yParts
 	 */
-	public int getYParts() {
-		return yParts;
-	}
+//	public int getYParts() {
+//		return yParts;
+//	}
 
 	/**
 	 * @param yParts
 	 *            the yParts to set
 	 */
-	public ExplodeAnimation setYParts(int yParts) {
-		this.yParts = yParts;
-		return this;
-	}
+//	public ExplodeAnimation setYParts(int yParts) {
+//		this.yParts = yParts;
+//		return this;
+//	}
 
 	/**
 	 * @return the duration

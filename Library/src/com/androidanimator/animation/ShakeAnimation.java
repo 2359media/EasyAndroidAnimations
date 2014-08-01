@@ -1,6 +1,6 @@
 package com.androidanimator.animation;
 
-import com.androidanimator.animation.Animation.AnimationListener;
+import com.androidanimator.animation.AnimationListener;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;

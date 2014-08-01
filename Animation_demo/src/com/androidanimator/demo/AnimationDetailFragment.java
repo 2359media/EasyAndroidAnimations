@@ -1,4 +1,4 @@
-package com.two359media.animationsample;
+package com.androidanimator.demo;
 
 import java.util.ArrayList;
 
@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.androidanimator.animation.Animation;
-import com.androidanimator.animation.Animation.AnimationListener;
+import com.androidanimator.animation.AnimationListener;
 import com.androidanimator.animation.BlindAnimation;
 import com.androidanimator.animation.BlinkAnimation;
 import com.androidanimator.animation.BounceAnimation;
@@ -37,7 +37,8 @@ import com.androidanimator.animation.SlideInUnderneathAnimation;
 import com.androidanimator.animation.SlideOutAnimation;
 import com.androidanimator.animation.SlideOutUnderneathAnimation;
 import com.androidanimator.animation.TransferAnimation;
-import com.two359media.animationsample.dummy.DemoItem;
+import com.androidanimator.demo.model.DemoItem;
+import com.two359media.animationsample.R;
 
 /**
  * A fragment representing a single Animation detail screen. This fragment is
@@ -123,18 +124,18 @@ public class AnimationDetailFragment extends Fragment implements
 	private void doAnimation() {
 		switch (mItem.id) {
 		case 24:
-			new CombinableAnimation()
-					.combine(
-							new FlipVerticalAnimation(mImgTarget)
-									.setDuration(500))
-					.combine(
-							new FlipHorizontalAnimation(mImgTarget)
-									.setDuration(500))
-					.combine(
-							new SlideOutAnimation(mImgTarget).setDuration(1000))
-					.combine(
-							new BounceAnimation(mImgTarget).setBounceDistance(
-									20).setDuration(500)).animate();
+//			new CombinableAnimation()
+//					.combine(
+//							new FlipVerticalAnimation(mImgTarget)
+//									.setDuration(500))
+//					.combine(
+//							new FlipHorizontalAnimation(mImgTarget)
+//									.setDuration(500))
+//					.combine(
+//							new SlideOutAnimation(mImgTarget).setDuration(1000))
+//					.combine(
+//							new BounceAnimation(mImgTarget).setBounceDistance(
+//									20).setDuration(500)).animate();
 			break;
 		case 1:
 			new BlindAnimation(mImgTarget).animate();

@@ -1,4 +1,4 @@
-package com.two359media.animationsample.dummy;
+package com.androidanimator.demo.model;
 
 import java.util.ArrayList;
 import java.util.List;

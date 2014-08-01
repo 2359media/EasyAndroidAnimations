@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".AnimationListActivity"
+            android:name="com.androidanimator.demo.AnimationListActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,9 +23,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".AnimationDetailActivity"
+            android:name="com.androidanimator.demo.AnimationDetailActivity"
             android:label="@string/title_animation_detail"
-            android:parentActivityName=".AnimationListActivity" >
+            android:parentActivityName="com.androidanimator.demo.AnimationListActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.two359media.animationsample.AnimationListActivity" />

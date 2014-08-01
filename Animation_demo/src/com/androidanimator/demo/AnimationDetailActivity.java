@@ -1,4 +1,6 @@
-package com.two359media.animationsample;
+package com.androidanimator.demo;
+
+import com.two359media.animationsample.R;
 
 import android.content.Intent;
 import android.os.Bundle;

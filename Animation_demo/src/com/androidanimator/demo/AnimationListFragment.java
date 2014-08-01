@@ -1,4 +1,4 @@
-package com.two359media.animationsample;
+package com.androidanimator.demo;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.two359media.animationsample.dummy.DemoItem;
+import com.androidanimator.demo.model.DemoItem;
 
 /**
  * A list fragment representing a list of Animations. This fragment also
