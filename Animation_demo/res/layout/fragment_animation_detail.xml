@@ -10,7 +10,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:adjustViewBounds="true"
-        android:src="@drawable/img4" />
+        android:src="@drawable/img4"
+        android:contentDescription="@string/imgBehind_description" />
 
     <ImageView
         android:id="@+id/imgTarget"
@@ -18,7 +19,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:adjustViewBounds="true"
-        android:src="@drawable/img1" />
+        android:src="@drawable/img1"
+        android:contentDescription="@string/imgTarget_description" />
 
     <ImageView
         android:id="@+id/imgPlay"
@@ -26,14 +28,15 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:adjustViewBounds="true"
-        android:src="@drawable/play_button" />
+        android:src="@drawable/play_button"
+        android:contentDescription="@string/imgPlay_description" />
 
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="top|right"
-        android:text="Target"
+        android:text="@string/target"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </FrameLayout>

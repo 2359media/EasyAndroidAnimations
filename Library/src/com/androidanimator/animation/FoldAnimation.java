@@ -53,8 +53,8 @@ public class FoldAnimation extends Animation {
 		step1.playTogether(animY1, animY1_child);
 
 		AnimatorSet animFold = new AnimatorSet();
-		animFold.setDuration(duration);
 		animFold.playSequentially(step1, fold2);
+		animFold.setDuration(duration / 2);
 		animFold.addListener(new AnimatorListenerAdapter() {
 
 			@Override

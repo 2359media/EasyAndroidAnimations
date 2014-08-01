@@ -1,9 +1,9 @@
 package com.two359media.animationsample.dummy;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
+import android.util.SparseArray;
 
 /**
  * Helper class for providing sample content for user interfaces created by
@@ -21,11 +21,12 @@ public class DemoItem {
 	/**
 	 * A map of sample (dummy) items, by ID.
 	 */
-	public static Map<Integer, DummyItem> ITEM_MAP = new HashMap<Integer, DummyItem>();
+	public static SparseArray<DummyItem> ITEM_MAP = new SparseArray<>();
 
 	static {
-		//Animations not included: Fly
-		addItem(new DummyItem(24, "Combine FlipHorizontal, FlipVertical, Bounce & SlideOut"));
+		// Animations not included: Fly
+		addItem(new DummyItem(24,
+				"Combine FlipHorizontal, FlipVertical, Bounce & SlideOut"));
 		addItem(new DummyItem(1, "Blind"));
 		addItem(new DummyItem(2, "Blink"));
 		addItem(new DummyItem(3, "Bounce"));

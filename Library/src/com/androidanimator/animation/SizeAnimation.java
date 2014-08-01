@@ -25,7 +25,7 @@ public class SizeAnimation extends Animation {
 		scale.playTogether(ObjectAnimator.ofFloat(view, View.SCALE_X, 0.5f),
 				ObjectAnimator.ofFloat(view, View.SCALE_Y, 0.5f));
 		sizeAnimSet.playSequentially(scale, ObjectAnimator.ofFloat(view, View.ALPHA, 0f));
-		sizeAnimSet.setDuration(duration);
+		sizeAnimSet.setDuration(duration / 2);
 		sizeAnimSet.addListener(new AnimatorListenerAdapter() {
 
 			@Override

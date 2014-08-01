@@ -40,7 +40,7 @@ public class BlinkAnimation extends Animation {
 
 	@Override
 	public void animate() {
-		long singleBlinkDuration = duration / repetitions;
+		long singleBlinkDuration = duration / repetitions / 2;
 		if (singleBlinkDuration == 0)
 			singleBlinkDuration = 1;
 		ObjectAnimator fadeOut = ObjectAnimator.ofFloat(view, View.ALPHA, 0), fadeIn = ObjectAnimator
@@ -48,7 +48,6 @@ public class BlinkAnimation extends Animation {
 		final AnimatorSet animatorSet = new AnimatorSet();
 		animatorSet.playSequentially(fadeOut, fadeIn);
 		animatorSet.setDuration(singleBlinkDuration);
-		
 		animatorSet.addListener(new AnimatorListenerAdapter() {
 
 			@Override

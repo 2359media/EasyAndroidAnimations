@@ -106,7 +106,7 @@ public class PathAnimation extends Animation {
 
 		allPathsAnim.playSequentially(pathAnimList);
 		pathAnim.play(allPathsAnim);
-		allPathsAnim.setDuration(duration);
+		allPathsAnim.setDuration(duration / numOfPoints);
 		allPathsAnim.addListener(new AnimatorListenerAdapter() {
 
 			@Override

@@ -3,5 +3,9 @@
 
     <string name="app_name">Animation Sample</string>
     <string name="title_animation_detail">Animation Detail</string>
+    <string name="target">TARGET</string>
+    <string name="imgBehind_description">image to flip to</string>
+    <string name="imgTarget_description">image to animate</string>
+    <string name="imgPlay_description">play button to start animation</string>
 
 </resources>

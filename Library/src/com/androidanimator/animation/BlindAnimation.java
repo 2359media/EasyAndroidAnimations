@@ -41,7 +41,7 @@ public class BlindAnimation extends Animation {
 		view.setPivotY(1f);
 		AnimatorSet blindAnimationSet = new AnimatorSet();
 		blindAnimationSet.playTogether(scaleY, scaleY_child);
-		blindAnimationSet.setDuration(duration);
+		blindAnimationSet.setDuration(duration / 2);
 		blindAnimationSet.addListener(new AnimatorListenerAdapter() {
 
 			@Override

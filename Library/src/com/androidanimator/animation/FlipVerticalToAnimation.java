@@ -77,7 +77,7 @@ public class FlipVerticalToAnimation extends Animation {
 					flipToView, View.ROTATION_X, -270f, -360f));
 		}
 		flipToAnim.setInterpolator(new LinearInterpolator());
-		flipToAnim.setDuration(duration);
+		flipToAnim.setDuration(duration / 2);
 		flipToAnim.addListener(new AnimatorListenerAdapter() {
 
 			@Override
