@@ -16,7 +16,7 @@ import com.androidanimator.animation.AnimationListener;
 import com.androidanimator.animation.BlindAnimation;
 import com.androidanimator.animation.BlinkAnimation;
 import com.androidanimator.animation.BounceAnimation;
-import com.androidanimator.animation.CombinableAnimation;
+import com.androidanimator.animation.CombinableAnimations;
 import com.androidanimator.animation.ExplodeAnimation;
 import com.androidanimator.animation.FlipHorizontalAnimation;
 import com.androidanimator.animation.FlipHorizontalToAnimation;
@@ -31,7 +31,6 @@ import com.androidanimator.animation.RotationAnimation;
 import com.androidanimator.animation.ScaleInAnimation;
 import com.androidanimator.animation.ScaleOutAnimation;
 import com.androidanimator.animation.ShakeAnimation;
-import com.androidanimator.animation.SizeAnimation;
 import com.androidanimator.animation.SlideInAnimation;
 import com.androidanimator.animation.SlideInUnderneathAnimation;
 import com.androidanimator.animation.SlideOutAnimation;
@@ -96,6 +95,22 @@ public class AnimationDetailFragment extends Fragment implements
 			mImgTarget.setImageResource(R.drawable.img4);
 		}
 
+		mPlayView.setLayoutParams(mImgTarget.getLayoutParams());
+
+		if (mItem.id == 11) {
+			mImgTarget.setScaleX(0.5f);
+			mImgTarget.setScaleY(0.5f);
+		}
+
+		if (mItem.id == 12 || mItem.id == 15 || mItem.id == 18
+				|| mItem.id == 19 || mItem.id == 23) {
+			mImgTarget.setVisibility(View.INVISIBLE);
+		}
+
+		if (mItem.id != 22) {
+			mDestination.setVisibility(View.INVISIBLE);
+		}
+
 		return rootView;
 	}
 
@@ -106,13 +121,6 @@ public class AnimationDetailFragment extends Fragment implements
 		mImgBehind = (ImageView) v.findViewById(R.id.imgBehind);
 		mDestination = v.findViewById(R.id.textView1);
 		mImgBehind.setVisibility(View.INVISIBLE);
-		if (mItem.id == 12 || mItem.id == 15 || mItem.id == 19
-				|| mItem.id == 20) {
-			mImgTarget.setVisibility(View.INVISIBLE);
-		}
-		if (mItem.id != 23) {
-			mDestination.setVisibility(View.INVISIBLE);
-		}
 	}
 
 	@Override
@@ -123,19 +131,16 @@ public class AnimationDetailFragment extends Fragment implements
 
 	private void doAnimation() {
 		switch (mItem.id) {
-		case 24:
-//			new CombinableAnimation()
-//					.combine(
-//							new FlipVerticalAnimation(mImgTarget)
-//									.setDuration(500))
-//					.combine(
-//							new FlipHorizontalAnimation(mImgTarget)
-//									.setDuration(500))
-//					.combine(
-//							new SlideOutAnimation(mImgTarget).setDuration(1000))
-//					.combine(
-//							new BounceAnimation(mImgTarget).setBounceDistance(
-//									20).setDuration(500)).animate();
+		case 23:
+			new CombinableAnimations()
+					.add(
+							new FlipVerticalAnimation(mImgTarget)
+									.setDuration(1000))
+					.add(
+							new FlipHorizontalAnimation(mImgTarget)
+									.setDuration(1000))
+					.add(new ScaleInAnimation(mImgTarget).setDuration(1000))
+					.animate();
 			break;
 		case 1:
 			new BlindAnimation(mImgTarget).animate();
@@ -255,25 +260,22 @@ public class AnimationDetailFragment extends Fragment implements
 					}).animate();
 			break;
 		case 18:
-			new SizeAnimation(mImgTarget).animate();
-			break;
-		case 19:
 			new SlideInAnimation(mImgTarget).setDirection(
 					Animation.DIRECTION_UP).animate();
 			break;
-		case 20:
+		case 19:
 			new SlideInUnderneathAnimation(mImgTarget).setDirection(
 					Animation.DIRECTION_DOWN).animate();
 			break;
-		case 21:
+		case 20:
 			new SlideOutAnimation(mImgTarget).setDirection(
 					Animation.DIRECTION_LEFT).animate();
 			break;
-		case 22:
+		case 21:
 			new SlideOutUnderneathAnimation(mImgTarget).setDirection(
 					Animation.DIRECTION_RIGHT).animate();
 			break;
-		case 23:
+		case 22:
 			new TransferAnimation(mImgTarget).setDestinationView(mDestination)
 					.animate();
 			break;

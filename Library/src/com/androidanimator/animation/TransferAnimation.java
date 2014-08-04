@@ -8,9 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
+ * This animation transfers the view to another view provided by the user
+ * through scaling and translation. The view is scaled to the same size and is
+ * translated to the same position as the destination view.
  * 
  * @author SiYao
- *
+ * 
  */
 public class TransferAnimation extends Animation {
 
@@ -19,24 +22,19 @@ public class TransferAnimation extends Animation {
 	long duration;
 	AnimationListener listener;
 	ViewGroup parentView;
-	
+
 	/**
-	 * The TransferAnimation transfers the view to another view provided by the
-	 * user through scaling and translation. The view is scaled to the same size
-	 * and is translated to the same position as the destination view.
+	 * This animation transfers the view to another view provided by the user
+	 * through scaling and translation. The view is scaled to the same size and
+	 * is translated to the same position as the destination view.
 	 * 
-	 * @param destinationView
-	 *            the view to be transferred to
-	 * @param duration
-	 *            the duration of the entire animation
-	 * @param listener
-	 *            the AnimationListener of animation @see
-	 *            {@link AnimationListener}
+	 * @param view
+	 *            The view to be animated.
 	 */
 	public TransferAnimation(View view) {
 		this.view = view;
 		destinationView = null;
-		duration = Animation.DEFAULT_DURATION;
+		duration = DEFAULT_DURATION;
 		listener = null;
 	}
 
@@ -77,14 +75,17 @@ public class TransferAnimation extends Animation {
 	}
 
 	/**
-	 * @return the destinationView
+	 * @return The destination view to transfer the original view to.
 	 */
 	public View getDestinationView() {
 		return destinationView;
 	}
 
 	/**
-	 * @param destinationView the destinationView to set
+	 * @param destinationView
+	 *            The destination view to set to transfer the original view to.
+	 * @return This object, allowing calls to methods in this class to be
+	 *         chained.
 	 */
 	public TransferAnimation setDestinationView(View destinationView) {
 		this.destinationView = destinationView;
@@ -92,44 +93,17 @@ public class TransferAnimation extends Animation {
 	}
 
 	/**
-	 * @return the transX
-	 */
-	public int getTransX() {
-		return transX;
-	}
-
-	/**
-	 * @param transX the transX to set
-	 */
-	public TransferAnimation setTransX(int transX) {
-		this.transX = transX;
-		return this;
-	}
-
-	/**
-	 * @return the transY
-	 */
-	public int getTransY() {
-		return transY;
-	}
-
-	/**
-	 * @param transY the transY to set
-	 */
-	public TransferAnimation setTransY(int transY) {
-		this.transY = transY;
-		return this;
-	}
-
-	/**
-	 * @return the duration
+	 * @return The duration of the entire animation.
 	 */
 	public long getDuration() {
 		return duration;
 	}
 
 	/**
-	 * @param duration the duration to set
+	 * @param duration
+	 *            The duration of the entire animation to set.
+	 * @return This object, allowing calls to methods in this class to be
+	 *         chained.
 	 */
 	public TransferAnimation setDuration(long duration) {
 		this.duration = duration;
@@ -137,14 +111,17 @@ public class TransferAnimation extends Animation {
 	}
 
 	/**
-	 * @return the listener
+	 * @return The listener for the end of the animation.
 	 */
 	public AnimationListener getListener() {
 		return listener;
 	}
 
 	/**
-	 * @param listener the listener to set
+	 * @param listener
+	 *            The listener to set for the end of the animation.
+	 * @return This object, allowing calls to methods in this class to be
+	 *         chained.
 	 */
 	public TransferAnimation setListener(AnimationListener listener) {
 		this.listener = listener;

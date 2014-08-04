@@ -2,6 +2,10 @@ package com.androidanimator.animation;
 
 import android.view.View;
 
+/**
+ * The parent class of all animation classes.
+ * 
+ */
 public abstract class Animation {
 
 	// constants
@@ -14,7 +18,10 @@ public abstract class Animation {
 
 	View view;
 
+	/**
+	 * This method animates the properties of the view specific to the Animation
+	 * object.
+	 */
 	public abstract void animate();
-
 
 }

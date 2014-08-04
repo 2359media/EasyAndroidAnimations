@@ -12,18 +12,16 @@ import com.androidanimator.animation.Animation;
 import com.androidanimator.animation.AnimationListener;
 
 /**
+ * This animation creates a bitmap of the view, divides them into customizable
+ * number of X and Y parts and translates the parts away from the center of the
+ * view to mimic an explosion. The number of parts can vary from 1x2 to 3x3. The
+ * view is set to invisible and added back for reuse.
  * 
  * @author SiYao
  * 
  */
 public class ExplodeAnimation extends Animation {
 
-	ViewGroup parentView;
-	private int xParts, yParts;
-	int matrix;
-	long duration;
-	AnimationListener listener;
-	
 	public final static int MATRIX_1X2 = 12;
 	public final static int MATRIX_1X3 = 13;
 	public final static int MATRIX_2X1 = 21;
@@ -32,42 +30,28 @@ public class ExplodeAnimation extends Animation {
 	public final static int MATRIX_3X1 = 31;
 	public final static int MATRIX_3X2 = 32;
 	public final static int MATRIX_3X3 = 33;
-	
-	
-	
 
-	public int getExplodeMatrix() {
-		return matrix;
-	}
+	private int xParts, yParts;
 
-	public ExplodeAnimation setExplodeMatrix(int matrix) {
-		this.matrix = matrix;
-		 xParts = matrix / 10;
-		 yParts = matrix % 10;
-		 return this;
-	}
+	ViewGroup parentView;
+	int matrix;
+	long duration;
+	AnimationListener listener;
 
 	/**
-	 * The ExplodeAnimation creates a bitmap of the view, divides them into X
-	 * and Y parts and translates the parts away from the center of the view to
-	 * mimic an explosion. The number of parts can vary from 1x1 to 3x3. The
-	 * view is set to invisible and added back for reusing.
+	 * This animation creates a bitmap of the view, divides them into
+	 * customizable number of X and Y parts and translates the parts away from
+	 * the center of the view to mimic an explosion. The number of parts can
+	 * vary from 1x2 to 3x3. The view is set to invisible and added back for
+	 * reuse.
 	 * 
-	 * @param xParts
-	 *            the number of x parts to be exploded
-	 * @param yParts
-	 *            the number of y parts to be exploded
-	 * @param duration
-	 *            the duration of the entire animation
-	 * @param listener
-	 *            the AnimationListener of animation @see
-	 *            {@link AnimationListener}
+	 * @param view
+	 *            The view to be animated.
 	 */
 	public ExplodeAnimation(View view) {
 		this.view = view;
-		xParts = 3;
-		yParts = 3;
-		duration = Animation.DEFAULT_DURATION;
+		setExplodeMatrix(MATRIX_3X3);
+		duration = DEFAULT_DURATION;
 		listener = null;
 	}
 
@@ -108,7 +92,9 @@ public class ExplodeAnimation extends Animation {
 				if (widthCount == middleXPart) {
 					if (heightCount == 0) {
 						translateX = 0;
-						translateY = -bmpHeight;
+						if (yParts != 1) {
+							translateY = -bmpHeight;
+						}
 					} else if (heightCount == yParts - 1) {
 						translateX = 0;
 						translateY = bmpHeight;
@@ -184,39 +170,37 @@ public class ExplodeAnimation extends Animation {
 	}
 
 	/**
-	 * @return the xParts
+	 * The available matrices are <code>MATRIX_1X2</code>,
+	 * <code>MATRIX_1X3</code>, <code>MATRIX_2X1</code>, <code>MATRIX_2X2</code>
+	 * , <code>MATRIX_2X3</code>, <code>MATRIX_3X1</code>,
+	 * <code>MATRIX_3X2</code> and <code>MATRIX_3X3</code>.
+	 * 
+	 * @return The matrix that determines the number of X and Y parts.
 	 */
-//	public int getXParts() {
-//		return xParts;
-//	}
+	public int getExplodeMatrix() {
+		return matrix;
+	}
 
 	/**
-	 * @param xParts
-	 *            the xParts to set
+	 * The available matrices are <code>MATRIX_1X2</code>,
+	 * <code>MATRIX_1X3</code>, <code>MATRIX_2X1</code>, <code>MATRIX_2X2</code>
+	 * , <code>MATRIX_2X3</code>, <code>MATRIX_3X1</code>,
+	 * <code>MATRIX_3X2</code> and <code>MATRIX_3X3</code>.
+	 * 
+	 * @param matrix
+	 *            The matrix that determines the number of X and Y parts to set.
+	 * @return This object, allowing calls to methods in this class to be
+	 *         chained.
 	 */
-//	public ExplodeAnimation setXParts(int xParts) {
-//		this.xParts = xParts;
-//		return this;
-//	}
+	public ExplodeAnimation setExplodeMatrix(int matrix) {
+		this.matrix = matrix;
+		xParts = matrix / 10;
+		yParts = matrix % 10;
+		return this;
+	}
 
 	/**
-	 * @return the yParts
-	 */
-//	public int getYParts() {
-//		return yParts;
-//	}
-
-	/**
-	 * @param yParts
-	 *            the yParts to set
-	 */
-//	public ExplodeAnimation setYParts(int yParts) {
-//		this.yParts = yParts;
-//		return this;
-//	}
-
-	/**
-	 * @return the duration
+	 * @return The duration of the entire animation.
 	 */
 	public long getDuration() {
 		return duration;
@@ -224,7 +208,9 @@ public class ExplodeAnimation extends Animation {
 
 	/**
 	 * @param duration
-	 *            the duration to set
+	 *            The duration of the entire animation to set.
+	 * @return This object, allowing calls to methods in this class to be
+	 *         chained.
 	 */
 	public ExplodeAnimation setDuration(long duration) {
 		this.duration = duration;
@@ -232,15 +218,18 @@ public class ExplodeAnimation extends Animation {
 	}
 
 	/**
-	 * @return the listener
+	 * @return The listener for the end of the animation.
 	 */
 	public AnimationListener getListener() {
 		return listener;
 	}
 
 	/**
+	 * 
 	 * @param listener
-	 *            the listener to set
+	 *            The listener to set for the end of the animation.
+	 * @return This object, allowing calls to methods in this class to be
+	 *         chained.
 	 */
 	public ExplodeAnimation setListener(AnimationListener listener) {
 		this.listener = listener;

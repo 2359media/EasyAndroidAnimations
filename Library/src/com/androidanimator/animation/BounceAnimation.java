@@ -9,11 +9,13 @@ import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
 
 /**
+ * This animation causes the view to bounce by translating up and down for a
+ * customizable number of times before returning to its original position.
  * 
  * @author SiYao
  * 
  */
-public class BounceAnimation extends Animation {
+public class BounceAnimation extends Animation implements Combinable {
 
 	float bounceDistance;
 	int numOfBounces, bounceCount = 0;
@@ -21,24 +23,17 @@ public class BounceAnimation extends Animation {
 	AnimationListener listener;
 
 	/**
-	 * The BounceAnimation causes the view to bounce by translating up and down
-	 * for a number of times before returning to its original position.
+	 * This animation causes the view to bounce by translating up and down for a
+	 * customizable number of times before returning to its original position.
 	 * 
-	 * @param bounceDistance
-	 *            the maximum distance of the bounce
-	 * @param numOfBounces
-	 *            the number of times the animation is repeated
-	 * @param duration
-	 *            the duration of the entire animation
-	 * @param listener
-	 *            the AnimationListener of animation @see
-	 *            {@link AnimationListener}
+	 * @param view
+	 *            The view to be animated.
 	 */
 	public BounceAnimation(View view) {
 		this.view = view;
 		bounceDistance = 20;
 		numOfBounces = 2;
-		duration = Animation.DEFAULT_DURATION;
+		duration = DEFAULT_DURATION;
 		listener = null;
 	}
 
@@ -81,7 +76,7 @@ public class BounceAnimation extends Animation {
 	}
 
 	/**
-	 * @return the bounceDistance
+	 * @return The maximum bounce distance.
 	 */
 	public float getBounceDistance() {
 		return bounceDistance;
@@ -89,7 +84,9 @@ public class BounceAnimation extends Animation {
 
 	/**
 	 * @param bounceDistance
-	 *            the bounceDistance to set
+	 *            The maximum bounce distance to set.
+	 * @return This object, allowing calls to methods in this class to be
+	 *         chained.
 	 */
 	public BounceAnimation setBounceDistance(float bounceDistance) {
 		this.bounceDistance = bounceDistance;
@@ -97,7 +94,7 @@ public class BounceAnimation extends Animation {
 	}
 
 	/**
-	 * @return the numOfBounces
+	 * @return The number of bounces.
 	 */
 	public int getNumOfBounces() {
 		return numOfBounces;
@@ -105,7 +102,9 @@ public class BounceAnimation extends Animation {
 
 	/**
 	 * @param numOfBounces
-	 *            the numOfBounces to set
+	 *            The number of bounces to set.
+	 * @return This object, allowing calls to methods in this class to be
+	 *         chained.
 	 */
 	public BounceAnimation setNumOfBounces(int numOfBounces) {
 		this.numOfBounces = numOfBounces;
@@ -113,7 +112,7 @@ public class BounceAnimation extends Animation {
 	}
 
 	/**
-	 * @return the duration
+	 * @return The duration of the entire animation.
 	 */
 	public long getDuration() {
 		return duration;
@@ -121,7 +120,9 @@ public class BounceAnimation extends Animation {
 
 	/**
 	 * @param duration
-	 *            the duration to set
+	 *            The duration of the entire animation to set.
+	 * @return This object, allowing calls to methods in this class to be
+	 *         chained.
 	 */
 	public BounceAnimation setDuration(long duration) {
 		this.duration = duration;
@@ -129,7 +130,7 @@ public class BounceAnimation extends Animation {
 	}
 
 	/**
-	 * @return the listener
+	 * @return The listener for the end of the animation.
 	 */
 	public AnimationListener getListener() {
 		return listener;
@@ -137,7 +138,9 @@ public class BounceAnimation extends Animation {
 
 	/**
 	 * @param listener
-	 *            the listener to set
+	 *            The listener to set for the end of the animation.
+	 * @return This object, allowing calls to methods in this class to be
+	 *         chained.
 	 */
 	public BounceAnimation setListener(AnimationListener listener) {
 		this.listener = listener;

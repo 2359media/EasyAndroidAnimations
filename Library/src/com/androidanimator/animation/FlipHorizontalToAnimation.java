@@ -8,22 +8,35 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
 
+/**
+ * This animation causes the view to flip horizontally to reveal another
+ * user-provided view at the back of the original view.
+ * 
+ * @author SiYao
+ * 
+ */
 public class FlipHorizontalToAnimation extends Animation {
 
-	public static final int PIVOT_CENTER = 0, PIVOT_LEFT = 1, PIVOT_RIGHT = 2,
-			FLIP_LEFT = 0, FLIP_RIGHT = 1;
+	public static final int PIVOT_CENTER = 0, PIVOT_LEFT = 1, PIVOT_RIGHT = 2;
 
 	View flipToView;
 	int pivot, direction;
 	long duration;
 	AnimationListener listener;
 
+	/**
+	 * This animation causes the view to flip horizontally to reveal another
+	 * user-provided view at the back of the original view.
+	 * 
+	 * @param view
+	 *            The view to be animated.
+	 */
 	public FlipHorizontalToAnimation(View view) {
 		this.view = view;
 		flipToView = null;
 		pivot = PIVOT_CENTER;
-		direction = FLIP_RIGHT;
-		duration = Animation.DEFAULT_DURATION;
+		direction = DIRECTION_RIGHT;
+		duration = DEFAULT_DURATION;
 		listener = null;
 	}
 
@@ -65,7 +78,7 @@ public class FlipHorizontalToAnimation extends Animation {
 		rootView.setClipChildren(false);
 
 		AnimatorSet flipToAnim = new AnimatorSet();
-		if (direction == FLIP_RIGHT) {
+		if (direction == DIRECTION_RIGHT) {
 			flipToView.setRotationY(270f);
 			flipToAnim.playSequentially(ObjectAnimator.ofFloat(view,
 					View.ROTATION_Y, 0f, flipAngle), ObjectAnimator.ofFloat(
@@ -92,14 +105,18 @@ public class FlipHorizontalToAnimation extends Animation {
 	}
 
 	/**
-	 * @return the flipToView
+	 * @return The view to be revealed after flipping the original view.
 	 */
 	public View getFlipToView() {
 		return flipToView;
 	}
 
 	/**
-	 * @param flipToView the flipToView to set
+	 * @param flipToView
+	 *            The view to set to be revealed after flipping the original
+	 *            view.
+	 * @return This object, allowing calls to methods in this class to be
+	 *         chained.
 	 */
 	public FlipHorizontalToAnimation setFlipToView(View flipToView) {
 		this.flipToView = flipToView;
@@ -107,14 +124,23 @@ public class FlipHorizontalToAnimation extends Animation {
 	}
 
 	/**
-	 * @return the pivot
+	 * The available pivot points to flip are <code>PIVOT_CENTER</code>,
+	 * <code>PIVOT_LEFT</code> and <code>PIVOT_RIGHT</code>.
+	 * 
+	 * @return The pivot point for flipping.
 	 */
 	public int getPivot() {
 		return pivot;
 	}
 
 	/**
-	 * @param pivot the pivot to set
+	 * The available pivot points to flip are <code>PIVOT_CENTER</code>,
+	 * <code>PIVOT_LEFT</code> and <code>PIVOT_RIGHT</code>.
+	 * 
+	 * @param pivot
+	 *            The pivot point to set for flipping.
+	 * @return This object, allowing calls to methods in this class to be
+	 *         chained.
 	 */
 	public FlipHorizontalToAnimation setPivot(int pivot) {
 		this.pivot = pivot;
@@ -122,14 +148,25 @@ public class FlipHorizontalToAnimation extends Animation {
 	}
 
 	/**
-	 * @return the direction
+	 * The available flip directions are <code>DIRECTION_LEFT</code> and
+	 * <code>DIRECTION_RIGHT</code>.
+	 * 
+	 * @return The direction of the flip.
+	 * @see Animation
 	 */
 	public int getDirection() {
 		return direction;
 	}
 
 	/**
-	 * @param direction the direction to set
+	 * The available flip directions are <code>DIRECTION_LEFT</code> and
+	 * <code>DIRECTION_RIGHT</code>.
+	 * 
+	 * @param direction
+	 *            The direction of the flip to set.
+	 * @return This object, allowing calls to methods in this class to be
+	 *         chained.
+	 * @see Animation
 	 */
 	public FlipHorizontalToAnimation setDirection(int direction) {
 		this.direction = direction;
@@ -137,14 +174,17 @@ public class FlipHorizontalToAnimation extends Animation {
 	}
 
 	/**
-	 * @return the duration
+	 * @return The duration of the entire animation.
 	 */
 	public long getDuration() {
 		return duration;
 	}
 
 	/**
-	 * @param duration the duration to set
+	 * @param duration
+	 *            The duration of the entire animation to set.
+	 * @return This object, allowing calls to methods in this class to be
+	 *         chained.
 	 */
 	public FlipHorizontalToAnimation setDuration(long duration) {
 		this.duration = duration;
@@ -152,14 +192,17 @@ public class FlipHorizontalToAnimation extends Animation {
 	}
 
 	/**
-	 * @return the listener
+	 * @return The listener for the end of the animation.
 	 */
 	public AnimationListener getListener() {
 		return listener;
 	}
 
 	/**
-	 * @param listener the listener to set
+	 * @param listener
+	 *            The listener to set for the end of the animation.
+	 * @return This object, allowing calls to methods in this class to be
+	 *         chained.
 	 */
 	public FlipHorizontalToAnimation setListener(AnimationListener listener) {
 		this.listener = listener;

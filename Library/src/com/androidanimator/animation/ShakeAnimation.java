@@ -11,11 +11,13 @@ import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
 
 /**
+ * This animation causes the view to shake from left to right for a customizable
+ * number of times before returning to its original position.
  * 
  * @author SiYao
  * 
  */
-public class ShakeAnimation extends Animation {
+public class ShakeAnimation extends Animation implements Combinable {
 
 	float shakeDistance;
 	int numOfShakes, shakeCount = 0;
@@ -23,24 +25,17 @@ public class ShakeAnimation extends Animation {
 	AnimationListener listener;
 
 	/**
-	 * The ShakeAnimation causes the view to shake from left to right for a
-	 * number of times before returning to its original position.
+	 * This animation causes the view to shake from left to right for a
+	 * customizable number of times before returning to its original position.
 	 * 
-	 * @param shakeDistance
-	 *            the maximum distance of the shake
-	 * @param bounces
-	 *            the number of times the animation is repeated
-	 * @param duration
-	 *            the duration of the entire animation
-	 * @param listener
-	 *            the AnimationListener of animation @see
-	 *            {@link AnimationListener}
+	 * @param view
+	 *            The view to be animated.
 	 */
 	public ShakeAnimation(View view) {
 		this.view = view;
 		shakeDistance = 20;
 		numOfShakes = 2;
-		duration = Animation.DEFAULT_DURATION;
+		duration = DEFAULT_DURATION;
 		listener = null;
 	}
 
@@ -85,7 +80,7 @@ public class ShakeAnimation extends Animation {
 	}
 
 	/**
-	 * @return the shakeDistance
+	 * @return The maximum shake distance.
 	 */
 	public float getShakeDistance() {
 		return shakeDistance;
@@ -93,7 +88,9 @@ public class ShakeAnimation extends Animation {
 
 	/**
 	 * @param shakeDistance
-	 *            the shakeDistance to set
+	 *            The maximum shake distance to set.
+	 * @return This object, allowing calls to methods in this class to be
+	 *         chained.
 	 */
 	public ShakeAnimation setShakeDistance(float shakeDistance) {
 		this.shakeDistance = shakeDistance;
@@ -101,7 +98,7 @@ public class ShakeAnimation extends Animation {
 	}
 
 	/**
-	 * @return the numOfShakes
+	 * @return The number of shakes.
 	 */
 	public int getNumOfShakes() {
 		return numOfShakes;
@@ -109,7 +106,9 @@ public class ShakeAnimation extends Animation {
 
 	/**
 	 * @param numOfShakes
-	 *            the numOfShakes to set
+	 *            The number of shakes to set.
+	 * @return This object, allowing calls to methods in this class to be
+	 *         chained.
 	 */
 	public ShakeAnimation setNumOfShakes(int numOfShakes) {
 		this.numOfShakes = numOfShakes;
@@ -117,7 +116,7 @@ public class ShakeAnimation extends Animation {
 	}
 
 	/**
-	 * @return the duration
+	 * @return The duration of the entire animation.
 	 */
 	public long getDuration() {
 		return duration;
@@ -125,7 +124,9 @@ public class ShakeAnimation extends Animation {
 
 	/**
 	 * @param duration
-	 *            the duration to set
+	 *            The duration of the entire animation to set.
+	 * @return This object, allowing calls to methods in this class to be
+	 *         chained.
 	 */
 	public ShakeAnimation setDuration(long duration) {
 		this.duration = duration;
@@ -133,7 +134,7 @@ public class ShakeAnimation extends Animation {
 	}
 
 	/**
-	 * @return the listener
+	 * @return The listener for the end of the animation.
 	 */
 	public AnimationListener getListener() {
 		return listener;
@@ -141,7 +142,9 @@ public class ShakeAnimation extends Animation {
 
 	/**
 	 * @param listener
-	 *            the listener to set
+	 *            The listener to set for the end of the animation.
+	 * @return This object, allowing calls to methods in this class to be
+	 *         chained.
 	 */
 	public ShakeAnimation setListener(AnimationListener listener) {
 		this.listener = listener;

@@ -15,43 +15,39 @@ import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
 
 /**
+ * This animation translates the view within its parent view and according to
+ * the ArrayList<Point> provided by the user. The values of X and Y in each
+ * Point must be in the range of 0-100. Note: The status bar and action bar are
+ * not taken into consideration for the translation.
  * 
  * @author SiYao
  * 
  */
-public class PathAnimation extends Animation {
+public class PathAnimation extends Animation implements Combinable {
 
 	public static final int ANCHOR_CENTER = 0, ANCHOR_TOP_LEFT = 1,
 			ANCHOR_TOP_RIGHT = 2, ANCHOR_BOTTOM_LEFT = 3,
 			ANCHOR_BOTTOM_RIGHT = 4;
 
 	ArrayList<Point> points;
-	int anchorPosition;
+	int anchorPoint;
 	long duration;
 	AnimationListener listener;
 
 	/**
-	 * The PathAnimation translates the view within its parent view and
-	 * according to the ArrayList of Points provided by the user. The values of
-	 * x and y in each Point must be in the range of 0-100. Note that the status
-	 * bar and action bar are not taken into consideration.
+	 * This animation translates the view within its parent view and according
+	 * to the ArrayList<Point> provided by the user. The values of X and Y in
+	 * each Point must be in the range of 0-100. Note: The status bar and action
+	 * bar are not taken into consideration for the translation.
 	 * 
-	 * @param points
-	 *            the ArrayList of Points that the view is translated to within
-	 *            its parent
-	 * @param duration
-	 *            the duration of the entire animation
-	 * @param anchorPosition
-	 *            the anchor position whereby the view is translated from
-	 * @param listener
-	 *            the AnimationListener of animation @see
-	 *            {@link AnimationListener}
+	 * @param view
+	 *            The view to be animated.
 	 */
 	public PathAnimation(View view) {
 		this.view = view;
 		points = null;
-		anchorPosition = ANCHOR_CENTER;
-		duration = Animation.DEFAULT_DURATION;
+		anchorPoint = ANCHOR_CENTER;
+		duration = DEFAULT_DURATION;
 		listener = null;
 	}
 
@@ -72,7 +68,7 @@ public class PathAnimation extends Animation {
 			posX = (points.get(i).x / 100f * parentWidth);
 			posY = (points.get(i).y / 100f * parentHeight);
 
-			switch (anchorPosition) {
+			switch (anchorPoint) {
 			case ANCHOR_CENTER:
 				posX = posX - viewWidth / 2;
 				posY = posY - viewHeight / 2;
@@ -120,14 +116,19 @@ public class PathAnimation extends Animation {
 	}
 
 	/**
-	 * @return the points
+	 * @return The ArrayList<Point> for the view to translate to.
+	 * @see java.util.ArrayList
 	 */
 	public ArrayList<Point> getPoints() {
 		return points;
 	}
 
 	/**
-	 * @param points the points to set
+	 * @param points
+	 *            The ArrayList<Point> to set for the view to translate to.
+	 * @return This object, allowing calls to methods in this class to be
+	 *         chained.
+	 * @see java.util.ArrayList
 	 */
 	public PathAnimation setPoints(ArrayList<Point> points) {
 		this.points = points;
@@ -135,29 +136,45 @@ public class PathAnimation extends Animation {
 	}
 
 	/**
-	 * @return the anchorPosition
+	 * The available anchor points at which to translate the view are
+	 * <code>ANCHOR_CENTER</code>, <code>ANCHOR_TOP_LEFT</code>,
+	 * <code>ANCHOR_TOP_RIGHT</code>, <code>ANCHOR_BOTTOM_LEFT</code> and
+	 * <code>ANCHOR_BOTTOM_RIGHT</code>.
+	 * 
+	 * @return The anchor point at which to translate the view.
 	 */
-	public int getAnchorPosition() {
-		return anchorPosition;
+	public int getAnchorPoint() {
+		return anchorPoint;
 	}
 
 	/**
-	 * @param anchorPosition the anchorPosition to set
+	 * The available anchor points at which to translate the view are
+	 * <code>ANCHOR_CENTER</code>, <code>ANCHOR_TOP_LEFT</code>,
+	 * <code>ANCHOR_TOP_RIGHT</code>, <code>ANCHOR_BOTTOM_LEFT</code> and
+	 * <code>ANCHOR_BOTTOM_RIGHT</code>.
+	 * 
+	 * @param anchorPoint
+	 *            The anchor point to set at which to translate the view.
+	 * @return This object, allowing calls to methods in this class to be
+	 *         chained.
 	 */
-	public PathAnimation setAnchorPosition(int anchorPosition) {
-		this.anchorPosition = anchorPosition;
+	public PathAnimation setAnchorPoint(int anchorPoint) {
+		this.anchorPoint = anchorPoint;
 		return this;
 	}
 
 	/**
-	 * @return the duration
+	 * @return The duration of the entire animation.
 	 */
 	public long getDuration() {
 		return duration;
 	}
 
 	/**
-	 * @param duration the duration to set
+	 * @param duration
+	 *            The duration of the entire animation to set.
+	 * @return This object, allowing calls to methods in this class to be
+	 *         chained.
 	 */
 	public PathAnimation setDuration(long duration) {
 		this.duration = duration;
@@ -165,14 +182,17 @@ public class PathAnimation extends Animation {
 	}
 
 	/**
-	 * @return the listener
+	 * @return The listener for the end of the animation.
 	 */
 	public AnimationListener getListener() {
 		return listener;
 	}
 
 	/**
-	 * @param listener the listener to set
+	 * @param listener
+	 *            The listener to set for the end of the animation.
+	 * @return This object, allowing calls to methods in this class to be
+	 *         chained.
 	 */
 	public PathAnimation setListener(AnimationListener listener) {
 		this.listener = listener;

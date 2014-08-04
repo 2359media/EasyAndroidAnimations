@@ -9,14 +9,28 @@ import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.FrameLayout;
 
+/**
+ * This animation hides the view by scaling its Y property to mimic the
+ * "pulling of blinds".
+ * 
+ * @author Phu
+ * 
+ */
 public class BlindAnimation extends Animation {
 
 	long duration;
 	AnimationListener listener;
 
+	/**
+	 * This animation hides the view by scaling its Y property to mimic the
+	 * "pulling of blinds".
+	 * 
+	 * @param view
+	 *            The view to be animated.
+	 */
 	public BlindAnimation(View view) {
 		this.view = view;
-		duration = Animation.DEFAULT_DURATION;
+		duration = DEFAULT_DURATION;
 		listener = null;
 	}
 
@@ -57,7 +71,7 @@ public class BlindAnimation extends Animation {
 	}
 
 	/**
-	 * @return the duration
+	 * @return The duration of the entire animation.
 	 */
 	public long getDuration() {
 		return duration;
@@ -65,7 +79,9 @@ public class BlindAnimation extends Animation {
 
 	/**
 	 * @param duration
-	 *            the duration to set
+	 *            The duration of the entire animation to set.
+	 * @return This object, allowing calls to methods in this class to be
+	 *         chained.
 	 */
 	public BlindAnimation setDuration(long duration) {
 		this.duration = duration;
@@ -73,7 +89,7 @@ public class BlindAnimation extends Animation {
 	}
 
 	/**
-	 * @return the listener
+	 * @return The listener for the end of the animation.
 	 */
 	public AnimationListener getListener() {
 		return listener;
@@ -81,74 +97,13 @@ public class BlindAnimation extends Animation {
 
 	/**
 	 * @param listener
-	 *            the listener to set
+	 *            The listener to set for the end of the animation.
+	 * @return This object, allowing calls to methods in this class to be
+	 *         chained.
 	 */
 	public BlindAnimation setListener(AnimationListener listener) {
 		this.listener = listener;
 		return this;
 	}
-	//
-	// AnimatorSet blindAnimationSet;
-	// View child;
-	// ViewGroup animationLayout;
-	// LayoutParams originalParam;
-	// Context mContext;
-	//
-	// public BlindAnimation() {
-	// blindAnimationSet = new AnimatorSet();
-	// }
-	//
-	//
-	// public BlindAnimation(AnimationListener listener, long duration) {
-	// super(listener, duration);
-	// blindAnimationSet = new AnimatorSet();
-	// }
-	//
-	// @Override
-	// public void animate(View v) {
-	// getAnimatorSet(v);
-	// blindAnimationSet.start();
-	// }
-	//
-	//
-	// public View addToAnimatioView(View v) {
-	// child = v;
-	// ViewGroup parent = (ViewGroup) v.getParent();
-	// parent.removeView(v);
-	// originalParam = v.getLayoutParams();
-	// LayoutParams newParam = new LayoutParams(v.getWidth(), v.getHeight());
-	// v.setLayoutParams(newParam);
-	// animationLayout = new FrameLayout(v.getContext());
-	// animationLayout.setId(v.getId());
-	// animationLayout.setLayoutParams(originalParam);
-	// animationLayout.addView(v);
-	// parent.addView(animationLayout);
-	// return animationLayout;
-	// }
-	//
-	// @Override
-	// public AnimatorSet getAnimatorSet(View v) {
-	// addToAnimatioView(v);
-	// ObjectAnimator scaleY = ObjectAnimator.ofFloat(animationLayout,
-	// View.SCALE_Y, 1f, 0f);
-	// child.setPivotX(1f);
-	// child.setPivotY(1f);
-	// ObjectAnimator scaleY_child = ObjectAnimator.ofFloat(child, View.SCALE_Y,
-	// 1f, 2.5f);
-	// blindAnimationSet.playTogether(scaleY, scaleY_child);
-	// blindAnimationSet.setDuration(getDuration());
-	// if (getListener() != null) {
-	// blindAnimationSet.addListener(new AnimatorListenerAdapter() {
-	//
-	// @Override
-	// public void onAnimationEnd(Animator animation) {
-	// getListener().onAnimationEnd(BlindAnimation.this);
-	// }
-	// });
-	// }
-	// animationLayout.setPivotX(1f);
-	// animationLayout.setPivotY(1f);
-	// return blindAnimationSet;
-	// }
-	//
+
 }

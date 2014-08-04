@@ -8,22 +8,35 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
 
+/**
+ * This animation causes the view to flip vertically to reveal another
+ * user-provided view at the back of the original view.
+ * 
+ * @author SiYao
+ * 
+ */
 public class FlipVerticalToAnimation extends Animation {
 
-	public static final int PIVOT_CENTER = 0, PIVOT_TOP = 1, PIVOT_BOTTOM = 2,
-			FLIP_UP = 0, FLIP_DOWN = 1;
+	public static final int PIVOT_CENTER = 0, PIVOT_TOP = 1, PIVOT_BOTTOM = 2;
 
 	View flipToView;
-	int pivotPosition, direction;
+	int pivot, direction;
 	long duration;
 	AnimationListener listener;
 
+	/**
+	 * This animation causes the view to flip vertically to reveal another
+	 * user-provided view at the back of the original view.
+	 * 
+	 * @param view
+	 *            The view to be animated.
+	 */
 	public FlipVerticalToAnimation(View view) {
 		this.view = view;
 		flipToView = null;
-		pivotPosition = PIVOT_CENTER;
-		direction = FLIP_UP;
-		duration = Animation.DEFAULT_DURATION;
+		pivot = PIVOT_CENTER;
+		direction = DIRECTION_UP;
+		duration = DEFAULT_DURATION;
 		listener = null;
 	}
 
@@ -34,7 +47,7 @@ public class FlipVerticalToAnimation extends Animation {
 
 		float pivotX, pivotY, flipAngle = 270f, viewWidth = view.getWidth(), viewHeight = view
 				.getHeight();
-		switch (pivotPosition) {
+		switch (pivot) {
 		case PIVOT_TOP:
 			pivotX = viewWidth / 2;
 			pivotY = 0f;
@@ -65,12 +78,12 @@ public class FlipVerticalToAnimation extends Animation {
 		rootView.setClipChildren(false);
 
 		AnimatorSet flipToAnim = new AnimatorSet();
-		if (direction == FLIP_UP) {
+		if (direction == DIRECTION_UP) {
 			flipToView.setRotationX(270f);
 			flipToAnim.playSequentially(ObjectAnimator.ofFloat(view,
 					View.ROTATION_X, 0f, flipAngle), ObjectAnimator.ofFloat(
 					flipToView, View.ROTATION_X, 270f, 360f));
-		} else {
+		} else if (direction == DIRECTION_UP) {
 			flipToView.setRotationX(-270f);
 			flipToAnim.playSequentially(ObjectAnimator.ofFloat(view,
 					View.ROTATION_X, 0f, -flipAngle), ObjectAnimator.ofFloat(
@@ -91,14 +104,18 @@ public class FlipVerticalToAnimation extends Animation {
 	}
 
 	/**
-	 * @return the flipToView
+	 * @return The view to be revealed after flipping the original view.
 	 */
 	public View getFlipToView() {
 		return flipToView;
 	}
 
 	/**
-	 * @param flipToView the flipToView to set
+	 * @param flipToView
+	 *            The view to set to be revealed after flipping the original
+	 *            view.
+	 * @return This object, allowing calls to methods in this class to be
+	 *         chained.
 	 */
 	public FlipVerticalToAnimation setFlipToView(View flipToView) {
 		this.flipToView = flipToView;
@@ -106,29 +123,49 @@ public class FlipVerticalToAnimation extends Animation {
 	}
 
 	/**
-	 * @return the pivotPosition
+	 * The available pivot points are <code>PIVOT_CENTER</code>,
+	 * <code>PIVOT_TOP</code> and <code>PIVOT_BOTTOM</code>.
+	 * 
+	 * @return The pivot point for flipping.
 	 */
-	public int getPivotPosition() {
-		return pivotPosition;
+	public int getPivot() {
+		return pivot;
 	}
 
 	/**
-	 * @param pivotPosition the pivotPosition to set
+	 * The available pivot points are <code>PIVOT_CENTER</code>,
+	 * <code>PIVOT_TOP</code> and <code>PIVOT_BOTTOM</code>.
+	 * 
+	 * @param pivot
+	 *            The pivot to set for flipping.
+	 * @return This object, allowing calls to methods in this class to be
+	 *         chained.
 	 */
-	public FlipVerticalToAnimation setPivotPosition(int pivotPosition) {
-		this.pivotPosition = pivotPosition;
+	public FlipVerticalToAnimation setPivot(int pivot) {
+		this.pivot = pivot;
 		return this;
 	}
 
 	/**
-	 * @return the flipDirection
+	 * The available flip directions are <code>DIRECTION_UP</code> and
+	 * <code>DIRECTION_DOWN</code>.
+	 * 
+	 * @return The direction of the flip.
+	 * @see Animation
 	 */
 	public int getDirection() {
 		return direction;
 	}
 
 	/**
-	 * @param flipDirection the flipDirection to set
+	 * The available flip directions are <code>DIRECTION_UP</code> and
+	 * <code>DIRECTION_DOWN</code>.
+	 * 
+	 * @param flipDirection
+	 *            The direction of the flip to set.
+	 * @return This object, allowing calls to methods in this class to be
+	 *         chained.
+	 * @see Animation
 	 */
 	public FlipVerticalToAnimation setDirection(int direction) {
 		this.direction = direction;
@@ -136,14 +173,17 @@ public class FlipVerticalToAnimation extends Animation {
 	}
 
 	/**
-	 * @return the duration
+	 * @return The duration of the entire animation.
 	 */
 	public long getDuration() {
 		return duration;
 	}
 
 	/**
-	 * @param duration the duration to set
+	 * @param duration
+	 *            The duration of the entire animation to set.
+	 * @return This object, allowing calls to methods in this class to be
+	 *         chained.
 	 */
 	public FlipVerticalToAnimation setDuration(long duration) {
 		this.duration = duration;
@@ -151,14 +191,17 @@ public class FlipVerticalToAnimation extends Animation {
 	}
 
 	/**
-	 * @return the listener
+	 * @return The listener for the end of the animation.
 	 */
 	public AnimationListener getListener() {
 		return listener;
 	}
 
 	/**
-	 * @param listener the listener to set
+	 * @param listener
+	 *            The listener to set for the end of the animation.
+	 * @return This object, allowing calls to methods in this class to be
+	 *         chained.
 	 */
 	public FlipVerticalToAnimation setListener(AnimationListener listener) {
 		this.listener = listener;

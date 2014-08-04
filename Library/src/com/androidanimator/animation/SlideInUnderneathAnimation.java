@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 /**
+ * This animation causes the view to slide in underneath from its own borders.
  * 
  * @author SiYao
  * 
@@ -19,22 +20,16 @@ public class SlideInUnderneathAnimation extends Animation {
 	AnimationListener listener;
 
 	/**
-	 * The SlideInUnderneathAnimation causes the view to slide in underneath
-	 * from the left, right, up or down depending on the parameters provided by
-	 * the user.
+	 * This animation causes the view to slide in underneath from its own
+	 * borders.
 	 * 
-	 * @param direction
-	 *            the direction to slide in underneath from
-	 * @param duration
-	 *            the duration of the entire animation
-	 * @param listener
-	 *            the AnimationListener of animation @see
-	 *            {@link AnimationListener}
+	 * @param view
+	 *            The view to be animated.
 	 */
 	public SlideInUnderneathAnimation(View view) {
-		this.view = view;  
-		direction = Animation.DIRECTION_LEFT;
-		duration = Animation.DEFAULT_DURATION;
+		this.view = view;
+		direction = DIRECTION_LEFT;
+		duration = DEFAULT_DURATION;
 		listener = null;
 	}
 
@@ -52,22 +47,22 @@ public class SlideInUnderneathAnimation extends Animation {
 		ObjectAnimator slideInAnim = null;
 		float viewWidth = view.getWidth(), viewHeight = view.getHeight();
 		switch (direction) {
-		case Animation.DIRECTION_LEFT:
+		case DIRECTION_LEFT:
 			view.setTranslationX(-viewWidth);
 			slideInAnim = ObjectAnimator.ofFloat(view, View.TRANSLATION_X,
 					slideInFrame.getX());
 			break;
-		case Animation.DIRECTION_RIGHT:
+		case DIRECTION_RIGHT:
 			view.setTranslationX(viewWidth);
 			slideInAnim = ObjectAnimator.ofFloat(view, View.TRANSLATION_X,
 					slideInFrame.getX());
 			break;
-		case Animation.DIRECTION_UP:
+		case DIRECTION_UP:
 			view.setTranslationY(-viewHeight);
 			slideInAnim = ObjectAnimator.ofFloat(view, View.TRANSLATION_Y,
 					slideInFrame.getY());
 			break;
-		case Animation.DIRECTION_DOWN:
+		case DIRECTION_DOWN:
 			view.setTranslationY(viewHeight);
 			slideInAnim = ObjectAnimator.ofFloat(view, View.TRANSLATION_Y,
 					slideInFrame.getY());
@@ -98,15 +93,31 @@ public class SlideInUnderneathAnimation extends Animation {
 	}
 
 	/**
-	 * @return the direction
+	 * The available directions to slide in from are
+	 * <code>DIRECTION_LEFT</code>,
+	 * <code>DIRECTION_RIGHT</code>,
+	 * <code>DIRECTION_TOP</code> and
+	 * <code>DIRECTION_BOTTOM</code>.
+	 * 
+	 * @return The direction to slide the view in from.
+	 * @see Animation
 	 */
 	public int getDirection() {
 		return direction;
 	}
 
 	/**
+	 * The available directions to slide in from are
+	 * <code>DIRECTION_LEFT</code>,
+	 * <code>DIRECTION_RIGHT</code>,
+	 * <code>DIRECTION_TOP</code> and
+	 * <code>DIRECTION_BOTTOM</code>.
+	 * 
 	 * @param direction
-	 *            the direction to set
+	 *            The direction to set to slide the view in from.
+	 * @return This object, allowing calls to methods in this class to be
+	 *         chained.
+	 * @see Animation
 	 */
 	public SlideInUnderneathAnimation setDirection(int direction) {
 		this.direction = direction;
@@ -114,7 +125,7 @@ public class SlideInUnderneathAnimation extends Animation {
 	}
 
 	/**
-	 * @return the duration
+	 * @return The duration of the entire animation.
 	 */
 	public long getDuration() {
 		return duration;
@@ -122,7 +133,9 @@ public class SlideInUnderneathAnimation extends Animation {
 
 	/**
 	 * @param duration
-	 *            the duration to set
+	 *            The duration of the entire animation to set.
+	 * @return This object, allowing calls to methods in this class to be
+	 *         chained.
 	 */
 	public SlideInUnderneathAnimation setDuration(long duration) {
 		this.duration = duration;
@@ -130,7 +143,7 @@ public class SlideInUnderneathAnimation extends Animation {
 	}
 
 	/**
-	 * @return the listener
+	 * @return The listener for the end of the animation.
 	 */
 	public AnimationListener getListener() {
 		return listener;
@@ -138,7 +151,9 @@ public class SlideInUnderneathAnimation extends Animation {
 
 	/**
 	 * @param listener
-	 *            the listener to set
+	 *            The listener to set for the end of the animation.
+	 * @return This object, allowing calls to methods in this class to be
+	 *         chained.
 	 */
 	public SlideInUnderneathAnimation setListener(AnimationListener listener) {
 		this.listener = listener;

@@ -25,7 +25,7 @@ public class DemoItem {
 
 	static {
 		// Animations not included: Fly
-		addItem(new DummyItem(24,
+		addItem(new DummyItem(23,
 				"Combine FlipHorizontal, FlipVertical, Bounce & SlideOut"));
 		addItem(new DummyItem(1, "Blind"));
 		addItem(new DummyItem(2, "Blink"));
@@ -44,12 +44,11 @@ public class DemoItem {
 		addItem(new DummyItem(15, "Scale In"));
 		addItem(new DummyItem(16, "Scale Out"));
 		addItem(new DummyItem(17, "Shake"));
-		addItem(new DummyItem(18, "Size"));
-		addItem(new DummyItem(19, "Slide In"));
-		addItem(new DummyItem(20, "Slide In Underneath"));
-		addItem(new DummyItem(21, "Slide Out"));
-		addItem(new DummyItem(22, "Slide Out Underneath"));
-		addItem(new DummyItem(23, "Transfer"));
+		addItem(new DummyItem(18, "Slide In"));
+		addItem(new DummyItem(19, "Slide In Underneath"));
+		addItem(new DummyItem(20, "Slide Out"));
+		addItem(new DummyItem(21, "Slide Out Underneath"));
+		addItem(new DummyItem(22, "Transfer"));
 	}
 
 	private static void addItem(DummyItem item) {

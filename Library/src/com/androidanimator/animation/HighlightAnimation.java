@@ -10,6 +10,8 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 /**
+ * This animation makes use of a translucent box to overlay the view before
+ * animating its alpha property to mimic the highlighting of the view.
  * 
  * @author SiYao
  * 
@@ -21,8 +23,8 @@ public class HighlightAnimation extends Animation {
 	AnimationListener listener;
 
 	/**
-	 * The HighlightAnimation makes use of a translucent box to overlay the view
-	 * to mimic the highlighting of the view.
+	 * This animation makes use of a translucent box to overlay the view before
+	 * animating its alpha property to mimic the highlighting of the view.
 	 * 
 	 * @param color
 	 *            the color of the highlight
@@ -35,19 +37,20 @@ public class HighlightAnimation extends Animation {
 	public HighlightAnimation(View view) {
 		this.view = view;
 		color = Color.YELLOW;
-		duration = Animation.DEFAULT_DURATION;
+		duration = DEFAULT_DURATION;
 		listener = null;
 	}
 
 	@Override
 	public void animate() {
 		final FrameLayout highlightFrame = new FrameLayout(view.getContext());
-		LayoutParams layoutParams = new LayoutParams(view.getWidth(), view.getHeight());
+		LayoutParams layoutParams = new LayoutParams(view.getWidth(),
+				view.getHeight());
 		ImageView highlightView = new ImageView(view.getContext());
 		highlightView.setBackgroundColor(color);
 		highlightView.setAlpha(0.5f);
 		highlightView.setVisibility(View.VISIBLE);
-		
+
 		final ViewGroup parentView = (ViewGroup) view.getParent();
 		final int positionView = parentView.indexOfChild(view);
 		parentView.addView(highlightFrame, positionView, layoutParams);
@@ -56,32 +59,39 @@ public class HighlightAnimation extends Animation {
 		parentView.removeView(view);
 		highlightFrame.addView(view);
 		highlightFrame.addView(highlightView);
-		
-		highlightView.animate().alpha(0).setDuration(duration).setListener(new AnimatorListenerAdapter() {
 
-			@Override
-			public void onAnimationEnd(Animator animation) {
-				highlightFrame.removeAllViews();
-				parentView.addView(view, positionView);
-				view.setX(highlightFrame.getLeft());
-				view.setY(highlightFrame.getTop());
-				parentView.removeView(highlightFrame);
-				if (getListener() != null) {
-					getListener().onAnimationEnd(HighlightAnimation.this);
-				}
-			}
-		});
+		highlightView.animate().alpha(0).setDuration(duration)
+				.setListener(new AnimatorListenerAdapter() {
+
+					@Override
+					public void onAnimationEnd(Animator animation) {
+						highlightFrame.removeAllViews();
+						parentView.addView(view, positionView);
+						view.setX(highlightFrame.getLeft());
+						view.setY(highlightFrame.getTop());
+						parentView.removeView(highlightFrame);
+						if (getListener() != null) {
+							getListener().onAnimationEnd(
+									HighlightAnimation.this);
+						}
+					}
+				});
 	}
 
 	/**
-	 * @return the color
+	 * @return The color of the highlight.
+	 * @see android.graphics.Color
 	 */
 	public int getColor() {
 		return color;
 	}
 
 	/**
-	 * @param color the color to set
+	 * @param color
+	 *            The color of the highlight to set.
+	 * @return This object, allowing calls to methods in this class to be
+	 *         chained.
+	 * @see android.graphics.Color
 	 */
 	public HighlightAnimation setColor(int color) {
 		this.color = color;
@@ -89,14 +99,17 @@ public class HighlightAnimation extends Animation {
 	}
 
 	/**
-	 * @return the duration
+	 * @return The duration of the entire animation.
 	 */
 	public long getDuration() {
 		return duration;
 	}
 
 	/**
-	 * @param duration the duration to set
+	 * @param duration
+	 *            The duration of the entire animation to set.
+	 * @return This object, allowing calls to methods in this class to be
+	 *         chained.
 	 */
 	public HighlightAnimation setDuration(long duration) {
 		this.duration = duration;
@@ -104,14 +117,17 @@ public class HighlightAnimation extends Animation {
 	}
 
 	/**
-	 * @return the listener
+	 * @return The listener for the end of the animation.
 	 */
 	public AnimationListener getListener() {
 		return listener;
 	}
 
 	/**
-	 * @param listener the listener to set
+	 * @param listener
+	 *            The listener to set for the end of the animation.
+	 * @return This object, allowing calls to methods in this class to be
+	 *         chained.
 	 */
 	public HighlightAnimation setListener(AnimationListener listener) {
 		this.listener = listener;

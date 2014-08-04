@@ -4,14 +4,26 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.view.View;
 
-public class ScaleOutAnimation extends Animation {
-	
+/**
+ * This animation scales out the view from 1 to 0.
+ * 
+ * @author SiYao
+ * 
+ */
+public class ScaleOutAnimation extends Animation implements Combinable {
+
 	long duration;
 	AnimationListener listener;
-	
+
+	/**
+	 * This animation scales out the view from 1 to 0.
+	 * 
+	 * @param view
+	 *            The view to be animated.
+	 */
 	public ScaleOutAnimation(View view) {
 		this.view = view;
-		duration = Animation.DEFAULT_DURATION;
+		duration = DEFAULT_DURATION;
 		listener = null;
 	}
 
@@ -19,26 +31,31 @@ public class ScaleOutAnimation extends Animation {
 	public void animate() {
 		view.setScaleX(1f);
 		view.setScaleY(1f);
-		view.animate().scaleX(0f).scaleY(0f).setDuration(duration).setListener(new AnimatorListenerAdapter() {
+		view.animate().scaleX(0f).scaleY(0f).setDuration(duration)
+				.setListener(new AnimatorListenerAdapter() {
 
-			@Override
-			public void onAnimationEnd(Animator animation) {
-				if (getListener() != null) {
-					getListener().onAnimationEnd(ScaleOutAnimation.this);
-				}
-			}
-		});
+					@Override
+					public void onAnimationEnd(Animator animation) {
+						if (getListener() != null) {
+							getListener()
+									.onAnimationEnd(ScaleOutAnimation.this);
+						}
+					}
+				});
 	}
 
 	/**
-	 * @return the duration
+	 * @return The duration of the entire animation.
 	 */
 	public long getDuration() {
 		return duration;
 	}
 
 	/**
-	 * @param duration the duration to set
+	 * @param duration
+	 *            The duration of the entire animation to set.
+	 * @return This object, allowing calls to methods in this class to be
+	 *         chained.
 	 */
 	public ScaleOutAnimation setDuration(long duration) {
 		this.duration = duration;
@@ -46,14 +63,17 @@ public class ScaleOutAnimation extends Animation {
 	}
 
 	/**
-	 * @return the listener
+	 * @return The listener for the end of the animation.
 	 */
 	public AnimationListener getListener() {
 		return listener;
 	}
 
 	/**
-	 * @param listener the listener to set
+	 * @param listener
+	 *            The listener to set for the end of the animation.
+	 * @return This object, allowing calls to methods in this class to be
+	 *         chained.
 	 */
 	public ScaleOutAnimation setListener(AnimationListener listener) {
 		this.listener = listener;

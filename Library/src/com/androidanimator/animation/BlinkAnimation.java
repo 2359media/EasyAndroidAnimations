@@ -9,88 +9,79 @@ import android.animation.ObjectAnimator;
 import android.view.View;
 
 /**
+ * This animation causes the view to fade in and fade out a customizable number
+ * of times.
  * 
  * @author SiYao
  * 
  */
-public class BlinkAnimation extends Animation {
+public class BlinkAnimation extends Animation implements Combinable {
 
-	int repetitions, blinkCount = 0;
+	int numOfBlinks, blinkCount = 0;
 	long duration;
 	AnimationListener listener;
 
 	/**
-	 * The BlinkAnimation causes the view to blink a number of times to mimic a
-	 * blinking animation.
+	 * This animation causes the view to fade in and fade out a customizable
+	 * number of times.
 	 * 
-	 * @param bounces
-	 *            the number of times the animation is repeated
-	 * @param duration
-	 *            the duration of the entire animation
-	 * @param listener
-	 *            the AnimationListener of animation @see
-	 *            {@link AnimationListener}
+	 * @param view
+	 *            The view to be animated.
 	 */
 	public BlinkAnimation(View view) {
 		this.view = view;
-		repetitions = 2;
-		duration = Animation.DEFAULT_DURATION;
+		numOfBlinks = 2;
+		duration = DEFAULT_DURATION;
 		listener = null;
 	}
 
 	@Override
 	public void animate() {
-		long singleBlinkDuration = duration / repetitions / 2;
+		long singleBlinkDuration = duration / numOfBlinks / 2;
 		if (singleBlinkDuration == 0)
 			singleBlinkDuration = 1;
 		ObjectAnimator fadeOut = ObjectAnimator.ofFloat(view, View.ALPHA, 0), fadeIn = ObjectAnimator
 				.ofFloat(view, View.ALPHA, 1);
-		final AnimatorSet animatorSet = new AnimatorSet();
-		animatorSet.playSequentially(fadeOut, fadeIn);
-		animatorSet.setDuration(singleBlinkDuration);
-		animatorSet.addListener(new AnimatorListenerAdapter() {
+		final AnimatorSet blinkAnim = new AnimatorSet();
+		blinkAnim.playSequentially(fadeOut, fadeIn);
+		blinkAnim.setDuration(singleBlinkDuration);
+		blinkAnim.addListener(new AnimatorListenerAdapter() {
 
 			@Override
 			public void onAnimationEnd(Animator animation) {
 				blinkCount++;
-				if (blinkCount != repetitions) {
-					animation.start();
-					if (blinkCount == repetitions - 1) {
-						animation.addListener(new AnimatorListenerAdapter() {
-
-							@Override
-							public void onAnimationEnd(Animator animation) {
-								if (getListener() != null) {
-									getListener().onAnimationEnd(
-											BlinkAnimation.this);
-								}
-							}
-						});
+				if (blinkCount == numOfBlinks) {
+					if (getListener() != null) {
+						getListener().onAnimationEnd(BlinkAnimation.this);
 					}
+				} else {
+					blinkAnim.start();
 				}
 			}
 		});
-		animatorSet.start();
+		blinkAnim.start();
 	}
 
 	/**
-	 * @return the repetitions
+	 * @return The number of blinks.
 	 */
-	public int getRepetitions() {
-		return repetitions;
+	public int getNumOfBlinks() {
+		return numOfBlinks;
 	}
 
 	/**
-	 * @param repetitions
-	 *            the repetitions to set
+	 * @param numOfBlinks
+	 *            The number of blinks to set.
+	 * @return This object, allowing calls to methods in this class to be
+	 *         chained.
 	 */
-	public BlinkAnimation setRepetitions(int repetitions) {
-		this.repetitions = repetitions;
+	public BlinkAnimation setNumOfBlinks(int numOfBlinks) {
+		this.numOfBlinks = numOfBlinks;
 		return this;
 	}
 
 	/**
-	 * @return the duration
+	 * @return The duration of the entire animation.
 	 */
 	public long getDuration() {
 		return duration;
@@ -98,7 +89,7 @@ public class BlinkAnimation extends Animation {
 
 	/**
 	 * @param duration
-	 *            the duration to set
+	 *            The duration of the entire animation to set.
 	 */
 	public BlinkAnimation setDuration(long duration) {
 		this.duration = duration;
@@ -106,7 +97,7 @@ public class BlinkAnimation extends Animation {
 	}
 
 	/**
-	 * @return the listener
+	 * @return The listener for the end of the animation.
 	 */
 	public AnimationListener getListener() {
 		return listener;
@@ -114,7 +105,7 @@ public class BlinkAnimation extends Animation {
 
 	/**
 	 * @param listener
-	 *            the listener to set
+	 *            The listener to set for the end of the animation.
 	 */
 	public BlinkAnimation setListener(AnimationListener listener) {
 		this.listener = listener;

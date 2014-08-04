@@ -7,33 +7,28 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
+ * This animation causes the view to slide in from the borders of the screen.
  * 
  * @author SiYao
  * 
  */
-public class SlideInAnimation extends Animation {
+public class SlideInAnimation extends Animation implements Combinable {
 
 	int direction;
 	long duration;
 	AnimationListener listener;
 
 	/**
-	 * The SlideInAnimation causes the view to slide in from the left, right,
-	 * top or bottom of the screen depending on the parameters provided by the
-	 * user.
+	 * This animation causes the view to slide in from the borders of the
+	 * screen.
 	 * 
-	 * @param direction
-	 *            the direction to slide in from
-	 * @param duration
-	 *            the duration of the entire animation
-	 * @param listener
-	 *            the AnimationListener of animation @see
-	 *            {@link AnimationListener}
+	 * @param view
+	 *            The view to be animated.
 	 */
 	public SlideInAnimation(View view) {
 		this.view = view;
-		direction = Animation.DIRECTION_LEFT;
-		duration = Animation.DEFAULT_DURATION;
+		direction = DIRECTION_LEFT;
+		duration = DEFAULT_DURATION;
 		listener = null;
 	}
 
@@ -51,19 +46,19 @@ public class SlideInAnimation extends Animation {
 
 		ObjectAnimator slideAnim = null;
 		switch (direction) {
-		case Animation.DIRECTION_LEFT:
+		case DIRECTION_LEFT:
 			slideAnim = ObjectAnimator.ofFloat(view, View.X, -locationView[0]
 					- view.getWidth(), view.getX());
 			break;
-		case Animation.DIRECTION_RIGHT:
+		case DIRECTION_RIGHT:
 			slideAnim = ObjectAnimator.ofFloat(view, View.X,
 					rootView.getRight(), view.getX());
 			break;
-		case Animation.DIRECTION_UP:
+		case DIRECTION_UP:
 			slideAnim = ObjectAnimator.ofFloat(view, View.Y, -locationView[1]
 					- view.getHeight(), view.getY());
 			break;
-		case Animation.DIRECTION_DOWN:
+		case DIRECTION_DOWN:
 			slideAnim = ObjectAnimator.ofFloat(view, View.Y,
 					rootView.getBottom(), view.getY());
 			break;
@@ -72,7 +67,7 @@ public class SlideInAnimation extends Animation {
 		}
 		slideAnim.setDuration(duration);
 		slideAnim.addListener(new AnimatorListenerAdapter() {
-			
+
 			@Override
 			public void onAnimationStart(Animator animation) {
 				view.setVisibility(View.VISIBLE);
@@ -89,14 +84,27 @@ public class SlideInAnimation extends Animation {
 	}
 
 	/**
-	 * @return the direction
+	 * The available directions to slide in from are <code>DIRECTION_LEFT</code>
+	 * , <code>DIRECTION_RIGHT</code>, <code>DIRECTION_TOP</code> and
+	 * <code>DIRECTION_BOTTOM</code>.
+	 * 
+	 * @return The direction to slide the view in from.
+	 * @see Animation
 	 */
 	public int getDirection() {
 		return direction;
 	}
 
 	/**
-	 * @param direction the direction to set
+	 * The available directions to slide in from are <code>DIRECTION_LEFT</code>
+	 * , <code>DIRECTION_RIGHT</code>, <code>DIRECTION_TOP</code> and
+	 * <code>DIRECTION_BOTTOM</code>.
+	 * 
+	 * @param direction
+	 *            The direction to set to slide the view in from.
+	 * @return This object, allowing calls to methods in this class to be
+	 *         chained.
+	 * @see Animation
 	 */
 	public SlideInAnimation setDirection(int direction) {
 		this.direction = direction;
@@ -104,14 +112,17 @@ public class SlideInAnimation extends Animation {
 	}
 
 	/**
-	 * @return the duration
+	 * @return The duration of the entire animation.
 	 */
 	public long getDuration() {
 		return duration;
 	}
 
 	/**
-	 * @param duration the duration to set
+	 * @param duration
+	 *            The duration of the entire animation to set.
+	 * @return This object, allowing calls to methods in this class to be
+	 *         chained.
 	 */
 	public SlideInAnimation setDuration(long duration) {
 		this.duration = duration;
@@ -119,14 +130,17 @@ public class SlideInAnimation extends Animation {
 	}
 
 	/**
-	 * @return the listener
+	 * @return The listener for the end of the animation.
 	 */
 	public AnimationListener getListener() {
 		return listener;
 	}
 
 	/**
-	 * @param listener the listener to set
+	 * @param listener
+	 *            The listener to set for the end of the animation.
+	 * @return This object, allowing calls to methods in this class to be
+	 *         chained.
 	 */
 	public SlideInAnimation setListener(AnimationListener listener) {
 		this.listener = listener;

@@ -8,11 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
+ * This animation rotates the view by a customizable number of degrees and at a
+ * customizable pivot point.
  * 
  * @author SiYao
- *
+ * 
  */
-public class RotationAnimation extends Animation {
+public class RotationAnimation extends Animation implements Combinable {
 
 	public static final int PIVOT_CENTER = 0, PIVOT_TOP_LEFT = 1,
 			PIVOT_TOP_RIGHT = 2, PIVOT_BOTTOM_LEFT = 3, PIVOT_BOTTOM_RIGHT = 4;
@@ -23,27 +25,20 @@ public class RotationAnimation extends Animation {
 	AnimationListener listener;
 
 	/**
-	 * The RotationAnimation rotates the view depending on the parameters
-	 * provided by the user.
+	 * This animation rotates the view by a customizable number of degrees and
+	 * at a customizable pivot point.
 	 * 
-	 * @param degrees
-	 *            the number of degrees to rotate the view by
-	 * @param pivot
-	 *            the pivot around which the view is rotated
-	 * @param duration
-	 *            the duration of the entire animation
-	 * @param listener
-	 *            the AnimationListener of animation @see
-	 *            {@link AnimationListener}
+	 * @param view
+	 *            The view to be animated.
 	 */
 	public RotationAnimation(View view) {
 		this.view = view;
 		degrees = 360;
 		pivot = PIVOT_CENTER;
-		duration = Animation.DEFAULT_DURATION;
+		duration = DEFAULT_DURATION;
 		listener = null;
 	}
-	
+
 	@Override
 	public void animate() {
 		ViewGroup parentView = (ViewGroup) view.getParent(), rootView = (ViewGroup) view
@@ -54,7 +49,8 @@ public class RotationAnimation extends Animation {
 		}
 		rootView.setClipChildren(false);
 
-		float pivotX, pivotY, viewWidth = view.getWidth(), viewHeight = view.getHeight();
+		float pivotX, pivotY, viewWidth = view.getWidth(), viewHeight = view
+				.getHeight();
 		switch (pivot) {
 		case PIVOT_TOP_LEFT:
 			pivotX = 1f;
@@ -73,32 +69,40 @@ public class RotationAnimation extends Animation {
 			pivotY = viewHeight;
 			break;
 		default:
-			pivotX = viewWidth/2;
-			pivotY = viewHeight/2;
+			pivotX = viewWidth / 2;
+			pivotY = viewHeight / 2;
 			break;
 		}
 		view.setPivotX(pivotX);
 		view.setPivotY(pivotY);
-		view.animate().rotationBy(degrees).setDuration(duration).setListener(new AnimatorListenerAdapter() {
+		view.animate().rotationBy(degrees).setDuration(duration)
+				.setListener(new AnimatorListenerAdapter() {
 
-			@Override
-			public void onAnimationEnd(Animator animation) {
-				if (getListener() != null) {
-					getListener().onAnimationEnd(RotationAnimation.this);
-				}
-			}
-		});
+					@Override
+					public void onAnimationEnd(Animator animation) {
+						if (getListener() != null) {
+							getListener()
+									.onAnimationEnd(RotationAnimation.this);
+						}
+					}
+				});
 	}
 
 	/**
-	 * @return the degrees
+	 * @return The number of degrees to rotate by.
 	 */
 	public float getDegrees() {
 		return degrees;
 	}
 
 	/**
-	 * @param degrees the degrees to set
+	 * In order to rotate anti-clockwise, the number of degrees should be
+	 * negative.
+	 * 
+	 * @param degrees
+	 *            The number of degrees to set to rotate by.
+	 * @return This object, allowing calls to methods in this class to be
+	 *         chained.
 	 */
 	public RotationAnimation setDegrees(float degrees) {
 		this.degrees = degrees;
@@ -106,14 +110,25 @@ public class RotationAnimation extends Animation {
 	}
 
 	/**
-	 * @return the pivot
+	 * The available pivot points are <code>PIVOT_CENTER</code>,
+	 * <code>PIVOT_TOP_LEFT</code>, <code>PIVOT_TOP_RIGHT</code>,
+	 * <code>PIVOT_BOTTOM_LEFT</code> and <code>PIVOT_BOTTOM_RIGHT</code>.
+	 * 
+	 * @return The pivot point for rotation.
 	 */
 	public int getPivot() {
 		return pivot;
 	}
 
 	/**
-	 * @param pivot the pivot to set
+	 * The available pivot points are <code>PIVOT_CENTER</code>,
+	 * <code>PIVOT_TOP_LEFT</code>, <code>PIVOT_TOP_RIGHT</code>,
+	 * <code>PIVOT_BOTTOM_LEFT</code> and <code>PIVOT_BOTTOM_RIGHT</code>.
+	 * 
+	 * @param pivot
+	 *            The pivot point to set for rotation.
+	 * @return This object, allowing calls to methods in this class to be
+	 *         chained.
 	 */
 	public RotationAnimation setPivot(int pivot) {
 		this.pivot = pivot;
@@ -121,14 +136,17 @@ public class RotationAnimation extends Animation {
 	}
 
 	/**
-	 * @return the duration
+	 * @return The duration of the entire animation.
 	 */
 	public long getDuration() {
 		return duration;
 	}
 
 	/**
-	 * @param duration the duration to set
+	 * @param duration
+	 *            The duration of the entire animation to set.
+	 * @return This object, allowing calls to methods in this class to be
+	 *         chained.
 	 */
 	public RotationAnimation setDuration(long duration) {
 		this.duration = duration;
@@ -136,14 +154,17 @@ public class RotationAnimation extends Animation {
 	}
 
 	/**
-	 * @return the listener
+	 * @return The listener for the end of the animation.
 	 */
 	public AnimationListener getListener() {
 		return listener;
 	}
 
 	/**
-	 * @param listener the listener to set
+	 * @param listener
+	 *            The listener to set for the end of the animation.
+	 * @return This object, allowing calls to methods in this class to be
+	 *         chained.
 	 */
 	public RotationAnimation setListener(AnimationListener listener) {
 		this.listener = listener;

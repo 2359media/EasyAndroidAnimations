@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 /**
+ * This animation causes the view to slide out underneath to its own borders.
  * 
  * @author SiYao
  * 
@@ -18,22 +19,16 @@ public class SlideOutUnderneathAnimation extends Animation {
 	AnimationListener listener;
 
 	/**
-	 * The SlideOutUnderneathAnimation causes the view to slide out underneath
-	 * to the left, right, up or down depending on the parameters provided by
-	 * the user.
+	 * This animation causes the view to slide out underneath to its own
+	 * borders.
 	 * 
-	 * @param direction
-	 *            the direction to slide out underneath to
-	 * @param duration
-	 *            the duration of the entire animation
-	 * @param listener
-	 *            the AnimationListener of animation @see
-	 *            {@link AnimationListener}
+	 * @param view
+	 *            The view to be animated.
 	 */
 	public SlideOutUnderneathAnimation(View view) {
 		this.view = view;
-		direction = Animation.DIRECTION_LEFT;
-		duration = Animation.DEFAULT_DURATION;
+		direction = DIRECTION_LEFT;
+		duration = DEFAULT_DURATION;
 		listener = null;
 	}
 
@@ -49,16 +44,16 @@ public class SlideOutUnderneathAnimation extends Animation {
 		parentView.addView(slideOutFrame, positionView);
 
 		switch (direction) {
-		case Animation.DIRECTION_LEFT:
+		case DIRECTION_LEFT:
 			view.animate().translationXBy(-view.getWidth());
 			break;
-		case Animation.DIRECTION_RIGHT:
+		case DIRECTION_RIGHT:
 			view.animate().translationXBy(view.getWidth());
 			break;
-		case Animation.DIRECTION_UP:
+		case DIRECTION_UP:
 			view.animate().translationYBy(-view.getHeight());
 			break;
-		case Animation.DIRECTION_DOWN:
+		case DIRECTION_DOWN:
 			view.animate().translationYBy(view.getHeight());
 			break;
 		default:
@@ -83,14 +78,27 @@ public class SlideOutUnderneathAnimation extends Animation {
 	}
 
 	/**
-	 * @return the direction
+	 * The available directions to slide in from are <code>DIRECTION_LEFT</code>
+	 * , <code>DIRECTION_RIGHT</code>, <code>DIRECTION_TOP</code> and
+	 * <code>DIRECTION_BOTTOM</code>.
+	 * 
+	 * @return The direction to slide the view out to.
+	 * @see Animation
 	 */
 	public int getDirection() {
 		return direction;
 	}
 
 	/**
-	 * @param direction the direction to set
+	 * The available directions to slide in from are <code>DIRECTION_LEFT</code>
+	 * , <code>DIRECTION_RIGHT</code>, <code>DIRECTION_TOP</code> and
+	 * <code>DIRECTION_BOTTOM</code>.
+	 * 
+	 * @param direction
+	 *            The direction to set to slide the view out to.
+	 * @return This object, allowing calls to methods in this class to be
+	 *         chained.
+	 * @see Animation
 	 */
 	public SlideOutUnderneathAnimation setDirection(int direction) {
 		this.direction = direction;
@@ -98,14 +106,17 @@ public class SlideOutUnderneathAnimation extends Animation {
 	}
 
 	/**
-	 * @return the duration
+	 * @return The duration of the entire animation.
 	 */
 	public long getDuration() {
 		return duration;
 	}
 
 	/**
-	 * @param duration the duration to set
+	 * @param duration
+	 *            The duration of the entire animation to set.
+	 * @return This object, allowing calls to methods in this class to be
+	 *         chained.
 	 */
 	public SlideOutUnderneathAnimation setDuration(long duration) {
 		this.duration = duration;
@@ -113,14 +124,17 @@ public class SlideOutUnderneathAnimation extends Animation {
 	}
 
 	/**
-	 * @return the listener
+	 * @return The listener for the end of the animation.
 	 */
 	public AnimationListener getListener() {
 		return listener;
 	}
 
 	/**
-	 * @param listener the listener to set
+	 * @param listener
+	 *            The listener to set for the end of the animation.
+	 * @return This object, allowing calls to methods in this class to be
+	 *         chained.
 	 */
 	public SlideOutUnderneathAnimation setListener(AnimationListener listener) {
 		this.listener = listener;

@@ -5,7 +5,14 @@ import android.animation.AnimatorListenerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class FlipHorizontalAnimation extends Animation {
+/**
+ * This animation causes the view to flip horizontally by a customizable number
+ * of degrees and at a customizable pivot point.
+ * 
+ * @author SiYao
+ * 
+ */
+public class FlipHorizontalAnimation extends Animation implements Combinable {
 
 	public static final int PIVOT_CENTER = 0, PIVOT_LEFT = 1, PIVOT_RIGHT = 2;
 
@@ -14,11 +21,18 @@ public class FlipHorizontalAnimation extends Animation {
 	long duration;
 	AnimationListener listener;
 
+	/**
+	 * This animation causes the view to flip horizontally by a customizable
+	 * number of degrees and at a customizable pivot point.
+	 * 
+	 * @param view
+	 *            The view to be animated.
+	 */
 	public FlipHorizontalAnimation(View view) {
 		this.view = view;
 		degrees = 360;
 		pivot = PIVOT_CENTER;
-		duration = Animation.DEFAULT_DURATION;
+		duration = DEFAULT_DURATION;
 		listener = null;
 	}
 
@@ -65,14 +79,20 @@ public class FlipHorizontalAnimation extends Animation {
 	}
 
 	/**
-	 * @return the degrees
+	 * @return The number of degrees to flip by.
 	 */
 	public float getDegrees() {
 		return degrees;
 	}
 
 	/**
-	 * @param degrees the degrees to set
+	 * In order to flip to the left, the number of degrees should be negative
+	 * and vice versa.
+	 * 
+	 * @param degrees
+	 *            The number of degrees to set to flip by.
+	 * @return This object, allowing calls to methods in this class to be
+	 *         chained.
 	 */
 	public FlipHorizontalAnimation setDegrees(float degrees) {
 		this.degrees = degrees;
@@ -80,14 +100,23 @@ public class FlipHorizontalAnimation extends Animation {
 	}
 
 	/**
-	 * @return the pivot
+	 * The available pivot points are <code>PIVOT_CENTER</code>,
+	 * <code>PIVOT_LEFT</code> and <code>PIVOT_RIGHT</code>.
+	 * 
+	 * @return The pivot point for flipping.
 	 */
 	public int getPivot() {
 		return pivot;
 	}
 
 	/**
-	 * @param pivot the pivot to set
+	 * The available pivot points are <code>PIVOT_CENTER</code>,
+	 * <code>PIVOT_LEFT</code> and <code>PIVOT_RIGHT</code>.
+	 * 
+	 * @param pivot
+	 *            The pivot point to set for flipping.
+	 * @return This object, allowing calls to methods in this class to be
+	 *         chained.
 	 */
 	public FlipHorizontalAnimation setPivot(int pivot) {
 		this.pivot = pivot;
@@ -95,14 +124,17 @@ public class FlipHorizontalAnimation extends Animation {
 	}
 
 	/**
-	 * @return the duration
+	 * @return The duration of the entire animation.
 	 */
 	public long getDuration() {
 		return duration;
 	}
 
 	/**
-	 * @param duration the duration to set
+	 * @param duration
+	 *            The duration of the entire animation to set.
+	 * @return This object, allowing calls to methods in this class to be
+	 *         chained.
 	 */
 	public FlipHorizontalAnimation setDuration(long duration) {
 		this.duration = duration;
@@ -110,14 +142,17 @@ public class FlipHorizontalAnimation extends Animation {
 	}
 
 	/**
-	 * @return the listener
+	 * @return The listener for the end of the animation.
 	 */
 	public AnimationListener getListener() {
 		return listener;
 	}
 
 	/**
-	 * @param listener the listener to set
+	 * @param listener
+	 *            The listener to set for the end of the animation.
+	 * @return This object, allowing calls to methods in this class to be
+	 *         chained.
 	 */
 	public FlipHorizontalAnimation setListener(AnimationListener listener) {
 		this.listener = listener;
