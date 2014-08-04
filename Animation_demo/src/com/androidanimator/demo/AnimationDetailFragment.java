@@ -16,7 +16,6 @@ import com.androidanimator.animation.AnimationListener;
 import com.androidanimator.animation.BlindAnimation;
 import com.androidanimator.animation.BlinkAnimation;
 import com.androidanimator.animation.BounceAnimation;
-import com.androidanimator.animation.CombinableAnimations;
 import com.androidanimator.animation.ExplodeAnimation;
 import com.androidanimator.animation.FlipHorizontalAnimation;
 import com.androidanimator.animation.FlipHorizontalToAnimation;
@@ -24,6 +23,7 @@ import com.androidanimator.animation.FlipVerticalAnimation;
 import com.androidanimator.animation.FlipVerticalToAnimation;
 import com.androidanimator.animation.FoldAnimation;
 import com.androidanimator.animation.HighlightAnimation;
+import com.androidanimator.animation.ParallelAnimator;
 import com.androidanimator.animation.PathAnimation;
 import com.androidanimator.animation.PuffInAnimation;
 import com.androidanimator.animation.PuffOutAnimation;
@@ -141,7 +141,7 @@ public class AnimationDetailFragment extends Fragment implements
 	private void doAnimation() {
 		switch (mItem.id) {
 		case 0:
-			new CombinableAnimations()
+			new ParallelAnimator()
 					.add(new FlipHorizontalAnimation(mImgTarget)
 							.setDuration(1000))
 					.add(new FlipVerticalAnimation(mImgTarget)
@@ -151,7 +151,7 @@ public class AnimationDetailFragment extends Fragment implements
 
 								@Override
 								public void onAnimationEnd(Animation animation) {
-									new CombinableAnimations()
+									new ParallelAnimator()
 											.add(new BounceAnimation(mImgTarget)
 													.setDuration(1000))
 											.add(new SlideOutAnimation(

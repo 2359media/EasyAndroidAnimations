@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * @author SiYao
  * 
  */
-public class CombinableAnimations extends Animation {
+public class ParallelAnimator extends Animation {
 
 	ArrayList<Combinable> animationList;
 	AnimationListener listener;
@@ -18,7 +18,7 @@ public class CombinableAnimations extends Animation {
 	 * This class allows the adding of certain Animation objects to an
 	 * ArrayList<Combinable> to be animated together.
 	 */
-	public CombinableAnimations() {
+	public ParallelAnimator() {
 		animationList = new ArrayList<Combinable>();
 	}
 
@@ -31,7 +31,7 @@ public class CombinableAnimations extends Animation {
 	 * @return This object, allowing calls to methods in this class to be
 	 *         chained.
 	 */
-	public CombinableAnimations add(Combinable combinable) {
+	public ParallelAnimator add(Combinable combinable) {
 		animationList.add(combinable);
 		return this;
 	}
