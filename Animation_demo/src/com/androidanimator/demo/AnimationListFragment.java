@@ -11,9 +11,9 @@ import com.androidanimator.demo.model.DemoItem;
 
 /**
  * A list fragment representing a list of Animations. This fragment also
- * supports tablet devices by allowing list items to be given an 'activated'
- * state upon selection. This helps indicate which item is currently being
- * viewed in a {@link AnimationDetailFragment}.
+ * supports tablets by allowing list items to be given an 'activated' state upon
+ * selection. This helps indicate which item is currently being viewed in
+ * {@link AnimationDetailFragment}.
  * <p>
  * Activities containing this fragment MUST implement the {@link Callbacks}
  * interface.

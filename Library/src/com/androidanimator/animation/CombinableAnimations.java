@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * This class allows the adding of certain Animation objects to an
  * ArrayList<Combinable> to be animated together.
  * 
- * @author Siyao
+ * @author SiYao
  * 
  */
 public class CombinableAnimations extends Animation {

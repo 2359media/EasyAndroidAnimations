@@ -40,9 +40,10 @@ import com.androidanimator.demo.model.DemoItem;
 import com.two359media.animationsample.R;
 
 /**
- * A fragment representing a single Animation detail screen. This fragment is
- * either contained in a {@link AnimationListActivity} in two-pane mode (on
- * tablets) or a {@link AnimationDetailActivity} on handsets.
+ * This is a fragment representing a single Animation detail screen which shows
+ * off all the possible animations available in the AndroidAnimator library.
+ * This fragment is either contained in {@link AnimationListActivity} in
+ * two-pane mode (on tablets) or {@link AnimationDetailActivity} (on phones).
  */
 public class AnimationDetailFragment extends Fragment implements
 		OnClickListener {
@@ -84,7 +85,14 @@ public class AnimationDetailFragment extends Fragment implements
 		View rootView = inflater.inflate(R.layout.fragment_animation_detail,
 				container, false);
 
-		initView(rootView);
+		mPlayView = rootView.findViewById(R.id.imgPlay);
+		mImgTarget = (ImageView) rootView.findViewById(R.id.imgTarget);
+		mPlayView.setOnClickListener(this);
+		mImgBehind = (ImageView) rootView.findViewById(R.id.imgBehind);
+		mDestination = rootView.findViewById(R.id.textView1);
+		mImgBehind.setVisibility(View.INVISIBLE);
+
+		// Differentiates the images for all animations
 		if (mItem.id <= 5) {
 			mImgTarget.setImageResource(R.drawable.img1);
 		} else if (mItem.id > 5 && mItem.id <= 10) {
@@ -97,16 +105,20 @@ public class AnimationDetailFragment extends Fragment implements
 
 		mPlayView.setLayoutParams(mImgTarget.getLayoutParams());
 
+		// Scales the image smaller for PathAnimation
 		if (mItem.id == 11) {
 			mImgTarget.setScaleX(0.5f);
 			mImgTarget.setScaleY(0.5f);
 		}
 
-		if (mItem.id == 12 || mItem.id == 15 || mItem.id == 18
+		// Sets view to <code>View.INVISIBLE</code> for entrance animations
+		if (mItem.id == 0 || mItem.id == 12 || mItem.id == 15 || mItem.id == 18
 				|| mItem.id == 19 || mItem.id == 23) {
 			mImgTarget.setVisibility(View.INVISIBLE);
 		}
 
+		// Sets destination view to <code>View.VISIBLE</code> only for
+		// TransferAnimation
 		if (mItem.id != 22) {
 			mDestination.setVisibility(View.INVISIBLE);
 		}
@@ -114,33 +126,40 @@ public class AnimationDetailFragment extends Fragment implements
 		return rootView;
 	}
 
-	private void initView(View v) {
-		mPlayView = v.findViewById(R.id.imgPlay);
-		mImgTarget = (ImageView) v.findViewById(R.id.imgTarget);
-		mPlayView.setOnClickListener(this);
-		mImgBehind = (ImageView) v.findViewById(R.id.imgBehind);
-		mDestination = v.findViewById(R.id.textView1);
-		mImgBehind.setVisibility(View.INVISIBLE);
-	}
-
 	@Override
 	public void onClick(final View v) {
+		// Sets play button to <code>View.INVISIBLE</code> before starting
+		// animation
 		mPlayView.setVisibility(View.INVISIBLE);
 		doAnimation();
 	}
 
+	/**
+	 * This method performs the various animations available in the
+	 * AndroidAnimator library.
+	 */
 	private void doAnimation() {
 		switch (mItem.id) {
-		case 23:
+		case 0:
 			new CombinableAnimations()
-					.add(
-							new FlipVerticalAnimation(mImgTarget)
-									.setDuration(1000))
-					.add(
-							new FlipHorizontalAnimation(mImgTarget)
-									.setDuration(1000))
-					.add(new ScaleInAnimation(mImgTarget).setDuration(1000))
-					.animate();
+					.add(new FlipHorizontalAnimation(mImgTarget)
+							.setDuration(1000))
+					.add(new FlipVerticalAnimation(mImgTarget)
+							.setDuration(1000))
+					.add(new ScaleInAnimation(mImgTarget).setDuration(1000)
+							.setListener(new AnimationListener() {
+
+								@Override
+								public void onAnimationEnd(Animation animation) {
+									new CombinableAnimations()
+											.add(new BounceAnimation(mImgTarget)
+													.setDuration(1000))
+											.add(new SlideOutAnimation(
+													mImgTarget)
+													.setDuration(1000))
+											.animate();
+								}
+							})).animate();
 			break;
 		case 1:
 			new BlindAnimation(mImgTarget).animate();
@@ -285,7 +304,7 @@ public class AnimationDetailFragment extends Fragment implements
 	}
 
 	/**
-	 * This is to prevent any padding from obstructing the animations.
+	 * This method is prevents any padding from obstructing the animations.
 	 */
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {

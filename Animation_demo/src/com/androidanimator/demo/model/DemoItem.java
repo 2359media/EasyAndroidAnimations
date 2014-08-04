@@ -6,10 +6,8 @@ import java.util.List;
 import android.util.SparseArray;
 
 /**
- * Helper class for providing sample content for user interfaces created by
- * Android template wizards.
- * <p>
- * TODO: Replace all uses of this class before publishing your app.
+ * This class is a helper class for providing sample content for user interfaces
+ * created by Android template wizards.
  */
 public class DemoItem {
 
@@ -24,9 +22,8 @@ public class DemoItem {
 	public static SparseArray<DummyItem> ITEM_MAP = new SparseArray<>();
 
 	static {
-		// Animations not included: Fly
-		addItem(new DummyItem(23,
-				"Combine FlipHorizontal, FlipVertical, Bounce & SlideOut"));
+		addItem(new DummyItem(0,
+				"Combine Flip Horizontal, Flip Vertical, Scale In, Bounce & Slide Out"));
 		addItem(new DummyItem(1, "Blind"));
 		addItem(new DummyItem(2, "Blink"));
 		addItem(new DummyItem(3, "Bounce"));
