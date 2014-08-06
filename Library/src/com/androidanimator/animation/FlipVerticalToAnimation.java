@@ -98,6 +98,7 @@ public class FlipVerticalToAnimation extends Animation implements Combinable {
 
 			@Override
 			public void onAnimationEnd(Animator animation) {
+				view.setVisibility(View.INVISIBLE);
 				view.setRotationX(0f);
 				if (getListener() != null) {
 					getListener().onAnimationEnd(FlipVerticalToAnimation.this);
