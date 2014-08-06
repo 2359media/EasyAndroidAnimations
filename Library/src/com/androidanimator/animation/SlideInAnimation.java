@@ -3,8 +3,10 @@ package com.androidanimator.animation;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
+import android.animation.TimeInterpolator;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
 
 /**
  * This animation causes the view to slide in from the borders of the screen.
@@ -15,6 +17,7 @@ import android.view.ViewGroup;
 public class SlideInAnimation extends Animation implements Combinable {
 
 	int direction;
+	TimeInterpolator interpolator;
 	long duration;
 	AnimationListener listener;
 
@@ -28,6 +31,7 @@ public class SlideInAnimation extends Animation implements Combinable {
 	public SlideInAnimation(View view) {
 		this.view = view;
 		direction = DIRECTION_LEFT;
+		interpolator = new AccelerateDecelerateInterpolator();
 		duration = DEFAULT_DURATION;
 		listener = null;
 	}
@@ -65,6 +69,7 @@ public class SlideInAnimation extends Animation implements Combinable {
 		default:
 			break;
 		}
+		slideAnim.setInterpolator(interpolator);
 		slideAnim.setDuration(duration);
 		slideAnim.addListener(new AnimatorListenerAdapter() {
 
@@ -108,6 +113,22 @@ public class SlideInAnimation extends Animation implements Combinable {
 	 */
 	public SlideInAnimation setDirection(int direction) {
 		this.direction = direction;
+		return this;
+	}
+
+	/**
+	 * @return The interpolator of the entire animation.
+	 */
+	public TimeInterpolator getInterpolator() {
+		return interpolator;
+	}
+
+	/**
+	 * @param interpolator
+	 *            The interpolator of the entire animation to set.
+	 */
+	public SlideInAnimation setInterpolator(TimeInterpolator interpolator) {
+		this.interpolator = interpolator;
 		return this;
 	}
 

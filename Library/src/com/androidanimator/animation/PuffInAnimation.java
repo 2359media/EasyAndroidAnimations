@@ -2,8 +2,10 @@ package com.androidanimator.animation;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.animation.TimeInterpolator;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
 
 /**
  * This animation scales down and fades in the view.
@@ -13,6 +15,7 @@ import android.view.ViewGroup;
  */
 public class PuffInAnimation extends Animation {
 
+	TimeInterpolator interpolator;
 	long duration;
 	AnimationListener listener;
 
@@ -24,6 +27,7 @@ public class PuffInAnimation extends Animation {
 	 */
 	public PuffInAnimation(View view) {
 		this.view = view;
+		interpolator = new AccelerateDecelerateInterpolator();
 		duration = DEFAULT_DURATION;
 		listener = null;
 	}
@@ -37,11 +41,12 @@ public class PuffInAnimation extends Animation {
 			parentView = (ViewGroup) parentView.getParent();
 		}
 		rootView.setClipChildren(false);
-		
+
 		view.setScaleX(4f);
 		view.setScaleY(4f);
 		view.setAlpha(0f);
-		view.animate().scaleX(1f).scaleY(1f).alpha(1f).setDuration(duration)
+		view.animate().scaleX(1f).scaleY(1f).alpha(1f)
+				.setInterpolator(interpolator).setDuration(duration)
 				.setListener(new AnimatorListenerAdapter() {
 
 					@Override
@@ -56,6 +61,22 @@ public class PuffInAnimation extends Animation {
 						}
 					}
 				});
+	}
+
+	/**
+	 * @return The interpolator of the entire animation.
+	 */
+	public TimeInterpolator getInterpolator() {
+		return interpolator;
+	}
+
+	/**
+	 * @param interpolator
+	 *            The interpolator of the entire animation to set.
+	 */
+	public PuffInAnimation setInterpolator(TimeInterpolator interpolator) {
+		this.interpolator = interpolator;
+		return this;
 	}
 
 	/**

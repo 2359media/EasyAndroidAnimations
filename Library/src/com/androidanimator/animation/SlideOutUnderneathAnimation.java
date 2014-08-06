@@ -2,8 +2,10 @@ package com.androidanimator.animation;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.animation.TimeInterpolator;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.FrameLayout;
 
 /**
@@ -15,6 +17,7 @@ import android.widget.FrameLayout;
 public class SlideOutUnderneathAnimation extends Animation {
 
 	int direction;
+	TimeInterpolator interpolator;
 	long duration;
 	AnimationListener listener;
 
@@ -28,6 +31,7 @@ public class SlideOutUnderneathAnimation extends Animation {
 	public SlideOutUnderneathAnimation(View view) {
 		this.view = view;
 		direction = DIRECTION_LEFT;
+		interpolator = new AccelerateDecelerateInterpolator();
 		duration = DEFAULT_DURATION;
 		listener = null;
 	}
@@ -59,7 +63,7 @@ public class SlideOutUnderneathAnimation extends Animation {
 		default:
 			break;
 		}
-		view.animate().setDuration(duration)
+		view.animate().setInterpolator(interpolator).setDuration(duration)
 				.setListener(new AnimatorListenerAdapter() {
 
 					@Override
@@ -102,6 +106,23 @@ public class SlideOutUnderneathAnimation extends Animation {
 	 */
 	public SlideOutUnderneathAnimation setDirection(int direction) {
 		this.direction = direction;
+		return this;
+	}
+
+	/**
+	 * @return The interpolator of the entire animation.
+	 */
+	public TimeInterpolator getInterpolator() {
+		return interpolator;
+	}
+
+	/**
+	 * @param interpolator
+	 *            The interpolator of the entire animation to set.
+	 */
+	public SlideOutUnderneathAnimation setInterpolator(
+			TimeInterpolator interpolator) {
+		this.interpolator = interpolator;
 		return this;
 	}
 

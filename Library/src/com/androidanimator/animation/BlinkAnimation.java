@@ -6,7 +6,9 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.animation.TimeInterpolator;
 import android.view.View;
+import android.view.animation.AccelerateDecelerateInterpolator;
 
 /**
  * This animation causes the view to fade in and fade out a customizable number
@@ -18,6 +20,7 @@ import android.view.View;
 public class BlinkAnimation extends Animation implements Combinable {
 
 	int numOfBlinks, blinkCount = 0;
+	TimeInterpolator interpolator;
 	long duration;
 	AnimationListener listener;
 
@@ -31,6 +34,7 @@ public class BlinkAnimation extends Animation implements Combinable {
 	public BlinkAnimation(View view) {
 		this.view = view;
 		numOfBlinks = 2;
+		interpolator = new AccelerateDecelerateInterpolator();
 		duration = DEFAULT_DURATION;
 		listener = null;
 	}
@@ -44,6 +48,7 @@ public class BlinkAnimation extends Animation implements Combinable {
 				.ofFloat(view, View.ALPHA, 1);
 		final AnimatorSet blinkAnim = new AnimatorSet();
 		blinkAnim.playSequentially(fadeOut, fadeIn);
+		blinkAnim.setInterpolator(interpolator);
 		blinkAnim.setDuration(singleBlinkDuration);
 		blinkAnim.addListener(new AnimatorListenerAdapter() {
 
@@ -77,6 +82,22 @@ public class BlinkAnimation extends Animation implements Combinable {
 	 */
 	public BlinkAnimation setNumOfBlinks(int numOfBlinks) {
 		this.numOfBlinks = numOfBlinks;
+		return this;
+	}
+
+	/**
+	 * @return The interpolator of the entire animation.
+	 */
+	public TimeInterpolator getInterpolator() {
+		return interpolator;
+	}
+
+	/**
+	 * @param interpolator
+	 *            The interpolator of the entire animation to set.
+	 */
+	public BlinkAnimation setInterpolator(TimeInterpolator interpolator) {
+		this.interpolator = interpolator;
 		return this;
 	}
 

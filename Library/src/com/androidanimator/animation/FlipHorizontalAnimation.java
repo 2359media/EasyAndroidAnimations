@@ -2,8 +2,10 @@ package com.androidanimator.animation;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.animation.TimeInterpolator;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
 
 /**
  * This animation causes the view to flip horizontally by a customizable number
@@ -18,6 +20,7 @@ public class FlipHorizontalAnimation extends Animation implements Combinable {
 
 	float degrees;
 	int pivot;
+	TimeInterpolator interpolator;
 	long duration;
 	AnimationListener listener;
 
@@ -32,6 +35,7 @@ public class FlipHorizontalAnimation extends Animation implements Combinable {
 		this.view = view;
 		degrees = 360;
 		pivot = PIVOT_CENTER;
+		interpolator = new AccelerateDecelerateInterpolator();
 		duration = DEFAULT_DURATION;
 		listener = null;
 	}
@@ -65,7 +69,8 @@ public class FlipHorizontalAnimation extends Animation implements Combinable {
 		view.setPivotX(pivotX);
 		view.setPivotY(pivotY);
 
-		view.animate().rotationYBy(degrees).setDuration(duration)
+		view.animate().rotationYBy(degrees).setInterpolator(interpolator)
+				.setDuration(duration)
 				.setListener(new AnimatorListenerAdapter() {
 
 					@Override
@@ -120,6 +125,22 @@ public class FlipHorizontalAnimation extends Animation implements Combinable {
 	 */
 	public FlipHorizontalAnimation setPivot(int pivot) {
 		this.pivot = pivot;
+		return this;
+	}
+
+	/**
+	 * @return The interpolator of the entire animation.
+	 */
+	public TimeInterpolator getInterpolator() {
+		return interpolator;
+	}
+
+	/**
+	 * @param interpolator
+	 *            The interpolator of the entire animation to set.
+	 */
+	public FlipHorizontalAnimation setInterpolator(TimeInterpolator interpolator) {
+		this.interpolator = interpolator;
 		return this;
 	}
 

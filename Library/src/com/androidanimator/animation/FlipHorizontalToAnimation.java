@@ -4,9 +4,10 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.animation.TimeInterpolator;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.LinearInterpolator;
+import android.view.animation.AccelerateDecelerateInterpolator;
 
 /**
  * This animation causes the view to flip horizontally to reveal another
@@ -15,12 +16,13 @@ import android.view.animation.LinearInterpolator;
  * @author SiYao
  * 
  */
-public class FlipHorizontalToAnimation extends Animation {
+public class FlipHorizontalToAnimation extends Animation implements Combinable {
 
 	public static final int PIVOT_CENTER = 0, PIVOT_LEFT = 1, PIVOT_RIGHT = 2;
 
 	View flipToView;
 	int pivot, direction;
+	TimeInterpolator interpolator;
 	long duration;
 	AnimationListener listener;
 
@@ -36,6 +38,7 @@ public class FlipHorizontalToAnimation extends Animation {
 		flipToView = null;
 		pivot = PIVOT_CENTER;
 		direction = DIRECTION_RIGHT;
+		interpolator = new AccelerateDecelerateInterpolator();
 		duration = DEFAULT_DURATION;
 		listener = null;
 	}
@@ -89,12 +92,13 @@ public class FlipHorizontalToAnimation extends Animation {
 					View.ROTATION_Y, 0f, -flipAngle), ObjectAnimator.ofFloat(
 					flipToView, View.ROTATION_Y, -270f, -360f));
 		}
-		flipToAnim.setInterpolator(new LinearInterpolator());
+		flipToAnim.setInterpolator(interpolator);
 		flipToAnim.setDuration(duration / 2);
 		flipToAnim.addListener(new AnimatorListenerAdapter() {
 
 			@Override
 			public void onAnimationEnd(Animator animation) {
+				view.setRotationY(0f);
 				if (getListener() != null) {
 					getListener()
 							.onAnimationEnd(FlipHorizontalToAnimation.this);
@@ -170,6 +174,23 @@ public class FlipHorizontalToAnimation extends Animation {
 	 */
 	public FlipHorizontalToAnimation setDirection(int direction) {
 		this.direction = direction;
+		return this;
+	}
+
+	/**
+	 * @return The interpolator of the entire animation.
+	 */
+	public TimeInterpolator getInterpolator() {
+		return interpolator;
+	}
+
+	/**
+	 * @param interpolator
+	 *            The interpolator of the entire animation to set.
+	 */
+	public FlipHorizontalToAnimation setInterpolator(
+			TimeInterpolator interpolator) {
+		this.interpolator = interpolator;
 		return this;
 	}
 

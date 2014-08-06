@@ -4,9 +4,11 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.animation.TimeInterpolator;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.FrameLayout;
 
 /**
@@ -18,6 +20,7 @@ import android.widget.FrameLayout;
  */
 public class FoldAnimation extends Animation {
 
+	TimeInterpolator interpolator;
 	long duration;
 	AnimationListener listener;
 
@@ -30,6 +33,7 @@ public class FoldAnimation extends Animation {
 	 */
 	public FoldAnimation(View view) {
 		this.view = view;
+		interpolator = new AccelerateDecelerateInterpolator();
 		duration = DEFAULT_DURATION;
 		listener = null;
 	}
@@ -68,6 +72,7 @@ public class FoldAnimation extends Animation {
 
 		AnimatorSet animFold = new AnimatorSet();
 		animFold.playSequentially(step1, fold2);
+		animFold.setInterpolator(interpolator);
 		animFold.setDuration(duration / 2);
 		animFold.addListener(new AnimatorListenerAdapter() {
 
@@ -79,6 +84,22 @@ public class FoldAnimation extends Animation {
 			}
 		});
 		animFold.start();
+	}
+
+	/**
+	 * @return The interpolator of the entire animation.
+	 */
+	public TimeInterpolator getInterpolator() {
+		return interpolator;
+	}
+
+	/**
+	 * @param interpolator
+	 *            The interpolator of the entire animation to set.
+	 */
+	public FoldAnimation setInterpolator(TimeInterpolator interpolator) {
+		this.interpolator = interpolator;
+		return this;
 	}
 
 	/**

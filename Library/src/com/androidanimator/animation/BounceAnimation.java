@@ -4,9 +4,10 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.animation.TimeInterpolator;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.LinearInterpolator;
+import android.view.animation.AccelerateDecelerateInterpolator;
 
 /**
  * This animation causes the view to bounce by translating up and down for a
@@ -19,6 +20,7 @@ public class BounceAnimation extends Animation implements Combinable {
 
 	float bounceDistance;
 	int numOfBounces, bounceCount = 0;
+	TimeInterpolator interpolator;
 	long duration;
 	AnimationListener listener;
 
@@ -33,6 +35,7 @@ public class BounceAnimation extends Animation implements Combinable {
 		this.view = view;
 		bounceDistance = 20;
 		numOfBounces = 2;
+		interpolator = new AccelerateDecelerateInterpolator();
 		duration = DEFAULT_DURATION;
 		listener = null;
 	}
@@ -48,7 +51,7 @@ public class BounceAnimation extends Animation implements Combinable {
 				view, View.TRANSLATION_Y, -bounceDistance), ObjectAnimator
 				.ofFloat(view, View.TRANSLATION_Y, bounceDistance),
 				ObjectAnimator.ofFloat(view, View.TRANSLATION_Y, 0));
-		bounceAnim.setInterpolator(new LinearInterpolator());
+		bounceAnim.setInterpolator(interpolator);
 		bounceAnim.setDuration(singleBounceDuration);
 
 		ViewGroup parentView = (ViewGroup) view.getParent(), rootView = (ViewGroup) view
@@ -108,6 +111,22 @@ public class BounceAnimation extends Animation implements Combinable {
 	 */
 	public BounceAnimation setNumOfBounces(int numOfBounces) {
 		this.numOfBounces = numOfBounces;
+		return this;
+	}
+
+	/**
+	 * @return The interpolator of the entire animation.
+	 */
+	public TimeInterpolator getInterpolator() {
+		return interpolator;
+	}
+
+	/**
+	 * @param interpolator
+	 *            The interpolator of the entire animation to set.
+	 */
+	public BounceAnimation setInterpolator(TimeInterpolator interpolator) {
+		this.interpolator = interpolator;
 		return this;
 	}
 

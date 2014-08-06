@@ -4,28 +4,27 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.TimeInterpolator;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
 
 /**
- * This animation scales up and fades out the view.
+ * This animation fades the view out by animating its alpha property to 0.
  * 
- * @author Phu
+ * @author SiYao
  * 
  */
-public class PuffOutAnimation extends Animation {
+public class FadeOutAnimation extends Animation implements Combinable {
 
 	TimeInterpolator interpolator;
 	long duration;
 	AnimationListener listener;
 
 	/**
-	 * This animation scales up and fades out the view.
+	 * This animation fades the view out by animating its alpha property to 0.
 	 * 
 	 * @param view
 	 *            The view to be animated.
 	 */
-	public PuffOutAnimation(View view) {
+	public FadeOutAnimation(View view) {
 		this.view = view;
 		interpolator = new AccelerateDecelerateInterpolator();
 		duration = DEFAULT_DURATION;
@@ -34,22 +33,14 @@ public class PuffOutAnimation extends Animation {
 
 	@Override
 	public void animate() {
-		ViewGroup parentView = (ViewGroup) view.getParent(), rootView = (ViewGroup) view
-				.getRootView();
-		while (parentView != rootView) {
-			parentView.setClipChildren(false);
-			parentView = (ViewGroup) parentView.getParent();
-		}
-		rootView.setClipChildren(false);
-
-		view.animate().scaleX(4f).scaleY(4f).alpha(0f)
-				.setInterpolator(interpolator).setDuration(duration)
+		view.animate().alpha(0f).setInterpolator(interpolator)
+				.setDuration(duration)
 				.setListener(new AnimatorListenerAdapter() {
 
 					@Override
 					public void onAnimationEnd(Animator animation) {
 						if (getListener() != null) {
-							getListener().onAnimationEnd(PuffOutAnimation.this);
+							getListener().onAnimationEnd(FadeOutAnimation.this);
 						}
 					}
 				});
@@ -66,7 +57,7 @@ public class PuffOutAnimation extends Animation {
 	 * @param interpolator
 	 *            The interpolator of the entire animation to set.
 	 */
-	public PuffOutAnimation setInterpolator(TimeInterpolator interpolator) {
+	public FadeOutAnimation setInterpolator(TimeInterpolator interpolator) {
 		this.interpolator = interpolator;
 		return this;
 	}
@@ -81,10 +72,8 @@ public class PuffOutAnimation extends Animation {
 	/**
 	 * @param duration
 	 *            The duration of the entire animation to set.
-	 * @return This object, allowing calls to methods in this class to be
-	 *         chained.
 	 */
-	public PuffOutAnimation setDuration(long duration) {
+	public FadeOutAnimation setDuration(long duration) {
 		this.duration = duration;
 		return this;
 	}
@@ -99,10 +88,8 @@ public class PuffOutAnimation extends Animation {
 	/**
 	 * @param listener
 	 *            The listener to set for the end of the animation.
-	 * @return This object, allowing calls to methods in this class to be
-	 *         chained.
 	 */
-	public PuffOutAnimation setListener(AnimationListener listener) {
+	public FadeOutAnimation setListener(AnimationListener listener) {
 		this.listener = listener;
 		return this;
 	}

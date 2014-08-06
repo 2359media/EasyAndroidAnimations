@@ -1,11 +1,11 @@
 package com.androidanimator.animation;
 
-import com.androidanimator.animation.AnimationListener;
-
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.animation.TimeInterpolator;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
 
 /**
  * This animation rotates the view by a customizable number of degrees and at a
@@ -21,6 +21,7 @@ public class RotationAnimation extends Animation implements Combinable {
 
 	float degrees;
 	int pivot;
+	TimeInterpolator interpolator;
 	long duration;
 	AnimationListener listener;
 
@@ -35,6 +36,7 @@ public class RotationAnimation extends Animation implements Combinable {
 		this.view = view;
 		degrees = 360;
 		pivot = PIVOT_CENTER;
+		interpolator = new AccelerateDecelerateInterpolator();
 		duration = DEFAULT_DURATION;
 		listener = null;
 	}
@@ -75,7 +77,8 @@ public class RotationAnimation extends Animation implements Combinable {
 		}
 		view.setPivotX(pivotX);
 		view.setPivotY(pivotY);
-		view.animate().rotationBy(degrees).setDuration(duration)
+		view.animate().rotationBy(degrees).setInterpolator(interpolator)
+				.setDuration(duration)
 				.setListener(new AnimatorListenerAdapter() {
 
 					@Override
@@ -132,6 +135,22 @@ public class RotationAnimation extends Animation implements Combinable {
 	 */
 	public RotationAnimation setPivot(int pivot) {
 		this.pivot = pivot;
+		return this;
+	}
+
+	/**
+	 * @return The interpolator of the entire animation.
+	 */
+	public TimeInterpolator getInterpolator() {
+		return interpolator;
+	}
+
+	/**
+	 * @param interpolator
+	 *            The interpolator of the entire animation to set.
+	 */
+	public RotationAnimation setInterpolator(TimeInterpolator interpolator) {
+		this.interpolator = interpolator;
 		return this;
 	}
 

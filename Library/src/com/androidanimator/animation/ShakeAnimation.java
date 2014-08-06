@@ -1,14 +1,13 @@
 package com.androidanimator.animation;
 
-import com.androidanimator.animation.AnimationListener;
-
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.animation.TimeInterpolator;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.LinearInterpolator;
+import android.view.animation.AccelerateDecelerateInterpolator;
 
 /**
  * This animation causes the view to shake from left to right for a customizable
@@ -21,6 +20,7 @@ public class ShakeAnimation extends Animation implements Combinable {
 
 	float shakeDistance;
 	int numOfShakes, shakeCount = 0;
+	TimeInterpolator interpolator;
 	long duration;
 	AnimationListener listener;
 
@@ -35,6 +35,7 @@ public class ShakeAnimation extends Animation implements Combinable {
 		this.view = view;
 		shakeDistance = 20;
 		numOfShakes = 2;
+		interpolator = new AccelerateDecelerateInterpolator();
 		duration = DEFAULT_DURATION;
 		listener = null;
 	}
@@ -52,7 +53,7 @@ public class ShakeAnimation extends Animation implements Combinable {
 						ObjectAnimator.ofFloat(view, View.TRANSLATION_X,
 								shakeDistance), ObjectAnimator.ofFloat(view,
 								View.TRANSLATION_X, 0));
-		shakeAnim.setInterpolator(new LinearInterpolator());
+		shakeAnim.setInterpolator(interpolator);
 		shakeAnim.setDuration(singleShakeDuration);
 
 		ViewGroup parentView = (ViewGroup) view.getParent(), rootView = (ViewGroup) view
@@ -112,6 +113,22 @@ public class ShakeAnimation extends Animation implements Combinable {
 	 */
 	public ShakeAnimation setNumOfShakes(int numOfShakes) {
 		this.numOfShakes = numOfShakes;
+		return this;
+	}
+
+	/**
+	 * @return The interpolator of the entire animation.
+	 */
+	public TimeInterpolator getInterpolator() {
+		return interpolator;
+	}
+
+	/**
+	 * @param interpolator
+	 *            The interpolator of the entire animation to set.
+	 */
+	public ShakeAnimation setInterpolator(TimeInterpolator interpolator) {
+		this.interpolator = interpolator;
 		return this;
 	}
 

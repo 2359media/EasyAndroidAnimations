@@ -2,10 +2,12 @@ package com.androidanimator.animation;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.animation.TimeInterpolator;
 import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
@@ -19,6 +21,7 @@ import android.widget.ImageView;
 public class HighlightAnimation extends Animation {
 
 	int color;
+	TimeInterpolator interpolator;
 	long duration;
 	AnimationListener listener;
 
@@ -37,6 +40,7 @@ public class HighlightAnimation extends Animation {
 	public HighlightAnimation(View view) {
 		this.view = view;
 		color = Color.YELLOW;
+		interpolator = new AccelerateDecelerateInterpolator();
 		duration = DEFAULT_DURATION;
 		listener = null;
 	}
@@ -60,7 +64,8 @@ public class HighlightAnimation extends Animation {
 		highlightFrame.addView(view);
 		highlightFrame.addView(highlightView);
 
-		highlightView.animate().alpha(0).setDuration(duration)
+		highlightView.animate().alpha(0).setInterpolator(interpolator)
+				.setDuration(duration)
 				.setListener(new AnimatorListenerAdapter() {
 
 					@Override
@@ -95,6 +100,22 @@ public class HighlightAnimation extends Animation {
 	 */
 	public HighlightAnimation setColor(int color) {
 		this.color = color;
+		return this;
+	}
+
+	/**
+	 * @return The interpolator of the entire animation.
+	 */
+	public TimeInterpolator getInterpolator() {
+		return interpolator;
+	}
+
+	/**
+	 * @param interpolator
+	 *            The interpolator of the entire animation to set.
+	 */
+	public HighlightAnimation setInterpolator(TimeInterpolator interpolator) {
+		this.interpolator = interpolator;
 		return this;
 	}
 

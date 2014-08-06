@@ -1,11 +1,11 @@
 package com.androidanimator.animation;
 
-import com.androidanimator.animation.AnimationListener;
-
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.animation.TimeInterpolator;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
 
 /**
  * This animation transfers the view to another view provided by the user
@@ -19,6 +19,7 @@ public class TransferAnimation extends Animation {
 
 	View destinationView;
 	int transX, transY;
+	TimeInterpolator interpolator;
 	long duration;
 	AnimationListener listener;
 	ViewGroup parentView;
@@ -34,6 +35,7 @@ public class TransferAnimation extends Animation {
 	public TransferAnimation(View view) {
 		this.view = view;
 		destinationView = null;
+		interpolator = new AccelerateDecelerateInterpolator();
 		duration = DEFAULT_DURATION;
 		listener = null;
 	}
@@ -61,7 +63,8 @@ public class TransferAnimation extends Animation {
 				/ 2;
 
 		view.animate().scaleX(scaleX).scaleY(scaleY).translationX(transX)
-				.translationY(transY).setDuration(duration)
+				.translationY(transY).setInterpolator(interpolator)
+				.setDuration(duration)
 				.setListener(new AnimatorListenerAdapter() {
 
 					@Override
@@ -89,6 +92,22 @@ public class TransferAnimation extends Animation {
 	 */
 	public TransferAnimation setDestinationView(View destinationView) {
 		this.destinationView = destinationView;
+		return this;
+	}
+
+	/**
+	 * @return The interpolator of the entire animation.
+	 */
+	public TimeInterpolator getInterpolator() {
+		return interpolator;
+	}
+
+	/**
+	 * @param interpolator
+	 *            The interpolator of the entire animation to set.
+	 */
+	public TransferAnimation setInterpolator(TimeInterpolator interpolator) {
+		this.interpolator = interpolator;
 		return this;
 	}
 

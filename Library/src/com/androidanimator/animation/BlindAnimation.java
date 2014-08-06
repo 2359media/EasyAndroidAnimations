@@ -4,9 +4,11 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.animation.TimeInterpolator;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.FrameLayout;
 
 /**
@@ -18,6 +20,7 @@ import android.widget.FrameLayout;
  */
 public class BlindAnimation extends Animation {
 
+	TimeInterpolator interpolator;
 	long duration;
 	AnimationListener listener;
 
@@ -30,6 +33,7 @@ public class BlindAnimation extends Animation {
 	 */
 	public BlindAnimation(View view) {
 		this.view = view;
+		interpolator = new AccelerateDecelerateInterpolator();
 		duration = DEFAULT_DURATION;
 		listener = null;
 	}
@@ -55,6 +59,7 @@ public class BlindAnimation extends Animation {
 		view.setPivotY(1f);
 		AnimatorSet blindAnimationSet = new AnimatorSet();
 		blindAnimationSet.playTogether(scaleY, scaleY_child);
+		blindAnimationSet.setInterpolator(interpolator);
 		blindAnimationSet.setDuration(duration / 2);
 		blindAnimationSet.addListener(new AnimatorListenerAdapter() {
 
@@ -68,6 +73,22 @@ public class BlindAnimation extends Animation {
 		animationLayout.setPivotX(1f);
 		animationLayout.setPivotY(1f);
 		blindAnimationSet.start();
+	}
+
+	/**
+	 * @return The interpolator of the entire animation.
+	 */
+	public TimeInterpolator getInterpolator() {
+		return interpolator;
+	}
+
+	/**
+	 * @param interpolator
+	 *            The interpolator of the entire animation to set.
+	 */
+	public BlindAnimation setInterpolator(TimeInterpolator interpolator) {
+		this.interpolator = interpolator;
+		return this;
 	}
 
 	/**

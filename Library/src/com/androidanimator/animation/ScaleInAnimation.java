@@ -2,7 +2,9 @@ package com.androidanimator.animation;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.animation.TimeInterpolator;
 import android.view.View;
+import android.view.animation.AccelerateDecelerateInterpolator;
 
 /**
  * This animation scales in the view from 0 to 1.
@@ -12,6 +14,7 @@ import android.view.View;
  */
 public class ScaleInAnimation extends Animation implements Combinable {
 
+	TimeInterpolator interpolator;
 	long duration;
 	AnimationListener listener;
 
@@ -23,6 +26,7 @@ public class ScaleInAnimation extends Animation implements Combinable {
 	 */
 	public ScaleInAnimation(View view) {
 		this.view = view;
+		interpolator = new AccelerateDecelerateInterpolator();
 		duration = DEFAULT_DURATION;
 		listener = null;
 	}
@@ -32,7 +36,8 @@ public class ScaleInAnimation extends Animation implements Combinable {
 		view.setScaleX(0f);
 		view.setScaleY(0f);
 		view.setVisibility(View.VISIBLE);
-		view.animate().scaleX(1f).scaleY(1f).setDuration(duration)
+		view.animate().scaleX(1f).scaleY(1f).setInterpolator(interpolator)
+				.setDuration(duration)
 				.setListener(new AnimatorListenerAdapter() {
 
 					@Override
@@ -42,6 +47,22 @@ public class ScaleInAnimation extends Animation implements Combinable {
 						}
 					}
 				});
+	}
+
+	/**
+	 * @return The interpolator of the entire animation.
+	 */
+	public TimeInterpolator getInterpolator() {
+		return interpolator;
+	}
+
+	/**
+	 * @param interpolator
+	 *            The interpolator of the entire animation to set.
+	 */
+	public ScaleInAnimation setInterpolator(TimeInterpolator interpolator) {
+		this.interpolator = interpolator;
+		return this;
 	}
 
 	/**

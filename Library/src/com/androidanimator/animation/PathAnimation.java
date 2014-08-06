@@ -3,16 +3,15 @@ package com.androidanimator.animation;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.androidanimator.animation.AnimationListener;
-
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.animation.TimeInterpolator;
 import android.graphics.Point;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.LinearInterpolator;
+import android.view.animation.AccelerateDecelerateInterpolator;
 
 /**
  * This animation translates the view within its parent view and according to
@@ -31,6 +30,7 @@ public class PathAnimation extends Animation implements Combinable {
 
 	ArrayList<Point> points;
 	int anchorPoint;
+	TimeInterpolator interpolator;
 	long duration;
 	AnimationListener listener;
 
@@ -47,6 +47,7 @@ public class PathAnimation extends Animation implements Combinable {
 		this.view = view;
 		points = null;
 		anchorPoint = ANCHOR_CENTER;
+		interpolator = new AccelerateDecelerateInterpolator();
 		duration = DEFAULT_DURATION;
 		listener = null;
 	}
@@ -90,7 +91,6 @@ public class PathAnimation extends Animation implements Combinable {
 			pathAnimSetArray[i].playTogether(
 					ObjectAnimator.ofFloat(view, View.X, posX),
 					ObjectAnimator.ofFloat(view, View.Y, posY));
-			pathAnimSetArray[i].setInterpolator(new LinearInterpolator());
 			pathAnimList.add(pathAnimSetArray[i]);
 		}
 
@@ -102,6 +102,7 @@ public class PathAnimation extends Animation implements Combinable {
 
 		allPathsAnim.playSequentially(pathAnimList);
 		pathAnim.play(allPathsAnim);
+		allPathsAnim.setInterpolator(interpolator);
 		allPathsAnim.setDuration(duration / numOfPoints);
 		allPathsAnim.addListener(new AnimatorListenerAdapter() {
 
@@ -160,6 +161,22 @@ public class PathAnimation extends Animation implements Combinable {
 	 */
 	public PathAnimation setAnchorPoint(int anchorPoint) {
 		this.anchorPoint = anchorPoint;
+		return this;
+	}
+
+	/**
+	 * @return The interpolator of the entire animation.
+	 */
+	public TimeInterpolator getInterpolator() {
+		return interpolator;
+	}
+
+	/**
+	 * @param interpolator
+	 *            The interpolator of the entire animation to set.
+	 */
+	public PathAnimation setInterpolator(TimeInterpolator interpolator) {
+		this.interpolator = interpolator;
 		return this;
 	}
 

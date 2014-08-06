@@ -2,8 +2,10 @@ package com.androidanimator.animation;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.animation.TimeInterpolator;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
 
 /**
  * This animation causes the view to flip vertically by a customizable number of
@@ -18,6 +20,7 @@ public class FlipVerticalAnimation extends Animation implements Combinable {
 
 	float degrees;
 	int pivot;
+	TimeInterpolator interpolator;
 	long duration;
 	AnimationListener listener;
 
@@ -30,6 +33,7 @@ public class FlipVerticalAnimation extends Animation implements Combinable {
 	 */
 	public FlipVerticalAnimation(View view) {
 		this.view = view;
+		interpolator = new AccelerateDecelerateInterpolator();
 		degrees = 360;
 		pivot = PIVOT_CENTER;
 		duration = DEFAULT_DURATION;
@@ -65,7 +69,8 @@ public class FlipVerticalAnimation extends Animation implements Combinable {
 		view.setPivotX(pivotX);
 		view.setPivotY(pivotY);
 
-		view.animate().rotationXBy(degrees).setDuration(duration)
+		view.animate().rotationXBy(degrees).setInterpolator(interpolator)
+				.setDuration(duration)
 				.setListener(new AnimatorListenerAdapter() {
 
 					@Override
@@ -120,6 +125,22 @@ public class FlipVerticalAnimation extends Animation implements Combinable {
 	 */
 	public FlipVerticalAnimation setPivot(int pivot) {
 		this.pivot = pivot;
+		return this;
+	}
+
+	/**
+	 * @return The interpolator of the entire animation.
+	 */
+	public TimeInterpolator getInterpolator() {
+		return interpolator;
+	}
+
+	/**
+	 * @param interpolator
+	 *            The interpolator of the entire animation to set.
+	 */
+	public FlipVerticalAnimation setInterpolator(TimeInterpolator interpolator) {
+		this.interpolator = interpolator;
 		return this;
 	}
 

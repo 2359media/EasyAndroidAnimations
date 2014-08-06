@@ -2,9 +2,11 @@ package com.androidanimator.animation;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.animation.TimeInterpolator;
 import android.graphics.Bitmap;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -35,6 +37,7 @@ public class ExplodeAnimation extends Animation {
 
 	ViewGroup parentView;
 	int matrix;
+	TimeInterpolator interpolator;
 	long duration;
 	AnimationListener listener;
 
@@ -51,6 +54,7 @@ public class ExplodeAnimation extends Animation {
 	public ExplodeAnimation(View view) {
 		this.view = view;
 		setExplodeMatrix(MATRIX_3X3);
+		interpolator = new AccelerateDecelerateInterpolator();
 		duration = DEFAULT_DURATION;
 		listener = null;
 	}
@@ -114,7 +118,8 @@ public class ExplodeAnimation extends Animation {
 							* widthCount, bmpHeight * heightCount, bmpWidth,
 							bmpHeight));
 			imageViews[i].animate().translationXBy(translateX)
-					.translationYBy(translateY).alpha(0).setDuration(duration);
+					.translationYBy(translateY).alpha(0)
+					.setInterpolator(interpolator).setDuration(duration);
 			layouts[heightCount].addView(imageViews[i]);
 			widthCount++;
 		}
@@ -196,6 +201,22 @@ public class ExplodeAnimation extends Animation {
 		this.matrix = matrix;
 		xParts = matrix / 10;
 		yParts = matrix % 10;
+		return this;
+	}
+
+	/**
+	 * @return The interpolator of the entire animation.
+	 */
+	public TimeInterpolator getInterpolator() {
+		return interpolator;
+	}
+
+	/**
+	 * @param interpolator
+	 *            The interpolator of the entire animation to set.
+	 */
+	public ExplodeAnimation setInterpolator(TimeInterpolator interpolator) {
+		this.interpolator = interpolator;
 		return this;
 	}
 

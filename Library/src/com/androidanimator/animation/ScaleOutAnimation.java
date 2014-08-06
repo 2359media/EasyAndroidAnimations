@@ -2,7 +2,9 @@ package com.androidanimator.animation;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.animation.TimeInterpolator;
 import android.view.View;
+import android.view.animation.AccelerateDecelerateInterpolator;
 
 /**
  * This animation scales out the view from 1 to 0.
@@ -12,6 +14,7 @@ import android.view.View;
  */
 public class ScaleOutAnimation extends Animation implements Combinable {
 
+	TimeInterpolator interpolator;
 	long duration;
 	AnimationListener listener;
 
@@ -23,6 +26,7 @@ public class ScaleOutAnimation extends Animation implements Combinable {
 	 */
 	public ScaleOutAnimation(View view) {
 		this.view = view;
+		interpolator = new AccelerateDecelerateInterpolator();
 		duration = DEFAULT_DURATION;
 		listener = null;
 	}
@@ -31,7 +35,8 @@ public class ScaleOutAnimation extends Animation implements Combinable {
 	public void animate() {
 		view.setScaleX(1f);
 		view.setScaleY(1f);
-		view.animate().scaleX(0f).scaleY(0f).setDuration(duration)
+		view.animate().scaleX(0f).scaleY(0f).setInterpolator(interpolator)
+				.setDuration(duration)
 				.setListener(new AnimatorListenerAdapter() {
 
 					@Override
@@ -42,6 +47,22 @@ public class ScaleOutAnimation extends Animation implements Combinable {
 						}
 					}
 				});
+	}
+
+	/**
+	 * @return The interpolator of the entire animation.
+	 */
+	public TimeInterpolator getInterpolator() {
+		return interpolator;
+	}
+
+	/**
+	 * @param interpolator
+	 *            The interpolator of the entire animation to set.
+	 */
+	public ScaleOutAnimation setInterpolator(TimeInterpolator interpolator) {
+		this.interpolator = interpolator;
+		return this;
 	}
 
 	/**

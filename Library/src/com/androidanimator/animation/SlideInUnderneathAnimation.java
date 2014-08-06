@@ -3,8 +3,10 @@ package com.androidanimator.animation;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
+import android.animation.TimeInterpolator;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.FrameLayout;
 
 /**
@@ -16,6 +18,7 @@ import android.widget.FrameLayout;
 public class SlideInUnderneathAnimation extends Animation {
 
 	int direction;
+	TimeInterpolator interpolator;
 	long duration;
 	AnimationListener listener;
 
@@ -29,6 +32,7 @@ public class SlideInUnderneathAnimation extends Animation {
 	public SlideInUnderneathAnimation(View view) {
 		this.view = view;
 		direction = DIRECTION_LEFT;
+		interpolator = new AccelerateDecelerateInterpolator();
 		duration = DEFAULT_DURATION;
 		listener = null;
 	}
@@ -70,6 +74,7 @@ public class SlideInUnderneathAnimation extends Animation {
 		default:
 			break;
 		}
+		slideInAnim.setInterpolator(interpolator);
 		slideInAnim.setDuration(duration);
 		slideInAnim.addListener(new AnimatorListenerAdapter() {
 
@@ -93,10 +98,8 @@ public class SlideInUnderneathAnimation extends Animation {
 	}
 
 	/**
-	 * The available directions to slide in from are
-	 * <code>DIRECTION_LEFT</code>,
-	 * <code>DIRECTION_RIGHT</code>,
-	 * <code>DIRECTION_TOP</code> and
+	 * The available directions to slide in from are <code>DIRECTION_LEFT</code>
+	 * , <code>DIRECTION_RIGHT</code>, <code>DIRECTION_TOP</code> and
 	 * <code>DIRECTION_BOTTOM</code>.
 	 * 
 	 * @return The direction to slide the view in from.
@@ -107,10 +110,8 @@ public class SlideInUnderneathAnimation extends Animation {
 	}
 
 	/**
-	 * The available directions to slide in from are
-	 * <code>DIRECTION_LEFT</code>,
-	 * <code>DIRECTION_RIGHT</code>,
-	 * <code>DIRECTION_TOP</code> and
+	 * The available directions to slide in from are <code>DIRECTION_LEFT</code>
+	 * , <code>DIRECTION_RIGHT</code>, <code>DIRECTION_TOP</code> and
 	 * <code>DIRECTION_BOTTOM</code>.
 	 * 
 	 * @param direction
@@ -121,6 +122,23 @@ public class SlideInUnderneathAnimation extends Animation {
 	 */
 	public SlideInUnderneathAnimation setDirection(int direction) {
 		this.direction = direction;
+		return this;
+	}
+
+	/**
+	 * @return The interpolator of the entire animation.
+	 */
+	public TimeInterpolator getInterpolator() {
+		return interpolator;
+	}
+
+	/**
+	 * @param interpolator
+	 *            The interpolator of the entire animation to set.
+	 */
+	public SlideInUnderneathAnimation setInterpolator(
+			TimeInterpolator interpolator) {
+		this.interpolator = interpolator;
 		return this;
 	}
 
