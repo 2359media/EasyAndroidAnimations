@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">AndroidAnimator Demo</string>
+    <string name="title_animation_detail">Animation</string>
+    <string name="target">TARGET</string>
+    <string name="imgBehind_description">image to flip to</string>
+    <string name="imgTarget_description">image to animate</string>
+    <string name="imgPlay_description">play button to start animation</string>
+
+</resources>
