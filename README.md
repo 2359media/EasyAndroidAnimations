@@ -1,7 +1,7 @@
 AndroidAnimator
 ===============
 
-AndroidAnimator is an animation library aims to make android animation easier, many complex animation effects can be achieved with one or two lines of code.
+AndroidAnimator is an animation library that aims to make android animations easier, allowing many complex animation effects to be achieved with one or two lines of code.
 
 
 Demo Video
