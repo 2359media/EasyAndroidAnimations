@@ -1,14 +1,17 @@
 EasyAndroidAnimations
 =====================
 
-EasyAndroidAnimations is an animation library that aims to make android animations easier, allowing many complex animation effects to be achieved with one or two lines of code.
+`Easy Android Animations` is an animation library that aims to make android animations easier, allowing many complex animation effects to be achieved with one or two lines of code.
 
-![Demo](https://raw.githubusercontent.com/2359media/EasyAndroidAnimations/master/demo.png)
+[![Demo](https://raw.githubusercontent.com/2359media/EasyAndroidAnimations/master/demo.png)](http://www.youtube.com/watch?v=qb63BYjTebU)
 
 Demo Video
 ----------
 
 [![ScreenShot](https://raw.githubusercontent.com/2359media/EasyAndroidAnimations/master/youtube.png)](http://www.youtube.com/watch?v=qb63BYjTebU)
+
+[Download Demo APK](http://https://raw.githubusercontent.com/2359media/EasyAndroidAnimations/master/Animation_demo/EasyAndroidAnimationsDemo.apk)
+
 
 
 Usage:
