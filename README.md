@@ -10,7 +10,7 @@ Demo Video
 
 [![ScreenShot](https://raw.githubusercontent.com/2359media/EasyAndroidAnimations/master/youtube.png)](http://www.youtube.com/watch?v=qb63BYjTebU)
 
-[Download Demo APK](http://https://raw.githubusercontent.com/2359media/EasyAndroidAnimations/master/Animation_demo/EasyAndroidAnimationsDemo.apk)
+[Download Demo APK](https://github.com/2359media/EasyAndroidAnimations/raw/master/Animation_demo/EasyAndroidAnimationsDemo.apk)
 
 
 
