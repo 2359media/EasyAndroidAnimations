@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.androidanimator.demo.AnimationDetailFragment" >
+    tools:context="com.easyandroidanimations.demo.AnimationDetailFragment" >
 
     <ImageView
         android:id="@+id/imgBehind"
@@ -15,7 +15,7 @@
 
     <ImageView
         android:id="@+id/imgTarget"
-        android:layout_width="300dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:adjustViewBounds="true"

@@ -8,7 +8,7 @@
     android:divider="?android:attr/dividerHorizontal"
     android:orientation="horizontal"
     android:showDividers="middle"
-    tools:context="com.androidanimator.demo.AnimationListActivity" >
+    tools:context="com.easyandroidanimations.demo.AnimationListActivity" >
 
     <!--
     This layout is a two-pane layout for the Animations
@@ -23,7 +23,7 @@
 
     <fragment
         android:id="@+id/animation_list"
-        android:name="com.androidanimator.demo.AnimationListFragment"
+        android:name="com.easyandroidanimations.demo.AnimationListFragment"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"

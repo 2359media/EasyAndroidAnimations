@@ -1,13 +1,13 @@
-AndroidAnimator
-===============
+EasyAndroidAnimations
+=====================
 
-AndroidAnimator is an animation library that aims to make android animations easier, allowing many complex animation effects to be achieved with one or two lines of code.
+EasyAndroidAnimations is an animation library that aims to make android animations easier, allowing many complex animation effects to be achieved with one or two lines of code.
 
 
 Demo Video
 ----------
 
-[![ScreenShot](https://raw.githubusercontent.com/2359media/AndroidAnimator/develop/Animation_demo/android%20animator%20demo%20screenshot.PNG)](http://www.youtube.com/watch?v=qb63BYjTebU)
+[![ScreenShot](https://raw.githubusercontent.com/2359media/EasyAndroidAnimations/master/Animation_demo/android%20animator%20demo%20screenshot.PNG)](http://www.youtube.com/watch?v=qb63BYjTebU)
 
 
 Usage:
