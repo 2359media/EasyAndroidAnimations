@@ -13,7 +13,14 @@
         android:src="@drawable/img4"
         android:contentDescription="@string/imgBehind_description" />
 
-    <ImageView
+    <FrameLayout
+        android:layout_width="300dp"
+        android:layout_height="400dp"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:background="@android:color/holo_blue_bright">
+        
+        <ImageView
         android:id="@+id/imgTarget"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -21,6 +28,7 @@
         android:adjustViewBounds="true"
         android:src="@drawable/img1"
         android:contentDescription="@string/imgTarget_description" />
+    </FrameLayout>
 
     <ImageView
         android:id="@+id/imgPlay"

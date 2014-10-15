@@ -27,9 +27,10 @@ public class PathAnimation extends Animation implements Combinable {
 	public static final int ANCHOR_CENTER = 0, ANCHOR_TOP_LEFT = 1,
 			ANCHOR_TOP_RIGHT = 2, ANCHOR_BOTTOM_LEFT = 3,
 			ANCHOR_BOTTOM_RIGHT = 4;
-
+	public static final int MODE_RELATIVE_TO_ROOT = 0, MODE_RELATIVE_TO_PARENT = 1;
+	
 	ArrayList<Point> points;
-	int anchorPoint;
+	int anchorPoint, relativeMode;
 	TimeInterpolator interpolator;
 	long duration;
 	AnimationListener listener;
@@ -49,6 +50,7 @@ public class PathAnimation extends Animation implements Combinable {
 		anchorPoint = ANCHOR_CENTER;
 		interpolator = new AccelerateDecelerateInterpolator();
 		duration = DURATION_LONG;
+		relativeMode = MODE_RELATIVE_TO_ROOT;
 		listener = null;
 	}
 
@@ -61,10 +63,18 @@ public class PathAnimation extends Animation implements Combinable {
 	public AnimatorSet getAnimatorSet() {
 		ViewGroup parentView = (ViewGroup) view.getParent(), rootView = (ViewGroup) view
 				.getRootView();
-		while (!parentView.equals(rootView)) {
-			parentView.setClipChildren(false);
-			parentView = (ViewGroup) parentView.getParent();
+		int[] parentPositionsArray = new int[2];
+		if(relativeMode == MODE_RELATIVE_TO_PARENT){
+			while (!parentView.equals(rootView)) { // after this while lap, parentView is always the root view.
+				parentView.setClipChildren(false);
+				parentView = (ViewGroup) parentView.getParent();
+			}
+			parentPositionsArray[0] = 0;
+			parentPositionsArray[1] = 0;
+		} else {
+			((View)view.getParent()).getLocationInWindow(parentPositionsArray);
 		}
+		
 		rootView.setClipChildren(false);
 
 		AnimatorSet pathSet = new AnimatorSet();
@@ -78,8 +88,8 @@ public class PathAnimation extends Animation implements Combinable {
 				.getHeight();
 		float posX, posY;
 		for (int i = 0; i < numOfPoints; i++) {
-			posX = (points.get(i).x / 100f * parentWidth);
-			posY = (points.get(i).y / 100f * parentHeight);
+			posX = parentPositionsArray[0] + (points.get(i).x / 100f * parentWidth);
+			posY = parentPositionsArray[0] + (points.get(i).y / 100f * parentHeight);
 
 			switch (anchorPoint) {
 			case ANCHOR_CENTER:
@@ -166,6 +176,29 @@ public class PathAnimation extends Animation implements Combinable {
 	 */
 	public PathAnimation setAnchorPoint(int anchorPoint) {
 		this.anchorPoint = anchorPoint;
+		return this;
+	}
+
+	/**
+	 * The available relative modes on which to translate the view are
+	 * <code>MODE_RELATIVE_TO_ROOT</code>, <code>MODE_RELATIVE_TO_PARENT</code>.
+	 * 
+	 * @return The relative mode on which to translate the view
+	 */
+	public int getRelativeMode() {
+		return relativeMode;
+	}
+
+	/**
+	 * The available relative modes on which to translate the view are
+	 * <code>MODE_RELATIVE_TO_ROOT</code>, <code>MODE_RELATIVE_TO_PARENT</code>.
+	 * 
+	 * @param relativeMode
+	 * 				The relative mode to set on which to translate the view.
+	 * @return This object, allowing calls to other methods in this class to be chained.
+	 */
+	public PathAnimation setRelativeMode(int relativeMode) {
+		this.relativeMode = relativeMode;
 		return this;
 	}
 

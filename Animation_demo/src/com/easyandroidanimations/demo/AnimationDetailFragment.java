@@ -250,7 +250,7 @@ public class AnimationDetailFragment extends Fragment implements
 			points.add(new Point(100, 50));
 			points.add(new Point(0, 100));
 			points.add(new Point(50, 50));
-			new PathAnimation(card).setPoints(points).setDuration(2000)
+			new PathAnimation(card).setPoints(points).setDuration(20000).setRelativeMode(PathAnimation.MODE_RELATIVE_TO_PARENT)
 					.setListener(new AnimationListener() {
 
 						@Override
