@@ -89,7 +89,7 @@ public class PathAnimation extends Animation implements Combinable {
 		float posX, posY;
 		for (int i = 0; i < numOfPoints; i++) {
 			posX = parentPositionsArray[0] + (points.get(i).x / 100f * parentWidth);
-			posY = parentPositionsArray[0] + (points.get(i).y / 100f * parentHeight);
+			posY = parentPositionsArray[1] + (points.get(i).y / 100f * parentHeight);
 
 			switch (anchorPoint) {
 			case ANCHOR_CENTER:
