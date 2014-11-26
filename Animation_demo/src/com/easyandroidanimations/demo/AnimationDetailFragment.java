@@ -6,6 +6,7 @@ import android.app.Fragment;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -143,11 +144,12 @@ public class AnimationDetailFragment extends Fragment implements
 		}
 		mPlayView.setLayoutParams(card.getLayoutParams());
 
-		// Scales the image smaller for PathAnimation
-/*		if (id == 12) {
+		// Shows the second image to be covered for FoldIn
+		if (id == 11) {
 			card2.setVisibility(View.VISIBLE);
 		}
-			*/
+
+		// Scales the image smaller for PathAnimation
 		if (id == 14) {
 			card.setImageResource(R.drawable.yellow_star);
 			card.setScaleX(0.5f);
@@ -163,10 +165,11 @@ public class AnimationDetailFragment extends Fragment implements
 		if (id != 25) {
 			target.setVisibility(View.INVISIBLE);
 		} else {
-			card.setImageResource(R.drawable.img4);
-			Log.d("twrk it","wrk it");
+			FrameLayout.LayoutParams layoutParams=new FrameLayout.LayoutParams(500, 400);
+			layoutParams.gravity=Gravity.CENTER;
+			card.setLayoutParams(layoutParams);
+			Log.d("should be set", "nope");
 		}
-		Log.d("is is ",Integer.toString(id));
 	}
 
 	@Override
