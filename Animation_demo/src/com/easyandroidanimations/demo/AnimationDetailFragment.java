@@ -164,12 +164,7 @@ public class AnimationDetailFragment extends Fragment implements
 		// TransferAnimation
 		if (id != 25) {
 			target.setVisibility(View.INVISIBLE);
-		} else {
-			FrameLayout.LayoutParams layoutParams=new FrameLayout.LayoutParams(500, 400);
-			layoutParams.gravity=Gravity.CENTER;
-			card.setLayoutParams(layoutParams);
-			Log.d("should be set", "nope");
-		}
+		} 
 	}
 
 	@Override
@@ -353,7 +348,6 @@ public class AnimationDetailFragment extends Fragment implements
 			break;
 		case 25:
 			new TransferAnimation(card).setDestinationView(target).animate();
-			isFinished = true;
 			break;
 		case 26:
 			card.setImageResource(R.drawable.img1);
