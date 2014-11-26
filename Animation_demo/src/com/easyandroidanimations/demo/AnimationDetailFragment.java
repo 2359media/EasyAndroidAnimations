@@ -5,11 +5,13 @@ import java.util.ArrayList;
 import android.app.Fragment;
 import android.graphics.Point;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -66,7 +68,13 @@ public class AnimationDetailFragment extends Fragment implements
 	private DemoItem.DemoAnimation mItem;
 	private View mPlayView, target;
 	private ImageView card, card2;
+	private FrameLayout frameLayout;
 	private TextView tvCode;
+	
+	/**
+	 * Boolean determines whether or not animation is finished.
+	 */
+	private boolean isFinished = false;
 
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the
@@ -78,7 +86,7 @@ public class AnimationDetailFragment extends Fragment implements
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+		
 		if (getArguments().containsKey(ARG_ITEM_ID)) {
 			// Load the dummy content specified by the fragment
 			// arguments. In a real-world scenario, use a Loader
@@ -92,59 +100,73 @@ public class AnimationDetailFragment extends Fragment implements
 			Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_animation_detail,
 				container, false);
-
 		mPlayView = rootView.findViewById(R.id.imgPlay);
+		frameLayout = (FrameLayout) rootView.findViewById(R.id.fragment_animation_frame);
 		card = (ImageView) rootView.findViewById(R.id.imgTarget);
 		mPlayView.setOnClickListener(this);
 		card2 = (ImageView) rootView.findViewById(R.id.imgBehind);
 		target = rootView.findViewById(R.id.textView1);
 		card2.setVisibility(View.INVISIBLE);
 		tvCode = (TextView) rootView.findViewById(R.id.tv_code);
-
 		if (mItem.code != null && mItem.code.length() > 0) {
 			tvCode.setVisibility(View.VISIBLE);
 			tvCode.setText(mItem.code);
 		} else {
 			tvCode.setVisibility(View.INVISIBLE);
 		}
-
+		frameLayout.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+          		if (isFinished) {
+	    			mPlayView.setVisibility(View.VISIBLE);
+	    			card.setVisibility(View.VISIBLE);
+	    			card2.setVisibility(View.INVISIBLE);
+	    			setUpById(mItem.id);
+	    			isFinished = false;
+          		}
+            }
+        });
+		setUpById(mItem.id);
+		return rootView;
+	}
+	
+	/**Sets up the visibility of views dependent on the id of mItem.*/
+	public void setUpById(int id) {
 		// Differentiates the images for all animations
-		if (mItem.id <= 5) {
-			card.setImageResource(R.drawable.img1);
-		} else if (mItem.id > 5 && mItem.id <= 10) {
+		if (id <= 5) {
+				card.setImageResource(R.drawable.img1);
+		} else if (id > 5 && id <= 10) {
 			card.setImageResource(R.drawable.img2);
-		} else if (mItem.id > 10 && mItem.id <= 20) {
+		} else if (id > 10 && id <= 20) {
 			card.setImageResource(R.drawable.img3);
-		} else {
+		} else {	
 			card.setImageResource(R.drawable.img4);
 		}
-
 		mPlayView.setLayoutParams(card.getLayoutParams());
 
 		// Scales the image smaller for PathAnimation
-
-		if (mItem.id == 14) {
+/*		if (id == 12) {
+			card2.setVisibility(View.VISIBLE);
+		}
+			*/
+		if (id == 14) {
 			card.setImageResource(R.drawable.yellow_star);
 			card.setScaleX(0.5f);
 			card.setScaleY(0.5f);
 		}
-
-		// Sets view to <code>View.INVISIBLE</code> for entrance animations
-		if (mItem.id == 5 || mItem.id == 11 || mItem.id == 15 || mItem.id == 18
-				|| mItem.id == 21 || mItem.id == 22 || mItem.id == 26) {
+				// Sets view to <code>View.INVISIBLE</code> for entrance animations
+		if (id == 5 || id == 11 || id == 15 || id == 18 
+			|| id == 21 || id == 22 || id == 26) {
 			card.setVisibility(View.INVISIBLE);
-
 		}
-
 		// Sets destination view to <code>View.VISIBLE</code> only for
 		// TransferAnimation
-
-		if (mItem.id != 25) {
+		if (id != 25) {
 			target.setVisibility(View.INVISIBLE);
-
+		} else {
+			card.setImageResource(R.drawable.img4);
+			Log.d("twrk it","wrk it");
 		}
-
-		return rootView;
+		Log.d("is is ",Integer.toString(id));
 	}
 
 	@Override
@@ -163,10 +185,10 @@ public class AnimationDetailFragment extends Fragment implements
 		switch (mItem.id) {
 		case 1:
 			new BlindAnimation(card).animate();
+			isFinished = true;
 			break;
 		case 2:
 			new BlinkAnimation(card).setListener(new AnimationListener() {
-
 				@Override
 				public void onAnimationEnd(Animation animation) {
 					mPlayView.setVisibility(View.VISIBLE);
@@ -186,12 +208,15 @@ public class AnimationDetailFragment extends Fragment implements
 			break;
 		case 4:
 			new ExplodeAnimation(card).animate();
+			isFinished = true;
 			break;
 		case 5:
 			new FadeInAnimation(card).animate();
+			isFinished = true;
 			break;
 		case 6:
 			new FadeOutAnimation(card).animate();
+			isFinished = true;
 			break;
 		case 7:
 			new FlipHorizontalAnimation(card).setListener(
@@ -206,6 +231,7 @@ public class AnimationDetailFragment extends Fragment implements
 		case 8:
 			new FlipHorizontalToAnimation(card).setFlipToView(card2)
 					.setInterpolator(new LinearInterpolator()).animate();
+			isFinished = true;
 			break;
 		case 9:
 			new FlipVerticalAnimation(card).setListener(
@@ -220,17 +246,19 @@ public class AnimationDetailFragment extends Fragment implements
 		case 10:
 			new FlipVerticalToAnimation(card).setFlipToView(card2)
 					.setInterpolator(new LinearInterpolator()).animate();
+			isFinished = true;
 			break;
 		case 11:
 			card2.setVisibility(View.VISIBLE);
-
 			new UnfoldAnimation(card).setNumOfFolds(10).setDuration(1000)
 					.setOrientation(Orientation.HORIZONTAL).animate();
+			isFinished = true;
 			break;
 		case 12:
 			card2.setVisibility(View.VISIBLE);
 			new FoldAnimation(card).setNumOfFolds(10).setDuration(1000)
 					.setOrientation(Orientation.VERTICAL).animate();
+			isFinished = true;
 			break;
 		case 13:
 			new HighlightAnimation(card).setListener(new AnimationListener() {
@@ -262,9 +290,11 @@ public class AnimationDetailFragment extends Fragment implements
 
 		case 15:
 			new PuffInAnimation(card).animate();
+			isFinished = true;
 			break;
 		case 16:
 			new PuffOutAnimation(card).animate();
+			isFinished = true;
 			break;
 		case 17:
 			new RotationAnimation(card)
@@ -280,9 +310,11 @@ public class AnimationDetailFragment extends Fragment implements
 
 		case 18:
 			new ScaleInAnimation(card).animate();
+			isFinished = true;
 			break;
 		case 19:
 			new ScaleOutAnimation(card).animate();
+			isFinished = true;
 			break;
 		case 20:
 			new ShakeAnimation(card).setNumOfShakes(3)
@@ -299,21 +331,26 @@ public class AnimationDetailFragment extends Fragment implements
 		case 21:
 			new SlideInAnimation(card).setDirection(Animation.DIRECTION_UP)
 					.animate();
+			isFinished = true;
 			break;
 		case 22:
 			new SlideInUnderneathAnimation(card).setDirection(
 					Animation.DIRECTION_DOWN).animate();
+			isFinished = true;
 			break;
 		case 23:
 			new SlideOutAnimation(card).setDirection(Animation.DIRECTION_LEFT)
 					.animate();
+			isFinished = true;
 			break;
 		case 24:
 			new SlideOutUnderneathAnimation(card).setDirection(
 					Animation.DIRECTION_RIGHT).animate();
+			isFinished = true;
 			break;
 		case 25:
 			new TransferAnimation(card).setDestinationView(target).animate();
+			isFinished = true;
 			break;
 		case 26:
 			card.setImageResource(R.drawable.img1);

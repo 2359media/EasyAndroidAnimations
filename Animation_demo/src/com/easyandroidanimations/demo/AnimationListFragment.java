@@ -146,7 +146,6 @@ public class AnimationListFragment extends ListFragment {
 		} else {
 			getListView().setItemChecked(position, true);
 		}
-
 		mActivatedPosition = position;
 	}
 }
