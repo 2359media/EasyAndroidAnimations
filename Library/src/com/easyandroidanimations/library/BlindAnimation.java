@@ -70,7 +70,11 @@ public class BlindAnimation extends Animation {
 				view.setScaleY(originalScaleY);
 				animationLayout.removeAllViews();
 				parent.removeView(animationLayout);
-				parent.addView(view, positionView);
+				if (animationLayout.getLayoutParams() != null) {
+                    			parent.addView(view, positionView, animationLayout.getLayoutParams());
+                		}else{
+					parent.addView(view, positionView);
+                		}
 				if (getListener() != null) {
 					getListener().onAnimationEnd(BlindAnimation.this);
 				}
