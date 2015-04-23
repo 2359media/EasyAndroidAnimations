@@ -20,6 +20,19 @@ Usage:
 Including In Your Project
 -------------------------
 
+You can include the library directly in your Gradle project:
+
+ - 	Add the following to your `build.gradle`:
+ ```gradle
+repositories {
+	    maven { url "https://jitpack.io" }
+}
+
+dependencies {
+	    compile 'com.github.2359media:EasyAndroidAnimations:0.8'
+}
+``` 
+
 You can [download this jar file](https://raw.githubusercontent.com/2359media/EasyAndroidAnimations/master/easyandroidanimationslibrary-v0.5.jar) and include it in your project, otherwise you can download the source code and customize it according to your need. 
 
 Code Samples
