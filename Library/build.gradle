@@ -29,7 +29,6 @@ android {
                 resources.srcDirs = ['src']
                 aidl.srcDirs = ['src']
                 renderscript.srcDirs = ['src']
-                res.srcDirs = ['res']
             }
         }
         release {
