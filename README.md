@@ -42,12 +42,12 @@ Code Samples
 *See `Animation_demo/` folder for a working implementation of this library.*
 
   1. For example, if you wanted a view to mimic the bounce animation with the default parameters,
-  ```
+  ```java
     new BounceAnimation(yourView).animate();
   ```
 
   2. If you wanted to use your own parameters instead of the default ones,
-  ```
+  ```java
     new BounceAnimation(yourView)
       .setBounceDistance(50)
       .setBounces(5)
@@ -56,7 +56,7 @@ Code Samples
   ```
 
   3. Here's another example of mimicking the explode animation with your own parameters as well as the addition of an animation listener.
-  ```
+  ```java
     new ExplodeAnimation(yourView)
       .setExplodeMatrix(ExplodeAnimation.MATRIX_2X2)
       .setInterpolator(new DecelerateInterpolator())
@@ -71,7 +71,7 @@ Code Samples
   ```
 
   4. It is also possible to play several animations in parallel using the `ParallelAnimator` class. The following example scales in a view and flips it horizontally at the same time.
-  ```
+  ```java
     new ParallelAnimator()
       .add(new ScaleInAnimation(yourView))
       .add(new FlipHorizontalAnimation(yourView))
