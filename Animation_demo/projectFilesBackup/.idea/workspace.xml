@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AndroidLayouts">
+    <shared>
+      <config />
+    </shared>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="279b78ef-c1a3-4603-8412-2d02d947b6c6" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="$PROJECT_DIR$/.idea" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectId" id="1fm12IV3olpjyg8fUFMbnywewxS" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android App">
+      <module name="Animation_demo" />
+      <option name="DEPLOY" value="true" />
+      <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
+      <option name="DEPLOY_AS_INSTANT" value="false" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="DEBUGGER_TYPE" value="Java" />
+      <Java />
+      <Profilers>
+        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Sample Java Methods" />
+      </Profilers>
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="279b78ef-c1a3-4603-8412-2d02d947b6c6" name="Default Changelist" comment="" />
+      <created>1596808244723</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1596808244723</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="104" y="24" width="1071" height="731" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1597137977873">
+      <screen x="0" y="23" width="1280" height="732" />
+    </state>
+    <state x="104" y="24" width="1071" height="731" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1280.732@0.23.1280.732" timestamp="1597137977873" />
+    <state x="104" y="24" width="1071" height="731" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1280.733@0.23.1280.733" timestamp="1596830505074" />
+    <state x="377" y="189" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1596808695909">
+      <screen x="0" y="23" width="1280" height="732" />
+    </state>
+    <state x="377" y="189" key="#com.intellij.ide.util.TreeClassChooserDialog/0.23.1280.732@0.23.1280.732" timestamp="1596808695909" />
+    <state x="128" y="23" key="SettingsEditor" timestamp="1596829722646">
+      <screen x="0" y="23" width="1280" height="733" />
+    </state>
+    <state x="128" y="23" key="SettingsEditor/0.23.1280.733@0.23.1280.733" timestamp="1596829722646" />
+    <state x="100" y="123" width="1080" height="532" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1596814904398">
+      <screen x="0" y="23" width="1280" height="733" />
+    </state>
+    <state x="100" y="123" width="1080" height="532" key="com.android.tools.idea.avdmanager.AvdListDialog/0.23.1280.733@0.23.1280.733" timestamp="1596814904398" />
+    <state x="292" y="221" key="com.intellij.ide.util.TipDialog" timestamp="1597066666375">
+      <screen x="0" y="23" width="1280" height="733" />
+    </state>
+    <state x="292" y="221" key="com.intellij.ide.util.TipDialog/0.23.1280.732@0.23.1280.732" timestamp="1596814865311" />
+    <state x="292" y="221" key="com.intellij.ide.util.TipDialog/0.23.1280.733@0.23.1280.733" timestamp="1597066666375" />
+    <state x="305" y="80" width="670" height="676" key="search.everywhere.popup" timestamp="1597066831801">
+      <screen x="0" y="23" width="1280" height="733" />
+    </state>
+    <state x="305" y="80" width="670" height="676" key="search.everywhere.popup/0.23.1280.733@0.23.1280.733" timestamp="1597066831801" />
+  </component>
+</project>

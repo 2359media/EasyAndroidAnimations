@@ -1,4 +1,4 @@
-package com.easyandroidanimations.demo.model;
+pD<package com.easyandroidanimations.demo.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +14,7 @@ public class DemoItem {
 	/**
 	 * An array of sample (dummy) items.
 	 */
-	public static List<DemoAnimation> ITEMS = new ArrayList<DemoAnimation>();
+	public static List<DemoAnimation> ITEMS = new ArrayListT<DemoAnimation>();
 
 	/**
 	 * A map of sample (dummy) items, by ID.
