@@ -24,6 +24,7 @@ public class AnimationListActivity extends FragmentActivity implements Animation
 
     @Override
     public void onItemSelected(int id) {
+        System.out.println(mTwoPane);
         if (mTwoPane) {
             Bundle arguments = new Bundle();
             arguments.putInt(AnimationDetailFragment.ARG_ITEM_ID, id);
@@ -31,7 +32,11 @@ public class AnimationListActivity extends FragmentActivity implements Animation
             fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.animation_detail_container, fragment)
-                    .commit();F
+                    .commit();
+        } else {
+            Intent detailIntent = new Intent(this, AnimationDetailActivity.class);
+            detailIntent.putExtra(AnimationDetailFragment.ARG_ITEM_ID, id);
+            startActivity(detailIntent);
         }
     }
 }

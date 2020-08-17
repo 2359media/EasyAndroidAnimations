@@ -13,19 +13,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name="com.example.androidanimationdemo.AnimationListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AnimationDetailActivity"
+        <activity android:name="com.example.androidanimationdemo.AnimationDetailActivity"
             android:label="Animation"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName="com.example.androidanimationdemo.AnimationListActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value="com.example.androidanimationdemo.AnimationListActivity" />
         </activity>
     </application>
 

@@ -1,7 +1,8 @@
 package com.example.androidanimationdemo;
 
-import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
+import android.widget.Toast;
 import androidx.fragment.app.ListFragment;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -12,8 +13,6 @@ import com.example.androidanimationdemo.model.DemoItem;
 public class AnimationListFragment extends ListFragment {
 
     private static final String STATE_ACTIVATED_POSITION = "activated_position";
-
-    private Callbacks mCallbacks = sDummyCallbacks;
 
     private int mActivatedPosition = ListView.INVALID_POSITION;
 
@@ -27,9 +26,11 @@ public class AnimationListFragment extends ListFragment {
 
         @Override
         public void onItemSelected(int id) {
-
+            System.out.println(id + " here");
         }
     };
+
+    private Callbacks mCallbacks = sDummyCallbacks;
 
     public AnimationListFragment() {
 
@@ -38,9 +39,10 @@ public class AnimationListFragment extends ListFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         // TODO
         setListAdapter(new ArrayAdapter<DemoItem.DemoAnimation>(getActivity(),
-                android.R.layout.simple_list_item_activated_1,
+                android.R.layout.simple_list_item_1,
                 android.R.id.text1, DemoItem.ITEMS));
     }
 
@@ -53,14 +55,16 @@ public class AnimationListFragment extends ListFragment {
     }
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        if (!(activity instanceof Callbacks)) {
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        System.out.println("context: ");
+        System.out.println(context);
+        if (!(context instanceof Callbacks)) {
             throw new IllegalStateException(
                     "Activity must implement fragment's callbacks.");
         }
 
-        mCallbacks = (Callbacks) activity;
+        mCallbacks = (Callbacks) context;
     }
 
     @Override
@@ -72,6 +76,7 @@ public class AnimationListFragment extends ListFragment {
     @Override
     public void onListItemClick(ListView listView, View view, int position, long id) {
         super.onListItemClick(listView, view, position, id);
+        Toast.makeText(this.getActivity(), DemoItem.ITEMS.get(position).toString(), Toast.LENGTH_SHORT).show();
         mCallbacks.onItemSelected(DemoItem.ITEMS.get(position).id);
     }
 

@@ -11,7 +11,7 @@ import android.view.MenuItem;
 /**
  * An activity representing a single Animation detail screen. This activity is
  * only used on phones. On tablets, item details are presented side-by-side with
- * a list of items in a {@link AnimationListActivity}.
+ * a list of items in a {@liRink AnimationListActivity}.
  * <p>
  * This activity is mostly just a 'shell' activity containing nothing more than
  * a {@link AnimationDetailFragment}.
