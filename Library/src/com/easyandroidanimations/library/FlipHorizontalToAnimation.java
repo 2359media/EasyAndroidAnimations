@@ -94,15 +94,20 @@ public class FlipHorizontalToAnimation extends Animation {
 		flipToAnim.setInterpolator(interpolator);
 		flipToAnim.setDuration(duration / 2);
 		flipToAnim.addListener(new AnimatorListenerAdapter() {
+			// prevents double clicking on the animating view.
+			@Override
+			public void onAnimationStart(Animator animation) {
+				view.setClickable(false);
+				flipToView.setClickable(false);
+			}
 
+			// restores the clicking of the view after the animation has completed.
 			@Override
 			public void onAnimationEnd(Animator animation) {
 				view.setVisibility(View.INVISIBLE);
 				view.setRotationY(originalRotationY);
-				if (getListener() != null) {
-					getListener()
-							.onAnimationEnd(FlipHorizontalToAnimation.this);
-				}
+				view.setClickable(true);
+				flipToView.setClickable(true);
 			}
 		});
 		flipToAnim.start();
