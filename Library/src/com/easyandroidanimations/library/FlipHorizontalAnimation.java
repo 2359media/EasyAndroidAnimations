@@ -49,29 +49,21 @@ public class FlipHorizontalAnimation extends Animation implements Combinable {
 
 	@Override
 	public AnimatorSet getAnimatorSet() {
-		ViewGroup parentView = (ViewGroup) view.getParent(), rootView = (ViewGroup) view
-				.getRootView();
-		while (parentView != rootView) {
-			parentView.setClipChildren(false);
-			parentView = (ViewGroup) parentView.getParent();
-		}
-		rootView.setClipChildren(false);
-
 		float pivotX, pivotY, viewWidth = view.getWidth(), viewHeight = view
 				.getHeight();
 		switch (pivot) {
-		case PIVOT_LEFT:
-			pivotX = 0f;
-			pivotY = viewHeight / 2;
-			break;
-		case PIVOT_RIGHT:
-			pivotX = viewWidth;
-			pivotY = viewHeight / 2;
-			break;
-		default:
-			pivotX = viewWidth / 2;
-			pivotY = viewHeight / 2;
-			break;
+			case PIVOT_LEFT:
+				pivotX = 0f;
+				pivotY = viewHeight / 2;
+				break;
+			case PIVOT_RIGHT:
+				pivotX = viewWidth;
+				pivotY = viewHeight / 2;
+				break;
+			default:
+				pivotX = viewWidth / 2;
+				pivotY = viewHeight / 2;
+				break;
 		}
 		view.setPivotX(pivotX);
 		view.setPivotY(pivotY);
@@ -82,15 +74,23 @@ public class FlipHorizontalAnimation extends Animation implements Combinable {
 		flipSet.setDuration(duration);
 		flipSet.addListener(new AnimatorListenerAdapter() {
 
+			//prevents the view from stopping halfway while animating
+			@Override
+			public void onAnimationStart(Animator animation) {
+				super.onAnimationStart(animation);
+				view.setClickable(false);
+			}
+
+			//allows the view to be clickable after animatino
 			@Override
 			public void onAnimationEnd(Animator animation) {
-				if (getListener() != null) {
-					getListener().onAnimationEnd(FlipHorizontalAnimation.this);
-				}
+				super.onAnimationEnd(animation);
+				view.setClickable(true);
 			}
 		});
 		return flipSet;
 	}
+
 
 	/**
 	 * @return The number of degrees to flip by.
