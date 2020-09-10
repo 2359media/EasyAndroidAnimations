@@ -49,8 +49,10 @@ public class FlipHorizontalAnimation extends Animation implements Combinable {
 
 	@Override
 	public AnimatorSet getAnimatorSet() {
-		float pivotX, pivotY, viewWidth = view.getWidth(), viewHeight = view
-				.getHeight();
+		float pivotX;
+		float pivotY;
+		float viewWidth = view.getWidth();
+		float viewHeight = view.getHeight();
 		switch (pivot) {
 			case PIVOT_LEFT:
 				pivotX = 0f;
@@ -81,7 +83,7 @@ public class FlipHorizontalAnimation extends Animation implements Combinable {
 				view.setClickable(false);
 			}
 
-			//allows the view to be clickable after animatino
+			//allows the view to be clickable after animation
 			@Override
 			public void onAnimationEnd(Animator animation) {
 				super.onAnimationEnd(animation);
