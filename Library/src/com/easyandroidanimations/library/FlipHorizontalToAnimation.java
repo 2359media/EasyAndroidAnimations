@@ -23,7 +23,8 @@ public class FlipHorizontalToAnimation extends Animation {
 	public static final int PIVOT_CENTER = 0, PIVOT_LEFT = 1, PIVOT_RIGHT = 2;
 
 	View flipToView;
-	int pivot, direction;
+	int pivot;
+	int direction;
 	TimeInterpolator interpolator;
 	long duration;
 	AnimationListener listener;
