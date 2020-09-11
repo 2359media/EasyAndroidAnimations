@@ -23,7 +23,8 @@ public class FlipHorizontalToAnimation extends Animation {
 	public static final int PIVOT_CENTER = 0, PIVOT_LEFT = 1, PIVOT_RIGHT = 2;
 
 	View flipToView;
-	int pivot, direction;
+	int pivot;
+	int direction;
 	TimeInterpolator interpolator;
 	long duration;
 	AnimationListener listener;
@@ -37,9 +38,9 @@ public class FlipHorizontalToAnimation extends Animation {
 	 * @param view
 	 *            The view to be animated.
 	 */
-	public FlipHorizontalToAnimation(View view) {
+	public FlipHorizontalToAnimation(View fromView, View toView) {
 		this.view = view;
-		flipToView = null;
+		flipToView = toView;
 		pivot = PIVOT_CENTER;
 		direction = DIRECTION_RIGHT;
 		interpolator = new AccelerateDecelerateInterpolator();
@@ -49,26 +50,26 @@ public class FlipHorizontalToAnimation extends Animation {
 
 	@Override
 	public void animate() {
-		ViewGroup parentView = (ViewGroup) view.getParent(), rootView = (ViewGroup) view
-				.getRootView();
-
-		float pivotX, pivotY, flipAngle = 270f, viewWidth = view.getWidth(), viewHeight = view
-				.getHeight();
+		float pivotX;
+		float pivotY;
+		float flipAngle = 270f;
+		float viewWidth = view.getWidth();
+		float viewHeight = view.getHeight();
 		final float originalRotationY = view.getRotationY();
 		switch (pivot) {
-		case PIVOT_LEFT:
-			pivotX = 0f;
-			pivotY = viewHeight / 2;
-			break;
-		case PIVOT_RIGHT:
-			pivotX = viewWidth;
-			pivotY = viewHeight / 2;
-			break;
-		default:
-			pivotX = viewWidth / 2;
-			pivotY = viewHeight / 2;
-			flipAngle = 90f;
-			break;
+			case PIVOT_LEFT:
+				pivotX = 0f;
+				pivotY = viewHeight / 2;
+				break;
+			case PIVOT_RIGHT:
+				pivotX = viewWidth;
+				pivotY = viewHeight / 2;
+				break;
+			default:
+				pivotX = viewWidth / 2;
+				pivotY = viewHeight / 2;
+				flipAngle = 90f;
+				break;
 		}
 		view.setPivotX(pivotX);
 		view.setPivotY(pivotY);
@@ -78,12 +79,6 @@ public class FlipHorizontalToAnimation extends Animation {
 		flipToView.setPivotX(pivotX);
 		flipToView.setPivotY(pivotY);
 		flipToView.setVisibility(View.VISIBLE);
-
-		while (parentView != rootView) {
-			parentView.setClipChildren(false);
-			parentView = (ViewGroup) parentView.getParent();
-		}
-		rootView.setClipChildren(false);
 
 		AnimatorSet flipToAnim = new AnimatorSet();
 		if (direction == DIRECTION_RIGHT) {
@@ -100,15 +95,20 @@ public class FlipHorizontalToAnimation extends Animation {
 		flipToAnim.setInterpolator(interpolator);
 		flipToAnim.setDuration(duration / 2);
 		flipToAnim.addListener(new AnimatorListenerAdapter() {
+			// prevents double clicking on the animating view.
+			@Override
+			public void onAnimationStart(Animator animation) {
+				view.setClickable(false);
+				flipToView.setClickable(false);
+			}
 
+			// restores the clicking of the view after the animation has completed.
 			@Override
 			public void onAnimationEnd(Animator animation) {
 				view.setVisibility(View.INVISIBLE);
 				view.setRotationY(originalRotationY);
-				if (getListener() != null) {
-					getListener()
-							.onAnimationEnd(FlipHorizontalToAnimation.this);
-				}
+				view.setClickable(true);
+				flipToView.setClickable(true);
 			}
 		});
 		flipToAnim.start();

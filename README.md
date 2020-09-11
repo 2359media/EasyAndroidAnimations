@@ -29,7 +29,7 @@ repositories {
 }
 
 dependencies {
-	    compile 'com.github.2359media:EasyAndroidAnimations:0.8'
+	    implementation 'com.github.2359media:EasyAndroidAnimations:07f1306'
 }
 ``` 
 
