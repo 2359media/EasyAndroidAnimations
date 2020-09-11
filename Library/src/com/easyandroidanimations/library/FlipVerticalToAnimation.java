@@ -49,26 +49,26 @@ public class FlipVerticalToAnimation extends Animation {
 
 	@Override
 	public void animate() {
-		ViewGroup parentView = (ViewGroup) view.getParent(), rootView = (ViewGroup) view
-				.getRootView();
-
-		float pivotX, pivotY, flipAngle = 270f, viewWidth = view.getWidth(), viewHeight = view
-				.getHeight();
+		float pivotX;
+		float pivotY;
+		float flipAngle = 270f;
+		float viewWidth = view.getWidth();
+		float viewHeight = view.getHeight();
 		final float originalRotationX = view.getRotationX();
 		switch (pivot) {
-		case PIVOT_TOP:
-			pivotX = viewWidth / 2;
-			pivotY = 0f;
-			break;
-		case PIVOT_BOTTOM:
-			pivotX = viewWidth / 2;
-			pivotY = viewHeight;
-			break;
-		default:
-			pivotX = viewWidth / 2;
-			pivotY = viewHeight / 2;
-			flipAngle = 90f;
-			break;
+			case PIVOT_TOP:
+				pivotX = viewWidth / 2;
+				pivotY = 0f;
+				break;
+			case PIVOT_BOTTOM:
+				pivotX = viewWidth / 2;
+				pivotY = viewHeight;
+				break;
+			default:
+				pivotX = viewWidth / 2;
+				pivotY = viewHeight / 2;
+				flipAngle = 90f;
+				break;
 		}
 		view.setPivotX(pivotX);
 		view.setPivotY(pivotY);
@@ -79,19 +79,13 @@ public class FlipVerticalToAnimation extends Animation {
 		flipToView.setPivotY(pivotY);
 		flipToView.setVisibility(View.VISIBLE);
 
-		while (parentView != rootView) {
-			parentView.setClipChildren(false);
-			parentView = (ViewGroup) parentView.getParent();
-		}
-		rootView.setClipChildren(false);
-
 		AnimatorSet flipToAnim = new AnimatorSet();
 		if (direction == DIRECTION_UP) {
 			flipToView.setRotationX(270f);
 			flipToAnim.playSequentially(ObjectAnimator.ofFloat(view,
 					View.ROTATION_X, 0f, flipAngle), ObjectAnimator.ofFloat(
 					flipToView, View.ROTATION_X, 270f, 360f));
-		} else if (direction == DIRECTION_UP) {
+		} else if (direction == DIRECTION_DOWN) {
 			flipToView.setRotationX(-270f);
 			flipToAnim.playSequentially(ObjectAnimator.ofFloat(view,
 					View.ROTATION_X, 0f, -flipAngle), ObjectAnimator.ofFloat(
@@ -102,12 +96,17 @@ public class FlipVerticalToAnimation extends Animation {
 		flipToAnim.addListener(new AnimatorListenerAdapter() {
 
 			@Override
+			public void onAnimationStart(Animator animation) {
+				view.setClickable(false);
+				flipToView.setClickable(false);
+			}
+
+			@Override
 			public void onAnimationEnd(Animator animation) {
 				view.setVisibility(View.INVISIBLE);
 				view.setRotationX(originalRotationX);
-				if (getListener() != null) {
-					getListener().onAnimationEnd(FlipVerticalToAnimation.this);
-				}
+				view.setClickable(true);
+				flipToView.setClickable(true);
 			}
 		});
 		flipToAnim.start();
