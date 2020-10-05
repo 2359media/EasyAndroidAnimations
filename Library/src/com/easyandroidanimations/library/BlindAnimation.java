@@ -41,7 +41,8 @@ public class BlindAnimation extends Animation {
 
 	@Override
 	public void animate() {
-		final ViewGroup parent = (ViewGroup) view.getParent(), animationLayout = new FrameLayout(view.getContext());
+		final ViewGroup parent = (ViewGroup) view.getParent();
+		final animationLayout = new FrameLayout(view.getContext());
 		final int positionView = parent.indexOfChild(view);
 		animationLayout.setLayoutParams(view.getLayoutParams());
 		parent.removeView(view);
@@ -49,9 +50,8 @@ public class BlindAnimation extends Animation {
 		parent.addView(animationLayout, positionView);
 
 		final float originalScaleY = view.getScaleY();
-		ObjectAnimator scaleY = ObjectAnimator.ofFloat(animationLayout,
-				View.SCALE_Y, 0f), scaleY_child = ObjectAnimator.ofFloat(view,
-				View.SCALE_Y, 2.5f);
+		ObjectAnimator scaleY = ObjectAnimator.ofFloat(animationLayout, View.SCALE_Y, 0f);
+		ObjectAnimator scaleY_child = ObjectAnimator.ofFloat(view, View.SCALE_Y, 2.5f);
 		
 		animationLayout.setPivotX(1f);
 		animationLayout.setPivotY(1f);
@@ -71,10 +71,10 @@ public class BlindAnimation extends Animation {
 				animationLayout.removeAllViews();
 				parent.removeView(animationLayout);
 				if (animationLayout.getLayoutParams() != null) {
-                    			parent.addView(view, positionView, animationLayout.getLayoutParams());
-                		}else{
+					parent.addView(view, positionView, animationLayout.getLayoutParams());
+				} else {
 					parent.addView(view, positionView);
-                		}
+				}
 				if (getListener() != null) {
 					getListener().onAnimationEnd(BlindAnimation.this);
 				}
