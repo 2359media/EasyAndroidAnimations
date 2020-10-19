@@ -18,6 +18,7 @@ public class PuffInAnimation extends Animation {
 	TimeInterpolator interpolator;
 	long duration;
 	AnimationListener listener;
+	float enlargeFactor;
 
 	/**
 	 * This animation scales down and fades in the view.
@@ -30,20 +31,21 @@ public class PuffInAnimation extends Animation {
 		interpolator = new AccelerateDecelerateInterpolator();
 		duration = DURATION_LONG;
 		listener = null;
+		this.enlargeFactor = 4f;
 	}
 
 	@Override
 	public void animate() {
-		ViewGroup parentView = (ViewGroup) view.getParent(), rootView = (ViewGroup) view
-				.getRootView();
+		ViewGroup parentView = (ViewGroup) view.getParent();
+		ViewGroup rootView = (ViewGroup) view.getRootView();
 		while (parentView != rootView) {
 			parentView.setClipChildren(false);
 			parentView = (ViewGroup) parentView.getParent();
 		}
 		rootView.setClipChildren(false);
 
-		view.setScaleX(4f);
-		view.setScaleY(4f);
+		view.setScaleX(enlargeFactor);
+		view.setScaleY(enlargeFactor);
 		view.setAlpha(0f);
 		view.animate().scaleX(1f).scaleY(1f).alpha(1f)
 				.setInterpolator(interpolator).setDuration(duration)
@@ -113,6 +115,24 @@ public class PuffInAnimation extends Animation {
 	public PuffInAnimation setListener(AnimationListener listener) {
 		this.listener = listener;
 		return this;
+	}
+
+	/**
+	 *
+	 * @param factor
+	 * The factor of the view to be enlarged at the beginning of the animation.
+	 * @return This object, allowing calls to methods in this class to be chained.
+	 */
+	public PuffInAnimation setEnlargeFactor(int factor) {
+		this.enlargeFactor = (float) factor;
+		return this;
+	}
+
+	/**
+	 * @return The enlarging factor at the beginning of the animation.
+	 */
+	public float getEnlargeFactor() {
+		return enlargeFactor;
 	}
 
 }
