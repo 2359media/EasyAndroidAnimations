@@ -107,7 +107,7 @@ public class PuffOutAnimation extends Animation {
 	 * The factor of the view to be enlarged at the beginning of the animation.
 	 * @return This object, allowing calls to methods in this class to be chained.
 	 */
-	public PuffOutAnimation setEnlargeFactor(int factor) {
+	public PuffOutAnimation setEnlargeFactor(double factor) {
 		this.enlargeFactor = (float) factor;
 		return this;
 	}
