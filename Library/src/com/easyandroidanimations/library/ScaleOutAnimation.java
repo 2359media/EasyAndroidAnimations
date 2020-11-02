@@ -43,11 +43,10 @@ public class ScaleOutAnimation extends Animation implements Combinable {
 
 	@Override
 	public AnimatorSet getAnimatorSet() {
-		final float originalScaleX = view.getScaleX(), originalScaleY = view
-				.getScaleY();
+		final float originalScaleX = view.getScaleX();
+		final float originalScaleY = view.getScaleY();
 		AnimatorSet scaleSet = new AnimatorSet();
-		scaleSet.playTogether(ObjectAnimator.ofFloat(view, View.SCALE_X, 0f),
-				ObjectAnimator.ofFloat(view, View.SCALE_Y, 0f));
+		scaleSet.playTogether(ObjectAnimator.ofFloat(view, View.SCALE_X, 0f), ObjectAnimator.ofFloat(view, View.SCALE_Y, 0f));
 		scaleSet.setInterpolator(interpolator);
 		scaleSet.setDuration(duration);
 		scaleSet.addListener(new AnimatorListenerAdapter() {
