@@ -46,18 +46,15 @@ public class ShakeAnimation extends Animation {
 		if (singleShakeDuration == 0)
 			singleShakeDuration = 1;
 		final AnimatorSet shakeAnim = new AnimatorSet();
-		shakeAnim
-				.playSequentially(ObjectAnimator.ofFloat(view,
-						View.TRANSLATION_X, shakeDistance), ObjectAnimator
-						.ofFloat(view, View.TRANSLATION_X, -shakeDistance),
-						ObjectAnimator.ofFloat(view, View.TRANSLATION_X,
-								shakeDistance), ObjectAnimator.ofFloat(view,
-								View.TRANSLATION_X, 0));
+		shakeAnim.playSequentially(ObjectAnimator.ofFloat(view, View.TRANSLATION_X, shakeDistance),
+								   ObjectAnimator.ofFloat(view, View.TRANSLATION_X, -shakeDistance),
+								   ObjectAnimator.ofFloat(view, View.TRANSLATION_X, shakeDistance),
+								   ObjectAnimator.ofFloat(view, View.TRANSLATION_X, 0));
 		shakeAnim.setInterpolator(interpolator);
 		shakeAnim.setDuration(singleShakeDuration);
 
-		ViewGroup parentView = (ViewGroup) view.getParent(), rootView = (ViewGroup) view
-				.getRootView();
+		ViewGroup parentView = (ViewGroup) view.getParent();
+		ViewGroup rootView = (ViewGroup) view.getRootView();
 		while (!parentView.equals(rootView)) {
 			parentView.setClipChildren(false);
 			parentView = (ViewGroup) parentView.getParent();
