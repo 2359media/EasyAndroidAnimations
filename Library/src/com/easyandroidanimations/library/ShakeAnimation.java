@@ -18,14 +18,19 @@ import android.view.animation.AccelerateDecelerateInterpolator;
  */
 public class ShakeAnimation extends Animation {
 
+	public static final int DIRECTION_HORIZONTAL = 0;
+	public static final int DIRECTION_VERTICAL = 1;
+
 	float shakeDistance;
-	int numOfShakes, shakeCount = 0;
+	int numOfShakes;
+	int direction;
+	int shakeCount = 0;
 	TimeInterpolator interpolator;
 	long duration;
 	AnimationListener listener;
 
 	/**
-	 * This animation causes the view to shake from left to right for a
+	 * This animation causes the view to shake from left to right / up to down for a
 	 * customizable number of times before returning to its original position.
 	 * 
 	 * @param view
@@ -34,6 +39,7 @@ public class ShakeAnimation extends Animation {
 	public ShakeAnimation(View view) {
 		this.view = view;
 		shakeDistance = 20;
+		direction = 0;
 		numOfShakes = 2;
 		interpolator = new AccelerateDecelerateInterpolator();
 		duration = DURATION_LONG;
@@ -46,10 +52,17 @@ public class ShakeAnimation extends Animation {
 		if (singleShakeDuration == 0)
 			singleShakeDuration = 1;
 		final AnimatorSet shakeAnim = new AnimatorSet();
-		shakeAnim.playSequentially(ObjectAnimator.ofFloat(view, View.TRANSLATION_X, shakeDistance),
-								   ObjectAnimator.ofFloat(view, View.TRANSLATION_X, -shakeDistance),
-								   ObjectAnimator.ofFloat(view, View.TRANSLATION_X, shakeDistance),
-								   ObjectAnimator.ofFloat(view, View.TRANSLATION_X, 0));
+		if (direction == 0) {
+			shakeAnim.playSequentially(ObjectAnimator.ofFloat(view, View.TRANSLATION_X, shakeDistance),
+					ObjectAnimator.ofFloat(view, View.TRANSLATION_X, -shakeDistance),
+					ObjectAnimator.ofFloat(view, View.TRANSLATION_X, shakeDistance),
+					ObjectAnimator.ofFloat(view, View.TRANSLATION_X, 0));
+		} else {
+			shakeAnim.playSequentially(ObjectAnimator.ofFloat(view, View.TRANSLATION_Y, shakeDistance),
+					ObjectAnimator.ofFloat(view, View.TRANSLATION_Y, -shakeDistance),
+					ObjectAnimator.ofFloat(view, View.TRANSLATION_Y, shakeDistance),
+					ObjectAnimator.ofFloat(view, View.TRANSLATION_Y, 0));
+		}
 		shakeAnim.setInterpolator(interpolator);
 		shakeAnim.setDuration(singleShakeDuration);
 
@@ -165,4 +178,21 @@ public class ShakeAnimation extends Animation {
 		return this;
 	}
 
+	/**
+	 * @param direction
+	 *            The direction of the animation. 0 for left-right, 1 for up-down.
+	 * @return This object, allowing calls to methods in this class to be
+	 *         chained.
+	 */
+	public ShakeAnimation setDirection(int direction) {
+		this.direction = direction;
+		return this;
+	}
+
+	/**
+	 * @return The direction for the animation.
+	 */
+	public int getDirectionHorizontal() {
+		return direction;
+	}
 }
