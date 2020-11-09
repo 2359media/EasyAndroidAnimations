@@ -49,8 +49,8 @@ public class SlideOutAnimation extends Animation implements Combinable {
 
 	@Override
 	public AnimatorSet getAnimatorSet() {
-		ViewGroup parentView = (ViewGroup) view.getParent(), rootView = (ViewGroup) view
-				.getRootView();
+		ViewGroup parentView = (ViewGroup) view.getParent();
+		ViewGroup rootView = (ViewGroup) view.getRootView();
 		while (!parentView.equals(rootView)) {
 			parentView.setClipChildren(false);
 			parentView = (ViewGroup) parentView.getParent();
@@ -62,20 +62,16 @@ public class SlideOutAnimation extends Animation implements Combinable {
 
 		switch (direction) {
 		case DIRECTION_LEFT:
-			slideAnim = ObjectAnimator.ofFloat(view, View.X, -locationView[0]
-					- view.getWidth());
+			slideAnim = ObjectAnimator.ofFloat(view, View.X, -locationView[0] - view.getWidth());
 			break;
 		case DIRECTION_RIGHT:
-			slideAnim = ObjectAnimator.ofFloat(view, View.X,
-					rootView.getRight());
+			slideAnim = ObjectAnimator.ofFloat(view, View.X, rootView.getRight());
 			break;
 		case DIRECTION_UP:
-			slideAnim = ObjectAnimator.ofFloat(view, View.Y, -locationView[1]
-					- view.getHeight());
+			slideAnim = ObjectAnimator.ofFloat(view, View.Y, -locationView[1] - view.getHeight());
 			break;
 		case DIRECTION_DOWN:
-			slideAnim = ObjectAnimator.ofFloat(view, View.Y,
-					rootView.getBottom());
+			slideAnim = ObjectAnimator.ofFloat(view, View.Y, rootView.getBottom());
 			break;
 		default:
 			break;
