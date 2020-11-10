@@ -49,27 +49,24 @@ public class SlideInUnderneathAnimation extends Animation {
 		parentView.addView(slideInFrame, positionView);
 
 		ObjectAnimator slideInAnim = null;
-		float viewWidth = view.getWidth(), viewHeight = view.getHeight();
+		float viewWidth = view.getWidth();
+		float viewHeight = view.getHeight();
 		switch (direction) {
 		case DIRECTION_LEFT:
 			view.setTranslationX(-viewWidth);
-			slideInAnim = ObjectAnimator.ofFloat(view, View.TRANSLATION_X,
-					slideInFrame.getX());
+			slideInAnim = ObjectAnimator.ofFloat(view, View.TRANSLATION_X, slideInFrame.getX());
 			break;
 		case DIRECTION_RIGHT:
 			view.setTranslationX(viewWidth);
-			slideInAnim = ObjectAnimator.ofFloat(view, View.TRANSLATION_X,
-					slideInFrame.getX());
+			slideInAnim = ObjectAnimator.ofFloat(view, View.TRANSLATION_X, slideInFrame.getX());
 			break;
 		case DIRECTION_UP:
 			view.setTranslationY(-viewHeight);
-			slideInAnim = ObjectAnimator.ofFloat(view, View.TRANSLATION_Y,
-					slideInFrame.getY());
+			slideInAnim = ObjectAnimator.ofFloat(view, View.TRANSLATION_Y, slideInFrame.getY());
 			break;
 		case DIRECTION_DOWN:
 			view.setTranslationY(viewHeight);
-			slideInAnim = ObjectAnimator.ofFloat(view, View.TRANSLATION_Y,
-					slideInFrame.getY());
+			slideInAnim = ObjectAnimator.ofFloat(view, View.TRANSLATION_Y, slideInFrame.getY());
 			break;
 		default:
 			break;
@@ -89,8 +86,7 @@ public class SlideInUnderneathAnimation extends Animation {
 				view.setLayoutParams(slideInFrame.getLayoutParams());
 				parentView.addView(view, positionView);
 				if (getListener() != null) {
-					getListener().onAnimationEnd(
-							SlideInUnderneathAnimation.this);
+					getListener().onAnimationEnd(SlideInUnderneathAnimation.this);
 				}
 			}
 		});
