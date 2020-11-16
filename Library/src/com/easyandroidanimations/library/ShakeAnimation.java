@@ -192,7 +192,7 @@ public class ShakeAnimation extends Animation {
 	/**
 	 * @return The direction for the animation.
 	 */
-	public int getDirectionHorizontal() {
+	public int getDirection() {
 		return direction;
 	}
 }
