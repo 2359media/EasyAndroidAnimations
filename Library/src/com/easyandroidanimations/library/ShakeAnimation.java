@@ -52,7 +52,7 @@ public class ShakeAnimation extends Animation {
 		if (singleShakeDuration == 0)
 			singleShakeDuration = 1;
 		final AnimatorSet shakeAnim = new AnimatorSet();
-		if (direction == 0) {
+		if (direction == DIRECTION_HORIZONTAL) {
 			shakeAnim.playSequentially(ObjectAnimator.ofFloat(view, View.TRANSLATION_X, shakeDistance),
 					ObjectAnimator.ofFloat(view, View.TRANSLATION_X, -shakeDistance),
 					ObjectAnimator.ofFloat(view, View.TRANSLATION_X, shakeDistance),
