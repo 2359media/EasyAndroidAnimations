@@ -18,7 +18,8 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 public class TransferAnimation extends Animation {
 
 	View destinationView;
-	int transX, transY;
+	int transX;
+	int transY;
 	TimeInterpolator interpolator;
 	long duration;
 	AnimationListener listener;
@@ -50,17 +51,16 @@ public class TransferAnimation extends Animation {
 		}
 		rootView.setClipChildren(false);
 
-		final float scaleX = (float) destinationView.getWidth()
-				/ ((float) view.getWidth()), scaleY = (float) destinationView
-				.getHeight() / ((float) view.getHeight());
-		int[] locationDest = new int[2], locationView = new int[2];
+		final float scaleX = (float) destinationView.getWidth() / ((float) view.getWidth());
+		final float scaleY = (float) destinationView.getHeight() / ((float) view.getHeight());
+		int[] locationDest = new int[2];
+		int[] locationView = new int[2];
 		view.getLocationOnScreen(locationView);
 		destinationView.getLocationOnScreen(locationDest);
 		transX = locationDest[0] - locationView[0];
 		transY = locationDest[1] - locationView[1];
 		transX = transX - view.getWidth() / 2 + destinationView.getWidth() / 2;
-		transY = transY - view.getHeight() / 2 + destinationView.getHeight()
-				/ 2;
+		transY = transY - view.getHeight() / 2 + destinationView.getHeight() / 2;
 
 		view.animate().scaleX(scaleX).scaleY(scaleY).translationX(transX)
 				.translationY(transY).setInterpolator(interpolator)
@@ -70,8 +70,7 @@ public class TransferAnimation extends Animation {
 					@Override
 					public void onAnimationEnd(Animator animation) {
 						if (getListener() != null) {
-							getListener()
-									.onAnimationEnd(TransferAnimation.this);
+							getListener().onAnimationEnd(TransferAnimation.this);
 						}
 					}
 				});
