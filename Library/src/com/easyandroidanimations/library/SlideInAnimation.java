@@ -44,8 +44,8 @@ public class SlideInAnimation extends Animation implements Combinable {
 	
 	@Override
 	public AnimatorSet getAnimatorSet() {
-		ViewGroup parentView = (ViewGroup) view.getParent(), rootView = (ViewGroup) view
-				.getRootView();
+		ViewGroup parentView = (ViewGroup) view.getParent();
+		ViewGroup rootView = (ViewGroup) view.getRootView();
 		while (!parentView.equals(rootView)) {
 			parentView.setClipChildren(false);
 			parentView = (ViewGroup) parentView.getParent();
@@ -57,20 +57,16 @@ public class SlideInAnimation extends Animation implements Combinable {
 		ObjectAnimator slideAnim = null;
 		switch (direction) {
 		case DIRECTION_LEFT:
-			slideAnim = ObjectAnimator.ofFloat(view, View.X, -locationView[0]
-					- view.getWidth(), view.getX());
+			slideAnim = ObjectAnimator.ofFloat(view, View.X, -locationView[0] - view.getWidth(), view.getX());
 			break;
 		case DIRECTION_RIGHT:
-			slideAnim = ObjectAnimator.ofFloat(view, View.X,
-					rootView.getRight(), view.getX());
+			slideAnim = ObjectAnimator.ofFloat(view, View.X, rootView.getRight(), view.getX());
 			break;
 		case DIRECTION_UP:
-			slideAnim = ObjectAnimator.ofFloat(view, View.Y, -locationView[1]
-					- view.getHeight(), view.getY());
+			slideAnim = ObjectAnimator.ofFloat(view, View.Y, -locationView[1] - view.getHeight(), view.getY());
 			break;
 		case DIRECTION_DOWN:
-			slideAnim = ObjectAnimator.ofFloat(view, View.Y,
-					rootView.getBottom(), view.getY());
+			slideAnim = ObjectAnimator.ofFloat(view, View.Y, rootView.getBottom(), view.getY());
 			break;
 		default:
 			break;

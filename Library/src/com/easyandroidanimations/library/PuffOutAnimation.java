@@ -19,6 +19,7 @@ public class PuffOutAnimation extends Animation {
 	TimeInterpolator interpolator;
 	long duration;
 	AnimationListener listener;
+	float enlargeFactor;
 
 	/**
 	 * This animation scales up and fades out the view. On animation end, the
@@ -33,21 +34,23 @@ public class PuffOutAnimation extends Animation {
 		interpolator = new AccelerateDecelerateInterpolator();
 		duration = DURATION_LONG;
 		listener = null;
+		enlargeFactor = 4f;
 	}
 
 	@Override
 	public void animate() {
-		ViewGroup parentView = (ViewGroup) view.getParent(), rootView = (ViewGroup) view
-				.getRootView();
+		ViewGroup parentView = (ViewGroup) view.getParent();
+		ViewGroup rootView = (ViewGroup) view.getRootView();
 		while (parentView != rootView) {
 			parentView.setClipChildren(false);
 			parentView = (ViewGroup) parentView.getParent();
 		}
 		rootView.setClipChildren(false);
 
-		final float originalScaleX = view.getScaleX(), originalScaleY = view
-				.getScaleY(), originalAlpha = view.getAlpha();
-		view.animate().scaleX(4f).scaleY(4f).alpha(0f)
+		final float originalScaleX = view.getScaleX();
+		final float originalScaleY = view.getScaleY();
+		final float originalAlpha = view.getAlpha();
+		view.animate().scaleX(enlargeFactor).scaleY(enlargeFactor).alpha(0f)
 				.setInterpolator(interpolator).setDuration(duration)
 				.setListener(new AnimatorListenerAdapter() {
 
@@ -96,6 +99,24 @@ public class PuffOutAnimation extends Animation {
 	public PuffOutAnimation setDuration(long duration) {
 		this.duration = duration;
 		return this;
+	}
+
+	/**
+	 *
+	 * @param factor
+	 * The factor of the view to be enlarged at the beginning of the animation.
+	 * @return This object, allowing calls to methods in this class to be chained.
+	 */
+	public PuffOutAnimation setEnlargeFactor(double factor) {
+		this.enlargeFactor = (float) factor;
+		return this;
+	}
+
+	/**
+	 * @return The enlarging factor at the beginning of the animation.
+	 */
+	public float getEnlargeFactor() {
+		return enlargeFactor;
 	}
 
 	/**

@@ -18,8 +18,11 @@ import android.view.animation.AccelerateDecelerateInterpolator;
  */
 public class RotationAnimation extends Animation implements Combinable {
 
-	public static final int PIVOT_CENTER = 0, PIVOT_TOP_LEFT = 1,
-			PIVOT_TOP_RIGHT = 2, PIVOT_BOTTOM_LEFT = 3, PIVOT_BOTTOM_RIGHT = 4;
+	public static final int PIVOT_CENTER = 0;
+	public static final int PIVOT_TOP_LEFT = 1;
+	public static final int PIVOT_TOP_RIGHT = 2;
+	public static final int PIVOT_BOTTOM_LEFT = 3;
+	public static final int PIVOT_BOTTOM_RIGHT = 4;
 
 	float degrees;
 	int pivot;
@@ -50,16 +53,18 @@ public class RotationAnimation extends Animation implements Combinable {
 
 	@Override
 	public AnimatorSet getAnimatorSet() {
-		ViewGroup parentView = (ViewGroup) view.getParent(), rootView = (ViewGroup) view
-				.getRootView();
+		ViewGroup parentView = (ViewGroup) view.getParent();
+		ViewGroup rootView = (ViewGroup) view.getRootView();
 		while (parentView != rootView) {
 			parentView.setClipChildren(false);
 			parentView = (ViewGroup) parentView.getParent();
 		}
 		rootView.setClipChildren(false);
 
-		float pivotX, pivotY, viewWidth = view.getWidth(), viewHeight = view
-				.getHeight();
+		float pivotX;
+		float pivotY;
+		float viewWidth = view.getWidth();
+		float viewHeight = view.getHeight();
 		switch (pivot) {
 		case PIVOT_TOP_LEFT:
 			pivotX = 1f;
@@ -86,8 +91,7 @@ public class RotationAnimation extends Animation implements Combinable {
 		view.setPivotY(pivotY);
 
 		AnimatorSet rotationSet = new AnimatorSet();
-		rotationSet.play(ObjectAnimator.ofFloat(view, View.ROTATION,
-				view.getRotation() + degrees));
+		rotationSet.play(ObjectAnimator.ofFloat(view, View.ROTATION, view.getRotation() + degrees));
 		rotationSet.setInterpolator(interpolator);
 		rotationSet.setDuration(duration);
 		rotationSet.addListener(new AnimatorListenerAdapter() {

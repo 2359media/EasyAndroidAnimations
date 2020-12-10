@@ -42,8 +42,8 @@ public class BlinkAnimation extends Animation {
 		long singleBlinkDuration = duration / numOfBlinks / 2;
 		if (singleBlinkDuration == 0)
 			singleBlinkDuration = 1;
-		ObjectAnimator fadeOut = ObjectAnimator.ofFloat(view, View.ALPHA, 0), fadeIn = ObjectAnimator
-				.ofFloat(view, View.ALPHA, 1);
+		ObjectAnimator fadeOut = ObjectAnimator.ofFloat(view, View.ALPHA, 0);
+		ObjectAnimator fadeIn = ObjectAnimator.ofFloat(view, View.ALPHA, 1);
 		final AnimatorSet blinkAnim = new AnimatorSet();
 		blinkAnim.playSequentially(fadeOut, fadeIn);
 		blinkAnim.setInterpolator(interpolator);

@@ -19,6 +19,7 @@ public class ScaleInAnimation extends Animation implements Combinable {
 	TimeInterpolator interpolator;
 	long duration;
 	AnimationListener listener;
+	float enlargeFactor;
 
 	/**
 	 * This animation scales in the view from 0 to 1.
@@ -31,6 +32,7 @@ public class ScaleInAnimation extends Animation implements Combinable {
 		interpolator = new AccelerateDecelerateInterpolator();
 		duration = DURATION_LONG;
 		listener = null;
+		this.enlargeFactor = 1;
 	}
 
 	@Override
@@ -40,13 +42,20 @@ public class ScaleInAnimation extends Animation implements Combinable {
 
 	@Override
 	public AnimatorSet getAnimatorSet() {
+		ViewGroup parentView = (ViewGroup) view.getParent();
+		ViewGroup rootView = (ViewGroup) view.getRootView();
+		while (parentView != rootView) {
+			parentView.setClipChildren(false);
+			parentView = (ViewGroup) parentView.getParent();
+		}
+
 		view.setScaleX(0f);
 		view.setScaleY(0f);
 		view.setVisibility(View.VISIBLE);
 
 		AnimatorSet scaleSet = new AnimatorSet();
-		scaleSet.playTogether(ObjectAnimator.ofFloat(view, View.SCALE_X, 1f),
-				ObjectAnimator.ofFloat(view, View.SCALE_Y, 1f));
+		scaleSet.playTogether(ObjectAnimator.ofFloat(view, View.SCALE_X, enlargeFactor),
+				ObjectAnimator.ofFloat(view, View.SCALE_Y, enlargeFactor));
 		scaleSet.setInterpolator(interpolator);
 		scaleSet.setDuration(duration);
 		scaleSet.addListener(new AnimatorListenerAdapter() {
@@ -113,4 +122,20 @@ public class ScaleInAnimation extends Animation implements Combinable {
 		return this;
 	}
 
+	/**
+	 * @return The enlarging factor at the end of the animation.
+	 */
+	public float getEnlargeFactor() {
+		return enlargeFactor;
+	}
+
+	/**
+	 * @param factor
+	 * The factor of the view to be enlarged at the end of the animation.
+	 * @return This object, allowing calls to methods in this class to be chained.
+	 */
+	public ScaleInAnimation setEnlargeFactor(double factor) {
+		this.enlargeFactor = (float) factor;
+		return this;
+	}
 }

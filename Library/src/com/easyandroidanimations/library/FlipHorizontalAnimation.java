@@ -49,35 +49,36 @@ public class FlipHorizontalAnimation extends Animation implements Combinable {
 
 	@Override
 	public AnimatorSet getAnimatorSet() {
-		ViewGroup parentView = (ViewGroup) view.getParent(), rootView = (ViewGroup) view
-				.getRootView();
+		ViewGroup parentView = (ViewGroup) view.getParent();
+		ViewGroup rootView = (ViewGroup) view.getRootView();
 		while (parentView != rootView) {
 			parentView.setClipChildren(false);
 			parentView = (ViewGroup) parentView.getParent();
 		}
 		rootView.setClipChildren(false);
 
-		float pivotX, pivotY, viewWidth = view.getWidth(), viewHeight = view
-				.getHeight();
+		float pivotX;
+		float pivotY;
+		float viewWidth = view.getWidth();
+		float viewHeight = view.getHeight();
 		switch (pivot) {
-		case PIVOT_LEFT:
-			pivotX = 0f;
-			pivotY = viewHeight / 2;
-			break;
-		case PIVOT_RIGHT:
-			pivotX = viewWidth;
-			pivotY = viewHeight / 2;
-			break;
-		default:
-			pivotX = viewWidth / 2;
-			pivotY = viewHeight / 2;
-			break;
+			case PIVOT_LEFT:
+				pivotX = 0f;
+				pivotY = viewHeight / 2;
+				break;
+			case PIVOT_RIGHT:
+				pivotX = viewWidth;
+				pivotY = viewHeight / 2;
+				break;
+			default:
+				pivotX = viewWidth / 2;
+				pivotY = viewHeight / 2;
+				break;
 		}
 		view.setPivotX(pivotX);
 		view.setPivotY(pivotY);
 		AnimatorSet flipSet = new AnimatorSet();
-		flipSet.play(ObjectAnimator.ofFloat(view, View.ROTATION_Y,
-				view.getRotationY() + degrees));
+		flipSet.play(ObjectAnimator.ofFloat(view, View.ROTATION_Y, view.getRotationY() + degrees));
 		flipSet.setInterpolator(interpolator);
 		flipSet.setDuration(duration);
 		flipSet.addListener(new AnimatorListenerAdapter() {

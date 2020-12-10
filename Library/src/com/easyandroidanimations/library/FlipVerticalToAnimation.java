@@ -91,7 +91,7 @@ public class FlipVerticalToAnimation extends Animation {
 			flipToAnim.playSequentially(ObjectAnimator.ofFloat(view,
 					View.ROTATION_X, 0f, flipAngle), ObjectAnimator.ofFloat(
 					flipToView, View.ROTATION_X, 270f, 360f));
-		} else if (direction == DIRECTION_UP) {
+		} else {
 			flipToView.setRotationX(-270f);
 			flipToAnim.playSequentially(ObjectAnimator.ofFloat(view,
 					View.ROTATION_X, 0f, -flipAngle), ObjectAnimator.ofFloat(

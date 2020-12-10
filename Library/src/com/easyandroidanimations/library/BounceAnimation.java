@@ -46,16 +46,15 @@ public class BounceAnimation extends Animation {
 		if (singleBounceDuration == 0)
 			singleBounceDuration = 1;
 		final AnimatorSet bounceAnim = new AnimatorSet();
-		bounceAnim.playSequentially(ObjectAnimator.ofFloat(view,
-				View.TRANSLATION_Y, bounceDistance), ObjectAnimator.ofFloat(
-				view, View.TRANSLATION_Y, -bounceDistance), ObjectAnimator
-				.ofFloat(view, View.TRANSLATION_Y, bounceDistance),
-				ObjectAnimator.ofFloat(view, View.TRANSLATION_Y, 0));
+		bounceAnim.playSequentially(ObjectAnimator.ofFloat(view, View.TRANSLATION_Y, bounceDistance),
+									ObjectAnimator.ofFloat(view, View.TRANSLATION_Y, -bounceDistance),
+									ObjectAnimator.ofFloat(view, View.TRANSLATION_Y, bounceDistance),
+									ObjectAnimator.ofFloat(view, View.TRANSLATION_Y, 0));
 		bounceAnim.setInterpolator(interpolator);
 		bounceAnim.setDuration(singleBounceDuration);
 
-		ViewGroup parentView = (ViewGroup) view.getParent(), rootView = (ViewGroup) view
-				.getRootView();
+		ViewGroup parentView = (ViewGroup) view.getParent();
+		ViewGroup rootView = (ViewGroup) view.getRootView();
 		while (!parentView.equals(rootView)) {
 			parentView.setClipChildren(false);
 			parentView = (ViewGroup) parentView.getParent();

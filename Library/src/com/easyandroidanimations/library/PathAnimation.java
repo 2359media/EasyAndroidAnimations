@@ -59,8 +59,8 @@ public class PathAnimation extends Animation implements Combinable {
 
 	@Override
 	public AnimatorSet getAnimatorSet() {
-		ViewGroup parentView = (ViewGroup) view.getParent(), rootView = (ViewGroup) view
-				.getRootView();
+		ViewGroup parentView = (ViewGroup) view.getParent();
+		ViewGroup rootView = (ViewGroup) view.getRootView();
 		while (!parentView.equals(rootView)) {
 			parentView.setClipChildren(false);
 			parentView = (ViewGroup) parentView.getParent();
@@ -73,9 +73,10 @@ public class PathAnimation extends Animation implements Combinable {
 		List<Animator> pathAnimList = new ArrayList<Animator>();
 
 		parentView = (ViewGroup) view.getParent();
-		int parentWidth = parentView.getWidth(), parentHeight = parentView
-				.getHeight(), viewWidth = view.getWidth(), viewHeight = view
-				.getHeight();
+		int parentWidth = parentView.getWidth();
+		int parentHeight = parentView.getHeight();
+		int viewWidth = view.getWidth()
+		int viewHeight = view.getHeight();
 		float posX, posY;
 		for (int i = 0; i < numOfPoints; i++) {
 			posX = (points.get(i).x / 100f * parentWidth);
@@ -101,8 +102,8 @@ public class PathAnimation extends Animation implements Combinable {
 			}
 			pathAnimSetArray[i] = new AnimatorSet();
 			pathAnimSetArray[i].playTogether(
-					ObjectAnimator.ofFloat(view, View.X, posX),
-					ObjectAnimator.ofFloat(view, View.Y, posY));
+					ObjectAnimator.ofFloat(view, View.TRANSLATION_X, posX),
+					ObjectAnimator.ofFloat(view, View.TRANSLATION_Y, posY));
 			pathAnimList.add(pathAnimSetArray[i]);
 		}
 

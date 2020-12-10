@@ -1,9 +1,11 @@
 package com.easyandroidanimations.library;
 
 import android.animation.Animator;
+import android.animation.AnimatorSet;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.animation.TimeInterpolator;
+import android.animation.ValueAnimator;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
@@ -21,6 +23,7 @@ public class SlideInUnderneathAnimation extends Animation {
 	TimeInterpolator interpolator;
 	long duration;
 	AnimationListener listener;
+	ValueAnimator slideAnim;
 
 	/**
 	 * This animation causes the view to slide in underneath from its own
@@ -48,53 +51,48 @@ public class SlideInUnderneathAnimation extends Animation {
 		slideInFrame.addView(view);
 		parentView.addView(slideInFrame, positionView);
 
-		ObjectAnimator slideInAnim = null;
-		float viewWidth = view.getWidth(), viewHeight = view.getHeight();
+		float viewWidth = view.getWidth();
+		float viewHeight = view.getHeight();
 		switch (direction) {
-		case DIRECTION_LEFT:
-			view.setTranslationX(-viewWidth);
-			slideInAnim = ObjectAnimator.ofFloat(view, View.TRANSLATION_X,
-					slideInFrame.getX());
-			break;
-		case DIRECTION_RIGHT:
-			view.setTranslationX(viewWidth);
-			slideInAnim = ObjectAnimator.ofFloat(view, View.TRANSLATION_X,
-					slideInFrame.getX());
-			break;
-		case DIRECTION_UP:
-			view.setTranslationY(-viewHeight);
-			slideInAnim = ObjectAnimator.ofFloat(view, View.TRANSLATION_Y,
-					slideInFrame.getY());
-			break;
-		case DIRECTION_DOWN:
-			view.setTranslationY(viewHeight);
-			slideInAnim = ObjectAnimator.ofFloat(view, View.TRANSLATION_Y,
-					slideInFrame.getY());
-			break;
-		default:
-			break;
+			case DIRECTION_LEFT:
+				view.setTranslationX(-viewWidth);
+				slideAnim = ObjectAnimator.ofFloat(view, View.TRANSLATION_X, slideInFrame.getX());
+				break;
+			case DIRECTION_RIGHT:
+				view.setTranslationX(viewWidth);
+				slideAnim = ObjectAnimator.ofFloat(view, View.TRANSLATION_X, slideInFrame.getX());
+				break;
+			case DIRECTION_UP:
+				view.setTranslationY(-viewHeight);
+				slideAnim = ObjectAnimator.ofFloat(view, View.TRANSLATION_Y, slideInFrame.getY());
+				break;
+			case DIRECTION_DOWN:
+				view.setTranslationY(viewHeight);
+				slideAnim = ObjectAnimator.ofFloat(view, View.TRANSLATION_Y, slideInFrame.getY());
+				break;
+			default:
+				break;
 		}
-		slideInAnim.setInterpolator(interpolator);
-		slideInAnim.setDuration(duration);
-		slideInAnim.addListener(new AnimatorListenerAdapter() {
-
-			@Override
-			public void onAnimationStart(Animator animation) {
-				view.setVisibility(View.VISIBLE);
-			}
-
+		AnimatorSet slideSet = new AnimatorSet();
+		slideSet.play(slideAnim);
+		slideSet.setInterpolator(interpolator);
+		slideSet.addListener(new AnimatorListenerAdapter() {
 			@Override
 			public void onAnimationEnd(Animator animation) {
 				slideInFrame.removeAllViews();
 				view.setLayoutParams(slideInFrame.getLayoutParams());
 				parentView.addView(view, positionView);
 				if (getListener() != null) {
-					getListener().onAnimationEnd(
-							SlideInUnderneathAnimation.this);
+					getListener().onAnimationEnd(SlideInUnderneathAnimation.this);
 				}
 			}
+
+			@Override
+			public void onAnimationStart(Animator animation) {
+				view.setVisibility(View.VISIBLE);
+			}
 		});
-		slideInAnim.start();
+		slideAnim.start();
 	}
 
 	/**
